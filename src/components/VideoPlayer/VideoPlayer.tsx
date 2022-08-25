@@ -18,9 +18,7 @@ const VideoPlayer = () => {
 
   return (
     <VideoPlayerBox>
-      {hasWindow && (
-        <StyledReactPlayer constrols playsinline ref={playerRef} url={TEST_URL_YT} width='100%' height='100%' />
-      )}
+      {hasWindow && <StyledReactPlayer controls ref={playerRef} url={TEST_URL_YT} width='100%' height='100%' />}
     </VideoPlayerBox>
   );
 };

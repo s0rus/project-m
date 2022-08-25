@@ -74,24 +74,20 @@ export const theme = createTheme({
           },
         },
 
-        /* width */
         '::-webkit-scrollbar': {
           width: '4px',
         },
 
-        /* Track */
         '::-webkit-scrollbar-track': {
           background: 'invisible',
         },
 
-        /* Handle */
         '::-webkit-scrollbar-thumb': {
           background: '#F91880',
         },
 
-        /* Handle on hover */
         '::-webkit-scrollbar-thumb:hover': {
-          background: '#555',
+          background: '#F91880',
         },
       },
     },
