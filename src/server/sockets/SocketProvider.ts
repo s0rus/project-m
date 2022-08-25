@@ -1,6 +1,5 @@
-import { Server, ServerOptions } from 'socket.io';
+import { Server, ServerOptions, Socket as ServerSocket } from 'socket.io';
 import { Socket as ClientSocket } from 'socket.io-client';
-import { Socket as ServerSocket } from 'socket.io';
 
 export interface ServerToClientEvents {
   newChangedMessage: (msg: string) => void;

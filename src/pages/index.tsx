@@ -1,9 +1,11 @@
-import TwitchChat from '@/components/TwitchChat/TwitchChat';
+import TwitchChat from '@/components/TwitchChat';
+import VideoPlayer from '@/components/VideoPlayer';
 import MainLayout from '@/layouts/MainLayout';
 import { SocketProvider } from '@/server/sockets';
+import { Grid, styled } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
 
 let socket: SocketProvider.ClientIO;
@@ -44,6 +46,10 @@ const Home: NextPage = () => {
     socket.emit('videoStart');
   };
 
+  const DummyDiv = styled('div')`
+    height: 1000px;
+  `;
+
   return (
     <>
       <Head>
@@ -52,12 +58,17 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <MainLayout>
-        <div>
-          <video ref={videoRef} onPlay={handlePlay} muted controls>
-            <source src='/brus_fiora.mp4' />
-          </video>
-        </div>
-        <TwitchChat />
+        <Grid container>
+          <Grid item flex='1' height='100vh' style={{ overflow: 'overlay' }}>
+            <div>
+              <VideoPlayer />
+              <DummyDiv />
+            </div>
+          </Grid>
+          <Grid item>
+            <TwitchChat />
+          </Grid>
+        </Grid>
       </MainLayout>
     </>
   );

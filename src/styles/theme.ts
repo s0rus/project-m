@@ -31,8 +31,8 @@ export const theme = createTheme({
 
   palette: {
     primary: {
-      main: '#7A46EE',
-      light: '#9A4BFF',
+      main: '#E01673',
+      light: '#F91880',
       contrastText: '#EFEFF1',
     },
 
@@ -57,13 +57,11 @@ export const theme = createTheme({
       styleOverrides: {
         html: {
           background: '#18181B',
-          width: '100%',
-          height: '100vh',
+          overflow: 'hidden',
         },
         body: {
           backgroundColor: '#18181B!important',
-          width: 'inherit',
-          height: 'inherit',
+          minHeight: '100vh',
         },
 
         '.MuiButtonBase-root:disabled': {
@@ -74,6 +72,26 @@ export const theme = createTheme({
           '&::before, &::after': {
             borderTopColor: '#7A46EE!important',
           },
+        },
+
+        /* width */
+        '::-webkit-scrollbar': {
+          width: '4px',
+        },
+
+        /* Track */
+        '::-webkit-scrollbar-track': {
+          background: 'invisible',
+        },
+
+        /* Handle */
+        '::-webkit-scrollbar-thumb': {
+          background: '#F91880',
+        },
+
+        /* Handle on hover */
+        '::-webkit-scrollbar-thumb:hover': {
+          background: '#555',
         },
       },
     },

@@ -1,13 +1,11 @@
-import { styled } from '@mui/material';
-import { Box } from '@mui/system';
+import { styled, Box } from '@mui/material';
 import React, { FC, PropsWithChildren } from 'react';
 
 const MainBox = styled(Box)`
-  min-height: 200vh;
+  width: 100%;
+  height: 100%;
 
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
 `;
 
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {

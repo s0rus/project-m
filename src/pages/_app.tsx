@@ -25,8 +25,8 @@ export const getBaseUrl = () => {
 };
 
 export const getTwitchChatParent = () => {
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return `127.0.0.1`;
+  if (process.env.VERCEL_URL) return `${process.env.VERCEL_URL}`;
+  return `localhost`;
 };
 
 export default withTRPC<AppRouter>({

@@ -2,8 +2,8 @@ import { NextApiRequest } from 'next';
 import { ServerOptions } from 'socket.io';
 import { NextApiResponseServerIO } from '../../types';
 import videoHandler from '@/server/sockets/videoHandler';
-import { SocketProvider } from '@/server/sockets';
 import messageHandler from '@/server/sockets/messageHandler';
+import { SocketProvider } from '@/server/sockets';
 
 export default function SocketHandler(req: NextApiRequest, res: NextApiResponseServerIO) {
   if (res.socket.server.io) {
