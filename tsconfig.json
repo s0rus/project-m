@@ -17,14 +17,15 @@
     "noUncheckedIndexedAccess": true,
     "baseUrl": "src/",
     "paths": {
+      "@/assets/*": ["assets/*"],
+      "@/components/*": ["components/*"],
+      "@/contexts/*": ["contexts/*"],
       "@/env/*": ["env/*"],
+      "@/layouts/*": ["layouts/*"],
       "@/pages/*": ["pages/*"],
       "@/server/*": ["server/*"],
       "@/styles/*": ["styles/*"],
       "@/types/*": ["types/*"],
-      "@/components/*": ["components/*"],
-      "@/layouts/*": ["layouts/*"],
-      "@/assets/*": ["assets/*"],
       "@/utils/*": ["utils/*"]
     }
   },

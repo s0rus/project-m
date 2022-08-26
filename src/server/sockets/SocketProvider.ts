@@ -2,13 +2,13 @@ import { Server, ServerOptions, Socket as ServerSocket } from 'socket.io';
 import { Socket as ClientSocket } from 'socket.io-client';
 
 export interface ServerToClientEvents {
-  newChangedMessage: (msg: string) => void;
-  receiveVideoStart: () => void;
+  RECEIVE_PLAY_VIDEO: () => void;
+  RECEIVE_PAUSE_VIDEO: () => void;
 }
 
 export interface ClientToServerEvents {
-  changedMessage: (msg: string) => void;
-  videoStart: () => void;
+  PLAY_VIDEO: () => void;
+  PAUSE_VIDEO: () => void;
 }
 
 export interface InterServerEvents {
