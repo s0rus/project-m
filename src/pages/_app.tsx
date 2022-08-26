@@ -6,14 +6,17 @@ import superjson from 'superjson';
 import { SessionProvider } from 'next-auth/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { theme } from '@/styles/theme';
+import { SocketContextProvider } from '@/contexts/SocketContext';
 
 const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => {
   return (
     <SessionProvider session={session}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <SocketContextProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </SocketContextProvider>
     </SessionProvider>
   );
 };

@@ -2,7 +2,6 @@ import { NextApiRequest } from 'next';
 import { ServerOptions } from 'socket.io';
 import { NextApiResponseServerIO } from '../../types';
 import videoHandler from '@/server/sockets/videoHandler';
-import messageHandler from '@/server/sockets/messageHandler';
 import { SocketProvider } from '@/server/sockets';
 
 export default function SocketHandler(req: NextApiRequest, res: NextApiResponseServerIO) {
@@ -16,7 +15,6 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
   res.socket.server.io = io;
 
   const onConnection = (socket: SocketProvider.ServerIO) => {
-    messageHandler(socket);
     videoHandler(socket);
   };
 
