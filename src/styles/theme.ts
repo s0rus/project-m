@@ -74,20 +74,13 @@ export const theme = createTheme({
           },
         },
 
-        '::-webkit-scrollbar': {
-          width: '4px',
-        },
-
-        '::-webkit-scrollbar-track': {
-          background: 'invisible',
-        },
-
-        '::-webkit-scrollbar-thumb': {
-          background: '#F91880',
-        },
-
-        '::-webkit-scrollbar-thumb:hover': {
-          background: '#F91880',
+        '.simplebar-scrollbar': {
+          '&::before': {
+            background: '#E01673!important',
+            pointerEvents: 'all!important',
+            opacity: '1!important',
+            borderRadius: '8!important',
+          },
         },
       },
     },

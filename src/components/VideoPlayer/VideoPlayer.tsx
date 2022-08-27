@@ -47,7 +47,7 @@ const VideoPlayer = () => {
           muted
           controls
           ref={playerRef}
-          url={TEST_URL_CDA}
+          url={TEST_URL_YT}
           width='100%'
           height='100%'
         />

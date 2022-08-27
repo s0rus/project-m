@@ -4,7 +4,8 @@ import { Box } from '@mui/material';
 
 export const TwitchChatBox = styled(Box)`
   height: 100%;
-  width: 340px;
+  width: 100%;
+  min-width: 340px;
 `;
 
 export const TwitchChatContainer = styled(Box)`
