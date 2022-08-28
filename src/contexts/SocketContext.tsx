@@ -32,8 +32,6 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
     socket.on('connect_error', (err: Error) => {
       console.error(`CONNECT_ERROR: ${err}`);
     });
-
-    // socket.on('receiveVideoStart', () => console.log('yikers'));
   }, []);
 
   useEffect(() => {

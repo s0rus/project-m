@@ -78,7 +78,6 @@ export const theme = createTheme({
           '&::before': {
             background: '#E01673!important',
             pointerEvents: 'all!important',
-            opacity: '1!important',
             borderRadius: '8!important',
           },
         },

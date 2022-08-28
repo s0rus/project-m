@@ -1,14 +1,24 @@
 import { Server, ServerOptions, Socket as ServerSocket } from 'socket.io';
 import { Socket as ClientSocket } from 'socket.io-client';
 
+export interface PlayerState {
+  playing: boolean;
+  playedSeconds: number;
+  loadedSeconds: number;
+  duration: number;
+}
 export interface ServerToClientEvents {
-  RECEIVE_PLAY_VIDEO: () => void;
-  RECEIVE_PAUSE_VIDEO: () => void;
+  RECEIVE_PLAY_VIDEO: (data: PlayerState | undefined) => void;
+  RECEIVE_PAUSE_VIDEO: (data: PlayerState | undefined) => void;
+  RECEIVE_PLAYER_STATE: (data: PlayerState | undefined) => void;
+  RECEIVE_PLAYER_STATE_REQUEST: () => void;
 }
 
 export interface ClientToServerEvents {
-  PLAY_VIDEO: () => void;
-  PAUSE_VIDEO: () => void;
+  PLAY_VIDEO: (data: PlayerState) => void;
+  PAUSE_VIDEO: (data: PlayerState) => void;
+  REQUEST_PLAYER_STATE: () => void;
+  SEND_PLAYER_STATE: (data: PlayerState) => void;
 }
 
 export interface InterServerEvents {
@@ -16,8 +26,7 @@ export interface InterServerEvents {
 }
 
 export interface SocketData {
-  name: string;
-  age: number;
+  playerState: PlayerState | undefined;
 }
 
 export const ServerIO = (server: Partial<ServerOptions>) => {
