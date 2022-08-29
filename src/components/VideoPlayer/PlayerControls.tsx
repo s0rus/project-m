@@ -78,7 +78,7 @@ const PlayerControls: FC<PlayerControlsProps> = ({
   return (
     <ControlsWrapper>
       <ControlsContainer>
-        <Typography variant='h1'>MORDO WIERTARA</Typography>
+        <Typography variant='h1'>Title</Typography>
         <ControlsBar>
           <Button variant='text' onClick={setPlaying}>
             {playing ? <PauseRoundedIcon /> : <PlayArrowRoundedIcon />}

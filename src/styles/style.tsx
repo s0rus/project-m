@@ -10,7 +10,7 @@ color: #1c1d26;
 width:100%;
 border-top: 2px solid #534875;
 overflow: hidden;
-height: 80px;`
+height: 108px;`
 
 export const NavTop = styled('div')`
 display: flex;
@@ -69,7 +69,8 @@ margin-top: 10px;
 border: 2px solid white;`
 
 export const A = styled('a')`
-text-decoration:none;`
+text-decoration:none;
+margin-top: 1%`
 
 export const ChatIconBox = styled('div')`
  height: 48px;
@@ -80,6 +81,7 @@ export const ChatIconBox = styled('div')`
  margin-top: 10px;
  cursor: pointer;
  margin-left: -10%;
+ margin-top: 2%;
  &:hover {
 border: 2px solid white;`
  
@@ -185,12 +187,13 @@ export const BackgroundPlaylist = styled('div')`
     height: 100px;
     width: 400px;
     background: #1c1d26;
-    margin-top: -4%;
+    margin-top: -3%;
     margin-left: 1%;
     padding: 0px;
     border-radius: 20px;
     margin-bottom: 60px;
-    border-left: 3px solid #851bff;`
+    border-left: 3px solid #6a50bb;
+    text-decoration: none;`
 
 export const TwitchImgBox = styled('div')`
     margin-top: -60px;
@@ -207,7 +210,7 @@ font-family: poppins, sans-serif;
 font-weight: 300;
 font-style: normal;`
 export const H2 = styled('h2')`
-color:#851bff;
+color:#a88cff;
 font-size: 15px;
 padding: 20px;
 -webkit-text-stroke: 0.25px black;

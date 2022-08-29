@@ -3,7 +3,7 @@ import VideoPlayer from '@/components/VideoPlayer';
 import MainLayout, { MainContent } from '@/layouts/MainLayout';
 import { Box, Button, styled } from '@mui/material';
 import type { NextPage } from 'next';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 import SimpleBar from 'simplebar-react';
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
   const [boxadd, toggleBox] = useState(false);
   const [boxremove, removeBox] = useState(true);
   const DummyDiv = styled('div')`
-    height: 870px;
+    height: 1000px;
   `;
 
   useEffect(() => {
@@ -37,6 +37,10 @@ const Home: NextPage = () => {
 
   const handleTwitchLogin = async () => {
     await signIn('discord');
+  };
+
+  const handleTwitchLogout = async () => {
+    await signOut();
   };
 
   return (
@@ -58,9 +62,17 @@ const Home: NextPage = () => {
               <MoreVertIconBox><MoreVertIcon/></MoreVertIconBox>
               <LockOpenIconBox><LockOpenIcon/></LockOpenIconBox>
                 <MiddleNav>Playlista</MiddleNav>
-                  <TwitchButton onClick={handleTwitchLogin} ><Button style={{maxWidth: "150px",maxHeight: "30px",minWidth: "150px",minHeight: "20px"}} variant='contained'/>
-                  <H5twitch>Zaloguj</H5twitch>
+                {session && status == 'authenticated' ? ( 
+                <TwitchButton onClick={handleTwitchLogout}>
+                  <Button style={{maxWidth: "150px",maxHeight: "30px",minWidth: "150px",minHeight: "20px"}} variant='contained'/>
+                  <H5twitch>Wyloguj</H5twitch>
                   <TTVimg><Image src={TwitchLogo} width={58} height={48}/></TTVimg></TwitchButton>
+                ) : (
+                    <TwitchButton onClick={handleTwitchLogin}>
+                    <Button style={{maxWidth: "150px",maxHeight: "30px",minWidth: "150px",minHeight: "20px"}} variant='contained'/>
+                    <H5twitch>Zaloguj</H5twitch>
+                    <TTVimg><Image src={TwitchLogo} width={58} height={48}/></TTVimg></TwitchButton>
+                    )}
               </NavBox>
               </NavTop>
               <PlaylistMain>
