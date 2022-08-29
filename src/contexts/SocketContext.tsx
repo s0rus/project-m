@@ -27,6 +27,7 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
     socket.on('connect', () => {
       console.info('CONNECTED');
+      console.info(socket.id);
     });
 
     socket.on('connect_error', (err: Error) => {

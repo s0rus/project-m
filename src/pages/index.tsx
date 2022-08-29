@@ -1,17 +1,29 @@
 import TwitchChat from '@/components/TwitchChat';
 import VideoPlayer from '@/components/VideoPlayer';
 import MainLayout, { MainContent } from '@/layouts/MainLayout';
-import { Box, styled } from '@mui/material';
+import { Box, Button, styled } from '@mui/material';
 import type { NextPage } from 'next';
+import { signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect } from 'react';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
 const Home: NextPage = () => {
+  const { data: session, status } = useSession();
+
   const DummyDiv = styled('div')`
     height: 1000px;
   `;
+
+  useEffect(() => {
+    console.log('SESSION', session);
+    console.log('STATUS', status);
+  }, [session, status]);
+
+  const handleTwitchLogin = async () => {
+    await signIn('discord');
+  };
 
   return (
     <>
@@ -24,12 +36,14 @@ const Home: NextPage = () => {
         <MainContent>
           <SimpleBar style={{ maxHeight: '100vh' }}>
             <VideoPlayer />
-            <DummyDiv />
+            <DummyDiv>
+              <Button variant='contained' onClick={handleTwitchLogin}>
+                LOG IN WITH TWITCH
+              </Button>
+            </DummyDiv>
           </SimpleBar>
         </MainContent>
-        <Box>
-          <TwitchChat />
-        </Box>
+        <Box>{/* <TwitchChat /> */}</Box>
       </MainLayout>
     </>
   );

@@ -17,8 +17,7 @@ export interface ServerToClientEvents {
 export interface ClientToServerEvents {
   PLAY_VIDEO: (data: PlayerState) => void;
   PAUSE_VIDEO: (data: PlayerState) => void;
-  REQUEST_PLAYER_STATE: () => void;
-  SEND_PLAYER_STATE: (data: PlayerState) => void;
+  REQUEST_PLAYER_STATE: (callback: (obj: { yikes: string }) => void) => void;
 }
 
 export interface InterServerEvents {

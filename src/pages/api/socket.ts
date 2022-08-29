@@ -15,6 +15,7 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
   res.socket.server.io = io;
 
   const onConnection = (socket: SocketProvider.ServerIO) => {
+    console.log(socket.id, 'joined');
     videoHandler(socket);
   };
 
