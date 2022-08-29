@@ -31,7 +31,7 @@ export const theme = createTheme({
 
   palette: {
     primary: {
-      main: '#E01673',
+      main: '#a88cff',
       light: '#F91880',
       contrastText: '#EFEFF1',
     },
@@ -56,11 +56,11 @@ export const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         html: {
-          background: '#18181B',
+          background: '#1c1e25',
           overflow: 'hidden',
         },
         body: {
-          backgroundColor: '#18181B!important',
+          backgroundColor: '#20212a!important',
           minHeight: '100vh',
         },
 
@@ -76,7 +76,7 @@ export const theme = createTheme({
 
         '.simplebar-scrollbar': {
           '&::before': {
-            background: '#E01673!important',
+            background: '#a88cff!important',
             pointerEvents: 'all!important',
             borderRadius: '8!important',
           },
