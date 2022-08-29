@@ -101,7 +101,7 @@ const Home: NextPage = () => {
           </SimpleBar>
           </aside>
         </MainContent>
-        <Box>{/* <TwitchChat /> */}</Box>=
+        <Box>{/* <TwitchChat /> */}</Box>
         <aside id='chat'>
     <Box>{chat && <TwitchChat/>}</Box>
         </aside>
