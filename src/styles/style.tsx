@@ -10,7 +10,8 @@ color: #1c1d26;
 width:100%;
 border-top: 2px solid #534875;
 overflow: hidden;
-height: 108px;`
+height: 80px;
+margin-top: 30px;`
 
 export const NavTop = styled('div')`
 display: flex;
@@ -52,8 +53,8 @@ color: #6a50bb;
 font-family: poppins, sans-serif;
 font-weight: 300;
 font-style: normal;
-margin-top: -23px;
-margin-left: 40px;
+margin-top: -37px;
+margin-left: 45px;
 -webkit-text-stroke: 0.25px black;
 &:hover {
 -webkit-text-stroke: 2px white;
@@ -70,18 +71,21 @@ border: 2px solid white;`
 
 export const A = styled('a')`
 text-decoration:none;
-margin-top: 1%`
+margin-top: 0.25rem`
 
 export const ChatIconBox = styled('div')`
  height: 48px;
  width: 48px;
+ display:flex;
+ position: relative;
+ top: 25px;
  border: 2px solid rgb(39, 40, 53);
  border-radius: 50px;
  padding: 12px;
- margin-top: 10px;
+ margin-top: -8px;
  cursor: pointer;
  margin-left: -10%;
- margin-top: 2%;
+
  &:hover {
 border: 2px solid white;`
  
@@ -90,7 +94,7 @@ height: 20px;
 width: 25px; 
 margin-left: -2px;
 color: white;
-margin-top: -2px;
+margin-top: -px;
 `
 
 export const NavBox = styled('div')`
@@ -139,13 +143,13 @@ margin-top: -47px;
 margin-left: 135px;`
 
 export const AddVideo = styled('div')`
-height: 350px;
+height: 400px;
 width: 300px;
 background: #1c1d26;
 border-radius: 45px;
 margin-left: 40%;
 margin-top: 15%;
-border: 2px solid #a88cff;
+border: 4px solid #a88cff;
 `
 
 export const BackgroundAdd = styled('div')`
@@ -162,6 +166,9 @@ position: fixed;
     overflow: auto;`
 
 export const TextFieldBox = styled('div')`
+font-family: poppins, sans-serif;
+font-weight: 300;
+font-style: normal;
 padding: 35px;`
 
 export const ButtonBox = styled('div')`
@@ -219,6 +226,15 @@ margin-left: 100px;
 font-family: poppins, sans-serif;
 font-weight: 300;
 font-style: normal;`
+export const TimeFont = styled('h2')`
+color:white;
+font-size: 15px;
+padding: 20px;
+font-family: poppins, sans-serif;
+font-weight: 600;
+font-style: normal;
+cursor:context-menu;
+`
 export const H3 = styled('h3')`
 color: white;
 font-size: 15px;
@@ -268,3 +284,6 @@ display: flex;
     right: 8%;
     margin-top: -10px;
     cursor: pointer;`
+
+
+    
