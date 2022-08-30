@@ -289,7 +289,7 @@ import { styled, Box, TextField } from '@mui/material';
   marginLeft: '-4%',
   color: 'white',
   cursor: 'pointer',
-  border: '3px solid white',
+  border: '3px solid #6a50bb',
   backgroundColor: 'hsla(0,0%,100%,.25)',
   borderRadius: '50px',  
 };
