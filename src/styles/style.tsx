@@ -1,4 +1,4 @@
-import { styled, TextField } from '@mui/material';
+import { styled, Box, TextField } from '@mui/material';
 
   export const NavBot = styled('div')`
   display: flex;
@@ -287,9 +287,10 @@ import { styled, TextField } from '@mui/material';
   export const PauseStyle = {
   fontSize: '5rem',
   marginLeft: '-4%',
-  color: '#a258cb',
+  color: 'white',
   cursor: 'pointer',
   border: '3px solid white',
+  backgroundColor: 'hsla(0,0%,100%,.25)',
   borderRadius: '50px',  
 };
     
@@ -303,3 +304,33 @@ import { styled, TextField } from '@mui/material';
   '& input:valid:focus + fieldset': {
   borderLeftWidth: 6,
   padding: '4px !important',},});
+
+  export const ControlsWrapper = styled(Box)`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;`;
+
+ export const ControlsContainer = styled(Box)`
+  width: inherit;
+  height: inherit;
+  padding: 1rem;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;`;
+
+export const ControlsBar = styled(Box)`
+  width: 100%;
+  opacity: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: .5s ease;
+  gap: 1rem;
+  &:hover {
+  opacity: 100%;}`;

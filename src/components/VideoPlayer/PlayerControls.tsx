@@ -3,47 +3,8 @@ import React, { FC, useState } from 'react';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import PauseRoundedIcon from '@mui/icons-material/PauseRounded';
 import { theme } from '@/styles/theme';
-import { TimeFont, PauseBox, IconBox, PauseStyle }  from '@/styles/style'
+import { TimeFont, PauseBox, IconBox, PauseStyle, ControlsWrapper, ControlsContainer, ControlsBar }  from '@/styles/style'
 import { Icon } from '@mui/material';
-
-const ControlsWrapper = styled(Box)`
-  width: 100%;
-  height: 100%;
-
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  z-index: 1;
-`;
-
-const ControlsContainer = styled(Box)`
-  width: inherit;
-  height: inherit;
-
-  padding: 1rem;
-  margin: 0;
-
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-`;
-
-const ControlsBar = styled(Box)`
-  width: 100%;
-  opacity: 0%;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: .5s ease;
-
-  gap: 1rem;
-  &:hover {
-    opacity: 100%;}
-`;
 
 interface PlayerControlsProps {
   setPlaying: () => void;
