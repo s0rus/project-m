@@ -229,7 +229,7 @@ font-style: normal;`
 export const TimeFont = styled('h2')`
 color:white;
 font-size: 15px;
-padding: 20px;
+padding: 0px;
 font-family: poppins, sans-serif;
 font-weight: 600;
 font-style: normal;
