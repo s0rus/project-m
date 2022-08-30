@@ -3,7 +3,9 @@ import React, { FC, useState } from 'react';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import PauseRoundedIcon from '@mui/icons-material/PauseRounded';
 import { theme } from '@/styles/theme';
-import { TimeFont }  from '@/styles/style'
+import { TimeFont, PauseBox, IconBox, PauseStyle }  from '@/styles/style'
+import { Icon } from '@mui/material';
+
 const ControlsWrapper = styled(Box)`
   width: 100%;
   height: 100%;
@@ -82,10 +84,14 @@ const PlayerControls: FC<PlayerControlsProps> = ({
   return (
     <ControlsWrapper>
       <ControlsContainer>
-        <Typography variant='h1'>Tytuł</Typography>
+        <PauseBox onClick={setPlaying}>
+        {playing ? <Icon/> 
+        : <IconBox><PauseRoundedIcon style={(PauseStyle)}/></IconBox>}
+
+        </PauseBox>
         <ControlsBar>
           <Button variant='text' onClick={setPlaying}>
-            {playing ? <PauseRoundedIcon /> : <PlayArrowRoundedIcon />}
+            {playing ? <PauseRoundedIcon/> : <PlayArrowRoundedIcon />}
           </Button>
           <TimeFont>{formatDuration(position)}</TimeFont>
           <Slider
