@@ -174,7 +174,7 @@ import { styled, Box, TextField } from '@mui/material';
   export const BackgroundPlaylist = styled('div')`
   height: 100px;
   width: 400px;
-  background: #1c1d26;
+  background: #181818;
   margin-top: -3%;
   margin-left: 1%;
   padding: 0px;
@@ -274,7 +274,12 @@ import { styled, Box, TextField } from '@mui/material';
 
   export const PauseBox = styled ('div')`
   height:100%;
-  width:100%;`
+  width:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2%;
+  margin-top: 3%;`
 
   export const IconBox = styled ('div')`
   height: 100%;
@@ -290,7 +295,7 @@ import { styled, Box, TextField } from '@mui/material';
   color: 'white',
   cursor: 'pointer',
   border: '3px solid #6a50bb',
-  backgroundColor: 'hsla(0,0%,100%,.25)',
+  backgroundColor: 'hsla(253, 100%, 54%, 0.43)',
   borderRadius: '50px',  
 };
     

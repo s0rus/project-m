@@ -47,7 +47,7 @@ const PlayerControls: FC<PlayerControlsProps> = ({
       <ControlsContainer>
         <PauseBox onClick={setPlaying}>
         {playing ? <Icon/> 
-        : <IconBox><PauseRoundedIcon style={(PauseStyle)}/></IconBox>}
+        : <PauseRoundedIcon style={(PauseStyle)}/>}
 
         </PauseBox>
         <ControlsBar>

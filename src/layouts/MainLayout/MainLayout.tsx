@@ -21,6 +21,7 @@ const MainStack = styled(Stack)`
 export const MainContent = styled(Box)`
   flex: 1;
   height: 100vh;
+  overflow: 0;
 `;
 
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {
