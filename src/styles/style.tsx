@@ -460,6 +460,7 @@ export const ControlsBar = styled(Box)`
   border-radius: 20px;
   transition: 1.25s;
   &:hover{
+    cursor: move;
     border: 2px solid hsla(255, 100%, 59%, 0.53) ;
   }`
 

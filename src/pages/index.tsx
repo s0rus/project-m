@@ -23,6 +23,7 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 import TextField from '@mui/material/TextField';
+import Draggable from 'react-draggable';
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -76,6 +77,11 @@ const Home: NextPage = () => {
                     </NavBox>
                     </NavTop>
 <PlaylistMain>
+<Draggable
+        defaultPosition={{x: 0, y: 0}}
+        grid={[100, 100]}
+        scale={1}
+        axis="y">
   <OptionsBox>
           {session && status == 'authenticated' ? ( 
                 <TwitchButton onClick={handleTwitchLogout}>
@@ -96,6 +102,7 @@ const Home: NextPage = () => {
                 <ChatTitle>Chat</ChatTitle>
               </ChatBox>
     </OptionsBox>
+    </Draggable>
                         <BackgroundPlaylist>
                         <H1>Tytuł </H1>
                         <H2> przez: </H2>
@@ -110,8 +117,6 @@ const Home: NextPage = () => {
                         <BrugBox>
                         <Image src={Brug} width={90} height={105} />
                         </BrugBox>
-                        
-                        
               <Box style={Transition}> {boxadd && boxremove && <BackgroundAdd>
               <AddVideo>
                 <BrugImgBox><Image src={Brug} width={50} height={50} /></BrugImgBox>
