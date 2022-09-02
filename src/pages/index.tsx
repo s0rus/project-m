@@ -3,7 +3,7 @@ import VideoPlayer from '@/components/VideoPlayer';
 import MainLayout, { MainContent } from '@/layouts/MainLayout';
 import { Box, Button, styled } from '@mui/material';
 import type { NextPage } from 'next';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import React, { useEffect } from 'react';
 import SimpleBar from 'simplebar-react';
@@ -22,7 +22,11 @@ const Home: NextPage = () => {
   }, [session, status]);
 
   const handleTwitchLogin = async () => {
-    await signIn('discord');
+    await signIn('twitch');
+  };
+
+  const handleTwitchLogout = async () => {
+    await signOut();
   };
 
   return (
@@ -37,13 +41,21 @@ const Home: NextPage = () => {
           <SimpleBar style={{ maxHeight: '100vh' }}>
             <VideoPlayer />
             <DummyDiv>
-              <Button variant='contained' onClick={handleTwitchLogin}>
-                LOG IN WITH TWITCH
-              </Button>
+              {session && status === 'authenticated' ? (
+                <Button variant='contained' onClick={handleTwitchLogout}>
+                  LOGOUT
+                </Button>
+              ) : (
+                <Button variant='contained' onClick={handleTwitchLogin}>
+                  LOG IN WITH TWITCH
+                </Button>
+              )}
             </DummyDiv>
           </SimpleBar>
         </MainContent>
-        <Box>{/* <TwitchChat /> */}</Box>
+        <Box>
+          <TwitchChat />
+        </Box>
       </MainLayout>
     </>
   );

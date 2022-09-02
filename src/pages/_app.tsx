@@ -7,15 +7,18 @@ import { SessionProvider } from 'next-auth/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { theme } from '@/styles/theme';
 import { SocketContextProvider } from '@/contexts/SocketContext';
+import { PlayerContextProvider } from '@/contexts/PlayerContext';
 
 const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => {
   return (
     <SessionProvider session={session}>
       <SocketContextProvider>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Component {...pageProps} />
-        </ThemeProvider>
+        <PlayerContextProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </PlayerContextProvider>
       </SocketContextProvider>
     </SessionProvider>
   );

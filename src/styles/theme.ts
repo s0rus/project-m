@@ -19,6 +19,10 @@ export const theme = createTheme({
       fontWeight: 600,
       fontSize: '1.2rem',
     },
+    h5: {
+      fontWeight: 600,
+      fontSize: '1rem',
+    },
     subtitle1: {
       fontWeight: '700',
       fontSize: '1.2rem',
@@ -62,6 +66,15 @@ export const theme = createTheme({
         body: {
           backgroundColor: '#18181B!important',
           minHeight: '100vh',
+        },
+
+        '	.MuiIconButton-root': {
+          color: '#EFEFF1!important',
+
+          '& svg': {
+            width: '2rem',
+            height: '2rem',
+          },
         },
 
         '.MuiButtonBase-root:disabled': {
