@@ -47,19 +47,28 @@ const PlayerControls = () => {
   height: 100%;
   width:100%;`
 
+  const FontStyleControls = {
+    fontSize: '1rem',
+    color: 'white',
+    fontFamily: 'poppins, sans-serif',
+    fontWeight: '600',
+    fontStyle: 'normal',
+    transition: '0.5s',
+  };
+
   return (
   
     <ControlsWrapper playing={playerState.isPlaying}>
       <ControlsContainer>
       <MainPause onClick={handlePlaying} />
-        <Typography variant='h1'></Typography>
+        <Typography style={FontStyleControls}></Typography>
         <ControlsBar>
           <IconButton onClick={handlePlaying}>
             {playerState.isPlaying ? <PauseRounded /> : <PlayArrowRounded />}
           </IconButton>
           <VolumeControl />
           <Timer>
-            <Typography variant='h5'>{formatDuration(playerState.playedSeconds)}</Typography>
+            <Typography style={FontStyleControls}>{formatDuration(playerState.playedSeconds)}</Typography>
           </Timer>
           <Seeker
             aria-label='time-indicator'
@@ -72,7 +81,7 @@ const PlayerControls = () => {
             onMouseDown={() => setSeeking(true)}
           />
           <Timer>
-            <Typography variant='h5'>{formatDuration(playerState.duration)}</Typography>
+            <Typography style={FontStyleControls}>{formatDuration(playerState.duration)}</Typography>
           </Timer>
           <IconButton onClick={handleFullscreen}>
             {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}
