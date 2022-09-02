@@ -64,6 +64,15 @@ export const theme = createTheme({
           minHeight: '100vh',
         },
 
+        '	.MuiIconButton-root': {
+          color: '#EFEFF1!important',
+
+          '& svg': {
+            width: '2rem',
+            height: '2rem',
+          },
+        },
+
         '.MuiButtonBase-root:disabled': {
           color: 'rgba(255, 255, 255, 0.40)!important',
         },

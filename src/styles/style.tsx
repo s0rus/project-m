@@ -364,16 +364,7 @@ import { styled, Box, TextField } from '@mui/material';
       backgroundColor: 'red',
     },
   };
-
-  export const PauseStyle = {
-  fontSize: '5rem',
-  marginLeft: '-4%',
-  color: 'white',
-  cursor: 'pointer',
-  border: '3px solid #6430ff',
-  backgroundColor: 'hsla(253, 100%, 54%, 0.43)',
-  borderRadius: '50px',
-};
+;
 
 export const MainColor = {
   color: '#6430ff',

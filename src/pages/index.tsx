@@ -64,7 +64,6 @@ const Home: NextPage = () => {
       </Head>
       <MainLayout>
         <MainContent>
-        <aside id='main'>
           <SimpleBar style={{ maxHeight: '100vh' }}>
             <VideoPlayer />
             <DummyDiv>
@@ -80,8 +79,7 @@ const Home: NextPage = () => {
 <Draggable
         defaultPosition={{x: 0, y: 0}}
         grid={[100, 100]}
-        scale={1}
-        axis="y">
+        scale={1}>
   <OptionsBox>
           {session && status == 'authenticated' ? ( 
                 <TwitchButton onClick={handleTwitchLogout}>
@@ -101,6 +99,7 @@ const Home: NextPage = () => {
                 </ChatBttn>
                 <ChatTitle>Chat</ChatTitle>
               </ChatBox>
+              
     </OptionsBox>
     </Draggable>
                         <BackgroundPlaylist>
@@ -138,12 +137,9 @@ const Home: NextPage = () => {
               </NavBot>
             </DummyDiv>
           </SimpleBar>
-        </aside>
         </MainContent>
         <Box>{/* <TwitchChat /> */}</Box>
-        <aside id='chat'>
     <Box>{chat && <TwitchChat/>}</Box>
-        </aside>
       </MainLayout>
     </>
   );
