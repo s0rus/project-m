@@ -75,6 +75,22 @@ import { styled, Box, TextField } from '@mui/material';
     -moz-box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);
     box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);
     border: 2px solid white;`
+    
+    export const MiniIcon = styled('div')`
+    height: 26px;
+    width: 26px;
+    border: 2px solid #6430ff;
+    border-radius:50px;
+    transition: 0.5s;
+    display:flex;
+    position:relative;
+    top:125px;
+    left: -250px;
+    &:hover {
+      -webkit-box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);
+      -moz-box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);
+      box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);
+      border: 2px solid white;`
 
   export const A = styled('a')`
   text-decoration:none;
@@ -162,6 +178,7 @@ import { styled, Box, TextField } from '@mui/material';
   position: relative;
   left: 40%;
   top: 25%;
+  transition: 0.5s;
   border: 4px solid #6430ff;` 
 
   export const BackgroundAdd = styled('div')`
@@ -175,6 +192,7 @@ import { styled, Box, TextField } from '@mui/material';
   display: flex;
   background: rgba(0, 0, 0, 0.6);
   padding: 15px;
+  transition: 0.5s;
   overflow: auto;`
 
   export const TextFieldBox = styled('div')`
@@ -199,13 +217,17 @@ import { styled, Box, TextField } from '@mui/material';
   height: 100px;
   width: 400px;
   background: #181818;
-  margin-top: -3%;
-  margin-left: 1%;
-  padding: 0px;
   border-radius: 20px;
   margin-bottom: 60px;
+  position:relative;
+  display:flex;
+  top: -35%;
+  left: 10px;
   border-left: 3px solid #6430ff;
-  text-decoration: none;`
+  text-decoration: none;
+  transition: 0.5s;
+  &:hover{
+    border-right: 3px solid #6430ff;}`
 
   export const TwitchImgBox = styled('div')`
   margin-top: -60px;
@@ -215,9 +237,11 @@ import { styled, Box, TextField } from '@mui/material';
   color:white;
   font-size: 30px;
   padding: 20px;
+  display:flex;
+  position: relative;
+  left: 20%;
+  top: -15%;
   -webkit-text-stroke: 0.25px black;
-  margin-top: -120px;
-  margin-left: 100px;
   font-family: poppins, sans-serif;
   font-weight: 300;
   font-style: normal;`
@@ -226,9 +250,11 @@ import { styled, Box, TextField } from '@mui/material';
   color:#6430ff;
   font-size: 15px;
   padding: 20px;
+  display: flex;
+  position: relative;
+  top: 35px;
+  left: 55px;
   -webkit-text-stroke: 0.25px black;
-  margin-top: -50px;
-  margin-left: 100px;
   font-family: poppins, sans-serif;
   font-weight: 300;
   font-style: normal;`
@@ -246,10 +272,12 @@ import { styled, Box, TextField } from '@mui/material';
   color: white;
   font-size: 15px;
   padding: 20px;
+  display:flex;
+  position: relative;
+  left: 20px;
+  top: 33px;
   -webkit-text-stroke: 0.25px black;
-  margin-top: -75px;
-  margin-left: 200px;
-  text-decoration: underline;
+  text-decoration: none;
   text-decoration-color: #6430ff;
   font-family: poppins, sans-serif;
   font-weight: 300;
@@ -425,8 +453,8 @@ export const ControlsBar = styled(Box)`
   width: 250px;
   display: flex;
   position: relative;
-  left: 70%;
-  top: -120px;
+  left: 80%;
+  top: 0%;
   background: #18181b;
   border: 2px solid #6430ff;
   border-radius: 20px;
@@ -449,3 +477,7 @@ minWidth: 150px;
 minHeight: 20px;
 display: flex;
 position: relative;`
+
+export const Transition = {
+  transition: '2s',
+};

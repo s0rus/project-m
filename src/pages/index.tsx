@@ -17,7 +17,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import AddIcon from '@mui/icons-material/Add';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { ChatBox,ChatBttn,OptionsBox,BackgroundAccentChat,BackgroundAccentAdd,BackgroundAccentLogin,FingerprintColor,FontOk,FontStyle,DummyDiv, TTVimg,H5twitch,TwitchButton,NavTop,NavBox,AddIconBox,MoreVertIconBox,LockOpenIconBox,MiddleNav,PlaylistMain,BackgroundPlaylist,H1,H2,H3,TwitchImgBox,NavBot,ChatIconBox,ChatIconImg,ChatTitle,A,Icon,NavTitle,BackgroundAdd,AddVideo,TextFieldBox,TextFieldcss,ButtonBox,BrugImgBox }  from '@/styles/style'
+import { MiniIcon,Transition,ChatBox,ChatBttn,OptionsBox,BackgroundAccentChat,BackgroundAccentAdd,BackgroundAccentLogin,FingerprintColor,FontOk,FontStyle,DummyDiv, TTVimg,H5twitch,TwitchButton,NavTop,NavBox,AddIconBox,MoreVertIconBox,LockOpenIconBox,MiddleNav,PlaylistMain,BackgroundPlaylist,H1,H2,H3,TwitchImgBox,NavBot,ChatIconBox,ChatIconImg,ChatTitle,A,Icon,NavTitle,BackgroundAdd,AddVideo,TextFieldBox,TextFieldcss,ButtonBox,BrugImgBox }  from '@/styles/style'
 import { Fab } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
@@ -44,6 +44,16 @@ const Home: NextPage = () => {
     await signOut();
   };
 
+  const BrugBox = styled('div')`
+  height: 128px;
+  width: 128px;
+  display:flex;
+  position: positive;
+  left: 10px;
+  top: 10px;
+  margin-top: -450px;
+  margin-left: 15px;`
+
   return (
     <>
       <Head>
@@ -66,29 +76,7 @@ const Home: NextPage = () => {
                     </NavBox>
                     </NavTop>
 <PlaylistMain>
-                        <BackgroundPlaylist>
-                        <Image src={Brug} width={90} height={105} />
-                        <H1>Tytuł </H1>
-                        <H2>Dodane przez: </H2>
-                        <a href="Link do kanalu ttv dodajacego" ><H3>Nick</H3></a>
-                        <TwitchImgBox>
-                        <Image src={TwitchLogo} width={25} height={25} />
-                        </TwitchImgBox>
-                        </BackgroundPlaylist>
-              <Box> {boxadd && boxremove && <BackgroundAdd>
-              <AddVideo>
-                <BrugImgBox><Image src={Brug} width={50} height={50} /></BrugImgBox>
-              <TextFieldBox>
-              <TextField id="filled-basic" label="Link" autoComplete='off' variant="filled" />
-              <p></p>
-              <TextField id="filled-basic" label="Tytuł" autoComplete='off' variant="filled" />
-              </TextFieldBox>
-              <ButtonBox>
-              <Button style={FontStyle} variant="contained" onClick={() => toggleBox((prev) => !prev)} >Dodaj<IconButton aria-label="fingerprint" color="secondary"><Fingerprint style={FingerprintColor} /></IconButton></Button>
-              </ButtonBox>
-              </AddVideo>
-              </BackgroundAdd>}</Box>
-    <OptionsBox>
+  <OptionsBox>
           {session && status == 'authenticated' ? ( 
                 <TwitchButton onClick={handleTwitchLogout}>
                   <Button style={BackgroundAccentLogin} variant='contained'/>
@@ -108,6 +96,35 @@ const Home: NextPage = () => {
                 <ChatTitle>Chat</ChatTitle>
               </ChatBox>
     </OptionsBox>
+                        <BackgroundPlaylist>
+                        <H1>Tytuł </H1>
+                        <H2> przez: </H2>
+                        <a href="Link do kanalu ttv dodajacego">
+                        <H3>Nick</H3></a>
+                        <TwitchImgBox>
+                          <MiniIcon>
+                        <Image src={TwitchLogo} width={25} height={25} />
+                        </MiniIcon>
+                        </TwitchImgBox>
+                        </BackgroundPlaylist>
+                        <BrugBox>
+                        <Image src={Brug} width={90} height={105} />
+                        </BrugBox>
+                        
+                        
+              <Box style={Transition}> {boxadd && boxremove && <BackgroundAdd>
+              <AddVideo>
+                <BrugImgBox><Image src={Brug} width={50} height={50} /></BrugImgBox>
+              <TextFieldBox>
+              <TextField id="filled-basic" label="Link" autoComplete='off' variant="filled" />
+              <p></p>
+              <TextField id="filled-basic" label="Tytuł" autoComplete='off' variant="filled" />
+              </TextFieldBox>
+              <ButtonBox>
+              <Button style={FontStyle} variant="contained" onClick={() => toggleBox((prev) => !prev)} >Dodaj<IconButton aria-label="fingerprint" color="secondary"><Fingerprint style={FingerprintColor} /></IconButton></Button>
+              </ButtonBox>
+              </AddVideo>
+              </BackgroundAdd>}</Box>
 </PlaylistMain>
               <NavBot>
               <A href='https://discord.com/invite/bRwn7caV3f'> <Icon><Image src={DiscordLogo} width={48} height={48} /><NavTitle>Discord</NavTitle></Icon></A>
