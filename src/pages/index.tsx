@@ -17,8 +17,12 @@ import ChatIcon from '@mui/icons-material/Chat';
 import AddIcon from '@mui/icons-material/Add';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { DummyDiv, TTVimg,H5twitch,TwitchButton,NavTop,NavBox,AddIconBox,MoreVertIconBox,LockOpenIconBox,MiddleNav,PlaylistMain,BackgroundPlaylist,H1,H2,H3,TwitchImgBox,NavBot,ChatIconBox,ChatIconImg,ChatTitle,A,Icon,NavTitle,BackgroundAdd,AddVideo,TextFieldBox,TextFieldcss,ButtonBox,BrugImgBox }  from '@/styles/style'
-
+import { ChatBox,ChatBttn,OptionsBox,BackgroundAccentChat,BackgroundAccentAdd,BackgroundAccentLogin,FingerprintColor,FontOk,FontStyle,DummyDiv, TTVimg,H5twitch,TwitchButton,NavTop,NavBox,AddIconBox,MoreVertIconBox,LockOpenIconBox,MiddleNav,PlaylistMain,BackgroundPlaylist,H1,H2,H3,TwitchImgBox,NavBot,ChatIconBox,ChatIconImg,ChatTitle,A,Icon,NavTitle,BackgroundAdd,AddVideo,TextFieldBox,TextFieldcss,ButtonBox,BrugImgBox }  from '@/styles/style'
+import { Fab } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import Fingerprint from '@mui/icons-material/Fingerprint';
+import TextField from '@mui/material/TextField';
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -55,53 +59,57 @@ const Home: NextPage = () => {
             <DummyDiv>
             <NavTop>
                 <NavBox>
-                <AddIconBox onClick={() => toggleBox((prev) => !prev) }><AddIcon/></AddIconBox> 
+                <AddIconBox><Fab style={BackgroundAccentAdd} onClick={() => toggleBox((prev) => !prev) } color="primary" aria-label="add"><AddIcon/></Fab></AddIconBox>
                 <MoreVertIconBox><MoreVertIcon/></MoreVertIconBox>
                 <LockOpenIconBox><LockOpenIcon/></LockOpenIconBox>
                 <MiddleNav>Playlista</MiddleNav>
-                {session && status == 'authenticated' ? ( 
-                <TwitchButton onClick={handleTwitchLogout}>
-                  <Button style={{maxWidth: "150px",maxHeight: "30px",minWidth: "150px",minHeight: "20px"}} variant='contained'/>
-                  <H5twitch>Wyloguj</H5twitch>
-                  <TTVimg><Image src={TwitchLogo} width={58} height={48}/></TTVimg></TwitchButton>
-                  ) : (
-                    <TwitchButton onClick={handleTwitchLogin}>
-                    <Button style={{maxWidth: "150px",maxHeight: "30px",minWidth: "150px",minHeight: "20px"}} variant='contained'/>
-                    <H5twitch>Zaloguj</H5twitch>
-                    <TTVimg><Image src={TwitchLogo} width={58} height={48}/></TTVimg></TwitchButton>
-                    )}
                     </NavBox>
                     </NavTop>
-                   <PlaylistMain>
-<BackgroundPlaylist>
-<Image src={Brug} width={90} height={105} />
-<H1>Tytuł </H1>
-<H2>Dodane przez: </H2>
-<a href="Link do kanalu ttv dodajacego" ><H3>Nick</H3></a>
-<TwitchImgBox>
-<Image src={TwitchLogo} width={25} height={25} />
-</TwitchImgBox>
- </BackgroundPlaylist>
+<PlaylistMain>
+                        <BackgroundPlaylist>
+                        <Image src={Brug} width={90} height={105} />
+                        <H1>Tytuł </H1>
+                        <H2>Dodane przez: </H2>
+                        <a href="Link do kanalu ttv dodajacego" ><H3>Nick</H3></a>
+                        <TwitchImgBox>
+                        <Image src={TwitchLogo} width={25} height={25} />
+                        </TwitchImgBox>
+                        </BackgroundPlaylist>
               <Box> {boxadd && boxremove && <BackgroundAdd>
               <AddVideo>
-              <form>
-                <BrugImgBox>
-              <Image src={Brug} width={50} height={50} />
-              </BrugImgBox>
+                <BrugImgBox><Image src={Brug} width={50} height={50} /></BrugImgBox>
               <TextFieldBox>
-              <TextFieldcss id="outlined-input" label="Link"/>
-              <TextFieldcss id="outlined-input" label="Tytuł"/>
+              <TextField id="filled-basic" label="Link" autoComplete='off' variant="filled" />
+              <p></p>
+              <TextField id="filled-basic" label="Tytuł" autoComplete='off' variant="filled" />
               </TextFieldBox>
               <ButtonBox>
-              <Button variant="contained" onClick={() => toggleBox((prev) => !prev)} >Dodaj✔️</Button>
+              <Button style={FontStyle} variant="contained" onClick={() => toggleBox((prev) => !prev)} >Dodaj<IconButton aria-label="fingerprint" color="secondary"><Fingerprint style={FingerprintColor} /></IconButton></Button>
               </ButtonBox>
-              </form>
               </AddVideo>
               </BackgroundAdd>}</Box>
-              </PlaylistMain>
+    <OptionsBox>
+          {session && status == 'authenticated' ? ( 
+                <TwitchButton onClick={handleTwitchLogout}>
+                  <Button style={BackgroundAccentLogin} variant='contained'/>
+                  <H5twitch>Wyloguj</H5twitch>
+                  <TTVimg><Icon><Image src={TwitchLogo} width={58} height={58}/></Icon></TTVimg></TwitchButton>
+                  ) : (
+                    <TwitchButton onClick={handleTwitchLogin}>
+                    <Button style={BackgroundAccentLogin} variant='contained'/>
+                    <H5twitch>Zaloguj</H5twitch>
+                    <TTVimg><Icon><Image src={TwitchLogo} width={58} height={58}/></Icon></TTVimg></TwitchButton>
+                    )}
+              <ChatBox onClick={() => toggleChat((prev) => !prev)} >
+              <ChatBttn>
+                <Button style={BackgroundAccentChat}/>
+                <ChatIconBox><ChatIcon/></ChatIconBox>
+                </ChatBttn>
+                <ChatTitle>Chat</ChatTitle>
+              </ChatBox>
+    </OptionsBox>
+</PlaylistMain>
               <NavBot>
-              <ChatIconBox onClick={() => toggleChat((prev) => !prev)}>
-              <ChatIconImg><ChatIcon/><ChatTitle>Chat</ChatTitle></ChatIconImg></ChatIconBox>
               <A href='https://discord.com/invite/bRwn7caV3f'> <Icon><Image src={DiscordLogo} width={48} height={48} /><NavTitle>Discord</NavTitle></Icon></A>
               <A href='https://www.twitch.tv/khamires'> <Icon><Image src={TwitchLogo} width={48} height={48} /><NavTitle>Twitch</NavTitle></Icon></A>
               <A href='https://streamelements.com/khamires/tip'> <Icon><Image src={PaypalLogo} width={48} height={48} /><NavTitle>Donate</NavTitle></Icon></A>

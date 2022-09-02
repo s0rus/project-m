@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import PauseRoundedIcon from '@mui/icons-material/PauseRounded';
 import { theme } from '@/styles/theme';
-import { TimeFont, PauseBox, IconBox, PauseStyle, ControlsWrapper, ControlsContainer, ControlsBar }  from '@/styles/style'
+import { MainColor,TimeFont, PauseBox, IconBox, PauseStyle, ControlsWrapper, ControlsContainer, ControlsBar }  from '@/styles/style'
 import { Icon } from '@mui/material';
 
 interface PlayerControlsProps {
@@ -48,10 +48,9 @@ const PlayerControls: FC<PlayerControlsProps> = ({
         <PauseBox onClick={setPlaying}>
         {playing ? <Icon/> 
         : <PauseRoundedIcon style={(PauseStyle)}/>}
-
         </PauseBox>
         <ControlsBar>
-          <Button variant='text' onClick={setPlaying}>
+          <Button style={MainColor} variant='text' onClick={setPlaying}>
             {playing ? <PauseRoundedIcon/> : <PlayArrowRoundedIcon />}
           </Button>
           <TimeFont>{formatDuration(position)}</TimeFont>
@@ -65,6 +64,7 @@ const PlayerControls: FC<PlayerControlsProps> = ({
             onMouseDown={handleSeekMouseDown}
             onChange={handleOnChange}
             onMouseUp={onMouseUpHandler}
+            style={MainColor}
             sx={{
               color: theme.palette.primary.main,
               height: 4,

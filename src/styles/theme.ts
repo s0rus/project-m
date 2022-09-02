@@ -76,7 +76,7 @@ export const theme = createTheme({
 
         '.simplebar-scrollbar': {
           '&::before': {
-            background: '#a88cff!important',
+            background: '#6430ff!important',
             pointerEvents: 'all!important',
             borderRadius: '8!important',
           },

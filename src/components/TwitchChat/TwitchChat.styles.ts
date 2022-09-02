@@ -19,5 +19,5 @@ export const TwitchChatHolder = styled('iframe')`
 
   pointer-events: all;
   border: none;
-  border-left: 1px solid ${theme.palette.primary.main};
+  border-left: 1px solid #6430ff;
 `;
