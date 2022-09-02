@@ -52,8 +52,8 @@ import { styled, Box, TextField } from '@mui/material';
   display:flex;
   position: absolute;
   color: white;
-  left: 75px;
-  top: 21%;
+  left: -120px;
+  top: 23%;
   font-weight: 300;
   font-style: normal;
   font-size:18px;
@@ -98,14 +98,14 @@ import { styled, Box, TextField } from '@mui/material';
 
   export const ChatIconBox = styled('div')`
   height: 48px;
-  width: 48px;
+  width: 50px;
   display:flex;
   position: relative;
   border: 2px solid #6430ff;
   background: #1f1f28;
   border-radius: 50px;
   right: 10%;
-  padding: 12px;
+  padding: 10px;
   margin-top: -8px;
   cursor: pointer;
   transition: 0.5s;
@@ -173,13 +173,18 @@ import { styled, Box, TextField } from '@mui/material';
   export const AddVideo = styled('div')`
   height: 300px;
   width: 300px;
-  background: #1c1d26;
+  background-color: #1c1d26;
   border-radius: 25px;
   position: relative;
   left: 40%;
   top: 25%;
   transition: 0.5s;
-  border: 4px solid #6430ff;` 
+  border: 4px solid #6430ff;
+  cursor: move;
+  &:hover{
+    border-bottom: 4px solid white; 
+    animation: bg-animation 5s infinite;
+  }` 
 
   export const BackgroundAdd = styled('div')`
   position: fixed;
@@ -190,9 +195,9 @@ import { styled, Box, TextField } from '@mui/material';
   height: 100vh;
   z-index: 999999;
   display: flex;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(24, 0, 97, 0.34);
   padding: 15px;
-  transition: 0.5s;
+  transition: 1s;
   overflow: auto;`
 
   export const TextFieldBox = styled('div')`
@@ -359,6 +364,7 @@ import { styled, Box, TextField } from '@mui/material';
   };
 
   export const BackgroundAccentAdd = {
+    Transition: '1s',
     backgroundColor: '#6430ff',
     '&:hover':{
       backgroundColor: 'red',
@@ -458,7 +464,8 @@ export const ControlsBar = styled(Box)`
 export const ChatBttn = styled('div')`
 display: flex;
 position: absolute;
-top: 32%;
+top: 35%;
+right: 10%;
 border-radius: 50px;
 height: 45px;`
 
@@ -470,6 +477,50 @@ minHeight: 20px;
 display: flex;
 position: relative;`
 
-export const Transition = {
-  transition: '2s',
-};
+export const OptionsH1 = styled('div')`
+height: 100px;
+font-size: 1.5rem;
+font-family: poppins, sans-serif;
+font-weight: 300;
+font-style: normal;
+width: 200px;
+display: flex;
+position: relative;
+left: 25%;
+top: -25px;
+-webkit-text-stroke: 0.3px #6430ff ;
+transition: 0.5s;
+&:hover {
+  -webkit-text-stroke: 1px white;
+`
+export const VideoBttn = styled('div')`
+display: flex;
+position: absolute;
+top: 60%;
+right: 10%;
+border-radius: 50px;
+height: 45px;`
+
+export const VideoBox = styled('div')`
+maxWidth: 150px;
+maxHeight: 30px;
+minWidth: 150px;
+minHeight: 20px;
+display: flex;
+position: relative;`
+
+export const VideoTitle = styled('h5')`
+font-family: poppins, sans-serif;
+display:flex;
+position: absolute;
+color: white;
+left: -120px;
+top: 49%;
+font-weight: 300;
+font-style: normal;
+font-size:18px;
+-webkit-text-stroke: 0.25px black;
+cursor: pointer;
+transition: 0.5s;
+&:hover {
+color: #6430ff;`

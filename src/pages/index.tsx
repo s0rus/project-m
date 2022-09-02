@@ -1,4 +1,5 @@
 import TwitchChat from '@/components/TwitchChat';
+import TwitchVideo from '@/components/TwitchVideo';
 import VideoPlayer from '@/components/VideoPlayer';
 import MainLayout, { MainContent } from '@/layouts/MainLayout';
 import { Box, Button, styled } from '@mui/material';
@@ -17,17 +18,19 @@ import ChatIcon from '@mui/icons-material/Chat';
 import AddIcon from '@mui/icons-material/Add';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { MiniIcon,Transition,ChatBox,ChatBttn,OptionsBox,BackgroundAccentChat,BackgroundAccentAdd,BackgroundAccentLogin,FingerprintColor,FontOk,FontStyle,DummyDiv, TTVimg,H5twitch,TwitchButton,NavTop,NavBox,AddIconBox,MoreVertIconBox,LockOpenIconBox,MiddleNav,PlaylistMain,BackgroundPlaylist,H1,H2,H3,TwitchImgBox,NavBot,ChatIconBox,ChatIconImg,ChatTitle,A,Icon,NavTitle,BackgroundAdd,AddVideo,TextFieldBox,TextFieldcss,ButtonBox,BrugImgBox }  from '@/styles/style'
+import { VideoTitle,VideoBttn,VideoBox,OptionsH1,MiniIcon,ChatBox,ChatBttn,OptionsBox,BackgroundAccentChat,BackgroundAccentAdd,BackgroundAccentLogin,FingerprintColor,FontOk,FontStyle,DummyDiv, TTVimg,H5twitch,TwitchButton,NavTop,NavBox,AddIconBox,MoreVertIconBox,LockOpenIconBox,MiddleNav,PlaylistMain,BackgroundPlaylist,H1,H2,H3,TwitchImgBox,NavBot,ChatIconBox,ChatIconImg,ChatTitle,A,Icon,NavTitle,BackgroundAdd,AddVideo,TextFieldBox,TextFieldcss,ButtonBox,BrugImgBox }  from '@/styles/style'
 import { Fab } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 import TextField from '@mui/material/TextField';
 import Draggable from 'react-draggable';
+import MissedVideoCallIcon from '@mui/icons-material/MissedVideoCall';
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
   const [chat, toggleChat] = useState(true);
+  const [video, toggleVideo] = useState(true);
   const [login, toggleLogin] = useState(true);
   const [boxadd, toggleBox] = useState(false);
   const [boxremove, removeBox] = useState(true);
@@ -81,6 +84,7 @@ const Home: NextPage = () => {
         grid={[100, 100]}
         scale={1}>
   <OptionsBox>
+  <OptionsH1>Ustawienia</OptionsH1>
           {session && status == 'authenticated' ? ( 
                 <TwitchButton onClick={handleTwitchLogout}>
                   <Button style={BackgroundAccentLogin} variant='contained'/>
@@ -99,6 +103,13 @@ const Home: NextPage = () => {
                 </ChatBttn>
                 <ChatTitle>Chat</ChatTitle>
               </ChatBox>
+              <VideoBox onClick={() => toggleVideo((prev) => !prev)} >
+              <VideoBttn>
+                <Button style={BackgroundAccentChat}/>
+                <ChatIconBox><MissedVideoCallIcon/></ChatIconBox>
+                </VideoBttn>
+                <VideoTitle>Video</VideoTitle>
+              </VideoBox>
               
     </OptionsBox>
     </Draggable>
@@ -116,7 +127,14 @@ const Home: NextPage = () => {
                         <BrugBox>
                         <Image src={Brug} width={90} height={105} />
                         </BrugBox>
-              <Box style={Transition}> {boxadd && boxremove && <BackgroundAdd>
+<Box> {video && <Draggable>
+<TwitchVideo/>
+</Draggable> }</Box>
+              <Box> {boxadd && boxremove && <BackgroundAdd>
+                <Draggable
+        defaultPosition={{x: 0, y: 0}}
+        grid={[100, 100]}
+        scale={1}>
               <AddVideo>
                 <BrugImgBox><Image src={Brug} width={50} height={50} /></BrugImgBox>
               <TextFieldBox>
@@ -128,6 +146,7 @@ const Home: NextPage = () => {
               <Button style={FontStyle} variant="contained" onClick={() => toggleBox((prev) => !prev)} >Dodaj<IconButton aria-label="fingerprint" color="secondary"><Fingerprint style={FingerprintColor} /></IconButton></Button>
               </ButtonBox>
               </AddVideo>
+              </Draggable>
               </BackgroundAdd>}</Box>
 </PlaylistMain>
               <NavBot>
