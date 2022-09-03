@@ -219,34 +219,13 @@ import { styled, Box, TextField } from '@mui/material';
     -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
     box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);`
 
-  export const BackgroundPlaylist = styled('div')`
-  height: 100px;
-  width: 400px;
-  background: #181818;
-  border-radius: 20px;
-  margin-bottom: 60px;
-  position:relative;
-  display:flex;
-  top: -35%;
-  left: 10px;
-  border-left: 3px solid #6430ff;
-  text-decoration: none;
-  transition: 0.5s;
-  &:hover{
-    border-right: 3px solid #6430ff;}`
-
-  export const TwitchImgBox = styled('div')`
-  margin-top: -60px;
-  margin-left: 255px;`
-
   export const H1 = styled('h1')`
   color:white;
   font-size: 30px;
-  padding: 20px;
+  left: 10px;
+  top: 10px;
   display:flex;
   position: relative;
-  left: 20%;
-  top: -15%;
   -webkit-text-stroke: 0.25px black;
   font-family: poppins, sans-serif;
   font-weight: 300;
@@ -255,11 +234,10 @@ import { styled, Box, TextField } from '@mui/material';
   export const H2 = styled('h2')`
   color:#6430ff;
   font-size: 15px;
-  padding: 20px;
+  left: 30px;
+  top: 60px;
   display: flex;
   position: relative;
-  top: 35px;
-  left: 55px;
   -webkit-text-stroke: 0.25px black;
   font-family: poppins, sans-serif;
   font-weight: 300;
@@ -277,11 +255,10 @@ import { styled, Box, TextField } from '@mui/material';
   export const H3 = styled('h3')`
   color: white;
   font-size: 15px;
-  padding: 20px;
+  left: 35px;
+  top: 58px;
   display:flex;
   position: relative;
-  left: 20px;
-  top: 33px;
   -webkit-text-stroke: 0.25px black;
   text-decoration: none;
   text-decoration-color: #6430ff;
@@ -453,7 +430,7 @@ export const ControlsBar = styled(Box)`
   position: relative;
   left: 80%;
   top: 0%;
-  background: #18181b;
+  background: #272835;
   border: 2px solid #6430ff;
   border-radius: 20px;
   transition: 1.25s;

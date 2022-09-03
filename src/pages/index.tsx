@@ -1,6 +1,7 @@
 import TwitchChat from '@/components/TwitchChat';
 import TwitchVideo from '@/components/TwitchVideo';
 import VideoPlayer from '@/components/VideoPlayer';
+import PlaylistAdd from '@/components/PlaylistAdd';
 import MainLayout, { MainContent } from '@/layouts/MainLayout';
 import { Box, Button, styled } from '@mui/material';
 import type { NextPage } from 'next';
@@ -18,7 +19,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import AddIcon from '@mui/icons-material/Add';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { BrugBox,VideoTitle,VideoBttn,VideoBox,OptionsH1,MiniIcon,ChatBox,ChatBttn,OptionsBox,BackgroundAccentChat,BackgroundAccentAdd,BackgroundAccentLogin,FingerprintColor,FontOk,FontStyle,DummyDiv, TTVimg,H5twitch,TwitchButton,NavTop,NavBox,AddIconBox,MoreVertIconBox,LockOpenIconBox,MiddleNav,PlaylistMain,BackgroundPlaylist,H1,H2,H3,TwitchImgBox,NavBot,ChatIconBox,ChatIconImg,ChatTitle,A,Icon,NavTitle,BackgroundAdd,AddVideo,TextFieldBox,TextFieldcss,ButtonBox,BrugImgBox }  from '@/styles/style'
+import { BrugBox,VideoTitle,VideoBttn,VideoBox,OptionsH1,MiniIcon,ChatBox,ChatBttn,OptionsBox,BackgroundAccentChat,BackgroundAccentAdd,BackgroundAccentLogin,FingerprintColor,FontStyle,DummyDiv, TTVimg,H5twitch,TwitchButton,NavTop,NavBox,AddIconBox,MoreVertIconBox,LockOpenIconBox,MiddleNav,PlaylistMain,NavBot,ChatIconBox,ChatIconImg,ChatTitle,A,Icon,NavTitle,BackgroundAdd,AddVideo,TextFieldBox,ButtonBox,BrugImgBox }  from '@/styles/style'
 import { Fab } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
@@ -69,6 +70,10 @@ const Home: NextPage = () => {
                     </NavBox>
                     </NavTop>
 <PlaylistMain>
+<PlaylistAdd/>
+<Box> {video && <Draggable>
+<TwitchVideo/>
+</Draggable> }</Box>
 <Draggable
         defaultPosition={{x: 0, y: 0}}
         grid={[100, 100]}
@@ -102,23 +107,6 @@ const Home: NextPage = () => {
               </VideoBox>
     </OptionsBox>
     </Draggable>
-                        <BackgroundPlaylist>
-                        <H1>Tytuł </H1>
-                        <H2> przez: </H2>
-                        <a href="Link do kanalu ttv dodajacego">
-                        <H3>Nick</H3></a>
-                        <TwitchImgBox>
-                          <MiniIcon>
-                        <Image src={TwitchLogo} width={25} height={25} />
-                        </MiniIcon>
-                        </TwitchImgBox>
-                        </BackgroundPlaylist>
-                        <BrugBox>
-                        <Image src={Brug} width={90} height={105} />
-                        </BrugBox>
-<Box> {video && <Draggable>
-<TwitchVideo/>
-</Draggable> }</Box>
               <Box> {boxadd && boxremove && <BackgroundAdd>
                 <Draggable
         defaultPosition={{x: 0, y: 0}}
