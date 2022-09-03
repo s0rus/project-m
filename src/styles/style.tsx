@@ -53,7 +53,7 @@ import { styled, Box, TextField } from '@mui/material';
   position: absolute;
   color: white;
   left: -120px;
-  top: 23%;
+  top: 32%;
   font-weight: 300;
   font-style: normal;
   font-size:18px;
@@ -466,7 +466,7 @@ export const ControlsBar = styled(Box)`
 export const ChatBttn = styled('div')`
 display: flex;
 position: absolute;
-top: 35%;
+top: 43%;
 right: 10%;
 border-radius: 50px;
 height: 45px;`
@@ -498,7 +498,7 @@ transition: 0.5s;
 export const VideoBttn = styled('div')`
 display: flex;
 position: absolute;
-top: 60%;
+top: 75%;
 right: 10%;
 border-radius: 50px;
 height: 45px;`
@@ -517,7 +517,7 @@ display:flex;
 position: absolute;
 color: white;
 left: -120px;
-top: 49%;
+top: 64%;
 font-weight: 300;
 font-style: normal;
 font-size:18px;
