@@ -23,6 +23,7 @@ border-radius: 10px;
 position: relative;
 transition: 0.5s;
 pointer-events: all;
+box-shadow: 4px 4px 44px 4px rgb(98 46 255 / 13%);
 &:hover{
   cursor: move;
   background: hsla(255, 100%, 59%, 0.53);

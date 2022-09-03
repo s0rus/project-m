@@ -457,6 +457,7 @@ export const ControlsBar = styled(Box)`
   border: 2px solid #6430ff;
   border-radius: 20px;
   transition: 1.25s;
+  box-shadow: 4px 4px 44px 4px rgb(98 46 255 / 13%);
   &:hover{
     cursor: move;
     border: 2px solid hsla(255, 100%, 59%, 0.53) ;
@@ -525,3 +526,13 @@ cursor: pointer;
 transition: 0.5s;
 &:hover {
 color: #6430ff;`
+
+export const BrugBox = styled('div')`
+height: 128px;
+width: 128px;
+display:flex;
+position: positive;
+left: 10px;
+top: 10px;
+margin-top: -450px;
+margin-left: 15px;`
