@@ -30,7 +30,7 @@ import MissedVideoCallIcon from '@mui/icons-material/MissedVideoCall';
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
   const [chat, toggleChat] = useState(true);
-  const [video, toggleVideo] = useState(true);
+  const [video, toggleVideo] = useState(false);
   const [login, toggleLogin] = useState(true);
   const [boxadd, toggleBox] = useState(false);
   const [boxremove, removeBox] = useState(true);
@@ -110,7 +110,6 @@ const Home: NextPage = () => {
                 </VideoBttn>
                 <VideoTitle>Video</VideoTitle>
               </VideoBox>
-              
     </OptionsBox>
     </Draggable>
                         <BackgroundPlaylist>

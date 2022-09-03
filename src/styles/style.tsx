@@ -139,6 +139,7 @@ import { styled, Box, TextField } from '@mui/material';
   transition: 0.5s;
   position: relative;
   left: 95%;
+  top: -5px;
   cursor: pointer;
   &:hover{
     -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
