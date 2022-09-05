@@ -7,6 +7,7 @@ width: 420px;
 height: 100px;
 padding: 0px;
 margin-left: 10px;
+margin-top: 20px;
 display: flex;
 background: #272835;
 border-radius: 20px;

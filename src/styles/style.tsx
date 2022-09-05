@@ -6,17 +6,16 @@ import { styled, Box, TextField } from '@mui/material';
   text-align: center;
   justify-content: center;
   gap: 213px;
-  color: #1c1d26;
+  background: #15161c;
   width:100%;
   border-top: 2px solid #6430ff;
   overflow: hidden;
-  height: 80px;
-  margin-top: 30px;`
+  height: 80px;`
 
   export const NavTop = styled('div')`
   display: flex;
   height: 80px;
-  background: #1c1d26;
+  background: #15161c;
   justify-content: center;
   gap: 20%;
   color: #6a50bb;
@@ -42,10 +41,12 @@ import { styled, Box, TextField } from '@mui/material';
   font-family: poppins, sans-serif;
   font-weight: 300;
   font-style: normal;
-  margin-left: 15px;
-  margin-top: -50px;
   -webkit-text-stroke: 0.25px black;
-  color: white`
+  color: white
+  display:flex;
+  position: absolute;
+  left: 15px;
+  bottom: -125px;`
 
   export const ChatTitle = styled('h5')`
   font-family: poppins, sans-serif;
@@ -54,7 +55,7 @@ import { styled, Box, TextField } from '@mui/material';
   margin: 0px;
   color: white;
   left: -120px;
-  top: 3px;
+  top: 2px;
   font-style: normal;
   font-size:18px;
   -webkit-text-stroke: 0.25px black;
@@ -130,14 +131,13 @@ import { styled, Box, TextField } from '@mui/material';
   export const PlaylistMain = styled('div')`
   width: 100%;
   height: 80%;
-  margin-top: 5%;`
+`
 
   export const AddIconBox = styled('div')`
   height: 48px;
   width: 48px;
   margin-top: 15px;
   border-radius: 60px;
-  transition: 0.5s;
   position: absolute;
   margin-top: 10px;
   right: 50px;
@@ -156,8 +156,10 @@ import { styled, Box, TextField } from '@mui/material';
   border-radius: 50px;
   padding: 10px;
   cursor: pointer;
-  margin-top: -50px;
-  margin-left: 165px;
+  display:flex;
+  position: absolute;
+  left: 180px;
+  bottom: -60px;
   transition: 0.5s;
   &:hover {
   border: 2px solid white;}`
@@ -169,8 +171,10 @@ import { styled, Box, TextField } from '@mui/material';
   z-index: auto;
   border-radius: 50px;
   padding: 10px;
-  margin-top: 15px;
-  margin-left: 135px;`
+  display:flex;
+  position: absolute;
+  left: 145px;
+  bottom: -67px;`
 
   export const AddVideoS = styled('div')`
   height: 300px;
@@ -196,7 +200,7 @@ import { styled, Box, TextField } from '@mui/material';
   height: 100vh;
   z-index: 999999;
   display: flex;
-  background: rgba(24, 0, 97, 0.34);
+  background: rgba(3, 0, 5, 0.52);
   padding: 15px;
   transition: 1s;
   overflow: auto;`
@@ -279,14 +283,15 @@ import { styled, Box, TextField } from '@mui/material';
   right: 20%;
   top: 10%;
   height: 30px;
-  border-radius: 50px;
-  height: 45px;`
+  margin: 0px;
+  padding: 0px;`
 
   export const H5twitch = styled ('h5')`
   font-family: poppins, sans-serif;
   display:flex;
   position: absolute;
   color: white;
+  height: 0px;
   right: 45%;
   margin-top: 2px;
   font-style: normal;
@@ -307,7 +312,7 @@ import { styled, Box, TextField } from '@mui/material';
 `
 
   export const DummyDiv = styled('div')`
-  height: 1000px;
+  height: 800px;
   background: linear-gradient(180deg, rgba(29,29,38,1) 35%, rgba(38,39,50,1) 173%);`;
 
   export const PauseBox = styled ('div')`
@@ -343,10 +348,9 @@ import { styled, Box, TextField } from '@mui/material';
   };
 
   export const BackgroundAccentAdd = {
-    Transition: '1s',
     backgroundColor: '#6430ff',
     '&:hover':{
-      backgroundColor: 'red',
+      backgroundColor: 'white',
     },
   };
 ;
@@ -356,11 +360,12 @@ export const MainColor = {
 };
 
 export const FontStyle = {
-  fontSize: '1rem',
+  fontSize: '1.45rem',
   color: 'white',
+  height: '60px',
   backgroundColor: '#6430ff',
   fontFamily: 'poppins, sans-serif',
-  fontWeight: '300',
+  fontWeight: '650',
   fontStyle: 'normal',
   borderRadius: '30px',
   transition: '0.5s',
@@ -437,15 +442,14 @@ export const ControlsBar = styled(Box)`
   display: flex;
   position: absolute;
   right: 50px;
-  bottom: -400px
-  background: #272835;
-  border: 2px solid #6430ff;
+  bottom: 80px;
+  border: 2px solid hsla(255, 100%, 59%, 0.53);
   border-radius: 20px;
   transition: 1.5s;
   box-shadow: 4px 4px 44px 4px rgb(98 46 255 / 13%);
   &:hover{
     cursor: move;
-    border: 2px solid hsla(255, 100%, 59%, 0.53) ;
+    border: 2px solid #6430ff; 
   }`
 
 export const ChatBttn = styled('div')`
@@ -453,8 +457,8 @@ display: flex;
 position: absolute;
 top: 43%;
 right: 10%;
-border-radius: 50px;
-height: 45px;`
+margin: 0px;
+padding: 0px;`
 
 export const ChatBox = styled('div')`
 maxWidth: 150px;
@@ -485,10 +489,10 @@ transition: 0.5s;
 export const VideoBttn = styled('div')`
 display: flex;
 position: absolute;
-top: 190px;
+top: 25px;
 left: -48px;
-border-radius: 50px;
-height: 45px;`
+margin: 0px;
+padding: 0px;`
 
 export const VideoBox = styled('div')`
 maxWidth: 150px;
@@ -504,7 +508,7 @@ display:flex;
 position: absolute;
 color: white;
 left: 25px;
-top: 77%;
+top: 26px;
 margin: 0px;
 font-style: normal;
 font-size:18px;

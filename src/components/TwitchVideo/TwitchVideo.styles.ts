@@ -16,11 +16,11 @@ export const TwitchVideoBox = styled('div')`
 height: 260px;
 width: 440px;
 display:flex;
-background: #6430ff;
+background: hsla(255, 100%, 59%, 0.53);
 cursor: move;
 margin: 0px;
 padding 0px;
-bottom: -550px;
+bottom: -480px;
 transition: 1.5s;
 right: 50px;
 border-radius: 10px;
@@ -28,8 +28,9 @@ position: absolute;
 pointer-events: all;
 box-shadow: 4px 4px 44px 4px rgb(98 46 255 / 13%);
 &:hover{
+  background: #6430ff;
   cursor: move;
-  background: hsla(255, 100%, 59%, 0.53);
+;
 }
 `;
 

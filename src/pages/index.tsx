@@ -63,19 +63,20 @@ const Home: NextPage = () => {
               <VideoPlayer />
 <DummyDiv>
 <NavTop>
-<NavBox>    {/* GÓRNY PASEK */}
+    {/* GÓRNY PASEK */}
               <AddIconBox>
-              <Fab style={BackgroundAccentAdd} onClick={() => toggleBox((prev) => !prev) } color="primary" aria-label="add"><AddIcon/></Fab></AddIconBox>
+              <Fab onClick={() => toggleBox((prev) => !prev) } style={BackgroundAccentAdd} color="primary" aria-label="add"><AddIcon/></Fab>
+              </AddIconBox>
               <MoreVertIconBox><MoreVertIcon/></MoreVertIconBox>
               <LockOpenIconBox><LockOpenIcon/></LockOpenIconBox>
               <MiddleNav>Playlista</MiddleNav>
-</NavBox>
+
 </NavTop>
 <PlaylistMain>
             {/* FILMIK TEMPLATE (tymczasowo) */}
               <PlaylistAdd/>
             {/* USTAWIENIA (w optionsbox jest logowanie) */}
-<Draggable>
+<Draggable bounds={{left: -1236, right: 50, top: -40, bottom: 350,}}>
 <BoxOptions>
               <OptionsBox/>
 <ChatBox onClick={() => toggleChat((prev) => !prev)} >

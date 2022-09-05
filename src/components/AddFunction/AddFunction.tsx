@@ -13,7 +13,8 @@ import TwitchChat from '@/components/TwitchChat';
 import Brug from 'components/Icons/Brug.svg'
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
-import Fingerprint from '@mui/icons-material/Fingerprint';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+
 
 
 const AddFunction = () => {
@@ -24,18 +25,26 @@ const AddFunction = () => {
   const [boxadd, toggleBox] = useState(true);
   const [boxremove, removeBox] = useState(true);
 
+const ExitIconBox = styled('div')`
+display:flex;
+position:absolute;
+right: 10px;
+top: 10px;
+cursor: pointer;
+`
     return (      
       <Box> {boxadd && boxremove && 
       <BackgroundAdd>                                                                
             <AddVideoS>
-                          <BrugImgBox><Image src={Brug} width={50} height={50} /></BrugImgBox>
+           <ExitIconBox onClick={() => toggleBox((prev) => !prev)}  ><ExitToAppIcon/></ExitIconBox>
                       <TextFieldBox>
+                      <p>Dodaj Film!</p>
                           <TextField id="filled-basic" label="Link" autoComplete='off' variant="filled" />
                       <p></p>
                           <TextField id="filled-basic" label="Tytuł" autoComplete='off' variant="filled" />
                       </TextFieldBox>  
                       <ButtonBox>
-            <Button style={FontStyle} variant="contained" onClick={() => toggleBox((prev) => !prev)} >Dodaj<IconButton aria-label="fingerprint" color="secondary"><Fingerprint style={FingerprintColor} /></IconButton></Button>
+            <Button style={FontStyle} variant="contained" onClick={() => toggleBox((prev) => !prev)} >Dodaj<IconButton aria-label="fingerprint" color="secondary"></IconButton></Button>
             </ButtonBox>
             </AddVideoS> 
             </BackgroundAdd>   

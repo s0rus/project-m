@@ -3,7 +3,7 @@ import React from 'react';
 import { TwitchVideoHolder, TwitchVideoBox } from './TwitchVideo.styles';
 import Draggable from 'react-draggable';
 import { styled } from '@mui/material';
-
+import OpenWithIcon from '@mui/icons-material/OpenWith';
 
 export const TwitchTitle = styled('div')`
 height: 100px;
@@ -24,9 +24,17 @@ margin-top: 10px;
 transition: 0s;`
 
 
+const MoveIconBox2 = styled('div')`
+display:flex;
+position:absolute;
+right: -10px;
+top: -10px;
+cursor: pointer;
+`
+
 const TwitchVideo = () => {
   return (
-    <Draggable>
+    <Draggable bounds={{left: -1050, right: 50, top: -1380, bottom: 50,}} >
       <TransitionBox>
     <TwitchVideoBox>
       <TwitchTitle style={{
@@ -43,7 +51,7 @@ const TwitchVideo = () => {
         }}>Twitch</TwitchTitle>
         <TwitchVideoHolder
           src={`https://player.twitch.tv/?channel=khamires&parent=${getTwitchChatParent()}&muted=true`}
-        />
+        />            <MoveIconBox2><OpenWithIcon/></MoveIconBox2>
                 </TwitchVideoBox>
                 </TransitionBox>
         </Draggable>

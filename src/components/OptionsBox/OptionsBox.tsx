@@ -6,10 +6,7 @@ import TwitchLogo from 'components/Icons/Twitch.svg'
 import Image from 'next/image';
 import ChatIcon from '@mui/icons-material/Chat';
 import { OptionsBoxX, OptionsH1, TwitchButton, H5twitch, TTVimg, Icon, ChatBox, ChatBttn, ChatIconBox, ChatTitle, VideoBox, VideoBttn, VideoTitle, BackgroundAccentLogin, BackgroundAccentChat }  from '@/styles/style'
-import Draggable from 'react-draggable';
-import MissedVideoCallIcon from '@mui/icons-material/MissedVideoCall';
-import TwitchVideo from '@/components/TwitchVideo';
-import TwitchChat from '@/components/TwitchChat';
+import OpenWithIcon from '@mui/icons-material/OpenWith';
 
 const OptionsBox = () => {
     const { data: session, status } = useSession();
@@ -38,10 +35,18 @@ display: flex;`
 const Box1 = styled('div')`
 display: flex;`
 
+const MoveIconBox = styled('div')`
+display:flex;
+position:absolute;
+right: -10px;
+top: -10px;
+cursor: pointer;
+`
 
     return (
         <Box0>
         <OptionsBoxX>
+          <MoveIconBox><OpenWithIcon/></MoveIconBox>
   <OptionsH1>Ustawienia</OptionsH1>
           {session && status == 'authenticated' ? ( 
                 <TwitchButton onClick={handleTwitchLogout}>
