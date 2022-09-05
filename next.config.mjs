@@ -1,4 +1,4 @@
-import { env } from "./src/env/server.mjs";
+import { env } from './src/env/server.mjs';
 
 /**
  * Don't be scared of the generics here.
@@ -13,6 +13,12 @@ function defineNextConfig(config) {
 }
 
 export default defineNextConfig({
-  reactStrictMode: true,
+  /**
+   * There is a bug where some events of ReactPlayer do not fire when strict mode is enabled
+   * (Happens only in dev though)
+   *
+   * @link https://github.com/cookpete/react-player/issues/1453
+   */
+  reactStrictMode: false,
   swcMinify: true,
 });
