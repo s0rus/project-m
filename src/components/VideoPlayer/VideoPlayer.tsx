@@ -1,10 +1,9 @@
 // import { useSocketContext } from '@/contexts/SocketContext';
 import { usePlayerContext } from '@/contexts/PlayerContext';
-import useHasWindow from '@/utils/hasWindow';
-import { TestUrl } from '@/utils/testUrls';
+import { useHasWindow, TestUrl } from '@/utils/index';
 import React, { MutableRefObject, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player';
-import PlayerControls from './PlayerControls/PlayerControls';
+import PlayerControls from './PlayerControls/';
 import { StyledReactPlayer, VideoPlayerBox } from './VideoPlayer.styles';
 
 const VideoPlayer = () => {

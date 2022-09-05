@@ -34,6 +34,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
       return {
         ...prevPlayerState,
         isMuted: !prevPlayerState.isMuted,
+        initialMute: prevPlayerState.initialMute && false,
       };
     });
   }, []);
@@ -44,6 +45,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
         ...prevPlayerState,
         volume: value as number,
         isMuted: prevPlayerState.isMuted && false,
+        initialMute: prevPlayerState.initialMute && false,
       };
     });
   }, []);
@@ -73,6 +75,25 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     });
   }, []);
 
+  const toggleControls = useCallback((newControlsVisibility: boolean) => {
+    setPlayerState((prevPlayerState) => {
+      return {
+        ...prevPlayerState,
+        controlsVisible: newControlsVisibility,
+      };
+    });
+  }, []);
+
+  const disableInitialMute = useCallback(() => {
+    setPlayerState((prevPlayerState) => {
+      return {
+        ...prevPlayerState,
+        initialMute: false,
+        isMuted: false,
+      };
+    });
+  }, []);
+
   const value = {
     playerState,
     seekTo,
@@ -84,6 +105,8 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     setSeeking,
     toggleMuted,
     setVolume,
+    toggleControls,
+    disableInitialMute,
   };
 
   return <PlayerContext.Provider value={value}>{children}</PlayerContext.Provider>;

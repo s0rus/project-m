@@ -1,22 +1,29 @@
 import { theme } from '@/styles/theme';
-import { Slider, styled } from '@mui/material';
+import { Slider, styled, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import hexToRgba from 'hex-to-rgba';
+import { isAbsolute, relative } from 'path';
 
-export const ControlsWrapper = styled(Box)(({ playing }: { playing: boolean }) => ({
-  width: '100%',
-  height: '100%',
+export const ControlsWrapper = styled(Box)(
+  ({ playing, controls, initialmute }: { playing: boolean; controls: boolean; initialmute: boolean }) => ({
+    width: '100%',
+    height: '100%',
 
-  position: 'absolute',
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
 
-  zIndex: 1,
+    zIndex: 1,
 
-  backgroundColor: playing ? 'transparent' : 'rgba(0, 0, 0, 0.6)',
-  transition: 'background-color 0.2s ease-in-out',
-}));
+    backgroundColor: !playing || initialmute ? 'rgba(0, 0, 0, 0.6)' : 'transparent',
+    transition: 'background-color 0.2s ease-in-out',
+    cursor: controls ? 'default' : 'none',
+
+    overflow: 'hidden',
+  })
+);
 
 export const ControlsContainer = styled(Box)`
   width: inherit;
@@ -30,15 +37,73 @@ export const ControlsContainer = styled(Box)`
   flex-direction: column;
 `;
 
-export const ControlsBar = styled(Box)`
+export const IndicatorWrapper = styled(Box)`
+  width: '100%';
+  height: '100%';
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
+export const IndicatorContainer = styled(Box)`
   width: 100%;
+  height: 100%;
 
   display: flex;
+  flex-flow: column nowrap;
   align-items: center;
-  justify-content: space-between;
-
-  gap: 0.5rem;
+  justify-content: center;
 `;
+
+export const Indicator = styled(Box)(({ playing, initialmute }: { playing: boolean; initialmute: boolean }) => ({
+  width: '5rem',
+  height: '5rem',
+  borderRadius: '8px',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative',
+
+  transition: 'background-color 0.2s ease-in-out, opacity 0.2s ease-in-out',
+  backgroundColor: hexToRgba(theme.palette.primary.main, 0.6),
+
+  opacity: !playing || initialmute ? 1 : 0,
+
+  '&:hover': {
+    backgroundColor: hexToRgba(theme.palette.primary.main, 0.7),
+  },
+
+  '& svg': {
+    width: '4rem',
+    height: '4rem',
+  },
+
+  '& > h5': {
+    width: '200%',
+    position: 'absolute',
+    top: '100%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    textAlign: 'center',
+  },
+}));
+
+export const ControlsBar = styled(Box)(({ controls }: { controls: boolean }) => ({
+  width: '100%',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+
+  gap: '0.5rem',
+
+  transition: 'transform 0.2s ease-in-out',
+  transform: controls ? 'translateY(0px)' : 'translateY(80px)',
+}));
 
 export const Seeker = styled(Slider)`
   color: ${theme.palette.primary.main};
@@ -72,3 +137,8 @@ export const Timer = styled(Box)`
   margin: 0.1rem 0.4rem 0 0.4rem;
   min-width: 2rem;
 `;
+
+export const VideoTitle = styled(Typography)(({ controls }: { controls: boolean }) => ({
+  transition: 'transform 0.2s ease-in-out',
+  transform: controls ? 'translateY(0px)' : 'translateY(-80px)',
+}));

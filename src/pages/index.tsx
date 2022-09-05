@@ -14,6 +14,7 @@ const Home: NextPage = () => {
 
   const DummyDiv = styled('div')`
     height: 1000px;
+    z-index: 999 !important;
   `;
 
   useEffect(() => {
