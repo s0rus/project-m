@@ -1,20 +1,31 @@
-import { styled,IconButton, Typography } from '@mui/material';
-import React, { useCallback, useEffect, useState } from 'react';
-import { PlayArrowRounded, PauseRounded, FullscreenRounded, FullscreenExitRounded } from '@mui/icons-material';
-import { ControlsBar, ControlsContainer, ControlsWrapper, Seeker, Timer } from './PlayerControls.styles';
+import { IconButton, Typography } from '@mui/material';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { FullscreenRounded, FullscreenExitRounded } from '@mui/icons-material';
+import {
+  ControlsBar,
+  ControlsContainer,
+  ControlsWrapper,
+  IndicatorContainer,
+  IndicatorWrapper,
+  Indicator,
+  Seeker,
+  Timer,
+  VideoTitle,
+  SeekerPreview,
+} from './PlayerControls.styles';
 import { usePlayerContext } from '@/contexts/PlayerContext';
-import VolumeControl from './VolumeControl/VolumeControl';
+import VolumeControl from './VolumeControl';
+import { getPlayingStateIcon } from '../VideoPlayer.model';
+import useFullscreen from '@/components/VideoPlayer/PlayerControls/useFullscreen';
+import timeFormatter from '@/utils/timeFormatter';
 
 const PlayerControls = () => {
-  const { handleSeek, seeking, setSeeking, seekTo, playerState, togglePlaying } = usePlayerContext();
-  const [newSecondsPlayed, setNewSecondsPlayed] = useState(playerState.playedSeconds);
-  const [isFullscreen, toggleFullScreen] = useState(false);
-
-  function formatDuration(value: number) {
-    const minute = Math.floor(value / 60);
-    const secondLeft = parseInt((value - minute * 60).toFixed());
-    return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
-  }
+  const { handleSeek, seeking, setSeeking, seekTo, playerState, togglePlaying, toggleControls, disableInitialMute } =
+    usePlayerContext();
+  const { isPlaying, playedSeconds, duration, controlsVisible, initialMute } = playerState;
+  const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);
+  const controlsTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const { toggleFullscreen, isFullscreen } = useFullscreen();
 
   const handleSeekMouseUp = useCallback(() => {
     setSeeking(false);
@@ -26,11 +37,12 @@ const PlayerControls = () => {
     handleSeek(value as number);
   };
 
-  const handlePlaying = () => togglePlaying();
-
-  const handleFullscreen = () => {
-    isFullscreen ? document.exitFullscreen() : document.body.requestFullscreen();
-    toggleFullScreen((prevFullscreen) => !prevFullscreen);
+  const handlePlaying = () => {
+    if (initialMute) {
+      disableInitialMute();
+    } else {
+      togglePlaying();
+    }
   };
 
   useEffect(() => {
@@ -43,47 +55,74 @@ const PlayerControls = () => {
     };
   }, [seeking, handleSeekMouseUp]);
 
-  const MainPause = styled('div')`
-  height: 100%;
-  width:100%;`
+  useEffect(() => {
+    controlsTimerRef.current = isPlaying && !initialMute ? setTimeout(() => toggleControls(false), 4000) : undefined;
 
-  const FontStyleControls = {
-    fontSize: '1rem',
+    return () => clearTimeout(controlsTimerRef.current);
+  }, [controlsVisible, toggleControls, isPlaying, initialMute]);
+
+  const handleControlsOnMouseMove = () => {
+    toggleControls(true);
+  };
+
+  const handleControlsOnMouseLeave = () => {
+    if (isPlaying && !initialMute) {
+      toggleControls(false);
+    }
+    clearTimeout(controlsTimerRef.current);
+  };
+
+  const Foncik = {
     color: 'white',
     fontFamily: 'poppins, sans-serif',
-    fontWeight: '600',
     fontStyle: 'normal',
-    transition: '0.5s',
   };
 
   return (
-  
-    <ControlsWrapper playing={playerState.isPlaying}>
+    <ControlsWrapper
+      playing={isPlaying}
+      initialmute={initialMute}
+      controls={controlsVisible}
+      onMouseMove={handleControlsOnMouseMove}
+      onMouseLeave={handleControlsOnMouseLeave}
+    >
+      <SeekerPreview controls={controlsVisible} playedPercentage={(playedSeconds / duration) * 100} />
       <ControlsContainer>
-      <MainPause onClick={handlePlaying} />
-        <Typography style={FontStyleControls}></Typography>
-        <ControlsBar>
-          <IconButton onClick={handlePlaying}>
-            {playerState.isPlaying ? <PauseRounded /> : <PlayArrowRounded />}
-          </IconButton>
+        <VideoTitle variant='h1' controls={controlsVisible}>
+          MORDO WIERTARA
+        </VideoTitle>
+        <IndicatorWrapper onClick={handlePlaying}>
+          <IndicatorContainer>
+            <Indicator playing={isPlaying} initialmute={initialMute}>
+              {getPlayingStateIcon(isPlaying, initialMute)}
+              {initialMute && (
+                <Typography  style={Foncik}>
+                  Anuluj wyciszenie
+                </Typography>
+              )}
+            </Indicator>
+          </IndicatorContainer>
+        </IndicatorWrapper>
+        <ControlsBar controls={controlsVisible}>
+          <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
           <VolumeControl />
           <Timer>
-            <Typography style={FontStyleControls}>{formatDuration(playerState.playedSeconds)}</Typography>
+            <Typography style={Foncik}>{timeFormatter(playedSeconds)}</Typography>
           </Timer>
           <Seeker
             aria-label='time-indicator'
             size='small'
-            value={playerState.playedSeconds}
+            value={playedSeconds}
             min={0}
             step={1}
-            max={playerState.duration}
+            max={duration}
             onChange={handleOnChange}
             onMouseDown={() => setSeeking(true)}
           />
           <Timer>
-            <Typography style={FontStyleControls}>{formatDuration(playerState.duration)}</Typography>
+            <Typography style={Foncik}>{timeFormatter(duration)}</Typography>
           </Timer>
-          <IconButton onClick={handleFullscreen}>
+          <IconButton onClick={() => toggleFullscreen()}>
             {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}
           </IconButton>
         </ControlsBar>

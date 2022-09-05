@@ -51,17 +51,18 @@ import { styled, Box, TextField } from '@mui/material';
   font-family: poppins, sans-serif;
   display:flex;
   position: absolute;
+  margin: 0px;
   color: white;
   left: -120px;
-  top: 32%;
-  font-weight: 300;
+  top: 3px;
   font-style: normal;
   font-size:18px;
   -webkit-text-stroke: 0.25px black;
   cursor: pointer;
   transition: 0.5s;
   &:hover {
-  color: #6430ff;`
+  color: white;
+  -webkit-text-stroke: 1px white;`
 
   export const Icon = styled('div')`
   height: 48px;
@@ -137,9 +138,9 @@ import { styled, Box, TextField } from '@mui/material';
   margin-top: 15px;
   border-radius: 60px;
   transition: 0.5s;
-  position: relative;
-  left: 95%;
-  top: -5px;
+  position: absolute;
+  margin-top: 10px;
+  right: 50px;
   cursor: pointer;
   &:hover{
     -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
@@ -168,20 +169,19 @@ import { styled, Box, TextField } from '@mui/material';
   z-index: auto;
   border-radius: 50px;
   padding: 10px;
-  margin-top: -47px;
+  margin-top: 15px;
   margin-left: 135px;`
 
-  export const AddVideo = styled('div')`
+  export const AddVideoS = styled('div')`
   height: 300px;
   width: 300px;
   background-color: #1c1d26;
   border-radius: 25px;
-  position: relative;
-  left: 40%;
+  position: absolute;
+  left: 35%;
   top: 25%;
   transition: 0.5s;
   border: 4px solid #6430ff;
-  cursor: move;
   &:hover{
     border-bottom: 4px solid white; 
     animation: bg-animation 5s infinite;
@@ -209,9 +209,10 @@ import { styled, Box, TextField } from '@mui/material';
   margin-top: -10%;`
 
   export const ButtonBox = styled('div')`
-  margin-left: 15%;
-  margin-top: -8%;
-  width: 68%;
+  display: flex;
+  position: absolute;
+  top: 75%;
+  left: 15%;
   transition: 0.5s;
   border-radius: 50px;
   &:hover{
@@ -222,8 +223,8 @@ import { styled, Box, TextField } from '@mui/material';
   export const H1 = styled('h1')`
   color:white;
   font-size: 30px;
-  left: 10px;
-  top: 10px;
+  left: 50px;
+  top: 0px;
   display:flex;
   position: relative;
   -webkit-text-stroke: 0.25px black;
@@ -234,7 +235,7 @@ import { styled, Box, TextField } from '@mui/material';
   export const H2 = styled('h2')`
   color:#6430ff;
   font-size: 15px;
-  left: 30px;
+  left: -20px;
   top: 60px;
   display: flex;
   position: relative;
@@ -255,7 +256,7 @@ import { styled, Box, TextField } from '@mui/material';
   export const H3 = styled('h3')`
   color: white;
   font-size: 15px;
-  left: 35px;
+  left: -15px;
   top: 58px;
   display:flex;
   position: relative;
@@ -288,14 +289,14 @@ import { styled, Box, TextField } from '@mui/material';
   color: white;
   right: 45%;
   margin-top: 2px;
-  font-weight: 300;
   font-style: normal;
   font-size:18px;
   -webkit-text-stroke: 0.25px black;
   cursor: pointer;
   transition: 0.5s;
   &:hover {
-  color: #6430ff;}`
+  color: #white;
+  -webkit-text-stroke: 1px white;}`
 
   export const TTVimg = styled ('div')`
   display:flex;
@@ -381,6 +382,13 @@ export const FontOk = {
   transition: '0.5s',
 };
     
+export const BoxOptions = styled('div')`
+height: 250px;
+width: 250px;
+display: flex;
+position: absolute;
+right: 1px;`
+
   export const TextFieldcss = styled(TextField)({
   '& input:valid + fieldset': {
   borderColor: '#18181b',
@@ -423,17 +431,17 @@ export const ControlsBar = styled(Box)`
   &:hover {
   opacity: 100%;}`;
 
-  export const OptionsBox = styled('div')`
+  export const OptionsBoxX = styled('div')`
   height: 250px;
   width: 250px;
   display: flex;
-  position: relative;
-  left: 80%;
-  top: 0%;
+  position: absolute;
+  right: 50px;
+  bottom: -400px
   background: #272835;
   border: 2px solid #6430ff;
   border-radius: 20px;
-  transition: 1.25s;
+  transition: 1.5s;
   box-shadow: 4px 4px 44px 4px rgb(98 46 255 / 13%);
   &:hover{
     cursor: move;
@@ -454,7 +462,9 @@ maxHeight: 30px;
 minWidth: 150px;
 minHeight: 20px;
 display: flex;
-position: relative;`
+position: absolute;
+right: 98px;
+bottom: 145px;`
 
 export const OptionsH1 = styled('div')`
 height: 100px;
@@ -475,8 +485,8 @@ transition: 0.5s;
 export const VideoBttn = styled('div')`
 display: flex;
 position: absolute;
-top: 75%;
-right: 10%;
+top: 190px;
+left: -48px;
 border-radius: 50px;
 height: 45px;`
 
@@ -493,16 +503,17 @@ font-family: poppins, sans-serif;
 display:flex;
 position: absolute;
 color: white;
-left: -120px;
-top: 64%;
-font-weight: 300;
+left: 25px;
+top: 77%;
+margin: 0px;
 font-style: normal;
 font-size:18px;
 -webkit-text-stroke: 0.25px black;
 cursor: pointer;
 transition: 0.5s;
 &:hover {
-color: #6430ff;`
+  color: white;
+  -webkit-text-stroke: 1px white;`
 
 export const BrugBox = styled('div')`
 height: 128px;

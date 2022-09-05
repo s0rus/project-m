@@ -13,7 +13,9 @@ const PlaylistAdd = () => {
         <PlaylistBackground>
           <PlaylistAddHolder>
           <IconStyleBox>
-            <Image style={ {borderRadius: '20px',} } src={PlaylistIcon}/>
+            <Image style={ {
+              borderRadius: '20px',
+              } } src={PlaylistIcon}/>
             </IconStyleBox>
         <H1>Tytuł </H1>
         <H2>przez: </H2>

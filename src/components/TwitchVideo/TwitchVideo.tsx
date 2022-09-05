@@ -4,11 +4,6 @@ import { TwitchVideoHolder, TwitchVideoBox } from './TwitchVideo.styles';
 import Draggable from 'react-draggable';
 import { styled } from '@mui/material';
 
-export const Pion = styled('h1')`
-height: 260px;
-transform: rotate: '90deg'
-width: 440px;
-`
 
 export const TwitchTitle = styled('div')`
 height: 100px;
@@ -22,13 +17,17 @@ text-align: right;
 position: relative;
 margin-top: 10px;
 -webkit-text-stroke: 0.5px black ;
-transition: 0.5s;
 &:hover {
   -webkit-text-stroke: 1px white;`
 
-const TwitchChat = () => {
+ export const TransitionBox = styled('div')`
+transition: 0s;`
+
+
+const TwitchVideo = () => {
   return (
     <Draggable>
+      <TransitionBox>
     <TwitchVideoBox>
       <TwitchTitle style={{
           position: "absolute",
@@ -45,9 +44,10 @@ const TwitchChat = () => {
         <TwitchVideoHolder
           src={`https://player.twitch.tv/?channel=khamires&parent=${getTwitchChatParent()}&muted=true`}
         />
-        </TwitchVideoBox>
+                </TwitchVideoBox>
+                </TransitionBox>
         </Draggable>
   );
 };
 
-export default TwitchChat;
+export default TwitchVideo;
