@@ -1,3 +1,5 @@
+export {};
+
 // const getPlayerState = useCallback((): PlayerState => {
 //   return {
 //     playedSeconds: playerRef.current?.getCurrentTime() || 0,
