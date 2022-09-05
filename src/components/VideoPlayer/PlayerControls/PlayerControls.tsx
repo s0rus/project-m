@@ -11,11 +11,13 @@ import {
   Seeker,
   Timer,
   VideoTitle,
+  SeekerPreview,
 } from './PlayerControls.styles';
 import { usePlayerContext } from '@/contexts/PlayerContext';
 import VolumeControl from './VolumeControl';
 import { getPlayingStateIcon } from '../VideoPlayer.model';
 import useFullscreen from '@/hooks/useFullscreen';
+import timeFormatter from '@/utils/timeFormatter';
 
 const PlayerControls = () => {
   const { handleSeek, seeking, setSeeking, seekTo, playerState, togglePlaying, toggleControls, disableInitialMute } =
@@ -24,12 +26,6 @@ const PlayerControls = () => {
   const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);
   const controlsTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const { toggleFullscreen, isFullscreen } = useFullscreen();
-
-  function formatDuration(value: number) {
-    const minute = Math.floor(value / 60);
-    const secondLeft = parseInt((value - minute * 60).toFixed());
-    return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
-  }
 
   const handleSeekMouseUp = useCallback(() => {
     setSeeking(false);
@@ -84,6 +80,7 @@ const PlayerControls = () => {
       onMouseMove={handleControlsOnMouseMove}
       onMouseLeave={handleControlsOnMouseLeave}
     >
+      <SeekerPreview controls={controlsVisible} playedPercentage={(playedSeconds / duration) * 100} />
       <ControlsContainer>
         <VideoTitle variant='h1' controls={controlsVisible}>
           MORDO WIERTARA
@@ -104,7 +101,7 @@ const PlayerControls = () => {
           <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
           <VolumeControl />
           <Timer>
-            <Typography variant='h5'>{formatDuration(playedSeconds)}</Typography>
+            <Typography variant='h5'>{timeFormatter(playedSeconds)}</Typography>
           </Timer>
           <Seeker
             aria-label='time-indicator'
@@ -117,7 +114,7 @@ const PlayerControls = () => {
             onMouseDown={() => setSeeking(true)}
           />
           <Timer>
-            <Typography variant='h5'>{formatDuration(duration)}</Typography>
+            <Typography variant='h5'>{timeFormatter(duration)}</Typography>
           </Timer>
           <IconButton onClick={() => toggleFullscreen()}>
             {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}

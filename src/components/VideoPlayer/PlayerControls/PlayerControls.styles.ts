@@ -2,7 +2,6 @@ import { theme } from '@/styles/theme';
 import { Slider, styled, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import hexToRgba from 'hex-to-rgba';
-import { isAbsolute, relative } from 'path';
 
 export const ControlsWrapper = styled(Box)(
   ({ playing, controls, initialmute }: { playing: boolean; controls: boolean; initialmute: boolean }) => ({
@@ -22,6 +21,45 @@ export const ControlsWrapper = styled(Box)(
     cursor: controls ? 'default' : 'none',
 
     overflow: 'hidden',
+  })
+);
+
+export const SeekerPreview = styled('span')(
+  ({ controls, playedPercentage }: { controls: boolean; playedPercentage: number }) => ({
+    width: '100%',
+    height: '4px',
+
+    position: 'absolute',
+    top: 'calc(100% - 4px)',
+
+    zIndex: 1,
+
+    backgroundColor: hexToRgba(theme.palette.primary.light, 0.4),
+
+    transition: 'transform 0.2s ease-in-out',
+    transform: !controls ? 'translateY(0px)' : 'translateY(8px)',
+
+    overflow: 'hidden',
+
+    '&::before, &::after': {
+      content: '""',
+      height: '100%',
+      display: 'block',
+      position: 'absolute',
+      top: 'calc(100% - 4px)',
+
+      transition: 'width 0.1s ease-in-out',
+    },
+
+    // '&::before': {
+    //   width: '80%',
+    //   backgroundColor: 'blue',
+    // },
+
+    '&::after': {
+      width: `${playedPercentage || 0}%`,
+      backgroundColor: theme.palette.primary.main,
+    },
   })
 );
 
