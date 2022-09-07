@@ -2,7 +2,6 @@ import TwitchChat from '@/components/TwitchChat';
 import TwitchVideo from '@/components/TwitchVideo';
 import VideoPlayer from '@/components/VideoPlayer';
 import OptionsBox from '@/components/OptionsBox';
-import PlaylistAdd from '@/components/PlaylistAdd';
 import AddFunction from '@/components/AddFunction';
 import MainLayout, { MainContent } from '@/layouts/MainLayout';
 import { Box, Button, styled } from '@mui/material';
@@ -74,7 +73,7 @@ const Home: NextPage = () => {
 </NavTop>
 <PlaylistMain>
             {/* FILMIK TEMPLATE (tymczasowo) */}
-              <PlaylistAdd/>
+                     {/* <PlaylistTemplate> */}
             {/* USTAWIENIA (w optionsbox jest logowanie) */}
 <Draggable bounds={{left: -1236, right: 50, top: -40, bottom: 350,}}>
 <BoxOptions>

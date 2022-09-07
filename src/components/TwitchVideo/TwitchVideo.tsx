@@ -34,7 +34,7 @@ cursor: pointer;
 
 const TwitchVideo = () => {
   return (
-    <Draggable bounds={{left: -1050, right: 50, top: -1380, bottom: 50,}} >
+    <Draggable bounds={{left: -1050, right: 50, top: -1380, bottom: 40,}} >
       <TransitionBox>
     <TwitchVideoBox>
       <TwitchTitle style={{

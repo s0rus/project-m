@@ -442,7 +442,7 @@ export const ControlsBar = styled(Box)`
   display: flex;
   position: absolute;
   right: 50px;
-  bottom: 80px;
+  bottom: -45px;
   border: 2px solid hsla(255, 100%, 59%, 0.53);
   border-radius: 20px;
   transition: 1.5s;
@@ -468,7 +468,7 @@ minHeight: 20px;
 display: flex;
 position: absolute;
 right: 98px;
-bottom: 145px;`
+bottom: 10px;`
 
 export const OptionsH1 = styled('div')`
 height: 100px;
@@ -500,7 +500,8 @@ maxHeight: 30px;
 minWidth: 150px;
 minHeight: 20px;
 display: flex;
-position: relative;`
+position: relative;
+bottom: -130px;`
 
 export const VideoTitle = styled('h5')`
 font-family: poppins, sans-serif;

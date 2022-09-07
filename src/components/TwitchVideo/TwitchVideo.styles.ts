@@ -23,6 +23,7 @@ padding 0px;
 bottom: -480px;
 transition: 1.5s;
 right: 50px;
+bottom: -620px;
 border-radius: 10px;
 position: absolute;
 pointer-events: all;

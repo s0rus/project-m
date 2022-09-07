@@ -95,11 +95,6 @@ const PlayerControls = () => {
           <IndicatorContainer>
             <Indicator playing={isPlaying} initialmute={initialMute}>
               {getPlayingStateIcon(isPlaying, initialMute)}
-              {initialMute && (
-                <Typography  style={Foncik}>
-                  Anuluj wyciszenie
-                </Typography>
-              )}
             </Indicator>
           </IndicatorContainer>
         </IndicatorWrapper>
