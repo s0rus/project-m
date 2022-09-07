@@ -54,10 +54,10 @@ import { styled, Box, TextField } from '@mui/material';
   position: absolute;
   margin: 0px;
   color: white;
-  left: -120px;
-  top: 2px;
+  left: 75px;
+  top: 3px;
   font-style: normal;
-  font-size:18px;
+  font-size: 18px;
   -webkit-text-stroke: 0.25px black;
   cursor: pointer;
   transition: 0.5s;
@@ -77,22 +77,6 @@ import { styled, Box, TextField } from '@mui/material';
     -moz-box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);
     box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);
     border: 2px solid white;`
-    
-    export const MiniIcon = styled('div')`
-    height: 26px;
-    width: 26px;
-    border: 2px solid #6430ff;
-    border-radius:50px;
-    transition: 0.5s;
-    display:flex;
-    position:relative;
-    top:125px;
-    left: -250px;
-    &:hover {
-      -webkit-box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);
-      -moz-box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);
-      box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);
-      border: 2px solid white;`
 
   export const A = styled('a')`
   text-decoration:none;
@@ -117,12 +101,6 @@ import { styled, Box, TextField } from '@mui/material';
     box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);
     border: 2px solid white;`
  
-  export const ChatIconImg = styled('div')`
-  height: 20px;
-  width: 25px; 
-  margin-left: -2px;
-  color: white;
-  margin-top: -px;`
 
   export const NavBox = styled('div')`
   width: 100%;
@@ -210,6 +188,7 @@ import { styled, Box, TextField } from '@mui/material';
   font-weight: 300;
   font-style: normal;
   padding: 35px;
+  color: white;
   margin-top: -10%;`
 
   export const ButtonBox = styled('div')`
@@ -508,8 +487,8 @@ font-family: poppins, sans-serif;
 display:flex;
 position: absolute;
 color: white;
-left: 25px;
-top: 26px;
+left: 70px;
+top: 3px;
 margin: 0px;
 font-style: normal;
 font-size:18px;

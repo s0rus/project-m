@@ -20,20 +20,16 @@ background: hsla(255, 100%, 59%, 0.53);
 cursor: move;
 margin: 0px;
 padding 0px;
-bottom: -480px;
 transition: 1.5s;
 right: 50px;
-bottom: -620px;
+bottom: -600px;
 border-radius: 10px;
 position: absolute;
 pointer-events: all;
 box-shadow: 4px 4px 44px 4px rgb(98 46 255 / 13%);
 &:hover{
   background: #6430ff;
-  cursor: move;
-;
-}
-`;
+  cursor: move;}`
 
 export const VideoBox = styled('div')`
 maxWidth: 150px;

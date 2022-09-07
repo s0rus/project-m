@@ -30,7 +30,12 @@ display:flex;
 position:absolute;
 right: 10px;
 top: 10px;
+color: #b32222;
+transition: 0.5s;
 cursor: pointer;
+&:hover{
+  color: red;
+}
 `
     return (      
       <Box> {boxadd && boxremove && 
