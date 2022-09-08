@@ -31,6 +31,7 @@
     "react-draggable": "^4.4.5",
     "react-player": "^2.10.1",
     "react-query": "^3.39.2",
+    "react-remove-scroll-bar": "^2.3.3",
     "react-split": "^2.0.14",
     "reactjs-localstorage": "^1.0.1",
     "simplebar": "^5.3.8",

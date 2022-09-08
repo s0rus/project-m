@@ -2,6 +2,7 @@ import AddFunction from '@/components/AddFunction';
 import TwitchChat from '@/components/TwitchChat';
 import TwitchVideo from '@/components/TwitchVideo';
 import ChatButton from '@/components/ChatButton';
+import BeforePage from '@/components/BeforePage';
 import NavBottom from '@/components/NavBottom';
 import VideoButton from '@/components/VideoButton';
 import VideoPlayer from '@/components/VideoPlayer';
@@ -13,11 +14,9 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 import SimpleBar from 'simplebar-react';
-import TwitchLogo from 'components/Icons/Twitch.svg'
-import Image from 'next/image';
 import 'simplebar/dist/simplebar.min.css';
 import AddIcon from '@mui/icons-material/Add';
-import { BackgroundAccentAdd, BackgroundAccentOptions ,AddIconBox, NavTop, OptionsBox, OptionsH1, Tittle ,H5twitch, TTVimg, Icon}  from '@/styles/style'
+import { AbsoluteBox,BackgroundAccentAdd, BackgroundAccentOptions ,AddIconBox, NavTop, OptionsBox, OptionsH1, Tittle ,H5twitch, TTVimg, Icon}  from '@/styles/style'
 import { Fab } from '@mui/material';
 
 const Home: NextPage = () => {
@@ -27,6 +26,7 @@ const Home: NextPage = () => {
   const [login, toggleLogin] = useState(true);
   const [boxadd, toggleBox] = useState(false);
   const [boxremove, removeBox] = useState(true);
+  const [beforexit, beforePage] = useState(true);
 
   const DummyDiv = styled('div')`
     height: 100vh;
@@ -49,11 +49,6 @@ const Home: NextPage = () => {
     await signOut();
   };
  
- const AbsoluteBox = styled('div')`
- display: flex;
- position: absolute;
- right: 10px;
- top: 10px;`
 
   return (
     <>
@@ -63,9 +58,11 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <MainLayout>
+      <BeforePage/>
         <MainContent>
           <SimpleBar style={{ maxHeight: '100vh' }}>
-            <VideoPlayer />
+            <VideoPlayer /> 
+
 
             <NavTop>
                 <Tittle>Playlista</Tittle>
@@ -75,7 +72,6 @@ const Home: NextPage = () => {
             </NavTop>
             
             <DummyDiv>
-
                 <OptionsBox>
                 <OptionsH1>Ustawienia</OptionsH1>
               {session && status === 'authenticated' ? (
