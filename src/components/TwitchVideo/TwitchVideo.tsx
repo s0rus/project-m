@@ -34,7 +34,7 @@ position: absolute;
 right: 210px;
 top: -20px;
 cursor:move;
-opacity: 30%;
+opacity: 10%;
 transition: 0.5s;
 &:hover{
   opacity: 100%;
@@ -46,7 +46,7 @@ cursor: pointer;`
 
 const TwitchVideo = () => {
   return (
-<Draggable>
+<Draggable bounds={{left: -1250, top: -860, right: 50, bottom: 320}} >
 <TransitionBox>
     <TwitchVideoBox>
     <MoveIconBox2> <OpenWithIcon/></MoveIconBox2>
