@@ -46,7 +46,7 @@ cursor: pointer;`
 
 const TwitchVideo = () => {
   return (
-<Draggable bounds={{left: -1250, top: -860, right: 50, bottom: 320}} >
+<Draggable bounds={{left: -870, top: -700, right: 60, bottom: 260}} >
 <TransitionBox>
     <TwitchVideoBox>
     <MoveIconBox2> <OpenWithIcon/></MoveIconBox2>
