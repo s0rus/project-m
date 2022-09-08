@@ -34,7 +34,7 @@ export const SeekerPreview = styled('span')(
 
     zIndex: 1,
 
-    backgroundColor: hexToRgba(theme.palette.primary.light, 0.4),
+    backgroundColor: '#6430ff',
 
     transition: 'transform 0.2s ease-in-out',
     transform: !controls ? 'translateY(0px)' : 'translateY(8px)',
@@ -58,7 +58,7 @@ export const SeekerPreview = styled('span')(
 
     '&::after': {
       width: `${playedPercentage || 0}%`,
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: '#6430ff',
     },
   })
 );
@@ -107,12 +107,12 @@ export const Indicator = styled(Box)(({ playing, initialmute }: { playing: boole
   position: 'relative',
 
   transition: 'background-color 0.2s ease-in-out, opacity 0.2s ease-in-out',
-  backgroundColor: hexToRgba(theme.palette.primary.main, 0.6),
+  backgroundColor: '#6430ff',
 
   opacity: !playing || initialmute ? 1 : 0,
 
   '&:hover': {
-    backgroundColor: hexToRgba(theme.palette.primary.main, 0.7),
+    backgroundColor: 'hsl(255,60%,39%)',
   },
 
   '& svg': {
@@ -144,7 +144,7 @@ export const ControlsBar = styled(Box)(({ controls }: { controls: boolean }) => 
 }));
 
 export const Seeker = styled(Slider)`
-  color: ${theme.palette.primary.main};
+  color: #6430ff;
   height: 4px;
 
   & .MuiSlider-thumb {
@@ -158,7 +158,7 @@ export const Seeker = styled(Slider)`
 
   &:hover,
   &.Mui-focusVisible {
-    box-shadow: ${theme.palette.primary.main};
+    box-shadow:white;
   }
 
   &.Mui-active {

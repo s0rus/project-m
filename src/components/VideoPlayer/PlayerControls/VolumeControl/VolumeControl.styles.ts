@@ -16,7 +16,7 @@ export const VolumeSliderBox = styled(Box)`
 `;
 
 export const VolumeSlider = styled(Slider)`
-  color: ${theme.palette.primary.main};
+  color: #6430ff;
   height: 100px !important;
 
   & .MuiSlider-thumb {

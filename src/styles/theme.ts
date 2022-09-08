@@ -35,7 +35,7 @@ export const theme = createTheme({
 
   palette: {
     primary: {
-      main: '#E01673',
+      main: '#6430ff',
       light: '#F91880',
       contrastText: '#EFEFF1',
     },
@@ -60,11 +60,11 @@ export const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         html: {
-          background: '#18181B',
+          background: '#1e2028',
           overflow: 'hidden',
         },
         body: {
-          backgroundColor: '#18181B!important',
+          backgroundColor: '#1e2028!important',
           minHeight: '100vh',
         },
 
@@ -83,13 +83,13 @@ export const theme = createTheme({
 
         '.MuiDivider-withChildren': {
           '&::before, &::after': {
-            borderTopColor: '#7A46EE!important',
+            borderTopColor: '#6430ff!important',
           },
         },
 
         '.simplebar-scrollbar': {
           '&::before': {
-            background: '#E01673!important',
+            background: '#6430ff!important',
             pointerEvents: 'all!important',
             borderRadius: '8!important',
           },
