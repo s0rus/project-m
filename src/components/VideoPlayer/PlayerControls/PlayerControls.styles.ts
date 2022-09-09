@@ -99,7 +99,7 @@ export const IndicatorContainer = styled(Box)`
 export const Indicator = styled(Box)(({ playing, initialmute }: { playing: boolean; initialmute: boolean }) => ({
   width: '5rem',
   height: '5rem',
-  borderRadius: '8px',
+  borderRadius: '40px',
 
   display: 'flex',
   alignItems: 'center',
@@ -112,12 +112,12 @@ export const Indicator = styled(Box)(({ playing, initialmute }: { playing: boole
   opacity: !playing || initialmute ? 1 : 0,
 
   '&:hover': {
-    backgroundColor: 'hsl(255,60%,39%)',
+    backgroundColor: 'rgba(98, 46, 255, 0.29)',
   },
 
   '& svg': {
-    width: '4rem',
-    height: '4rem',
+    width: '3.5rem',
+    height: '3.5rem',
   },
 
   '& > h5': {
@@ -137,7 +137,7 @@ export const ControlsBar = styled(Box)(({ controls }: { controls: boolean }) => 
   alignItems: 'center',
   justifyContent: 'space-between',
 
-  gap: '0.5rem',
+  gap: '0.8rem',
 
   transition: 'transform 0.2s ease-in-out',
   transform: controls ? 'translateY(0px)' : 'translateY(80px)',

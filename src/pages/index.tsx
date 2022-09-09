@@ -16,7 +16,7 @@ import React, { useEffect, useState } from 'react';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 import AddIcon from '@mui/icons-material/Add';
-import { AbsoluteBox,BackgroundAccentAdd, BackgroundAccentOptions ,AddIconBox, NavTop, OptionsBox, OptionsH1, Tittle ,H5twitch, TTVimg, Icon}  from '@/styles/style'
+import { AbsoluteBox ,BackgroundAccentAdd, BackgroundAccentOptions , NavTop, OptionsBox, OptionsH1, Tittle ,H5twitch,}  from '@/styles/style'
 import { Fab } from '@mui/material';
 
 const Home: NextPage = () => {
@@ -62,8 +62,7 @@ const Home: NextPage = () => {
         <MainContent>
           <SimpleBar style={{ maxHeight: '100vh' }}>
             <VideoPlayer /> 
-
-
+            
             <NavTop>
                 <Tittle>Playlista</Tittle>
                 <AbsoluteBox>
@@ -87,7 +86,6 @@ const Home: NextPage = () => {
                 <div onClick={() => toggleVideo((prev) => !prev) }> <VideoButton/> </div> 
                 <div onClick={() => toggleChat((prev) => !prev) }> <ChatButton/> </div> 
               </OptionsBox>
-              
               <Box> {video && <TwitchVideo/> } </Box>
 
             <NavBottom/>

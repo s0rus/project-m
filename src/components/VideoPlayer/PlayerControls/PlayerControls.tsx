@@ -99,7 +99,6 @@ const PlayerControls = () => {
         </IndicatorWrapper>
         <ControlsBar controls={controlsVisible}>
           <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
-          <VolumeControl />
           <Timer>
             <Typography variant='h5'>{timeFormatter(playedSeconds)}</Typography>
           </Timer>
@@ -116,6 +115,7 @@ const PlayerControls = () => {
           <Timer>
             <Typography variant='h5'>{timeFormatter(duration)}</Typography>
           </Timer>
+          <VolumeControl />
           <IconButton onClick={() => toggleFullscreen()}>
             {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}
           </IconButton>

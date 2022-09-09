@@ -6,7 +6,8 @@ import { styled, Box, TextField, keyframes } from '@mui/material';
   margin-top: 100vh;
   text-align: center;
   justify-content: center;
-  gap: 213px;
+  align-items: center;
+  gap: 200px;
   background: #15161c;
   width:100%;
   border-top: 2px solid #6430ff;
@@ -55,6 +56,7 @@ import { styled, Box, TextField, keyframes } from '@mui/material';
   display:flex;
   position: absolute;
   margin: 0px;
+  font-weight: 500;
   color: white;
   left: 65px;
   top: 5.5px;
@@ -82,7 +84,7 @@ import { styled, Box, TextField, keyframes } from '@mui/material';
 
   export const A = styled('a')`
   text-decoration:none;
-  margin-top: 0.25rem`
+  margin: 0px;`
 
   export const ChatIconBox = styled('div')`
   height: 48px;
@@ -143,7 +145,7 @@ import { styled, Box, TextField, keyframes } from '@mui/material';
   display: flex;
   background: rgba(0, 0, 0, 0.62);
   padding: 15px;
-  transition: 1s;
+  transition: all 1s ease;
   overflow: hidden;
   backdrop-filter: blur(10px);
   '.simplebar-scrollbar': {
@@ -201,6 +203,7 @@ import { styled, Box, TextField, keyframes } from '@mui/material';
   font-family: poppins, sans-serif;
   display:flex;
   position: absolute;
+  font-weight: 500;
   color: white;
   height: 0px;
   right: 35%;
@@ -288,7 +291,7 @@ export const FontStyle = {
 export  const AbsoluteBox = styled('div')`
 display: flex;
 position: absolute;
-right: 10px;
+right: 30px;
 top: 10px;`
 
 export const BoxOptions = styled('div')`
@@ -410,6 +413,7 @@ display:flex;
 position: absolute;
 color: white;
 left: 34%;
+font-weight: 500;
 top: 42.5%;
 margin: 0px;
 font-style: normal;
