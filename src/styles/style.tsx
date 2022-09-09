@@ -10,7 +10,7 @@ import { styled, Box, TextField, keyframes } from '@mui/material';
   gap: 200px;
   background: #15161c;
   width:100%;
-  border-top: 2px solid #6430ff;
+  border-top: 1px solid rgba(98, 46, 255, 0.58);
   overflow: hidden;
   height: 80px;`
 
@@ -23,7 +23,7 @@ import { styled, Box, TextField, keyframes } from '@mui/material';
   gap: 20%;
   color: #6a50bb;
   width:100%;
-  border-bottom: 2px solid #6430ff;`
+  border-bottom: 1px solid rgba(98, 46, 255, 0.58);`
 
   export const NavTitle = styled('h5')`
   font-size: 20px;
@@ -84,7 +84,7 @@ import { styled, Box, TextField, keyframes } from '@mui/material';
 
   export const A = styled('a')`
   text-decoration:none;
-  margin: 0px;`
+  margin-top: -10px`
 
   export const ChatIconBox = styled('div')`
   height: 48px;
