@@ -1,4 +1,4 @@
-import { styled, Box, TextField, keyframes } from '@mui/material';
+import { styled, Box,} from '@mui/material';
 
   export const NavBot = styled('div')`
   display: flex;
@@ -168,12 +168,13 @@ import { styled, Box, TextField, keyframes } from '@mui/material';
   position: absolute;
   top: 75%;
   left: 15%;
-  transition: 0.5s;
+  transition: all 0.8s ease-in-out;
   border-radius: 50px;
   &:hover{
+    transform: rotate3d(360,1,100,360deg) ;
     -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
     -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
-    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);`
+    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);}`
 
   export const TimeFont = styled('h2')`
   color:white;
@@ -424,4 +425,63 @@ transition: 0.5s;
 &:hover {
   color: white;
   -webkit-text-stroke: 1px white;`
+
+export const ContainerBefore = styled('div')`
+height: 100%;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;`
+
+export const Button1 = styled('div')`
+height: 60px;
+margin: 0;
+display: flex;
+position: absolute;
+top: 50%;
+border-radius: 30px;
+transition: all 1s ease-in-out;
+text-align: center;
+&:hover{
+  transform: rotate3d(20,1,10,60deg) ;
+  -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+}`
+
+export const LinearBox = styled('div')`
+width: 1000px;
+height: 10px;
+margin: 0;
+padding: 0;
+display:flex;
+position: absolute;
+margin-left: 500px;
+margin-bottom: 20px;`
+
+export const CodeIconBox = styled('div')`
+display: flex;
+position: absolute;
+bottom: 10px;
+left: 20px;
+margin: 10px;
+width: 340px;
+transition: all 1s ease-in-out;
+border-radius: 20px;
+&:hover{
+  font-size: 20px;
+  transform: rotate3d(20,1,0,360deg);
+  color: #6430ff;
+  
+}`
+
+export const AHREF = styled('a')`
+text-decoration:none;
+color: white;
+text-weight: 300;
+display: flex;
+position: absolute;
+left: 10px;
+bottom: 10px;`
+
 

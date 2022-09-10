@@ -19,6 +19,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { AbsoluteBox ,BackgroundAccentAdd, BackgroundAccentOptions , NavTop, OptionsBox, OptionsH1, Tittle ,H5twitch,}  from '@/styles/style'
 import { Fab } from '@mui/material';
 
+
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
   const [chat, toggleChat] = useState(true);
@@ -28,7 +29,7 @@ const Home: NextPage = () => {
   const [boxremove, removeBox] = useState(true);
   const [beforexit, beforePage] = useState(true);
 
-  const DummyDiv = styled('div')`
+  const DummyAside = styled('aside')`
     height: 100vh;
     width: 100%;
     margin-top: 80px;
@@ -58,8 +59,10 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <MainLayout>
+
       <BeforePage/>
         <MainContent>
+
           <SimpleBar style={{ maxHeight: '100vh' }}>
             <VideoPlayer /> 
             
@@ -70,7 +73,7 @@ const Home: NextPage = () => {
                 </AbsoluteBox>
             </NavTop>
             
-            <DummyDiv>
+            <DummyAside>
                 <OptionsBox>
                 <OptionsH1>Ustawienia</OptionsH1>
               {session && status === 'authenticated' ? (
@@ -90,10 +93,10 @@ const Home: NextPage = () => {
 
             <NavBottom/>
 
-            </DummyDiv>
+            </DummyAside>
           </SimpleBar>
         </MainContent>
-        <Box> {chat && <TwitchChat /> } </Box>
+         <Box> {chat && <TwitchChat /> } </Box>
         <Box> {boxadd && <AddFunction/> }</Box>
       </MainLayout>
     </>
