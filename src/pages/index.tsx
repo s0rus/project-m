@@ -18,7 +18,10 @@ import 'simplebar/dist/simplebar.min.css';
 import AddIcon from '@mui/icons-material/Add';
 import { AbsoluteBox ,BackgroundAccentAdd, BackgroundAccentOptions , NavTop, OptionsBox, OptionsH1, Tittle ,H5twitch,}  from '@/styles/style'
 import { Fab } from '@mui/material';
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -59,13 +62,22 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <MainLayout>
+<<<<<<< Updated upstream
 
       <BeforePage/>
+=======
+ 
+  <BeforePage/>
+
+>>>>>>> Stashed changes
         <MainContent>
 
           <SimpleBar style={{ maxHeight: '100vh' }}>
             <VideoPlayer /> 
+<<<<<<< Updated upstream
             
+=======
+>>>>>>> Stashed changes
             <NavTop>
                 <Tittle>Playlista</Tittle>
                 <AbsoluteBox>
@@ -96,7 +108,13 @@ const Home: NextPage = () => {
             </DummyAside>
           </SimpleBar>
         </MainContent>
+<<<<<<< Updated upstream
          <Box> {chat && <TwitchChat /> } </Box>
+=======
+
+        <Box> {chat &&  <TwitchChat />} </Box>
+
+>>>>>>> Stashed changes
         <Box> {boxadd && <AddFunction/> }</Box>
       </MainLayout>
     </>
