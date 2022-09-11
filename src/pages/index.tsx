@@ -18,7 +18,7 @@ import 'simplebar/dist/simplebar.min.css';
 import AddIcon from '@mui/icons-material/Add';
 import { AbsoluteBox ,BackgroundAccentAdd, BackgroundAccentOptions , NavTop, OptionsBox, OptionsH1, Tittle ,H5twitch,}  from '@/styles/style'
 import { Fab } from '@mui/material';
-
+import SplitPane from 'react-split-pane-v2';
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -61,9 +61,9 @@ const Home: NextPage = () => {
       <MainLayout>
  
   <BeforePage/>
-
+  <SplitPane>
+  <div size={40} >
         <MainContent>
-
           <SimpleBar style={{ maxHeight: '100vh' }}>
             <VideoPlayer /> 
 
@@ -93,14 +93,15 @@ const Home: NextPage = () => {
               <Box> {video && <TwitchVideo/> } </Box>
 
             <NavBottom/>
-
             </DummyAside>
           </SimpleBar>
         </MainContent>
-
-         <Box> {chat && <TwitchChat /> } </Box>
-
-        <Box> {boxadd && <AddFunction/> }</Box>
+        </div>
+        <div size={10} >
+         <Box> {chat && <TwitchChat />  } </Box>
+        </div>
+        </SplitPane>
+         <Box> {boxadd && <AddFunction/> }</Box>
       </MainLayout>
     </>
   );
