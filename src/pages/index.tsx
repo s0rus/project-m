@@ -60,10 +60,10 @@ const Home: NextPage = () => {
       </Head>
       <MainLayout>
  
-  <BeforePage/>
+  <BeforePage/> 
+
   <SplitPane>
-  <div size={40} >
-        <MainContent>
+        <MainContent size={40} >
           <SimpleBar style={{ maxHeight: '100vh' }}>
             <VideoPlayer /> 
 
@@ -90,16 +90,14 @@ const Home: NextPage = () => {
                 <div onClick={() => toggleVideo((prev) => !prev) }> <VideoButton/> </div> 
                 <div onClick={() => toggleChat((prev) => !prev) }> <ChatButton/> </div> 
               </OptionsBox>
+
               <Box> {video && <TwitchVideo/> } </Box>
 
             <NavBottom/>
             </DummyAside>
           </SimpleBar>
         </MainContent>
-        </div>
-        <div size={10} >
-         <Box> {chat && <TwitchChat />  } </Box>
-        </div>
+        {chat &&  <div size={10}> {chat &&  <TwitchChat />  } </div> }
         </SplitPane>
          <Box> {boxadd && <AddFunction/> }</Box>
       </MainLayout>
