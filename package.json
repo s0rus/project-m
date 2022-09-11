@@ -39,13 +39,6 @@
     "react-remove-scroll-bar": "^2.3.3",
     "react-split": "^2.0.14",
     "react-split-it": "^2.0.0",
-<<<<<<< Updated upstream
-    "react-split-pane-v2": "^1.0.3",
-=======
-    "react-split-pane": "^0.1.92",
-    "react-split-pane-v2": "^1.0.3",
-    "react-split-views": "^1.0.5",
->>>>>>> Stashed changes
     "react-tiny-popover": "^7.1.0",
     "reactjs-localstorage": "^1.0.1",
     "simplebar": "^5.3.8",

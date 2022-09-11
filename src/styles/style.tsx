@@ -26,19 +26,6 @@ import { styled, Box,} from '@mui/material';
   border-bottom: 1px solid rgba(98, 46, 255, 0.58);`
 
   export const NavTitle = styled('h5')`
-<<<<<<< Updated upstream
-  font-size: 20px;
-  color: #6430ff;
-  font-family: poppins, sans-serif;
-  font-weight: 300;
-  font-style: normal;
-  margin-top: -45px;
-  margin-left: 56px;
-  transition: 0.5s;
-  &:hover {
-  -webkit-text-stroke: 2px white;
-  color: white;`
-=======
   box-shadow: inset 0 0 0 0 #6430ff;
   font-family: poppins, sans-serif;
   text-transform: capitalize;
@@ -59,7 +46,6 @@ import { styled, Box,} from '@mui/material';
   &:hover {
     box-shadow: inset 100px 0 0 0 rgba(255, 255, 255, 0.4);
     color: #6430ff;}`
->>>>>>> Stashed changes
 
   export const Tittle = styled('h1')`
   font-size: 35px;
@@ -75,28 +61,6 @@ import { styled, Box,} from '@mui/material';
   bottom: -10px;`
 
   export const ChatTitle = styled('h5')`
-<<<<<<< Updated upstream
-  font-family: poppins, sans-serif;
-  display:flex;
-  position: absolute;
-  margin: 0px;
-  font-weight: 500;
-  color: white;
-  left: 65px;
-  top: 5.5px;
-  font-style: normal;
-  font-size: 18px;
-  -webkit-text-stroke: 0.25px black;
-  cursor: pointer;
-  transition: 0.5s;
-  &:hover {
-  color: white;
-  -webkit-text-stroke: 1px white;`
-
-  export const Icon = styled('div')`
-  height: 48px;
-  width: 48px;
-=======
   box-shadow: inset 0 0 0 0 #6430ff;
   font-family: poppins, sans-serif;
   text-transform: capitalize;
@@ -122,7 +86,6 @@ import { styled, Box,} from '@mui/material';
   export const Icon = styled('div')`
   height: 46px;
   width: 46px;
->>>>>>> Stashed changes
   border: 2px solid #6430ff;
   border-radius:50px;
   transition: 0.5s;
@@ -138,15 +101,10 @@ import { styled, Box,} from '@mui/material';
   margin-top: -10px`
 
   export const ChatIconBox = styled('div')`
-<<<<<<< Updated upstream
-  height: 48px;
-  width: 50px;
-=======
   height: 46px;
   width: 46px;
   align-items: center;
   justify-content: center;
->>>>>>> Stashed changes
   display:flex;
   position: absolute;
   border: 2px solid #6430ff;
@@ -154,11 +112,7 @@ import { styled, Box,} from '@mui/material';
   border-radius: 50px;
   right: 18%;
   bottom: 42%;
-<<<<<<< Updated upstream
-  padding: 10px;
-=======
   padding: 3px;
->>>>>>> Stashed changes
   cursor: pointer;
   transition: 0.5s;
   &:hover {
@@ -263,24 +217,6 @@ import { styled, Box,} from '@mui/material';
   padding: 0px;`
 
   export const H5twitch = styled ('h5')`
-<<<<<<< Updated upstream
-  font-family: poppins, sans-serif;
-  display:flex;
-  position: absolute;
-  font-weight: 500;
-  color: white;
-  height: 0px;
-  right: 35%;
-  margin-top: 2px;
-  font-style: normal;
-  font-size:18px;
-  -webkit-text-stroke: 0.25px black;
-  cursor: pointer;
-  transition: 0.5s;
-  &:hover {
-  color: #white;
-  -webkit-text-stroke: 1px white;}`
-=======
   box-shadow: inset 0 0 0 0 #6430ff;
   font-family: poppins, sans-serif;
   text-transform: capitalize;
@@ -300,7 +236,6 @@ import { styled, Box,} from '@mui/material';
     -webkit-text-stroke: 0.5px white;
     box-shadow: inset 100px 0 0 0 rgba(255, 255, 255, 0.4);
     color: #6430ff;}`
->>>>>>> Stashed changes
 
   export const TTVimg = styled ('div')`
   display:flex;
@@ -434,15 +369,6 @@ export const ControlsBar = styled(Box)`
   }`
 
   export const BeforeFont = styled('h1')`
-<<<<<<< Updated upstream
-    background: linear-gradient(144deg, rgba(186,28,255,1) 14%, rgba(87,27,247,1) 99%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 82px;
-    font-weight: 800;
-    margin-bottom: 200px;
-    text-align: center;`
-=======
   text-transform: uppercase;
   background-image: linear-gradient(
     -225deg,
@@ -464,7 +390,6 @@ export const ControlsBar = styled(Box)`
       font-size: 90px;
       margin-bottom: 190px;
       -webkit-text-stroke: 0.4px white;`
->>>>>>> Stashed changes
 
 
 export const ChatBttn = styled('div')`
@@ -517,24 +442,6 @@ position: relative;
 bottom: -130px;`
 
 export const VideoTitle = styled('h5')`
-<<<<<<< Updated upstream
-font-family: poppins, sans-serif;
-display:flex;
-position: absolute;
-color: white;
-left: 34%;
-font-weight: 500;
-top: 42.5%;
-margin: 0px;
-font-style: normal;
-font-size:18px;
--webkit-text-stroke: 0.25px black;
-cursor: pointer;
-transition: 0.5s;
-&:hover {
-  color: white;
-  -webkit-text-stroke: 1px white;`
-=======
 box-shadow: inset 0 0 0 0 #6430ff;
 font-family: poppins, sans-serif;
 text-transform: capitalize;
@@ -542,21 +449,20 @@ font-weight: 500;
 font-style: normal;
 display: flex;
 position: absolute;
-right: 100px;
+right: 110px;
 top: 105px;
 font-size: 18px;
 color: white;
 margin: 0 -.25rem;
 padding: 0 .25rem;
 border-radius: 20px;
-width: 90px;
+width: 60px;
 transition: 1s color 1.3s ease-in-out, box-shadow 1.3s ease-in-out;
 cursor: pointer;
 &:hover {
   -webkit-text-stroke: 0.5px white;
   box-shadow: inset 100px 0 0 0 rgba(255, 255, 255, 0.4);
   color: #6430ff;}`
->>>>>>> Stashed changes
 
 export const ContainerBefore = styled('div')`
 height: 100%;
@@ -592,22 +498,6 @@ margin-left: 500px;
 margin-bottom: 20px;`
 
 export const CodeIconBox = styled('div')`
-<<<<<<< Updated upstream
-display: flex;
-position: absolute;
-bottom: 10px;
-left: 20px;
-margin: 10px;
-width: 340px;
-transition: all 1s ease-in-out;
-border-radius: 20px;
-&:hover{
-  font-size: 20px;
-  transform: rotate3d(20,1,0,360deg);
-  color: #6430ff;
-  
-}`
-=======
   cursor:pointer;
   :hover,
   :hover::before{
@@ -618,7 +508,6 @@ border-radius: 20px;
      transition-delay:.2s; 
   }
   `
->>>>>>> Stashed changes
 
 export const AHREF = styled('a')`
 text-decoration:none;
