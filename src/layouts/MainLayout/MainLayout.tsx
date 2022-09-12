@@ -18,7 +18,7 @@ const MainStack = styled(Stack)`
   justify-content: space-between;
 `;
 
-export const MainContent = styled('div')`
+export const MainContent = styled(Box)`
   flex: 1;
   height: 100vh;
 `;

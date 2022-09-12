@@ -1,7 +1,7 @@
-import { getTwitchChatParent } from '@/pages/_app';
-import React from 'react';
 import { TwitchChatBox, TwitchChatContainer, TwitchChatHolder } from './TwitchChat.styles';
-import SplitPane from "react-split-pane-v2";
+
+import React from 'react';
+import { getTwitchChatParent } from '@/pages/_app';
 
 const TwitchChat = () => {
   return (

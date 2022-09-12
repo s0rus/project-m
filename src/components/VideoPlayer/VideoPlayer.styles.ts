@@ -1,6 +1,6 @@
-import { styled } from '@mui/material';
 import { Box } from '@mui/material';
 import ReactPlayer from 'react-player';
+import { styled } from '@mui/material';
 
 export const VideoPlayerBox = styled(Box)`
   height: 100vh;

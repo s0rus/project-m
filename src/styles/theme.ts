@@ -60,11 +60,11 @@ export const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         html: {
-          background: '#1e2028',
+          background: '#18181B',
           overflow: 'hidden',
         },
         body: {
-          backgroundColor: '#1e2028!important',
+          backgroundColor: '#18181B!important',
           minHeight: '100vh',
         },
 
@@ -83,7 +83,7 @@ export const theme = createTheme({
 
         '.MuiDivider-withChildren': {
           '&::before, &::after': {
-            borderTopColor: '#6430ff!important',
+            borderTopColor: '#7A46EE!important',
           },
         },
 

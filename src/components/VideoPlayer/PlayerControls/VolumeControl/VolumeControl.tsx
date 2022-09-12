@@ -1,8 +1,9 @@
-import { IconButton } from '@mui/material';
-import { usePopupState, bindHover, bindPopover } from 'material-ui-popup-state/hooks';
-import { usePlayerContext } from '@/contexts/PlayerContext';
 import { VolumeSlider, VolumeSliderBox, VolumeSliderPopver } from './VolumeControl.styles';
+import { bindHover, bindPopover, usePopupState } from 'material-ui-popup-state/hooks';
+
+import { IconButton } from '@mui/material';
 import { getVolumeIcon } from '../../VideoPlayer.model';
+import { usePlayerContext } from '@/contexts/PlayerContext';
 
 const VolumeControl = () => {
   const { playerState, toggleMuted, setVolume } = usePlayerContext();

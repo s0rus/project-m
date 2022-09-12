@@ -1,14 +1,17 @@
-// import { useSocketContext } from '@/contexts/SocketContext';
-import { usePlayerContext } from '@/contexts/PlayerContext';
-import { useHasWindow, TestUrl } from '@/utils/index';
 import React, { MutableRefObject, useEffect, useRef } from 'react';
-import ReactPlayer from 'react-player';
-import PlayerControls from './PlayerControls/';
 import { StyledReactPlayer, VideoPlayerBox } from './VideoPlayer.styles';
 
+import PlayerControls from './PlayerControls/';
+import ReactPlayer from 'react-player';
+import { useHasWindow } from '@/utils/index';
+// import { useSocketContext } from '@/contexts/SocketContext';
+import { usePlayerContext } from '@/contexts/PlayerContext';
+import { usePlaylistContext } from '@/contexts/PlaylistContext';
+
 const VideoPlayer = () => {
-  const { setPlayerRef, handleProgress, playerState, togglePlaying } = usePlayerContext();
-  const { isPlaying, volume, isMuted } = playerState;
+  const { requestNextVideo } = usePlaylistContext();
+  const { setPlayerRef, handleProgress, playerState } = usePlayerContext();
+  const { isPlaying, volume, isMuted, activeVideo } = playerState;
   const playerRef = useRef<ReactPlayer | null>(null);
   const hasWindow = useHasWindow();
   // const { socket } = useSocketContext();
@@ -23,12 +26,12 @@ const VideoPlayer = () => {
         <>
           <StyledReactPlayer
             onProgress={handleProgress}
-            onEnded={togglePlaying}
+            onEnded={requestNextVideo}
             playing={isPlaying}
             muted={isMuted}
             volume={volume}
             ref={playerRef}
-            url={TestUrl.YT}
+            url={activeVideo?.videoUrl}
             width='100%'
             height='100%'
             config={{

@@ -3,7 +3,7 @@ import { styled, Box,} from '@mui/material';
   export const NavBot = styled('div')`
   display: flex;
   background: #1c1d26;
-  margin-top: 100vh;
+  margin-top: 10vh;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -18,7 +18,7 @@ import { styled, Box,} from '@mui/material';
   display: flex;
   position: absolute;
   height: 80px;
-  background: #15161c;
+  background: rgba(123, 0, 255, 0);
   justify-content: center;
   gap: 20%;
   color: #6a50bb;
@@ -289,7 +289,7 @@ export const BackgroundAccentVideo = {
   height: '35px',
   width: '150px',
   top: '100px',
-  right: '150px',
+  right: '-50px',
   borderRadius: '20px',
 };
 

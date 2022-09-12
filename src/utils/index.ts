@@ -1,4 +1,5 @@
-import useHasWindow from './hasWindow';
 import { TestUrl } from './testUrls';
+import timeFormatter from './timeFormatter';
+import useHasWindow from './hasWindow';
 
-export { useHasWindow, TestUrl };
+export { useHasWindow, TestUrl, timeFormatter };

@@ -31,6 +31,6 @@
     }
   },
 
-  "include": ["next-env.d.ts", "next-auth.d.ts", "**/*.ts", "**/*.tsx", "**/*.js","./src/**/*","env.d.ts"],
+  "include": ["next-env.d.ts", "next-auth.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"],
   "exclude": ["node_modules"]
 }
