@@ -1,6 +1,7 @@
-import { theme } from '@/styles/theme';
-import { styled, Box, Slider } from '@mui/material';
+import { Box, Slider, styled } from '@mui/material';
+
 import HoverPopover from 'material-ui-popup-state/HoverPopover';
+import { theme } from '@/styles/theme';
 
 export const VolumeSliderPopver = styled(HoverPopover)`
   height: 100%;

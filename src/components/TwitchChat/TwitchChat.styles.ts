@@ -1,6 +1,6 @@
-import { theme } from '@/styles/theme';
-import { styled } from '@mui/material';
 import { Box } from '@mui/material';
+import { styled } from '@mui/material';
+import { theme } from '@/styles/theme';
 
 export const TwitchChatBox = styled(Box)`
   height: 100%;

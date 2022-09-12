@@ -1,24 +1,45 @@
 import {
+  FC,
+  MutableRefObject,
+  PropsWithChildren,
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import {
   InitialContextProps,
-  initialContextProps,
-  initialPlayerState,
   PlayerState,
   ProgressProps,
+  initialContextProps,
+  initialPlayerState,
 } from '@/components/VideoPlayer/VideoPlayer.model';
-import { createContext, FC, MutableRefObject, PropsWithChildren, useCallback, useContext, useState } from 'react';
+
 import ReactPlayer from 'react-player';
+import { usePlaylistContext } from './PlaylistContext';
 
 const PlayerContext = createContext<InitialContextProps>(initialContextProps);
 
 export const usePlayerContext = () => useContext<InitialContextProps>(PlayerContext);
 
 export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
+  const { currentVideo } = usePlaylistContext();
   const [playerState, setPlayerState] = useState<PlayerState>(initialPlayerState);
   const [seeking, setSeeking] = useState(false);
   const [playerRef, setPlayerRef] = useState<MutableRefObject<ReactPlayer> | null>(null);
 
   const seekTo = useCallback((seconds: number) => playerRef?.current.seekTo(seconds, 'seconds'), [playerRef]);
   const getDuration = useCallback(() => playerRef?.current.getDuration(), [playerRef]);
+
+  useEffect(() => {
+    setPlayerState((prevPlayerState) => {
+      return {
+        ...prevPlayerState,
+        activeVideo: currentVideo,
+      };
+    });
+  }, [currentVideo]);
 
   const togglePlaying = useCallback(() => {
     setPlayerState((prevPlayerState) => {

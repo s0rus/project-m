@@ -1,6 +1,7 @@
+import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useState } from 'react';
+
 import { Routes } from '@/server/router/routes';
 import { SocketProvider } from '@/server/sockets';
-import { createContext, FC, PropsWithChildren, useCallback, useContext, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 
 interface SocketContextProps {

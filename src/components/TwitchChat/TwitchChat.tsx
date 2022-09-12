@@ -1,6 +1,7 @@
-import { getTwitchChatParent } from '@/pages/_app';
-import React from 'react';
 import { TwitchChatBox, TwitchChatContainer, TwitchChatHolder } from './TwitchChat.styles';
+
+import React from 'react';
+import { getTwitchChatParent } from '@/pages/_app';
 
 const TwitchChat = () => {
   return (

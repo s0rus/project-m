@@ -1,24 +1,31 @@
-// src/pages/_app.tsx
-import { withTRPC } from '@trpc/next';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { CssBaseline, ThemeProvider } from '@mui/material';
+
 import type { AppRouter } from '../server/router';
 import type { AppType } from 'next/dist/shared/lib/utils';
-import superjson from 'superjson';
-import { SessionProvider } from 'next-auth/react';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { theme } from '@/styles/theme';
-import { SocketContextProvider } from '@/contexts/SocketContext';
 import { PlayerContextProvider } from '@/contexts/PlayerContext';
+import { PlaylistContextProvider } from '@/contexts/PlaylistContext';
+import { SessionProvider } from 'next-auth/react';
+import { SocketContextProvider } from '@/contexts/SocketContext';
+import { ToastContainer } from 'react-toastify';
+import superjson from 'superjson';
+import { theme } from '@/styles/theme';
+import { withTRPC } from '@trpc/next';
 
 const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => {
   return (
     <SessionProvider session={session}>
       <SocketContextProvider>
-        <PlayerContextProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </PlayerContextProvider>
+        <PlaylistContextProvider>
+          <PlayerContextProvider>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <Component {...pageProps} />
+              <ToastContainer />
+            </ThemeProvider>
+          </PlayerContextProvider>
+        </PlaylistContextProvider>
       </SocketContextProvider>
     </SessionProvider>
   );

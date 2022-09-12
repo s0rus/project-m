@@ -1,8 +1,22 @@
 import { Dispatch, MutableRefObject, SetStateAction } from 'react';
-import ReactPlayer from 'react-player';
-import { VolumeUp, VolumeDown, VolumeOff, PauseRounded, PlayArrowRounded } from '@mui/icons-material';
+import { PauseRounded, PlayArrowRounded, VolumeDown, VolumeOff, VolumeUp } from '@mui/icons-material';
 
-export const initialPlayerState = {
+import { Playlist } from '@prisma/client';
+import ReactPlayer from 'react-player';
+
+export interface PlayerState {
+  isPlaying: boolean;
+  playedSeconds: number;
+  loadedSeconds: number;
+  duration: number;
+  volume: number;
+  isMuted: boolean;
+  controlsVisible: boolean;
+  initialMute: boolean;
+  activeVideo: Playlist | undefined;
+}
+
+export const initialPlayerState: PlayerState = {
   playedSeconds: 0,
   loadedSeconds: 0,
   duration: 0,
@@ -11,6 +25,7 @@ export const initialPlayerState = {
   volume: 0.5,
   controlsVisible: true,
   initialMute: true,
+  activeVideo: undefined,
 };
 
 export interface InitialContextProps {
@@ -42,17 +57,6 @@ export const initialContextProps = {
   toggleControls: () => null,
   disableInitialMute: () => null,
 };
-
-export interface PlayerState {
-  isPlaying: boolean;
-  playedSeconds: number;
-  loadedSeconds: number;
-  duration: number;
-  volume: number;
-  isMuted: boolean;
-  controlsVisible: boolean;
-  initialMute: boolean;
-}
 
 export interface ProgressProps {
   played: number;
