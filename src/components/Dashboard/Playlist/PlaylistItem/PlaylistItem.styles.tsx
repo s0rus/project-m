@@ -7,5 +7,6 @@ export const PlaylistItemCard = styled(Card)`
   background: #0E0E10;
   &:hover{
     background: rgba(100, 48, 255, 0.04);
+    border-right: 2px solid #6430ff;
   }
 `;

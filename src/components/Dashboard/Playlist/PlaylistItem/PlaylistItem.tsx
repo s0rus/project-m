@@ -12,7 +12,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   return (
     <PlaylistItemCard>
       <CardMedia>
-        <Image src={PlaylistIcon} width={150} height={100} ></Image>
+        <Image src={PlaylistIcon} style={{borderRadius: '10px'}} width={150} height={100} ></Image>
       </CardMedia>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent
