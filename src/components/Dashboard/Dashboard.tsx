@@ -1,6 +1,6 @@
 import { styled ,Box, Button, Grid, Paper, Stack, Typography } from '@mui/material';
 import { DashboardContainer, DashboardWrapper } from './Dashboard.styles';
-import { H5dashboard, H6dashboard, NavTop } from '@/styles/style';
+import { H5dashboard, H6dashboard, H4dashboard, NavTop } from '@/styles/style';
 import React, { useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import TwitchChat from '@/components/TwitchChat';
@@ -16,6 +16,7 @@ import Checkbox from '@mui/material/Checkbox';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
+const {Resizable} = require('react-resizable');
 
 const Dashboard = () => {
   const { mutate } = trpc.useMutation(['protected-playlist.add-video']);
@@ -43,6 +44,13 @@ const Dashboard = () => {
       toast.error('Coś poszło nie tak...');
     }
   };
+
+  class Example extends React.Component {
+    state = {
+      width: 200,
+      height: 200,
+    };}
+
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -80,9 +88,9 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
                 <Playlist />
               </Grid>
               <Grid item sm={12} md={4}>
-              <Paper sx={{ height: '150px', width: '100%' }}>
-                  <Button style={{ cursor: 'context-menu', height: '50px', width: '100%', }} ><CameraAltIcon style={{marginRight: '10px', color: '#10732d',}} />Kamerka <H5dashboard>➜</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność kamerki</H6dashboard><Checkbox style={{color: '#10732d',}} onClick={() => toggleTwitchVideo((prev) => !prev) } {...label} /></Button>
-                  <Button style={{ cursor: 'context-menu', height: '50px', width: '100%', }} ><ChatIcon style={{marginRight: '10px', color: '#10732d',}} />Czat <H5dashboard>➜</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność czatu</H6dashboard><Checkbox style={{color: '#10732d',}} onClick={() => toggleTwitchChat((prev) => !prev) } {...label} defaultChecked /></Button>
+              <Paper sx={{ height: '152px', width: '100%' }}>
+                  <Button style={{ cursor: 'context-menu', height: '50px', width: '100%', }} ><CameraAltIcon style={{marginRight: '10px', color: '#6430ff',}} /><H4dashboard>Kamerka</H4dashboard> <H5dashboard>➜</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność kamerki</H6dashboard><Checkbox style={{color: '#10732d',}} onClick={() => toggleTwitchVideo((prev) => !prev) } {...label} /></Button>
+                  <Button style={{ cursor: 'context-menu', height: '50px', width: '100%', }} ><ChatIcon style={{marginRight: '10px', color: '#6430ff',}} /><H4dashboard>Czat</H4dashboard> <H5dashboard>➜</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność czatu</H6dashboard><Checkbox style={{color: '#10732d',}} onClick={() => toggleTwitchChat((prev) => !prev) } {...label} defaultChecked /></Button>
                   {session && status === 'authenticated' ? (
                   <Stack flexDirection='row' width='100%' gap='0.5rem'>
                     <ButtonWithLoader

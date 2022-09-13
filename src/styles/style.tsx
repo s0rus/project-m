@@ -227,4 +227,9 @@ opacity: 0.5;
 letter-spacing: 10px;
 text-transform: capitalize;
 `
+export const H4dashboard = styled('h4')`
+font-size: 20px;
+color: white;
+text-transform: capitalize;
+`
 

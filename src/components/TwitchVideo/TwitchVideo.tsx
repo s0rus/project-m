@@ -4,7 +4,6 @@ import { TwitchVideoHolder, TwitchVideoBox } from './TwitchVideo.styles';
 import Draggable from 'react-draggable';
 import { styled } from '@mui/material';
 import OpenWithIcon from '@mui/icons-material/OpenWith';
-import { isAbsolute } from 'path';
 
 export const TwitchTitle = styled('div')`
 height: 100px;
@@ -24,18 +23,18 @@ padding: 0px;
  export const TransitionBox = styled('div')`
 transition: 0s;
 display:flex;
-width: 100vw;
-position: absolute;`
+width: 100vw;`
 
 
 const MoveIconBox2 = styled('div')`
 display:flex;
 position: absolute;
-right: 210px;
-top: -20px;
 cursor:move;
-opacity: 10%;
-transition: 0.5s;
+height: 100%;
+width: 100%;
+right: 15px;
+top: -15px;
+opacity: 0;
 &:hover{
   opacity: 100%;
 }`
@@ -46,14 +45,12 @@ cursor: pointer;`
 
 const TwitchVideo = () => {
   return (
-<Draggable bounds={{left: -1050, top: -1400, right: 50, bottom: 100,}} >
-<TransitionBox>
+<Draggable bounds={{left: -1100, top: -1250, right: 10, bottom: 0,}} >
     <TwitchVideoBox>
     <MoveIconBox2> <OpenWithIcon/></MoveIconBox2>
       <TwitchVideoHolder src={`https://player.twitch.tv/?channel=khamires&parent=${getTwitchChatParent()}&muted=true`}>
       </TwitchVideoHolder>
     </TwitchVideoBox>
-</TransitionBox>
 </Draggable>
 
   );

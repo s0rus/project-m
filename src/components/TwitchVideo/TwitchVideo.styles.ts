@@ -8,26 +8,24 @@ height: 250px;
 width: 420px;
 border: none;
 display:flex;
-left: 10px;
+left: 5px;
 top: 5px;
 border-radius: 10px;
 position: absolute;
+pointer-events: none;
 `;
 export const TwitchVideoBox = styled('div')`
 height: 260px;
-width: 440px;
-position: absolute;
+width: 430px;
+position: fixed;
 display: flex;
-background: hsla(255, 100%, 59%, 0.53);
-cursor: move;
-margin-top: 30px;
-transition: 1.5s;
+bottom: 85px;
+right: 350px;
 border-radius: 10px;
 pointer-events: all;
-box-shadow: 4px 4px 44px 4px rgb(98 46 255 / 13%);
 &:hover{
-  background: #6430ff;
-  cursor: move;}`
+  box-shadow: 4px 4px 44px 4px rgb(98 46 255 / 13%);
+  background: #6430ff;}`
 
 export const VideoBox = styled('div')`
 maxWidth: 150px;
