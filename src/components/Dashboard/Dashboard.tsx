@@ -1,5 +1,6 @@
 import { styled ,Box, Button, Grid, Paper, Stack, Typography } from '@mui/material';
 import { DashboardContainer, DashboardWrapper } from './Dashboard.styles';
+import { H5dashboard, H6dashboard, NavTop } from '@/styles/style';
 import React, { useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import TwitchChat from '@/components/TwitchChat';
@@ -9,6 +10,11 @@ import { Twitch } from '@/assets/logos/Twitch';
 import { toast } from 'react-toastify';
 import { trpc } from '@/utils/trpc';
 import TwitchVideo from '@/components/TwitchVideo';
+import ChatIcon from '@mui/icons-material/Chat';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import Checkbox from '@mui/material/Checkbox';
+import AddTaskIcon from '@mui/icons-material/AddTask';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Dashboard = () => {
   const { mutate } = trpc.useMutation(['protected-playlist.add-video']);
@@ -29,21 +35,15 @@ const Dashboard = () => {
 
   const handleFourVideos = async () => {
     try {
-      mutate({ videoTitle: 'Louis Villain x Kaz Bałagane - Criminal', videoUrl: 'https://www.youtube.com/watch?v=LI35s14OMmU&ab_channel=MoyaLabel' });
-      mutate({ videoTitle: 'WHITE WIDOW - BEEF (PROD. NOLYRICS) [OFFICIAL MUSIC VIDEO]', videoUrl: 'https://www.youtube.com/watch?v=VHn4xavY9CY&ab_channel=WHITEWIDOW' });
+      mutate({ videoTitle: 'WHITE WIDOW - BEEF', videoUrl: 'https://www.youtube.com/watch?v=VHn4xavY9CY&ab_channel=WHITEWIDOW' });
       mutate({ videoTitle: 'MACIAS - MAIN CZY PODZIEMIE', videoUrl: 'https://www.youtube.com/watch?v=js5B3xr4QA8&ab_channel=mlodyrafi' });
-      mutate({ videoTitle: 'Avi x Kaz Bałagane - Warsaw Vice (prod. @atutowy)', videoUrl: 'https://www.youtube.com/watch?v=tioACk4kn-s&ab_channel=MoyaLabel' });
-      toast('Dodano 4 filmy');
+      toast('Dodano filmy');
     } catch (e) {
       toast.error('Coś poszło nie tak...');
     }
   };
 
-const NavTop = styled('div')`
-height: 80px;
-width: 100%;
-background: #15161c;
-border-bottom: 2px solid rgba(98, 46, 255, 0.58);`
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   return (
     <DashboardWrapper >
@@ -54,9 +54,9 @@ border-bottom: 2px solid rgba(98, 46, 255, 0.58);`
             <Stack flexDirection='row' justifyContent='space-between' alignItems='center' sx={{ mt: '0.5rem' }}>
               <Typography variant='h1'>Playlista</Typography>
               <Button variant='contained' onClick={handleFourVideos}>
-                    Add 4 videos to Q
+                    Dodaj filmy --debug
                   </Button>
-              <Box sx={{ width: '20%', display: 'flex', justifyContent: 'flex-end' }}>
+              <Box sx={{ width: '21%', display: 'flex', justifyContent: 'flex-end' }}>
                 {session && status === 'authenticated' ? (
                   <Stack flexDirection='row' width='100%' gap='0.5rem'>
                     <ButtonWithLoader
@@ -64,8 +64,10 @@ border-bottom: 2px solid rgba(98, 46, 255, 0.58);`
                       loading={authLoading}
                       disabled={authLoading}
                       variant='contained'
-                      fullWidth style={{background: 'red'}}
+                      fullWidth 
+                      style={{ maxWidth: '150px',background: '#10732d', padding: '10px',}}
                     >
+                      <AddTaskIcon style={{marginRight: '10px'}} />
                       DODAJ FILM
                     </ButtonWithLoader>
                     <ButtonWithLoader
@@ -74,8 +76,10 @@ border-bottom: 2px solid rgba(98, 46, 255, 0.58);`
                       disabled={authLoading}
                       variant='contained'
                       fullWidth
+                      style={{ maxWidth: '150px', padding: '10px',}}
                     >
-                      WYLOGUJ SIĘ
+                      <LogoutIcon style={{marginRight: '10px'}} />
+                      WYLOGUJ
                     </ButtonWithLoader>
                   </Stack>
                 ) : (
@@ -99,9 +103,9 @@ border-bottom: 2px solid rgba(98, 46, 255, 0.58);`
                 <Playlist />
               </Grid>
               <Grid item sm={12} md={4}>
-              <Paper sx={{ marginTop: '25px', height: '100px', width: '100%' }}>
-                  <Button onClick={() => toggleTwitchVideo((prev) => !prev) } style={{height: '50px', width: '100%', }} >Kamerka</Button>
-                  <Button onClick={() => toggleTwitchChat((prev) => !prev) } style={{height: '50px', width: '100%', }} >Czat</Button>
+              <Paper sx={{ height: '100px', width: '100%' }}>
+                  <Button style={{height: '50px', width: '100%', }} ><CameraAltIcon style={{color: '#10732d',}} />Kamerka <H5dashboard>➜</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność kamerki</H6dashboard><Checkbox style={{color: '#10732d',}} onClick={() => toggleTwitchVideo((prev) => !prev) } {...label} /></Button>
+                  <Button style={{height: '50px', width: '100%', }} ><ChatIcon style={{color: '#10732d',}} />Czat <H5dashboard>➜</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność czatu</H6dashboard><Checkbox style={{color: '#10732d',}} onClick={() => toggleTwitchChat((prev) => !prev) } {...label} defaultChecked /></Button>
               </Paper>
               <Box> { twitchvideo && <TwitchVideo/> }</Box> 
               </Grid>

@@ -13,7 +13,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   return (
     <PlaylistItemCard>
       <CardMedia>
-        <Image src={PlaylistIcon} ></Image>
+        <Image src={PlaylistIcon} width={150} height={100} ></Image>
       </CardMedia>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent
@@ -31,7 +31,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
             </Typography>
           </Link>
           <Typography component='div' variant='body1'>
-            Dodane przez: aha spoko mordo
+            Dodane przez: aha
           </Typography>
         </CardContent>
       </Box>

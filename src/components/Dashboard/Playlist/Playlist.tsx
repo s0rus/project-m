@@ -1,9 +1,10 @@
 import { PlaylistContainer, PlaylistWrapper } from './Playlist.styles';
-
 import PlaylistItem from './PlaylistItem/PlaylistItem';
 import React from 'react';
 import { Typography } from '@mui/material';
 import { usePlaylistContext } from '@/contexts/PlaylistContext';
+import MadgeIcon from 'components/Icons/MadgeIcon.svg'
+import Image from 'next/image';
 
 const Playlist = () => {
   const { playlist, previousVideo } = usePlaylistContext();
@@ -11,7 +12,7 @@ const Playlist = () => {
   return (
     <>
       {previousVideo && <PlaylistItem video={previousVideo} />}
-      <PlaylistWrapper>
+      <PlaylistWrapper >
         <PlaylistContainer>
           {playlist?.length ? (
             playlist.map((video) => (
@@ -20,7 +21,7 @@ const Playlist = () => {
               </React.Fragment>
             ))
           ) : (
-            <Typography variant='h4'>Playlista jest pusta.</Typography>
+            <Typography style={{marginLeft: '40%'}} variant='h4'>Playlista jest pusta <div style={{marginLeft: '80px'}} ><Image src={MadgeIcon} width={48} height={48} /></div></Typography>
           )}
         </PlaylistContainer>
       </PlaylistWrapper>
