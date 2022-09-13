@@ -4,7 +4,6 @@ import Image from 'next/image';
 import PlaylistIcon from 'components/Icons/PlaylistIcon.svg'
 import { Playlist } from '@prisma/client';
 import { PlaylistItemCard } from './PlaylistItem.styles';
-
 interface PlaylistItemsProps {
   video: Playlist;
 }
@@ -25,7 +24,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
             justifyContent: 'center',
           }}
         >
-          <Link href={video.videoUrl} target='_blank' rel='noopener norefferer'>
+          <Link href={video.videoUrl} style={{ textDecoration: 'none' }}  target='_blank' rel='noopener norefferer'>
             <Typography component='div' variant='h4'>
               {video.videoTitle}
             </Typography>

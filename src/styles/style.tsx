@@ -58,6 +58,7 @@ import { styled, Box,} from '@mui/material';
   border-radius:50px;
   transition: 0.5s;
   margin-top: 10px;
+  padding: 0px;
   &:hover {
     -webkit-box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);
     -moz-box-shadow: 0px 2px 30px 6px rgba(110, 53, 255, 0.37);

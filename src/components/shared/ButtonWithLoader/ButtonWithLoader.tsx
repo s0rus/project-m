@@ -6,9 +6,13 @@ export interface ButtonWithLoaderProps extends ButtonProps {
 }
 
 const StyledButton = styled(Button)`
-  height: ${({ size }) => (size === 'large' ? '46px' : size === 'medium' ? '36px' : '32px')};
-
+  height: 50px;
+  width: 100%;
+  background: #0e0e10;
   position: 'relative';
+  &:hover{
+    background: rgba(100, 48, 255, 0.04);
+  }
 `;
 
 const ButtonWithLoader: FC<ButtonWithLoaderProps> = ({ children, loading, startIcon, size = 'large', ...props }) => {

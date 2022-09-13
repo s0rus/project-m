@@ -24,7 +24,7 @@ const Home: NextPage = () => {
       <BeforePage/>
       <MainLayout>
         <MainContent>
-          <SimpleBar style={{ maxHeight: '100vh' }}>
+          <SimpleBar style={{ background: 'linear-gradient(to right bottom, rgb(24, 26, 33), rgb(36, 37, 46))' ,maxHeight: '100vh' }}>
             <VideoPlayer />
             <Dashboard />
             <NavBottom/>

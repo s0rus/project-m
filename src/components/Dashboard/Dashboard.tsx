@@ -15,6 +15,7 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Checkbox from '@mui/material/Checkbox';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 
 const Dashboard = () => {
   const { mutate } = trpc.useMutation(['protected-playlist.add-video']);
@@ -57,43 +58,19 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
                     Dodaj filmy --debug
                   </Button>
               <Box sx={{ width: '21%', display: 'flex', justifyContent: 'flex-end' }}>
-                {session && status === 'authenticated' ? (
-                  <Stack flexDirection='row' width='100%' gap='0.5rem'>
+              {session && status === 'authenticated' && (
                     <ButtonWithLoader
                       onClick={handleTwitchLogout}
                       loading={authLoading}
                       disabled={authLoading}
                       variant='contained'
                       fullWidth 
-                      style={{ maxWidth: '150px',background: '#10732d', padding: '10px',}}
+                      style={{ maxWidth: '150px',background: '#10732d', padding: '10px', borderRadius: '30px'}}
                     >
                       <AddTaskIcon style={{marginRight: '10px'}} />
                       DODAJ FILM
                     </ButtonWithLoader>
-                    <ButtonWithLoader
-                      onClick={handleTwitchLogout}
-                      loading={authLoading}
-                      disabled={authLoading}
-                      variant='contained'
-                      fullWidth
-                      style={{ maxWidth: '150px', padding: '10px',}}
-                    >
-                      <LogoutIcon style={{marginRight: '10px'}} />
-                      WYLOGUJ
-                    </ButtonWithLoader>
-                  </Stack>
-                ) : (
-                  <ButtonWithLoader
-                    onClick={handleTwitchLogin}
-                    loading={authLoading}
-                    disabled={authLoading}
-                    variant='contained'
-                    startIcon={<Twitch />}
-                    fullWidth
-                  >
-                    ZALOGUJ SIĘ
-                  </ButtonWithLoader>
-                )}
+              )}
               </Box>
             </Stack>
           </Grid>
@@ -103,9 +80,32 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
                 <Playlist />
               </Grid>
               <Grid item sm={12} md={4}>
-              <Paper sx={{ height: '100px', width: '100%' }}>
-                  <Button style={{height: '50px', width: '100%', }} ><CameraAltIcon style={{color: '#10732d',}} />Kamerka <H5dashboard>➜</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność kamerki</H6dashboard><Checkbox style={{color: '#10732d',}} onClick={() => toggleTwitchVideo((prev) => !prev) } {...label} /></Button>
-                  <Button style={{height: '50px', width: '100%', }} ><ChatIcon style={{color: '#10732d',}} />Czat <H5dashboard>➜</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność czatu</H6dashboard><Checkbox style={{color: '#10732d',}} onClick={() => toggleTwitchChat((prev) => !prev) } {...label} defaultChecked /></Button>
+              <Paper sx={{ height: '150px', width: '100%' }}>
+                  <Button style={{ cursor: 'context-menu', height: '50px', width: '100%', }} ><CameraAltIcon style={{marginRight: '10px', color: '#10732d',}} />Kamerka <H5dashboard>➜</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność kamerki</H6dashboard><Checkbox style={{color: '#10732d',}} onClick={() => toggleTwitchVideo((prev) => !prev) } {...label} /></Button>
+                  <Button style={{ cursor: 'context-menu', height: '50px', width: '100%', }} ><ChatIcon style={{marginRight: '10px', color: '#10732d',}} />Czat <H5dashboard>➜</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność czatu</H6dashboard><Checkbox style={{color: '#10732d',}} onClick={() => toggleTwitchChat((prev) => !prev) } {...label} defaultChecked /></Button>
+                  {session && status === 'authenticated' ? (
+                  <Stack flexDirection='row' width='100%' gap='0.5rem'>
+                    <ButtonWithLoader
+                      onClick={handleTwitchLogout}
+                      loading={authLoading}
+                      disabled={authLoading}
+                      variant='contained'
+                    >
+                      <LogoutIcon style={{ color: 'red', marginRight: '10px'}} />
+                      WYLOGUJ
+                    </ButtonWithLoader>
+                  </Stack>
+                ) : (
+                  <ButtonWithLoader
+                    onClick={handleTwitchLogin}
+                    loading={authLoading}
+                    disabled={authLoading}
+                    variant='contained'
+                  >
+                    <LoginIcon style={{ color: '#10732d', marginRight: '10px'}} />
+                    Zaloguj
+                  </ButtonWithLoader>
+                )}
               </Paper>
               <Box> { twitchvideo && <TwitchVideo/> }</Box> 
               </Grid>
