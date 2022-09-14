@@ -16,6 +16,7 @@ import {
   initialPlayerState,
 } from '@/components/VideoPlayer/VideoPlayer.model';
 
+import { LocalStorageKeys } from '@/utils/localStorageKeys';
 import ReactPlayer from 'react-player';
 import { usePlaylistContext } from './PlaylistContext';
 
@@ -40,6 +41,15 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
       };
     });
   }, [currentVideo]);
+
+  useEffect(() => {
+    setPlayerState((prevPlayerState) => {
+      return {
+        ...prevPlayerState,
+        volume: Number(localStorage.getItem(LocalStorageKeys.PlayerVolume)) || 0.5,
+      };
+    });
+  }, []);
 
   const togglePlaying = useCallback(() => {
     setPlayerState((prevPlayerState) => {
@@ -69,6 +79,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
         initialMute: prevPlayerState.initialMute && false,
       };
     });
+    localStorage.setItem(LocalStorageKeys.PlayerVolume, JSON.stringify(value as number));
   }, []);
 
   const handleProgress = useCallback(

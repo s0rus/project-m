@@ -5,6 +5,7 @@ export interface InitialContextProps {
   previousVideo: Playlist | undefined;
   playlist: Playlist[] | [];
   requestNextVideo: () => void;
+  updatePlaylist: () => void;
 }
 
 export const initialContextProps: InitialContextProps = {
@@ -12,4 +13,5 @@ export const initialContextProps: InitialContextProps = {
   previousVideo: undefined,
   playlist: [],
   requestNextVideo: () => null,
+  updatePlaylist: () => null,
 };

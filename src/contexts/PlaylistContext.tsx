@@ -12,7 +12,11 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
   const [currentVideo, setCurrentVideo] = useState<Playlist | undefined>(undefined);
   const [previousVideo, setPreviousVideo] = useState<Playlist | undefined>(undefined);
   const [playlist, setPlaylist] = useState<Playlist[] | []>([]);
-  const { data: playlistData, isSuccess } = trpc.useQuery(['playlist.get-all'], {
+  const {
+    data: playlistData,
+    isSuccess,
+    refetch: updatePlaylist,
+  } = trpc.useQuery(['playlist.get-all'], {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
@@ -51,6 +55,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     previousVideo,
     playlist,
     requestNextVideo,
+    updatePlaylist,
   };
 
   return <PlaylistContext.Provider value={value}>{children}</PlaylistContext.Provider>;

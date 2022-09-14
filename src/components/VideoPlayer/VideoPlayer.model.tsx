@@ -22,7 +22,7 @@ export const initialPlayerState: PlayerState = {
   duration: 0,
   isPlaying: true,
   isMuted: true,
-  volume: 0.5,
+  volume: 0,
   controlsVisible: true,
   initialMute: true,
   activeVideo: undefined,

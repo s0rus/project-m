@@ -3,6 +3,7 @@ import { DashboardContainer, DashboardWrapper } from './Dashboard.styles';
 import React, { useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
+import AddVideoModal from './AddVideoModal/';
 import ButtonWithLoader from '../shared/ButtonWithLoader';
 import Playlist from './Playlist';
 import { Twitch } from '@/assets/logos/Twitch';
@@ -12,7 +13,12 @@ import { trpc } from '@/utils/trpc';
 const Dashboard = () => {
   const { mutate } = trpc.useMutation(['protected-playlist.add-video']);
   const { data: session, status } = useSession();
+
   const [authLoading, setAuthLoading] = useState(false);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleTwitchLogin = async () => {
     setAuthLoading(true);
@@ -45,26 +51,23 @@ const Dashboard = () => {
               <Typography variant='h1'>Playlista</Typography>
               <Box sx={{ width: '25%', display: 'flex', justifyContent: 'flex-end' }}>
                 {session && status === 'authenticated' ? (
-                  <Stack flexDirection='row' width='100%' gap='0.5rem'>
-                    <ButtonWithLoader
-                      onClick={handleTwitchLogout}
-                      loading={authLoading}
-                      disabled={authLoading}
-                      variant='contained'
-                      fullWidth
-                    >
-                      DODAJ FILM
-                    </ButtonWithLoader>
-                    <ButtonWithLoader
-                      onClick={handleTwitchLogout}
-                      loading={authLoading}
-                      disabled={authLoading}
-                      variant='contained'
-                      fullWidth
-                    >
-                      WYLOGUJ SIĘ
-                    </ButtonWithLoader>
-                  </Stack>
+                  <>
+                    <Stack flexDirection='row' width='100%' gap='0.5rem'>
+                      <Button onClick={handleOpen} variant='contained' fullWidth>
+                        DODAJ FILM
+                      </Button>
+                      <ButtonWithLoader
+                        onClick={handleTwitchLogout}
+                        loading={authLoading}
+                        disabled={authLoading}
+                        variant='contained'
+                        fullWidth
+                      >
+                        WYLOGUJ SIĘ
+                      </ButtonWithLoader>
+                    </Stack>
+                    <AddVideoModal handleOpen={handleOpen} handleClose={handleClose} open={open} />
+                  </>
                 ) : (
                   <ButtonWithLoader
                     onClick={handleTwitchLogin}
