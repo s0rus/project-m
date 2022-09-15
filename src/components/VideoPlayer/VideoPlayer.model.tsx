@@ -22,7 +22,7 @@ export const initialPlayerState: PlayerState = {
   duration: 0,
   isPlaying: true,
   isMuted: true,
-  volume: 0.5,
+  volume: 0,
   controlsVisible: true,
   initialMute: true,
   activeVideo: undefined,
@@ -30,6 +30,7 @@ export const initialPlayerState: PlayerState = {
 
 export interface InitialContextProps {
   playerState: PlayerState;
+  setPlayerState: (value: SetStateAction<PlayerState>) => void;
   setPlayerRef: (playerRef: MutableRefObject<ReactPlayer>) => void;
   seekTo: (seconds: number) => void;
   handleProgress: (event: ProgressProps) => void;
@@ -45,6 +46,7 @@ export interface InitialContextProps {
 
 export const initialContextProps = {
   playerState: initialPlayerState,
+  setPlayerState: () => null,
   seekTo: () => null,
   setPlayerRef: () => null,
   handleProgress: () => null,

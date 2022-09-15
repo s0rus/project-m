@@ -44,7 +44,7 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying }) => {
       <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
       <VolumeControl />
       <Timer>
-        <Typography variant='h5'>{timeFormatter(playedSeconds)}</Typography>
+        <Typography  style={{marginRight: '10px'}} variant='h5'>{timeFormatter(playedSeconds)}</Typography>
       </Timer>
       <Seeker
         aria-label='time-indicator'

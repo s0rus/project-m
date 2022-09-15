@@ -5,8 +5,6 @@ import { Box, Button, styled } from '@mui/material';
 import { useEffect, useState } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 import CodeIcon from '@mui/icons-material/Code';
-import Brug from 'components/Icons/Brug.svg'
-import Image from 'next/image';
 
 
 const BeforePage = () => {

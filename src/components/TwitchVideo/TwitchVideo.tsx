@@ -45,7 +45,7 @@ cursor: pointer;`
 
 const TwitchVideo = () => {
   return (
-<Draggable bounds={{left: -1100, top: -1250, right: 10, bottom: 0,}} >
+<Draggable bounds={{left: -1030, top: -1250, right: 40, bottom: 0,}} >
     <TwitchVideoBox>
     <MoveIconBox2> <OpenWithIcon/></MoveIconBox2>
       <TwitchVideoHolder src={`https://player.twitch.tv/?channel=khamires&parent=${getTwitchChatParent()}&muted=true`}>

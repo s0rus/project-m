@@ -8,6 +8,14 @@ export const playlistRouter = createRouter()
         orderBy: {
           addedAt: 'asc',
         },
+        include: {
+          addedBy: {
+            select: {
+              image: true,
+              name: true,
+            },
+          },
+        },
       });
     },
   })
@@ -19,6 +27,14 @@ export const playlistRouter = createRouter()
       return ctx.prisma.playlist.delete({
         where: {
           videoId: input.videoId,
+        },
+        include: {
+          addedBy: {
+            select: {
+              image: true,
+              name: true,
+            },
+          },
         },
       });
     },

@@ -12,7 +12,7 @@ left: 5px;
 top: 5px;
 border-radius: 10px;
 position: absolute;
-pointer-events: none;
+pointer-events: all;
 `;
 export const TwitchVideoBox = styled('div')`
 height: 260px;
@@ -20,9 +20,9 @@ width: 430px;
 position: fixed;
 display: flex;
 bottom: 85px;
-right: 350px;
+right: 420px;
 border-radius: 10px;
-pointer-events: all;
+pointer-events: all; 
 &:hover{
   box-shadow: 4px 4px 44px 4px rgb(98 46 255 / 13%);
   background: #6430ff;}`

@@ -10,8 +10,10 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@analytics/localstorage-utils": "^0.1.8",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@material-ui/styles": "^4.11.5",
     "@mui/icons-material": "^5.10.2",
     "@mui/lab": "^5.0.0-alpha.96",
     "@mui/material": "^5.10.2",
@@ -36,6 +38,8 @@
     "react-query": "^3.39.2",
     "react-resizable": "^3.0.4",
     "react-split": "^2.0.14",
+    "react-split-pane": "^0.1.92",
+    "react-split-pane-v2": "^1.0.3",
     "react-toastify": "^9.0.8",
     "reactjs-localstorage": "^1.0.1",
     "simplebar": "^5.3.8",

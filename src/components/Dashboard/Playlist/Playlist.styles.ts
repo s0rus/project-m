@@ -5,7 +5,6 @@ import { theme } from '@/styles/theme';
 export const PlaylistWrapper = styled(Box)`
   display: flex;
   padding: 0rem;
-  margin-top: 20px;
   border-radius: 20px;
 `;
 
@@ -15,4 +14,8 @@ export const PlaylistContainer = styled(Box)`
   display: flex;
   flex-flow: column nowrap;
   gap: 1rem;
+  display: block;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 `;

@@ -1,18 +1,20 @@
+import PlaylistIcon from 'components/Icons/PlaylistIcon.svg'
+import TwitchIcon from 'components/Icons/Twitch.svg'
+import Image from 'next/image';
 import { Box, CardContent, CardMedia, Link, Paper, Typography } from '@mui/material';
 import React, { FC } from 'react';
-import Image from 'next/image';
-import PlaylistIcon from 'components/Icons/PlaylistIcon.svg'
-import { Playlist } from '@prisma/client';
 import { PlaylistItemCard } from './PlaylistItem.styles';
-interface PlaylistItemsProps {
-  video: Playlist;
-}
+import { PlaylistWithUsers } from '../Playlist.model';
 
+
+interface PlaylistItemsProps {
+  video: PlaylistWithUsers;
+}
 const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   return (
-    <PlaylistItemCard>
-      <CardMedia>
-        <Image src={PlaylistIcon} style={{borderRadius: '10px'}} width={150} height={100} ></Image>
+    <PlaylistItemCard style={{marginBottom: '20px'}} >
+      <CardMedia style={{marginBottom: '-10px' ,minHeight: '100px', minWidth: '150px' }} >
+        <Image src={PlaylistIcon} style={{borderTopRightRadius: '20px', borderBottomRightRadius: '20px'}} width={150} height={100} ></Image>
       </CardMedia>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent
@@ -29,8 +31,8 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
               {video.videoTitle}
             </Typography>
           </Link>
-          <Typography component='div' variant='body1'>
-            Dodane przez: aha
+          <Typography component='div' variant='body1' style={{cursor: 'context-menu'}} >
+          Dodane przez: {video.addedBy.name}
           </Typography>
         </CardContent>
       </Box>

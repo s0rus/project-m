@@ -21,7 +21,9 @@ const Playlist = () => {
               </React.Fragment>
             ))
           ) : (
-            <Typography style={{marginLeft: '40%'}} variant='h4'>Playlista jest pusta <div style={{marginLeft: '80px'}} ><Image src={MadgeIcon} width={48} height={48} /></div></Typography>
+            <Typography style={{paddingLeft: '36%', paddingTop: '4%'}} variant='h4'>Playlista jest pusta 
+            <div style={{marginLeft: '60px'}} ><Image src={MadgeIcon} width={48} height={48} /></div>
+            </Typography>
           )}
         </PlaylistContainer>
       </PlaylistWrapper>

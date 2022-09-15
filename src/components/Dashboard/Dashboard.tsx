@@ -13,17 +13,22 @@ import TwitchVideo from '@/components/TwitchVideo';
 import ChatIcon from '@mui/icons-material/Chat';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Checkbox from '@mui/material/Checkbox';
-import AddTaskIcon from '@mui/icons-material/AddTask';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
-const {Resizable} = require('react-resizable');
+import AddVideoModal from './AddVideoModal/';
+import Home from '@/pages/index';
+import { date } from 'zod';
 
 const Dashboard = () => {
   const { mutate } = trpc.useMutation(['protected-playlist.add-video']);
   const { data: session, status } = useSession();
-  const [authLoading, setAuthLoading] = useState(false);
-  const [twitchvideo, toggleTwitchVideo] = useState(false);
   const [twitchchat, toggleTwitchChat] = useState(true);
+  const [authLoading, setAuthLoading] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [twitchvideo, toggleTwitchVideo] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleTwitchLogin = async () => {
     setAuthLoading(true);
@@ -34,53 +39,29 @@ const Dashboard = () => {
     setAuthLoading(true);
     await signOut();
   };
-
-  const handleFourVideos = async () => {
-    try {
-      mutate({ videoTitle: 'WHITE WIDOW - BEEF', videoUrl: 'https://www.youtube.com/watch?v=VHn4xavY9CY&ab_channel=WHITEWIDOW' });
-      mutate({ videoTitle: 'MACIAS - MAIN CZY PODZIEMIE', videoUrl: 'https://www.youtube.com/watch?v=js5B3xr4QA8&ab_channel=mlodyrafi' });
-      toast('Dodano filmy');
-    } catch (e) {
-      toast.error('Coś poszło nie tak...');
-    }
-  };
-
-  class Example extends React.Component {
-    state = {
-      width: 200,
-      height: 200,
-    };}
-
-
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
   return (
     <DashboardWrapper >
       <NavTop/>
-      <DashboardContainer style={{marginTop: '-70px'}} maxWidth='xl'>
+      <DashboardContainer style={{marginTop: '-75px'}} maxWidth='xl'>
         <Grid container>
           <Grid item xs={12}>
             <Stack flexDirection='row' justifyContent='space-between' alignItems='center' sx={{ mt: '0.5rem' }}>
-              <Typography variant='h1'>Playlista</Typography>
-              <Button variant='contained' onClick={handleFourVideos}>
-                    Dodaj filmy --debug
-                  </Button>
+              <Typography variant='h1' style={{cursor: 'context-menu'}} >Playlista</Typography>
               <Box sx={{ width: '21%', display: 'flex', justifyContent: 'flex-end' }}>
               {session && status === 'authenticated' && (
-                    <ButtonWithLoader
-                      onClick={handleTwitchLogout}
-                      loading={authLoading}
-                      disabled={authLoading}
+                    <Button
+                      onClick={handleOpen}
                       variant='contained'
                       fullWidth 
-                      style={{ maxWidth: '150px',background: '#10732d', padding: '10px', borderRadius: '30px'}}
+                      style={{ minWidth: '150px' ,maxWidth: '150px',background: '#6430ff', padding: '10px', borderRadius: '30px'}}
                     >
-                      <AddTaskIcon style={{marginRight: '10px'}} />
+                      <AddCircleIcon style={{marginRight: '10px'}} />
                       DODAJ FILM
-                    </ButtonWithLoader>
+                    </Button>
               )}
               </Box>
             </Stack>
+            <AddVideoModal handleOpen={handleOpen} handleClose={handleClose} open={open} />
           </Grid>
           <Grid item xs={12}>
             <Grid container sx={{ mt: '1rem', height: '100%' }} spacing={2}>
@@ -88,9 +69,9 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
                 <Playlist />
               </Grid>
               <Grid item sm={12} md={4}>
-              <Paper sx={{ height: '152px', width: '100%' }}>
-                  <Button style={{ cursor: 'context-menu', height: '50px', width: '100%', }} ><CameraAltIcon style={{marginRight: '10px', color: '#6430ff',}} /><H4dashboard>Kamerka</H4dashboard> <H5dashboard>➜</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność kamerki</H6dashboard><Checkbox style={{color: '#10732d',}} onClick={() => toggleTwitchVideo((prev) => !prev) } {...label} /></Button>
-                  <Button style={{ cursor: 'context-menu', height: '50px', width: '100%', }} ><ChatIcon style={{marginRight: '10px', color: '#6430ff',}} /><H4dashboard>Czat</H4dashboard> <H5dashboard>➜</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność czatu</H6dashboard><Checkbox style={{color: '#10732d',}} onClick={() => toggleTwitchChat((prev) => !prev) } {...label} defaultChecked /></Button>
+              <Paper sx={{ minWidth: '280px' ,height: '152px', width: '100%' }}>
+                  <Button style={{ cursor: 'context-menu', height: '50px', width: '100%', }} ><CameraAltIcon style={{marginRight: '10px', color: '#6430ff',}} /><H4dashboard>Kamerka</H4dashboard> <H5dashboard>.</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność kamerki</H6dashboard><Checkbox style={{color: '#6430ff',}} onClick={() => toggleTwitchVideo((prev) => !prev) }/></Button>
+                  <Button style={{ cursor: 'context-menu', height: '50px', width: '100%', }} ><ChatIcon style={{marginRight: '10px', color: '#6430ff',}} /><H4dashboard>Czat</H4dashboard> <H5dashboard>.</H5dashboard> <H6dashboard>Włącz/Wyłącz widoczność czatu</H6dashboard><Checkbox style={{color: '#6430ff',}} onClick={() => toggleTwitchChat ((prev) => !prev)} defaultChecked /></Button>
                   {session && status === 'authenticated' ? (
                   <Stack flexDirection='row' width='100%' gap='0.5rem'>
                     <ButtonWithLoader

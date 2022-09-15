@@ -1,10 +1,19 @@
 import { Playlist } from '@prisma/client';
 
+export type PlaylistWithUsers = Playlist & {
+  addedBy: AddedBy;
+};
+
+export interface AddedBy {
+  image: string | null;
+  name: string | null;
+}
 export interface InitialContextProps {
   currentVideo: Playlist | undefined;
-  previousVideo: Playlist | undefined;
-  playlist: Playlist[] | [];
+  previousVideo: PlaylistWithUsers | undefined;
+  playlist: PlaylistWithUsers[] | [];
   requestNextVideo: () => void;
+  addVideo: (newVideo: PlaylistWithUsers) => void;
 }
 
 export const initialContextProps: InitialContextProps = {
@@ -12,4 +21,5 @@ export const initialContextProps: InitialContextProps = {
   previousVideo: undefined,
   playlist: [],
   requestNextVideo: () => null,
+  addVideo: () => null,
 };

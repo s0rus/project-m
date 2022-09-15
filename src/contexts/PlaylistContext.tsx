@@ -1,7 +1,11 @@
 import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { InitialContextProps, initialContextProps } from '@/components/Dashboard/Playlist/Playlist.model';
+import {
+  InitialContextProps,
+  PlaylistWithUsers,
+  initialContextProps,
+} from '@/components/Dashboard/Playlist/Playlist.model';
 
-import { Playlist } from '@prisma/client';
+import { flushSync } from 'react-dom';
 import { trpc } from '@/utils/trpc';
 
 const PlaylistContext = createContext<InitialContextProps>(initialContextProps);
@@ -9,9 +13,9 @@ const PlaylistContext = createContext<InitialContextProps>(initialContextProps);
 export const usePlaylistContext = () => useContext<InitialContextProps>(PlaylistContext);
 
 export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [currentVideo, setCurrentVideo] = useState<Playlist | undefined>(undefined);
-  const [previousVideo, setPreviousVideo] = useState<Playlist | undefined>(undefined);
-  const [playlist, setPlaylist] = useState<Playlist[] | []>([]);
+  const [currentVideo, setCurrentVideo] = useState<PlaylistWithUsers | undefined>(undefined);
+  const [previousVideo, setPreviousVideo] = useState<PlaylistWithUsers | undefined>(undefined);
+  const [playlist, setPlaylist] = useState<PlaylistWithUsers[] | []>([]);
   const { data: playlistData, isSuccess } = trpc.useQuery(['playlist.get-all'], {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -19,6 +23,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     staleTime: Infinity,
     cacheTime: Infinity,
   });
+  const { mutateAsync } = trpc.useMutation('playlist.delete-one');
 
   const cachedPlaylistData = useMemo(() => {
     if (isSuccess) {
@@ -32,25 +37,35 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     setCurrentVideo(cachedPlaylistData?.[0]);
   }, [cachedPlaylistData]);
 
-  const requestNextVideo = useCallback(() => {
-    //     if (currentVideo) {
-    //   mutation.mutate({ videoId: currentVideo.videoId });
-    // }
-    const newPlaylist = [...playlist];
-    const filteredArray = newPlaylist.filter((video) => video.videoId !== currentVideo?.videoId);
+  const addVideo = useCallback(
+    (newVideo: PlaylistWithUsers) => {
+      if (!currentVideo) setCurrentVideo(newVideo);
+      setPlaylist((prevPlaylist) => [...prevPlaylist, newVideo]);
+    },
+    [currentVideo]
+  );
 
-    setCurrentVideo((prevVideo) => {
-      setPreviousVideo(prevVideo);
-      return filteredArray[0];
+  const requestNextVideo = useCallback(async () => {
+    if (currentVideo) {
+      const prevVideo = await mutateAsync({ videoId: currentVideo.videoId });
+    }
+
+    const newPlaylist = [...playlist];
+    const filteredPlaylist = newPlaylist.filter((video) => video.videoId !== currentVideo?.videoId);
+
+    flushSync(() => {
+      setCurrentVideo(undefined);
     });
-    setPlaylist(filteredArray);
-  }, [currentVideo?.videoId, playlist]);
+    setCurrentVideo(filteredPlaylist[0]);
+    setPlaylist(filteredPlaylist);
+  }, [currentVideo, playlist, mutateAsync]);
 
   const value = {
     currentVideo,
     previousVideo,
     playlist,
     requestNextVideo,
+    addVideo,
   };
 
   return <PlaylistContext.Provider value={value}>{children}</PlaylistContext.Provider>;

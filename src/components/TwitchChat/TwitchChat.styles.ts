@@ -5,7 +5,7 @@ import { theme } from '@/styles/theme';
 export const TwitchChatBox = styled(Box)`
   height: 100%;
   width: 100%;
-  min-width: 340px;
+  min-width: 180px;
 `;
 
 export const TwitchChatContainer = styled(Box)`
@@ -16,8 +16,5 @@ export const TwitchChatContainer = styled(Box)`
 export const TwitchChatHolder = styled('iframe')`
   min-height: 100vh;
   width: 100%;
-
-  pointer-events: all;
   border: none;
-  border-left: 1px solid ${theme.palette.primary.main};
 `;

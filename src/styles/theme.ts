@@ -57,6 +57,29 @@ export const theme = createTheme({
   spacing: 8,
 
   components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& label.Mui-focused': {
+            color: 'white',
+          },
+          '& .MuiInput-underline:after': {
+            borderBottomColor: '#E01673',
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: '#E01673',
+            },
+            '&:hover fieldset': {
+              borderColor: '#E01673',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#E01673',
+            },
+          },
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: {
         html: {

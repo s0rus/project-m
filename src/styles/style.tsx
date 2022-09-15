@@ -27,11 +27,11 @@ import { styled, Box,} from '@mui/material';
   color: white;
   margin: 0 -.25rem;
   padding: 0 .25rem;
-  border-radius: 20px;
-  width: 80px;
+  border-radius: 50px;
+  width: 5%;
   margin-top: -40px;
   margin-left: 50px;
-  transition: 1s color 1.3s ease-in-out, box-shadow 1.3s ease-in-out;
+  transition: 0.5s color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
   cursor: pointer;
   &:hover {
     box-shadow: inset 100px 0 0 0 rgba(255, 255, 255, 0.4);
@@ -223,7 +223,7 @@ text-transform: capitalize;
 export const H5dashboard = styled('h5')`
 font-size: 10px;
 color: white;
-opacity: 0.5;
+opacity: 0;
 letter-spacing: 10px;
 text-transform: capitalize;
 `
@@ -232,4 +232,11 @@ font-size: 20px;
 color: white;
 text-transform: capitalize;
 `
+export const ResizerStyle = {
+  cursor: 'col-resize',
+  marginTop: '40vh',
+  height: '100px',
+  border: '2px solid hsla(138, 100%, 100%, 0.52)',
+  borderRadius: '0px',
 
+ };
