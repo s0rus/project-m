@@ -22,6 +22,7 @@
     "@trpc/react": "^9.27.1",
     "@trpc/server": "^9.27.1",
     "dayjs": "^1.11.5",
+    "get-video-duration": "^4.1.0",
     "hex-to-rgba": "^2.0.1",
     "material-ui-popup-state": "^4.0.2",
     "next": "12.2.5",

@@ -34,10 +34,13 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const getDuration = useCallback(() => playerRef?.current.getDuration(), [playerRef]);
 
   useEffect(() => {
+    console.log('CURRENT VID', currentVideo);
+
     setPlayerState((prevPlayerState) => {
       return {
         ...prevPlayerState,
         activeVideo: currentVideo,
+        isPlaying: true,
       };
     });
   }, [currentVideo]);
@@ -128,6 +131,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const value = {
     playerState,
+    setPlayerState,
     seekTo,
     setPlayerRef,
     handleProgress,

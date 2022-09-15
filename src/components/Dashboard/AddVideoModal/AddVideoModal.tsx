@@ -3,20 +3,20 @@ import { Button, Modal, TextField, Typography } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import React, { FC } from 'react';
 
+import { Routes } from '@/server/router/routes';
 import { toast } from 'react-toastify';
 import { trpc } from '@/utils/trpc';
 import { usePlaylistContext } from '@/contexts/PlaylistContext';
 
 interface AddVideoModalProps {
   open: boolean;
-  handleOpen: () => void;
   handleClose: () => void;
 }
 
-const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose, handleOpen }) => {
-  const { updatePlaylist } = usePlaylistContext();
-  const { mutate } = trpc.useMutation(['protected-playlist.add-video']);
-  const { handleSubmit, control } = useForm({
+const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
+  const { addVideo } = usePlaylistContext();
+  const { mutateAsync } = trpc.useMutation(['protected-playlist.add-video']);
+  const { handleSubmit, control, reset } = useForm({
     reValidateMode: 'onChange',
     defaultValues: {
       videoTitle: '',
@@ -24,15 +24,18 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose, handleOpen }
     },
   });
 
-  const onSubmit = ({ videoTitle, videoUrl }: { videoTitle: string; videoUrl: string }) => {
+  const onSubmit = async ({ videoTitle, videoUrl }: { videoTitle: string; videoUrl: string }) => {
     try {
-      mutate({
+      const newVideo = await mutateAsync({
         videoTitle,
         videoUrl,
+        videoDuration: 0,
       });
-      updatePlaylist();
+      addVideo(newVideo);
+      reset();
       handleClose();
     } catch (error) {
+      console.log(error);
       toast.error('Coś poszło nie tak...');
     }
   };

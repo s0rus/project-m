@@ -59,10 +59,11 @@ model VerificationToken {
 }
 
 model Playlist {
-    videoId    String   @id @default(cuid())
-    videoTitle String
-    videoUrl   String
-    addedAt    DateTime @db.Timestamp()
-    addedBy    User     @relation(fields: [userId], references: [id])
-    userId     String
+    videoId       String   @id @default(cuid())
+    videoTitle    String
+    videoUrl      String
+    videoDuration Int
+    addedAt       DateTime @db.Timestamp()
+    addedBy       User     @relation(fields: [userId], references: [id])
+    userId        String
 }

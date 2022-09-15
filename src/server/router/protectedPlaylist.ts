@@ -7,6 +7,7 @@ export const protectedPlaylistRouter = createProtectedRouter().mutation('add-vid
     .object({
       videoTitle: z.string().min(4).max(30),
       videoUrl: z.string().url(),
+      videoDuration: z.number(),
     })
     .required(),
   resolve: async ({ input, ctx }) => {
@@ -15,6 +16,7 @@ export const protectedPlaylistRouter = createProtectedRouter().mutation('add-vid
         videoTitle: input.videoTitle,
         videoUrl: input.videoUrl,
         addedAt: dayjs().toDate(),
+        videoDuration: input.videoDuration,
         addedBy: {
           connect: {
             id: ctx.session.user.id,

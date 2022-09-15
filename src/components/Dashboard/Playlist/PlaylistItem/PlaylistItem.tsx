@@ -1,11 +1,11 @@
 import { Box, CardContent, CardMedia, Link, Paper, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
-import { Playlist } from '@prisma/client';
 import { PlaylistItemCard } from './PlaylistItem.styles';
+import { PlaylistWithUsers } from '../Playlist.model';
 
 interface PlaylistItemsProps {
-  video: Playlist;
+  video: PlaylistWithUsers;
 }
 
 const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
@@ -30,7 +30,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
             </Typography>
           </Link>
           <Typography component='div' variant='body1'>
-            Dodane przez: totalnykoks123
+            Dodane przez: {video.addedBy.name}
           </Typography>
         </CardContent>
       </Box>
