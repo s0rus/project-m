@@ -34,7 +34,7 @@ const Home: NextPage = () => {
       </Head>
       <BeforePage/>
       <MainLayout>
-      <SplitPane minSize={850} maxSize={1680} defaultSize={1500} resizerStyle={ResizerStyle} onDragStarted={setPointerActive}  onDragFinished={setPointerRemove} onMouse={{border: '1px solid red'}} > 
+      <SplitPane minSize={850} maxSize={1680} defaultSize={1500} resizerStyle={ResizerStyle} onDragStarted={setPointerActive}  onDragFinished={setPointerRemove}> 
         <MainContent>
           <SimpleBar style={{ background: 'radial-gradient(rgb(24, 26, 33), rgb(36, 37, 46))' ,maxHeight: '100vh' }}>
             <VideoPlayer />

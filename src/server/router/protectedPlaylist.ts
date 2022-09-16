@@ -5,7 +5,7 @@ import { z } from 'zod';
 export const protectedPlaylistRouter = createProtectedRouter().mutation('add-video', {
   input: z
     .object({
-      videoTitle: z.string().min(1).max(40),
+      videoTitle: z.string().min(1).max(60),
       videoUrl: z.string().url(),
       videoDuration: z.number(),
     })
