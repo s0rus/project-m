@@ -9,7 +9,7 @@ export interface AddedBy {
   name: string | null;
 }
 export interface InitialContextProps {
-  currentVideo: Playlist | undefined;
+  currentVideo: PlaylistWithUsers | undefined;
   previousVideo: PlaylistWithUsers | undefined;
   playlist: PlaylistWithUsers[] | [];
   requestNextVideo: () => void;

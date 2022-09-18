@@ -1,4 +1,5 @@
 import 'react-toastify/dist/ReactToastify.css';
+import './_i18n';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
@@ -22,7 +23,13 @@ const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => 
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <Component {...pageProps} />
-              <ToastContainer />
+              <ToastContainer
+                position='bottom-left'
+                autoClose={5000}
+                closeButton={false}
+                hideProgressBar={true}
+                draggable={false}
+              />
             </ThemeProvider>
           </PlayerContextProvider>
         </PlaylistContextProvider>

@@ -26,6 +26,7 @@
       "@/pages/*": ["pages/*"],
       "@/server/*": ["server/*"],
       "@/styles/*": ["styles/*"],
+      "@/translations/*": ["translations/*"],
       "@/types/*": ["types/*"],
       "@/utils/*": ["utils/*"]
     }

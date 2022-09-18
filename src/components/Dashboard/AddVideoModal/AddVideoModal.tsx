@@ -3,7 +3,7 @@ import { Button, Modal, TextField, Typography } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import React, { FC } from 'react';
 
-import { Routes } from '@/server/router/routes';
+import { getYoutubeThumbnail } from '@/utils/youtubeUtils';
 import { toast } from 'react-toastify';
 import { trpc } from '@/utils/trpc';
 import { usePlaylistContext } from '@/contexts/PlaylistContext';
@@ -26,11 +26,15 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
 
   const onSubmit = async ({ videoTitle, videoUrl }: { videoTitle: string; videoUrl: string }) => {
     try {
+      const possibleThumbnail = getYoutubeThumbnail(videoUrl);
+      console.log(possibleThumbnail);
       const newVideo = await mutateAsync({
         videoTitle,
         videoUrl,
         videoDuration: 0,
+        videoThumbnail: possibleThumbnail,
       });
+      console.log(newVideo);
       addVideo(newVideo);
       reset();
       handleClose();

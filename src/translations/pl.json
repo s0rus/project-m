@@ -1,0 +1,8 @@
+{
+  "genericErrorMessage": "Ups! Coś poszło nie tak...",
+  "emptyPlaylist": "Playlista jest pusta.",
+  "addedBy": "Dodane przez",
+  "video": {
+    "thumbnailAlt": "Miniaturka filmu {{videoTitle}}"
+  }
+}

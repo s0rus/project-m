@@ -18,3 +18,10 @@ export const PlaylistContainer = styled(Box)`
   flex-flow: column nowrap;
   gap: 1rem;
 `;
+
+export const EmptyPlaylistBox = styled(Box)`
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
