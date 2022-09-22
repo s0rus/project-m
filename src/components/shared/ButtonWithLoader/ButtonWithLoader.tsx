@@ -1,21 +1,23 @@
 import React, { FC } from 'react';
-import { Button, CircularProgress, styled, type ButtonProps } from '@mui/material';
+import { CircularProgress, type ButtonProps, Button } from '@mui/material';
 
 export interface ButtonWithLoaderProps extends ButtonProps {
   loading: boolean;
+  iconVariant?: boolean;
 }
 
-const StyledButton = styled(Button)`
-  height: ${({ size }) => (size === 'large' ? '46px' : size === 'medium' ? '36px' : '32px')};
-
-  position: 'relative';
-`;
-
-const ButtonWithLoader: FC<ButtonWithLoaderProps> = ({ children, loading, startIcon, size = 'large', ...props }) => {
+const ButtonWithLoader: FC<ButtonWithLoaderProps> = ({
+  children,
+  loading,
+  startIcon,
+  size = 'large',
+  iconVariant,
+  ...props
+}) => {
   return (
-    <StyledButton startIcon={loading ? '' : startIcon} size={size} {...props}>
-      {loading ? <CircularProgress size={22} /> : children}
-    </StyledButton>
+    <Button startIcon={loading && !iconVariant ? <CircularProgress size={24} /> : startIcon} size={size} {...props}>
+      {iconVariant && loading ? <CircularProgress size={24} /> : children}
+    </Button>
   );
 };
 

@@ -15,7 +15,7 @@ interface ControlsBarProps {
 
 const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying }) => {
   const { handleSeek, seeking, setSeeking, seekTo, playerState } = usePlayerContext();
-  const { isPlaying, playedSeconds, duration, controlsVisible } = playerState;
+  const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo } = playerState;
   const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);
   const { toggleFullscreen, isFullscreen } = useFullscreen();
 
@@ -43,20 +43,21 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying }) => {
     <ControlsBarWrapper controls={controlsVisible}>
       <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
       <VolumeControl />
-      <Timer>
-        <Typography variant='h5'>{timeFormatter(playedSeconds)}</Typography>
+      <Timer islong={duration >= 3600 ? 1 : 0}>
+        <Typography variant='h5'>{timeFormatter(playedSeconds, duration >= 3600)}</Typography>
       </Timer>
       <Seeker
         aria-label='time-indicator'
         size='small'
-        value={playedSeconds}
+        value={activeVideo ? playedSeconds : 0}
         min={0}
         step={1}
         max={duration}
         onChange={handleOnChange}
         onMouseDown={() => setSeeking(true)}
+        disabled={!activeVideo}
       />
-      <Timer>
+      <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(duration)}</Typography>
       </Timer>
       <IconButton onClick={() => toggleFullscreen()}>

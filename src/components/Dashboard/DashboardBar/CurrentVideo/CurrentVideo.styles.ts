@@ -9,14 +9,6 @@ export const CurrentVideoWrapper = styled(Box)`
   gap: 1rem;
 `;
 
-export const CurrentVideoPoster = styled(Box)`
-  height: 100px;
-  width: 151px;
-  border-radius: 8px;
-  border: 1px solid ${theme.palette.primary.main};
-  background-color: ${theme.palette.background.paper};
-`;
-
 export const CurrentVideoDetails = styled(Stack)`
   flex-direction: column;
   gap: 0.5rem;

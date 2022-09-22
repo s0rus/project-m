@@ -6,11 +6,9 @@ import ReactPlayer from 'react-player';
 import { useHasWindow } from '@/utils/index';
 // import { useSocketContext } from '@/contexts/SocketContext';
 import { usePlayerContext } from '@/contexts/PlayerContext';
-import { usePlaylistContext } from '@/contexts/PlaylistContext';
 
 const VideoPlayer = () => {
-  const { requestNextVideo } = usePlaylistContext();
-  const { setPlayerRef, handleProgress, playerState } = usePlayerContext();
+  const { setPlayerRef, handleProgress, handleOnEnd, playerState } = usePlayerContext();
   const { isPlaying, volume, isMuted, activeVideo } = playerState;
   const playerRef = useRef<ReactPlayer | null>(null);
   const hasWindow = useHasWindow();
@@ -26,7 +24,7 @@ const VideoPlayer = () => {
         <>
           <StyledReactPlayer
             onProgress={handleProgress}
-            onEnded={requestNextVideo}
+            onEnded={handleOnEnd}
             playing={isPlaying}
             muted={isMuted}
             volume={volume}

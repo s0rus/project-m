@@ -34,6 +34,7 @@ export interface InitialContextProps {
   setPlayerRef: (playerRef: MutableRefObject<ReactPlayer>) => void;
   seekTo: (seconds: number) => void;
   handleProgress: (event: ProgressProps) => void;
+  handleOnEnd: () => void;
   togglePlaying: () => void;
   handleSeek: (newSecondsPlayed: number) => void;
   seeking: boolean;
@@ -50,6 +51,7 @@ export const initialContextProps = {
   seekTo: () => null,
   setPlayerRef: () => null,
   handleProgress: () => null,
+  handleOnEnd: () => null,
   togglePlaying: () => null,
   handleSeek: () => null,
   seeking: false,

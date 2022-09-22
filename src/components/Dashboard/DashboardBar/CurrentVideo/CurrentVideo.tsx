@@ -1,10 +1,4 @@
-import {
-  AddedByAvatar,
-  AddedByWrapper,
-  CurrentVideoDetails,
-  CurrentVideoPoster,
-  CurrentVideoWrapper,
-} from './CurrentVideo.styles';
+import { AddedByAvatar, AddedByWrapper, CurrentVideoDetails, CurrentVideoWrapper } from './CurrentVideo.styles';
 import { Link, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
@@ -17,11 +11,11 @@ interface CurrentVideoProps {
 
 const CurrentVideo: FC<CurrentVideoProps> = ({ video }) => {
   if (!video) return null;
-  const { videoTitle, videoThumbnail, addedBy } = video;
+  const { videoTitle, videoThumbnail, videoDuration, addedBy } = video;
 
   return (
     <CurrentVideoWrapper>
-      <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} />
+      <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
       <CurrentVideoDetails>
         <Link href={video.videoUrl} target='_blank' rel='noopener norefferer'>
           <Typography variant='h2'>{videoTitle}</Typography>

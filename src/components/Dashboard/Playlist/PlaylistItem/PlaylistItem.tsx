@@ -14,13 +14,13 @@ interface PlaylistItemsProps {
 const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   const { t } = useTranslation();
   const { currentVideo } = usePlaylistContext();
-  const { videoThumbnail, videoTitle, videoUrl, addedBy, videoId } = video;
+  const { videoThumbnail, videoTitle, videoUrl, addedBy, videoId, videoDuration } = video;
 
   if (currentVideo?.videoId === videoId) return null;
 
   return (
     <PlaylistItemCard>
-      <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} />
+      <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent
           sx={{
@@ -37,7 +37,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
             </Typography>
           </Link>
           <Typography component='div' variant='body1'>
-            {t('addedBy')}: {addedBy.name}
+            {t('video.addedBy')}: {addedBy.name}
           </Typography>
         </CardContent>
       </Box>

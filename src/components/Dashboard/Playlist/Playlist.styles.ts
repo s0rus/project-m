@@ -1,13 +1,34 @@
-import { Box, styled } from '@mui/material';
+import { Box, Stack, styled } from '@mui/material';
+import { gradients, theme } from '@/styles/theme';
 
-import { theme } from '@/styles/theme';
+import hexToRgba from 'hex-to-rgba';
 
-export const PlaylistWrapper = styled(Box)`
-  display: flex;
+export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   padding: 1rem;
 
-  border: 2px solid ${theme.palette.success.main};
+  display: flex;
+  flex-flow: column nowrap;
+
+  background: ${({ locked }) => (locked ? gradients.playlistLocked : gradients.playlistUnlocked)};
+  border: 1px solid
+    ${({ locked }) => (locked ? hexToRgba(theme.palette.error.main, 0.1) : hexToRgba(theme.palette.success.main, 0.1))};
   border-radius: 8px;
+`;
+
+export const PlaylistHeader = styled(Stack)`
+  margin-bottom: 1rem;
+
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const PlaylistDetail = styled(Stack)`
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 0.5rem;
+
+  cursor: default;
 `;
 
 export const PlaylistContainer = styled(Box)`

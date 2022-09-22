@@ -4,12 +4,14 @@ import React, { FC } from 'react';
 import { Typography } from '@mui/material';
 import { getPlayingStateIcon } from '../../VideoPlayer.model';
 import { usePlayerContext } from '@/contexts/PlayerContext';
+import { useTranslation } from 'react-i18next';
 
 interface IndicatorProps {
   handlePlaying: () => void;
 }
 
 const Indicator: FC<IndicatorProps> = ({ handlePlaying }) => {
+  const { t } = useTranslation();
   const { playerState } = usePlayerContext();
   const { isPlaying, initialMute } = playerState;
 
@@ -20,7 +22,7 @@ const Indicator: FC<IndicatorProps> = ({ handlePlaying }) => {
           {getPlayingStateIcon(isPlaying, initialMute)}
           {initialMute && (
             <Typography variant='h5' sx={{ mt: '1rem' }}>
-              Anuluj wyciszenie
+              {t('cancelMute')}
             </Typography>
           )}
         </IndicatorElement>

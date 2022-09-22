@@ -9,8 +9,6 @@ export const ControlsBarWrapper = styled(Box)<{ controls: boolean }>`
   align-items: center;
   justify-content: space-between;
 
-  gap: 0.5rem;
-
   transition: transform 0.2s ease-in-out;
   transform: ${({ controls }) => (controls ? 'translateY(0px)' : 'translateY(80px)')};
 `;
@@ -43,7 +41,11 @@ export const Seeker = styled(Slider)`
   }
 `;
 
-export const Timer = styled(Box)`
-  margin: 0.1rem 0.4rem 0 0.4rem;
-  min-width: 2rem;
+export const Timer = styled(Box)<{ islong: number }>`
+  min-width: 4rem;
+  margin: ${({ islong }) => (islong ? '0.1rem 1rem 0 1rem' : '0.1rem 0.5rem 0 0.5rem')};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

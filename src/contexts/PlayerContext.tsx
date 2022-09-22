@@ -25,7 +25,7 @@ const PlayerContext = createContext<InitialContextProps>(initialContextProps);
 export const usePlayerContext = () => useContext<InitialContextProps>(PlayerContext);
 
 export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { currentVideo } = usePlaylistContext();
+  const { currentVideo, requestNextVideo } = usePlaylistContext();
   const [playerState, setPlayerState] = useState<PlayerState>(initialPlayerState);
   const [seeking, setSeeking] = useState(false);
   const [playerRef, setPlayerRef] = useState<MutableRefObject<ReactPlayer> | null>(null);
@@ -34,8 +34,6 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const getDuration = useCallback(() => playerRef?.current.getDuration(), [playerRef]);
 
   useEffect(() => {
-    console.log('CURRENT VID', currentVideo);
-
     setPlayerState((prevPlayerState) => {
       return {
         ...prevPlayerState,
@@ -129,12 +127,27 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     });
   }, []);
 
+  const handleOnEnd = () => {
+    setPlayerState((prevPlayerState) => {
+      return {
+        ...prevPlayerState,
+        duration: 0,
+        playedSeconds: 0,
+        loadedSeconds: 0,
+        activeVideo: undefined,
+      };
+    });
+
+    requestNextVideo();
+  };
+
   const value = {
     playerState,
     setPlayerState,
     seekTo,
     setPlayerRef,
     handleProgress,
+    handleOnEnd,
     togglePlaying,
     handleSeek,
     seeking,

@@ -1,15 +1,22 @@
 import React, { FC } from 'react';
-import { VideoThumbnailContainer, VideoThumbnailImage, VideoThumbnailWrapper } from './VideoThumbnail.styles';
+import {
+  VideoDurationSpan,
+  VideoThumbnailContainer,
+  VideoThumbnailImage,
+  VideoThumbnailWrapper,
+} from './VideoThumbnail.styles';
 
 import { Routes } from '@/server/router/routes';
+import timeFormatter from '@/utils/timeFormatter';
 import { useTranslation } from 'react-i18next';
 
 interface VideoThumbnailProps {
   thumbnailUrl: string | null;
   videoTitle: string;
+  videoDuration: number;
 }
 
-const VideoThumbnail: FC<VideoThumbnailProps> = ({ thumbnailUrl, videoTitle }) => {
+const VideoThumbnail: FC<VideoThumbnailProps> = ({ thumbnailUrl, videoTitle, videoDuration }) => {
   const { t } = useTranslation();
 
   return (
@@ -27,6 +34,7 @@ const VideoThumbnail: FC<VideoThumbnailProps> = ({ thumbnailUrl, videoTitle }) =
             videoTitle,
           })}
         />
+        <VideoDurationSpan variant='body1'>{timeFormatter(videoDuration)}</VideoDurationSpan>
       </VideoThumbnailContainer>
     </VideoThumbnailWrapper>
   );

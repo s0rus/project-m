@@ -8,5 +8,5 @@ export const youTubeIdFromLink = (url: string) => {
 export const getYoutubeThumbnail = (url: string) => {
   const youtubeId = youTubeIdFromLink(url);
 
-  return youtubeId ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg` : null;
+  return youtubeId ? `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg` : null;
 };

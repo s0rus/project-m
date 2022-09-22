@@ -50,12 +50,36 @@ const globalTheme = {
       primary: '#EFEFF1',
       secondary: '#85ABBE',
     },
+
+    success: {
+      light: '#81c784',
+      main: '#66bb6a',
+      dark: '#388e3c',
+    },
+
+    error: {
+      light: '#ff2c2c',
+      main: '#fa2c46',
+      dark: '#ad1e30',
+    },
   },
 
   shape: {
     borderRadius: '8px',
   },
   spacing: 8,
+};
+
+export const gradients = {
+  gradientPaper: 'linear-gradient(220deg, rgba(14,14,16,0) 0%, rgba(14,14,16,1) 80%)',
+  playlistUnlocked: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.success.light, 0)} 0%,  ${hexToRgba(
+    globalTheme.palette.success.dark,
+    0.1
+  )} 100%)`,
+  playlistLocked: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.error.light, 0)} 0%,  ${hexToRgba(
+    globalTheme.palette.error.dark,
+    0.6
+  )} 100%)`,
 };
 
 export const theme = createTheme({
@@ -84,6 +108,33 @@ export const theme = createTheme({
         },
       },
     },
+
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          background: gradients.gradientPaper,
+        },
+      },
+    },
+
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          background: globalTheme.palette.background.paper,
+        },
+      },
+    },
+
+    MuiButton: {
+      styleOverrides: {
+        iconSizeLarge: {
+          '& > *:nth-of-type(1)': {
+            fontSize: 24,
+          },
+        },
+      },
+    },
+
     MuiCssBaseline: {
       styleOverrides: {
         html: {
