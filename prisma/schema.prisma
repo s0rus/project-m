@@ -48,6 +48,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     Playlist      Playlist[]
+    isAdmin       Boolean    @default(false)
 }
 
 model VerificationToken {
@@ -67,4 +68,9 @@ model Playlist {
     addedAt        DateTime @db.Timestamp()
     addedBy        User     @relation(fields: [userId], references: [id])
     userId         String
+}
+
+model Overseer {
+    overseerId     String  @id
+    playlistLocked Boolean @default(true)
 }

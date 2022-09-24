@@ -3,13 +3,13 @@ import 'simplebar/dist/simplebar.min.css';
 import MainLayout, { MainContent } from '@/layouts/MainLayout';
 
 import { Box } from '@mui/material';
-import Dashboard from '@/components/Dashboard';
+import Dashboard from '@/domain/Dashboard/view/Dashboard';
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import React from 'react';
 import SimpleBar from 'simplebar-react';
-import TwitchChat from '@/components/TwitchChat';
-import VideoPlayer from '@/components/VideoPlayer';
+import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
+import VideoPlayer from '@/domain/VideoPlayer/view/VideoPlayer';
 
 const Home: NextPage = () => {
   return (

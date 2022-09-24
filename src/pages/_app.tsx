@@ -5,8 +5,8 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import type { AppRouter } from '../server/router';
 import type { AppType } from 'next/dist/shared/lib/utils';
-import { PlayerContextProvider } from '@/contexts/PlayerContext';
-import { PlaylistContextProvider } from '@/contexts/PlaylistContext';
+import { PlayerContextProvider } from '@/domain/VideoPlayer/context/PlayerContext';
+import { PlaylistContextProvider } from '@/domain/Playlist/context/PlaylistContext';
 import { SessionProvider } from 'next-auth/react';
 import { SocketContextProvider } from '@/contexts/SocketContext';
 import { ToastContainer } from 'react-toastify';

@@ -1,6 +1,6 @@
 import { createRouter } from './context';
-import { playlistRouter } from './playlist';
-import { protectedPlaylistRouter } from './protectedPlaylist';
+import { playlistRouter } from './routers/playlist';
+import { protectedPlaylistRouter } from './routers/protected-playlist';
 import superjson from 'superjson';
 
 export const appRouter = createRouter()
