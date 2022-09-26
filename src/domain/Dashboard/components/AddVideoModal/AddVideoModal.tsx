@@ -1,17 +1,18 @@
 import { AddVideoWrapper, ModalContent, SamplePlayer } from './AddVideoModal.styles';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Modal, Typography } from '@mui/material';
-import React, { FC, useRef } from 'react';
+import { NewVideoForm, newVideoSchema } from '../../model/NewVideo.model';
+import React, { FC, useRef, useState } from 'react';
 
 import ButtonWithLoader from '@/components/shared/ButtonWithLoader';
 import FormInput from '@/components/shared/FormInput';
+import { PlaylistAddCheck } from '@mui/icons-material';
 import ReactPlayer from 'react-player';
 import { getYoutubeThumbnail } from '@/domain/Dashboard/utils/youtubeUtils';
 import { toast } from 'react-toastify';
 import { trpc } from '@/utils/trpc';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 interface AddVideoModalProps {
@@ -19,56 +20,50 @@ interface AddVideoModalProps {
   handleClose: () => void;
 }
 
-const schema = z.object({
-  videoTitle: z.string().min(4, { message: 'Tytuł musi mieć minimum 4 znaki.' }).max(30),
-  videoUrl: z
-    .string()
-    .url({ message: 'URL jest nieprawidłowy.' })
-    .refine((v) => ReactPlayer.canPlay(v), { message: 'URL jest nieprawidłowy.' }),
-});
-
-type FormSchemaType = z.infer<typeof schema>;
-
 const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
   const { t } = useTranslation();
   const { addVideo, playlistLocked } = usePlaylistContext();
   const { mutateAsync, isLoading } = trpc.useMutation(['protected-playlist.add-video']);
-  const methods = useForm<FormSchemaType>({
+  const sampleVideoRef = useRef<ReactPlayer | null>(null);
+  const [playerReady, setPlayerReady] = useState(false);
+
+  const methods = useForm<NewVideoForm>({
     defaultValues: {
       videoTitle: '',
       videoUrl: '',
     },
-    resolver: zodResolver(schema),
+    resolver: zodResolver(newVideoSchema),
     shouldUnregister: true,
     mode: 'onChange',
   });
+
   const {
     handleSubmit,
     reset,
     getValues,
     formState: { isValid },
   } = methods;
-  const sampleVideoRef = useRef<ReactPlayer | null>(null);
 
-  const onSubmit = async ({ videoTitle, videoUrl }: { videoTitle: string; videoUrl: string }) => {
+  const onSubmit = async ({ videoTitle, videoUrl }: NewVideoForm) => {
     try {
       const possibleThumbnail = getYoutubeThumbnail(videoUrl);
       let possibleDuration = 0;
 
       if (sampleVideoRef.current) {
-        possibleDuration = sampleVideoRef.current.getDuration();
+        possibleDuration = Math.floor(sampleVideoRef.current.getDuration());
       }
 
       const newVideo = await mutateAsync({
         videoTitle,
         videoUrl,
-        videoDuration: Math.floor(possibleDuration) || 0,
+        videoDuration: possibleDuration,
         videoThumbnail: possibleThumbnail,
       });
 
       addVideo(newVideo);
       reset();
       handleClose();
+      setPlayerReady(false);
     } catch (error) {
       console.log(error);
       toast.error('Coś poszło nie tak...');
@@ -91,23 +86,24 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
                 variant='contained'
                 size='large'
                 type='submit'
-                loading={isLoading}
-                disabled={isLoading || !isValid}
+                loading={isLoading || (isValid && !playerReady)}
+                disabled={isLoading || !isValid || !playerReady}
+                startIcon={<PlaylistAddCheck />}
+                sx={{ mt: '1rem' }}
               >
                 {t('addVideoModal.buttonTxt')}
               </ButtonWithLoader>
             </AddVideoWrapper>
-            {isValid && (
-              <SamplePlayer
-                ref={sampleVideoRef}
-                url={getValues('videoUrl')}
-                muted
-                autoPlay
-                playing={true}
-                width={0}
-                height={0}
-              />
-            )}
+            <SamplePlayer
+              ref={sampleVideoRef}
+              onReady={() => setPlayerReady(true)}
+              url={getValues('videoUrl')}
+              muted
+              autoPlay
+              playing={true}
+              width={0}
+              height={0}
+            />
           </form>
         </FormProvider>
       </ModalContent>

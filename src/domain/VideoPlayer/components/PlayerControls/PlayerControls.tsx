@@ -37,7 +37,7 @@ const PlayerControls = () => {
     >
       <SeekerPreview controls={+controlsVisible} playedPercentage={(playedSeconds / duration) * 100} />
       <ControlsContainer>
-        <VideoTitle variant='h1' controls={+controlsVisible}>
+        <VideoTitle variant='h1' noWrap controls={+controlsVisible}>
           {playerState.activeVideo?.videoTitle || ''}
         </VideoTitle>
         <Indicator handlePlaying={handlePlaying} />

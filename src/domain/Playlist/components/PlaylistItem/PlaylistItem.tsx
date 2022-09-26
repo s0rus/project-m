@@ -1,10 +1,10 @@
-import { Box, CardContent, Link, Typography } from '@mui/material';
+import { Link, Typography } from '@mui/material';
+import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper } from './PlaylistItem.styles';
 import React, { FC } from 'react';
 
-import { PlaylistItemCard } from './PlaylistItem.styles';
+import { ListItem } from '@mui/material';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import VideoThumbnail from '@/components/shared/VideoThumbnail/';
-import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
 
 interface PlaylistItemsProps {
@@ -13,35 +13,28 @@ interface PlaylistItemsProps {
 
 const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   const { t } = useTranslation();
-  const { currentVideo } = usePlaylistContext();
-  const { videoThumbnail, videoTitle, videoUrl, addedBy, videoId, videoDuration } = video;
-
-  if (currentVideo?.videoId === videoId) return null;
+  const { videoThumbnail, videoTitle, videoUrl, addedBy, videoDuration } = video;
 
   return (
-    <PlaylistItemCard>
-      <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <CardContent
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            flex: 1,
-            width: '100%',
-            justifyContent: 'center',
-          }}
-        >
-          <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
-            <Typography component='div' variant='h4'>
-              {videoTitle}
+    <ListItem dense>
+      <PlaylistItemWrapper>
+        <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
+          <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
+        </Link>
+        <PlaylistItemBox>
+          <PlaylistItemContent>
+            <Link href={videoUrl} target='_blank' rel='noopener norefferer' sx={{ width: '98%' }}>
+              <Typography noWrap variant='h4'>
+                {videoTitle}
+              </Typography>
+            </Link>
+            <Typography variant='body1'>
+              {t('video.addedBy')}: {addedBy.name}
             </Typography>
-          </Link>
-          <Typography component='div' variant='body1'>
-            {t('video.addedBy')}: {addedBy.name}
-          </Typography>
-        </CardContent>
-      </Box>
-    </PlaylistItemCard>
+          </PlaylistItemContent>
+        </PlaylistItemBox>
+      </PlaylistItemWrapper>
+    </ListItem>
   );
 };
 

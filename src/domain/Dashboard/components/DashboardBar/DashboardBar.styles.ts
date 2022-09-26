@@ -11,7 +11,6 @@ export const DashboardBarContainer = styled(Grid)`
   height: 100%;
 
   justify-content: space-between;
-  align-items: center;
 `;
 
 export const DashboardBarButtons = styled(Stack)`

@@ -1,12 +1,13 @@
 import { createProtectedRouter } from '../protected-router';
 import dayjs from 'dayjs';
+import { titleBounds } from '@/domain/Dashboard/model/NewVideo.model';
 import { z } from 'zod';
 
 export const protectedPlaylistRouter = createProtectedRouter()
   .mutation('add-video', {
     input: z
       .object({
-        videoTitle: z.string().min(4).max(30),
+        videoTitle: z.string().min(titleBounds.MIN).max(titleBounds.MAX),
         videoUrl: z.string().url(),
         videoDuration: z.number(),
         videoThumbnail: z.string().url().nullable(),

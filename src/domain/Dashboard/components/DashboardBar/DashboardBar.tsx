@@ -2,8 +2,8 @@ import { DashboardBarButtons, DashboardBarContainer, DashboardBarWrapper } from 
 import { Divider, Grid } from '@mui/material';
 
 import BarButtons from '../BarButtons';
-import CurrentVideo from '../CurrentVideo';
 import React from 'react';
+import VideoCard from '@/components/shared/VideoCard';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 
 const DashboardBar = () => {
@@ -14,7 +14,7 @@ const DashboardBar = () => {
       <DashboardBarWrapper>
         <DashboardBarContainer container>
           <Grid item sm={12} md={7}>
-            <CurrentVideo video={currentVideo} />
+            <VideoCard video={currentVideo} />
           </Grid>
           <Grid item sm={12} md={5}>
             <DashboardBarButtons>

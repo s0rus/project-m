@@ -1,4 +1,5 @@
 import { AccessTimeFilledRounded, AutoAwesomeMotionRounded } from '@mui/icons-material';
+import { Box, List, Tooltip, Typography } from '@mui/material';
 import {
   EmptyPlaylistBox,
   PlaylistContainer,
@@ -7,22 +8,18 @@ import {
   PlaylistWrapper,
 } from './Playlist.styles';
 import React, { useMemo } from 'react';
-import { Tooltip, Typography } from '@mui/material';
 
 import PlaylistItem from '../../components/PlaylistItem';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import timeFormatter from '@/utils/timeFormatter';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
 
 const Playlist = () => {
   const { t } = useTranslation();
-  const { playlist, currentVideo, playlistLocked } = usePlaylistContext();
-
-  const properPlaylist = useMemo(
-    () => playlist.filter((video) => video.videoId !== currentVideo?.videoId),
-    [currentVideo, playlist]
-  );
+  const { playlist, properPlaylist, playlistLocked } = usePlaylistContext();
+  const [animatedList] = useAutoAnimate();
 
   const timeSum = useMemo(
     () =>
@@ -51,17 +48,17 @@ const Playlist = () => {
             </PlaylistDetail>
           </Tooltip>
         </PlaylistHeader>
-        <PlaylistContainer>
-          {!playlist?.length || (currentVideo?.videoId === playlist[0]?.videoId && !playlist[1]) ? (
-            <EmptyPlaylistBox>
-              <Typography variant='h4'>{t('playlist.empty')}</Typography>
-            </EmptyPlaylistBox>
-          ) : (
-            playlist.map((video) => (
+        <PlaylistContainer component={List} ref={animatedList}>
+          {properPlaylist.length ? (
+            properPlaylist.map((video) => (
               <React.Fragment key={video.videoId}>
                 <PlaylistItem video={video} />
               </React.Fragment>
             ))
+          ) : (
+            <EmptyPlaylistBox>
+              <Typography variant='h4'>{t('playlist.empty')}</Typography>
+            </EmptyPlaylistBox>
           )}
         </PlaylistContainer>
       </PlaylistWrapper>

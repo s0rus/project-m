@@ -14,6 +14,7 @@ export const ModalContent = styled(Box)`
 
   transform: translate(-50%, -50%);
   background-color: ${theme.palette.background.paper};
+  border: 1px solid ${theme.palette.primary.dark};
 `;
 
 export const AddVideoWrapper = styled(Stack)`

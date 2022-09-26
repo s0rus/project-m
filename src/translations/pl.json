@@ -12,7 +12,10 @@
     "header": "Dodaj film do kolejki",
     "url": "URL filmu",
     "title": "Tytuł filmu",
-    "buttonTxt": "Dodaj"
+    "buttonTxt": "Dodaj",
+    "titleRequired": "Tytuł jest wymagany.",
+    "titleTooLong": "Tytuł może mieć maksymalnie 30 znaków.",
+    "wrongUrl": "URL jest nieprawidłowy."
   },
   "playlist": {
     "header": "Playlista",
@@ -20,6 +23,10 @@
     "tooltip": {
       "videoCount": "Ilość filmów w kolejce",
       "timeSum": "Łączny czas kolejki"
+    },
+    "noCurrentVideo": {
+      "title": "Aktualnie nic nie leci.",
+      "subtitle": "Dodaj film, by zacząć oglądać."
     }
   }
 }

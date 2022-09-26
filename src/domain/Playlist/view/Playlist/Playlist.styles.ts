@@ -37,7 +37,7 @@ export const PlaylistContainer = styled(Box)`
 
   display: flex;
   flex-flow: column nowrap;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
 export const EmptyPlaylistBox = styled(Box)`

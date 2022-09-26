@@ -1,7 +1,6 @@
 import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { InitialContextProps, PlaylistWithUsers, initialContextProps } from '../model/Playlist.model';
 
-import { flushSync } from 'react-dom';
 import { toast } from 'react-toastify';
 import { trpc } from '@/utils/trpc';
 
@@ -42,6 +41,11 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     return undefined;
   }, [playlistData, isSuccess]);
 
+  const properPlaylist = useMemo(
+    () => playlist.filter((video) => video.videoId !== currentVideo?.videoId),
+    [currentVideo, playlist]
+  );
+
   const cachedPlaylistState = useMemo(() => {
     if (isPlaylistStateSuccess) {
       return playlistState;
@@ -72,9 +76,6 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     const newPlaylist = [...playlist];
     const filteredPlaylist = newPlaylist.filter((video) => video.videoId !== currentVideo?.videoId);
 
-    flushSync(() => {
-      setCurrentVideo(undefined);
-    });
     setCurrentVideo(filteredPlaylist[0]);
     setPlaylist(filteredPlaylist);
   }, [currentVideo, playlist, mutateAsync]);
@@ -97,6 +98,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     playlistLocked,
     togglePlaylistLocked,
     isPlaylistLoading,
+    properPlaylist,
   };
 
   return <PlaylistContext.Provider value={value}>{children}</PlaylistContext.Provider>;

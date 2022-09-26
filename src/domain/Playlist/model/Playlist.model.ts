@@ -13,6 +13,7 @@ export interface InitialContextProps {
   currentVideo: PlaylistWithUsers | undefined;
   previousVideo: PlaylistWithUsers | undefined;
   playlist: PlaylistWithUsers[] | [];
+  properPlaylist: PlaylistWithUsers[] | [];
   requestNextVideo: () => void;
   addVideo: (newVideo: PlaylistWithUsers) => void;
   playlistLocked: boolean;
@@ -24,6 +25,7 @@ export const initialContextProps: InitialContextProps = {
   currentVideo: undefined,
   previousVideo: undefined,
   playlist: [],
+  properPlaylist: [],
   requestNextVideo: () => null,
   addVideo: () => null,
   playlistLocked: true,

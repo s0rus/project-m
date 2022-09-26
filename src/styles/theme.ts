@@ -80,6 +80,10 @@ export const gradients = {
     globalTheme.palette.error.dark,
     0.6
   )} 100%)`,
+  currentVideo: `linear-gradient(90deg, ${hexToRgba(globalTheme.palette.background.paper, 1)} 50%,  ${hexToRgba(
+    globalTheme.palette.background.paper,
+    0
+  )} 100%)`,
 };
 
 export const theme = createTheme({
@@ -130,6 +134,20 @@ export const theme = createTheme({
         iconSizeLarge: {
           '& > *:nth-of-type(1)': {
             fontSize: 24,
+          },
+        },
+      },
+    },
+
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: `${globalTheme.palette.primary.contrastText}`,
+          textDecoration: 'none',
+          transition: 'color 0.2s ease-in-out',
+
+          '&:hover': {
+            color: `${globalTheme.palette.primary.main}`,
           },
         },
       },

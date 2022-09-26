@@ -30,5 +30,6 @@ export const VideoDurationSpan = styled(Typography)`
   bottom: 0.4rem;
   right: 0.4rem;
 
+  color: ${theme.palette.primary.contrastText};
   background-color: ${hexToRgba(theme.palette.background.paper, 0.8)};
 `;
