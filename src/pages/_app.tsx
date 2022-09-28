@@ -1,24 +1,38 @@
-// src/pages/_app.tsx
-import { withTRPC } from '@trpc/next';
+import 'react-toastify/dist/ReactToastify.css';
+import './_i18n';
+
+import { CssBaseline, ThemeProvider } from '@mui/material';
+
 import type { AppRouter } from '../server/router';
 import type { AppType } from 'next/dist/shared/lib/utils';
-import superjson from 'superjson';
+import { PlayerContextProvider } from '@/domain/VideoPlayer/context/PlayerContext';
+import { PlaylistContextProvider } from '@/domain/Playlist/context/PlaylistContext';
 import { SessionProvider } from 'next-auth/react';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { theme } from '@/styles/theme';
 import { SocketContextProvider } from '@/contexts/SocketContext';
-import { PlayerContextProvider } from '@/contexts/PlayerContext';
+import { ToastContainer } from 'react-toastify';
+import superjson from 'superjson';
+import { theme } from '@/styles/theme';
+import { withTRPC } from '@trpc/next';
 
 const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => {
   return (
     <SessionProvider session={session}>
       <SocketContextProvider>
-        <PlayerContextProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </PlayerContextProvider>
+        <PlaylistContextProvider>
+          <PlayerContextProvider>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <Component {...pageProps} />
+              <ToastContainer
+                position='bottom-left'
+                autoClose={5000}
+                closeButton={false}
+                hideProgressBar={true}
+                draggable={false}
+              />
+            </ThemeProvider>
+          </PlayerContextProvider>
+        </PlaylistContextProvider>
       </SocketContextProvider>
     </SessionProvider>
   );
@@ -55,5 +69,5 @@ export default withTRPC<AppRouter>({
   /**
    * @link https://trpc.io/docs/ssr
    */
-  ssr: false,
+  ssr: true,
 })(MyApp);

@@ -1,0 +1,32 @@
+{
+  "logIn": "Zaloguj się",
+  "logOut": "Wyloguj się",
+  "genericErrorMessage": "Ups! Coś poszło nie tak...",
+  "cancelMute": "Anuluj wyciszenie",
+  "video": {
+    "thumbnailAlt": "Miniaturka filmu {{videoTitle}}",
+    "add": "Dodaj film",
+    "addedBy": "Dodane przez"
+  },
+  "addVideoModal": {
+    "header": "Dodaj film do kolejki",
+    "url": "URL filmu",
+    "title": "Tytuł filmu",
+    "buttonTxt": "Dodaj",
+    "titleRequired": "Tytuł jest wymagany.",
+    "titleTooLong": "Tytuł może mieć maksymalnie 30 znaków.",
+    "wrongUrl": "URL jest nieprawidłowy."
+  },
+  "playlist": {
+    "header": "Playlista",
+    "empty": "Playlista jest pusta.",
+    "tooltip": {
+      "videoCount": "Ilość filmów w kolejce",
+      "timeSum": "Łączny czas kolejki"
+    },
+    "noCurrentVideo": {
+      "title": "Aktualnie nic nie leci.",
+      "subtitle": "Dodaj film, by zacząć oglądać."
+    }
+  }
+}

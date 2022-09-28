@@ -5,14 +5,6 @@ import { prisma } from '../../../server/db/client';
 import { env } from '../../../env/server.mjs';
 
 export const authOptions: NextAuthOptions = {
-  callbacks: {
-    session({ session, user }) {
-      if (session.user) {
-        session.user.id = user.id;
-      }
-      return session;
-    },
-  },
   adapter: PrismaAdapter(prisma),
   providers: [
     TwitchProvider({
@@ -20,6 +12,16 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.TWITCH_CLIENT_SECRET,
     }),
   ],
+  callbacks: {
+    session: async ({ session, user }) => {
+      if (session.user) {
+        session.user.id = user.id;
+        session.user.isAdmin = user.isAdmin as boolean;
+      }
+
+      return session;
+    },
+  },
 };
 
 export default NextAuth(authOptions);

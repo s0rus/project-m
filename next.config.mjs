@@ -21,4 +21,7 @@ export default defineNextConfig({
    */
   reactStrictMode: false,
   swcMinify: true,
+  images: {
+    domains: ['img.youtube.com'],
+  },
 });
