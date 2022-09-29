@@ -34,6 +34,13 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
     socket.on('connect_error', (err: Error) => {
       console.error(`CONNECT_ERROR: ${err}`);
     });
+
+    return () => {
+      socket.off('connect');
+      socket.off('connect_error');
+      socket.off('RECEIVE_NEW_VIDEO');
+      socket.off('RECEIVE_SEEK_TO');
+    };
   }, []);
 
   useEffect(() => {

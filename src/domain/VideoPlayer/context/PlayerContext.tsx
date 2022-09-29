@@ -18,13 +18,17 @@ import {
 
 import { LocalStorageKeys } from '@/utils/localStorageKeys';
 import ReactPlayer from 'react-player';
+import useAuth from '@/hooks/useAuth';
 import { usePlaylistContext } from '../../Playlist/context/PlaylistContext';
+import { useSocketContext } from '@/contexts/SocketContext';
 
 const PlayerContext = createContext<InitialContextProps>(initialContextProps);
 
 export const usePlayerContext = () => useContext<InitialContextProps>(PlayerContext);
 
 export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
+  const { isAdmin } = useAuth();
+  const { socket } = useSocketContext();
   const { currentVideo, requestNextVideo } = usePlaylistContext();
   const [playerState, setPlayerState] = useState<PlayerState>(initialPlayerState);
   const [seeking, setSeeking] = useState(false);
@@ -53,13 +57,19 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   const togglePlaying = useCallback(() => {
+    if (isAdmin) {
+      //TODO: add local toggle for admin
+      socket.emit('TOGGLE_PLAYING');
+    }
     setPlayerState((prevPlayerState) => {
+      //TODO: handle synchro after local pause
+
       return {
         ...prevPlayerState,
         isPlaying: !prevPlayerState.isPlaying,
       };
     });
-  }, []);
+  }, [isAdmin, socket]);
 
   const toggleMuted = useCallback(() => {
     setPlayerState((prevPlayerState) => {
@@ -99,14 +109,20 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     [seeking, getDuration]
   );
 
-  const handleSeek = useCallback((newPlayedSeconds: number) => {
-    setPlayerState((prevPlayerState) => {
-      return {
-        ...prevPlayerState,
-        playedSeconds: newPlayedSeconds,
-      };
-    });
-  }, []);
+  const handleSeek = useCallback(
+    (newPlayedSeconds: number) => {
+      if (isAdmin) {
+        socket && socket.emit('SEEK_TO', newPlayedSeconds);
+        setPlayerState((prevPlayerState) => {
+          return {
+            ...prevPlayerState,
+            playedSeconds: newPlayedSeconds,
+          };
+        });
+      }
+    },
+    [isAdmin, socket]
+  );
 
   const toggleControls = useCallback((newControlsVisibility: boolean) => {
     setPlayerState((prevPlayerState) => {
@@ -140,6 +156,22 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
     requestNextVideo();
   };
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.emit('REQUEST_PLAYER_STATE', (receivedPlayerState) => {
+      seekTo(receivedPlayerState?.playedSeconds || 0);
+    });
+
+    socket.on('RECEIVE_SEEK_TO', (newSecondsPlayed) => {
+      seekTo(newSecondsPlayed);
+    });
+
+    socket.on('RECEIVE_TOGGLE_PLAYING', () => {
+      togglePlaying();
+    });
+  }, [socket, seekTo, togglePlaying]);
 
   const value = {
     playerState,

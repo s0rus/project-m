@@ -153,6 +153,14 @@ export const theme = createTheme({
       },
     },
 
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+        },
+      },
+    },
+
     MuiCssBaseline: {
       styleOverrides: {
         html: {

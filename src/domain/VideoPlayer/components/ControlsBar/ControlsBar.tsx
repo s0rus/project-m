@@ -6,6 +6,7 @@ import React, { FC, useCallback, useEffect, useState } from 'react';
 import VolumeControl from '../VolumeControl';
 import { getPlayingStateIcon } from '../../model/VideoPlayer.model';
 import timeFormatter from '@/utils/timeFormatter';
+import useAuth from '@/hooks/useAuth';
 import useFullscreen from '@/domain/VideoPlayer/hooks/useFullscreen';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 
@@ -14,6 +15,7 @@ interface ControlsBarProps {
 }
 
 const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying }) => {
+  const { isAdmin } = useAuth();
   const { handleSeek, seeking, setSeeking, seekTo, playerState } = usePlayerContext();
   const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo } = playerState;
   const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);
@@ -30,9 +32,9 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying }) => {
   };
 
   useEffect(() => {
-    if (seeking) {
-      document.addEventListener('mouseup', handleSeekMouseUp);
-    }
+    if (seeking) document.addEventListener('mouseup', handleSeekMouseUp);
+
+    if (!seeking) document.removeEventListener('mouseup', handleSeekMouseUp);
 
     return () => {
       document.removeEventListener('mouseup', handleSeekMouseUp);
@@ -52,10 +54,10 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying }) => {
         value={activeVideo ? playedSeconds : 0}
         min={0}
         step={1}
-        max={duration}
+        max={activeVideo ? duration : 1}
         onChange={handleOnChange}
         onMouseDown={() => setSeeking(true)}
-        disabled={!activeVideo}
+        disabled={!activeVideo || !isAdmin}
       />
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(duration)}</Typography>

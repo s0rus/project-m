@@ -26,9 +26,9 @@ const Home: NextPage = () => {
             <Dashboard />
           </SimpleBar>
         </MainContent>
-        <Box>
+        {/* <Box>
           <TwitchChat />
-        </Box>
+        </Box> */}
       </MainLayout>
     </>
   );

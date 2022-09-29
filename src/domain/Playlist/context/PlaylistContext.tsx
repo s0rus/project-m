@@ -3,14 +3,17 @@ import { InitialContextProps, PlaylistWithUsers, initialContextProps } from '../
 
 import { toast } from 'react-toastify';
 import { trpc } from '@/utils/trpc';
+import useAuth from '@/hooks/useAuth';
+import { useSocketContext } from '@/contexts/SocketContext';
 
 const PlaylistContext = createContext<InitialContextProps>(initialContextProps);
 
 export const usePlaylistContext = () => useContext<InitialContextProps>(PlaylistContext);
 
 export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => {
+  const { socket } = useSocketContext();
+  const { isAdmin } = useAuth();
   const [currentVideo, setCurrentVideo] = useState<PlaylistWithUsers | undefined>(undefined);
-  const [previousVideo, setPreviousVideo] = useState<PlaylistWithUsers | undefined>(undefined);
   const [playlistLocked, setPlaylistLocked] = useState<boolean>(true);
   const [playlist, setPlaylist] = useState<PlaylistWithUsers[] | []>([]);
   const {
@@ -33,6 +36,15 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
   });
   const { mutateAsync } = trpc.useMutation('playlist.delete-one');
   const { mutateAsync: mutatePlaylistState } = trpc.useMutation('protected-playlist.set-playlist-state');
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on('RECEIVE_NEW_VIDEO', (newVideo) => {
+      if (!currentVideo) setCurrentVideo(newVideo);
+      setPlaylist((prevPlaylist) => [...prevPlaylist, newVideo]);
+    });
+  }, [socket, currentVideo]);
 
   const cachedPlaylistData = useMemo(() => {
     if (isSuccess) {
@@ -68,17 +80,18 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
   );
 
   const requestNextVideo = useCallback(async () => {
-    if (currentVideo) {
-      const prevVideo = await mutateAsync({ videoId: currentVideo.videoId });
-      setPreviousVideo(prevVideo);
-    }
+    try {
+      if (currentVideo && isAdmin) {
+        await mutateAsync({ videoId: currentVideo.videoId });
+      }
 
-    const newPlaylist = [...playlist];
-    const filteredPlaylist = newPlaylist.filter((video) => video.videoId !== currentVideo?.videoId);
+      const newPlaylist = [...playlist];
+      const filteredPlaylist = newPlaylist.filter((video) => video.videoId !== currentVideo?.videoId);
 
-    setCurrentVideo(filteredPlaylist[0]);
-    setPlaylist(filteredPlaylist);
-  }, [currentVideo, playlist, mutateAsync]);
+      setCurrentVideo(filteredPlaylist[0]);
+      setPlaylist(filteredPlaylist);
+    } catch {}
+  }, [currentVideo, playlist, mutateAsync, isAdmin]);
 
   const togglePlaylistLocked = async () => {
     try {
@@ -91,7 +104,6 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
 
   const value = {
     currentVideo,
-    previousVideo,
     playlist,
     requestNextVideo,
     addVideo,
