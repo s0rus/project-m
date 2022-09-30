@@ -8,9 +8,11 @@ import { toast } from 'react-toastify';
 import useAuth from '@/hooks/useAuth';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
+import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
+  const { socket } = useSocketContext();
   const { isAdmin } = useAuth();
   const { t } = useTranslation();
   const { handleOnEnd } = usePlayerContext();
@@ -31,7 +33,13 @@ const Dashboard = () => {
               <Grid item sm={12} md={5}>
                 <Paper sx={{ height: '500px' }}>
                   <Typography>__debug options__</Typography>
-                  <Button variant='contained' onClick={handleOnEnd}>
+                  <Button
+                    variant='contained'
+                    onClick={() => {
+                      handleOnEnd();
+                      socket.emit('SKIP_VIDEO');
+                    }}
+                  >
                     Skip video
                   </Button>
                   <Button variant='contained' onClick={() => toast(`${t('genericErrorMessage')}`)}>

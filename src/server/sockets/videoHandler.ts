@@ -3,7 +3,7 @@ import { SocketProvider } from '.';
 
 const videoHandler = (socket: SocketProvider.ServerIO) => {
   socket.data.playerState = {
-    playedSeconds: 60,
+    playedSeconds: 0,
   };
   // const PLAY_VIDEO = (receivedData: PlayerState) => {
   //   socket.data.playerState = receivedData;
@@ -21,10 +21,9 @@ const videoHandler = (socket: SocketProvider.ServerIO) => {
 
   const SEEK_TO = (newPlayedSeconds: number) => socket.broadcast.emit('RECEIVE_SEEK_TO', newPlayedSeconds);
 
-  const TOGGLE_PLAYING = () => {
-    console.log('TOGGLE PLAYING INVOKED');
-    socket.broadcast.emit('RECEIVE_TOGGLE_PLAYING');
-  };
+  const TOGGLE_PLAYING = () => socket.broadcast.emit('RECEIVE_TOGGLE_PLAYING');
+
+  const SKIP_VIDEO = () => socket.broadcast.emit('RECEIVE_SKIP_VIDEO');
 
   const REQUEST_PLAYER_STATE = (callback: (playerState: { playedSeconds?: number } | undefined) => void) => {
     callback(socket.data.playerState);
@@ -32,10 +31,14 @@ const videoHandler = (socket: SocketProvider.ServerIO) => {
 
   const ADD_NEW_VIDEO = (newVideo: PlaylistWithUsers) => socket.broadcast.emit('RECEIVE_NEW_VIDEO', newVideo);
 
+  const TOGGLE_PLAYLIST = () => socket.broadcast.emit('RECEIVE_TOGGLE_PLAYLIST');
+
   socket.on('SEEK_TO', SEEK_TO);
   socket.on('TOGGLE_PLAYING', TOGGLE_PLAYING);
+  socket.on('SKIP_VIDEO', SKIP_VIDEO);
   socket.on('REQUEST_PLAYER_STATE', REQUEST_PLAYER_STATE);
   socket.on('ADD_NEW_VIDEO', ADD_NEW_VIDEO);
+  socket.on('TOGGLE_PLAYLIST', TOGGLE_PLAYLIST);
 };
 
 export default videoHandler;

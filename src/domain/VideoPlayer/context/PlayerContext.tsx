@@ -143,7 +143,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     });
   }, []);
 
-  const handleOnEnd = () => {
+  const handleOnEnd = useCallback(() => {
     setPlayerState((prevPlayerState) => {
       return {
         ...prevPlayerState,
@@ -155,23 +155,27 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     });
 
     requestNextVideo();
-  };
+  }, [requestNextVideo]);
 
   useEffect(() => {
     if (!socket) return;
 
-    socket.emit('REQUEST_PLAYER_STATE', (receivedPlayerState) => {
-      seekTo(receivedPlayerState?.playedSeconds || 0);
-    });
+    socket.emit('REQUEST_PLAYER_STATE', (receivedPlayerState) => seekTo(receivedPlayerState?.playedSeconds || 0));
+  }, [socket, seekTo]);
 
-    socket.on('RECEIVE_SEEK_TO', (newSecondsPlayed) => {
-      seekTo(newSecondsPlayed);
-    });
+  useEffect(() => {
+    if (!socket) return;
 
-    socket.on('RECEIVE_TOGGLE_PLAYING', () => {
-      togglePlaying();
-    });
-  }, [socket, seekTo, togglePlaying]);
+    socket.on('RECEIVE_TOGGLE_PLAYING', () => togglePlaying());
+  }, [socket, togglePlaying]);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on('RECEIVE_SEEK_TO', (newSecondsPlayed) => seekTo(newSecondsPlayed));
+
+    socket.on('RECEIVE_SKIP_VIDEO', () => handleOnEnd());
+  }, [socket, seekTo, togglePlaying, handleOnEnd]);
 
   const value = {
     playerState,

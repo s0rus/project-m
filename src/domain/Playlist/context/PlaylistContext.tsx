@@ -37,14 +37,10 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
   const { mutateAsync } = trpc.useMutation('playlist.delete-one');
   const { mutateAsync: mutatePlaylistState } = trpc.useMutation('protected-playlist.set-playlist-state');
 
-  useEffect(() => {
-    if (!socket) return;
-
-    socket.on('RECEIVE_NEW_VIDEO', (newVideo) => {
-      if (!currentVideo) setCurrentVideo(newVideo);
-      setPlaylist((prevPlaylist) => [...prevPlaylist, newVideo]);
-    });
-  }, [socket, currentVideo]);
+  const properPlaylist = useMemo(
+    () => playlist.filter((video) => video.videoId !== currentVideo?.videoId),
+    [currentVideo, playlist]
+  );
 
   const cachedPlaylistData = useMemo(() => {
     if (isSuccess) {
@@ -53,23 +49,12 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     return undefined;
   }, [playlistData, isSuccess]);
 
-  const properPlaylist = useMemo(
-    () => playlist.filter((video) => video.videoId !== currentVideo?.videoId),
-    [currentVideo, playlist]
-  );
-
   const cachedPlaylistState = useMemo(() => {
     if (isPlaylistStateSuccess) {
       return playlistState;
     }
     return null;
   }, [playlistState, isPlaylistStateSuccess]);
-
-  useEffect(() => {
-    setPlaylist(cachedPlaylistData || []);
-    setCurrentVideo(cachedPlaylistData?.[0]);
-    cachedPlaylistState && setPlaylistLocked(cachedPlaylistState.playlistLocked);
-  }, [cachedPlaylistData, cachedPlaylistState]);
 
   const addVideo = useCallback(
     (newVideo: PlaylistWithUsers) => {
@@ -95,12 +80,34 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
 
   const togglePlaylistLocked = async () => {
     try {
-      await mutatePlaylistState({ newPlaylistState: !playlistLocked });
-      setPlaylistLocked((prevLocked) => !prevLocked);
+      if (isAdmin && socket) {
+        await mutatePlaylistState({ newPlaylistState: !playlistLocked });
+        socket.emit('TOGGLE_PLAYLIST');
+        setPlaylistLocked((prevLocked) => !prevLocked);
+      }
     } catch {
       toast.error('EHEHE');
     }
   };
+
+  useEffect(() => {
+    if (currentVideo) return;
+    setCurrentVideo(playlist[0]);
+  }, [playlist, currentVideo]);
+
+  useEffect(() => {
+    setPlaylist(cachedPlaylistData || []);
+    setCurrentVideo(cachedPlaylistData?.[0]);
+    cachedPlaylistState && setPlaylistLocked(cachedPlaylistState.playlistLocked);
+  }, [cachedPlaylistData, cachedPlaylistState]);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on('RECEIVE_TOGGLE_PLAYLIST', () => setPlaylistLocked((prevLocked) => !prevLocked));
+
+    socket.on('RECEIVE_NEW_VIDEO', (newVideo) => setPlaylist((prevPlaylist) => [...prevPlaylist, newVideo]));
+  }, [socket]);
 
   const value = {
     currentVideo,

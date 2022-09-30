@@ -11,6 +11,7 @@ import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
 
 const BarButtons = () => {
+  const { isAdmin } = useAuth();
   const { t } = useTranslation();
   const { isLoggedIn, isAuthLoading, authChange, loginWithTwitch, logoutOfTwitch } = useAuth();
   const { playlistLocked } = usePlaylistContext();
@@ -28,7 +29,7 @@ const BarButtons = () => {
           <Hidden lgDown>
             <Button
               onClick={handleOpen}
-              disabled={playlistLocked}
+              disabled={playlistLocked && !isAdmin}
               variant='contained'
               size='large'
               startIcon={<PlaylistAddRounded />}
@@ -46,7 +47,7 @@ const BarButtons = () => {
             </ButtonWithLoader>
           </Hidden>
           <Hidden lgUp>
-            <Button variant='contained' size='large' onClick={handleOpen}>
+            <Button variant='contained' size='large' onClick={handleOpen} disabled={playlistLocked && !isAdmin}>
               <PlaylistAddRounded />
             </Button>
             <ButtonWithLoader
