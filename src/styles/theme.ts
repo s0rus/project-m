@@ -161,6 +161,15 @@ export const theme = createTheme({
       },
     },
 
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: `${globalTheme.palette.primary.main}`,
+          borderRadius: '0.5rem',
+        },
+      },
+    },
+
     MuiCssBaseline: {
       styleOverrides: {
         html: {

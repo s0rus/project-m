@@ -4,7 +4,6 @@ import { StyledReactPlayer, VideoPlayerBox } from './VideoPlayer.styles';
 import PlayerControls from '../../components/PlayerControls';
 import ReactPlayer from 'react-player';
 import useHasWindow from '../../utils/hasWindow';
-// import { useSocketContext } from '@/contexts/SocketContext';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 
 const VideoPlayer = () => {
@@ -12,7 +11,6 @@ const VideoPlayer = () => {
   const { isPlaying, volume, isMuted, activeVideo } = playerState;
   const playerRef = useRef<ReactPlayer | null>(null);
   const hasWindow = useHasWindow();
-  // const { socket } = useSocketContext();
 
   useEffect(() => {
     setPlayerRef(playerRef as MutableRefObject<ReactPlayer>);

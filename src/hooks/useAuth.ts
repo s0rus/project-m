@@ -4,6 +4,9 @@ import { useCallback, useMemo, useState } from 'react';
 const useAuth = () => {
   const { data, status } = useSession();
   const [authChange, setAuthChange] = useState(false);
+  const currentUser = useMemo(() => {
+    return { ...data?.user };
+  }, [data?.user]);
 
   const isLoggedIn = useMemo(() => (data?.user && status === 'authenticated' ? true : false), [data, status]);
   const isAuthLoading = useMemo(() => status === 'loading', [status]);
@@ -20,6 +23,7 @@ const useAuth = () => {
   }, []);
 
   return {
+    currentUser,
     isLoggedIn,
     isAuthLoading,
     isAdmin,

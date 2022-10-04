@@ -14,6 +14,7 @@ export interface PlayerState {
   controlsVisible: boolean;
   initialMute: boolean;
   activeVideo: Playlist | undefined;
+  localPause: boolean;
 }
 
 export const initialPlayerState: PlayerState = {
@@ -26,6 +27,7 @@ export const initialPlayerState: PlayerState = {
   controlsVisible: true,
   initialMute: true,
   activeVideo: undefined,
+  localPause: false,
 };
 
 export interface InitialContextProps {
@@ -35,7 +37,7 @@ export interface InitialContextProps {
   seekTo: (seconds: number) => void;
   handleProgress: (event: ProgressProps) => void;
   handleOnEnd: () => void;
-  togglePlaying: () => void;
+  togglePlaying: (newPlayingState: boolean, localPause?: boolean) => void;
   handleSeek: (newSecondsPlayed: number) => void;
   seeking: boolean;
   setSeeking: Dispatch<SetStateAction<boolean>>;

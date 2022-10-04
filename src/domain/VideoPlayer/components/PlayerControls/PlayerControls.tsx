@@ -3,14 +3,25 @@ import React, { useEffect, useRef } from 'react';
 
 import ControlsBar from '../ControlsBar';
 import Indicator from '../Indicator';
+import useAuth from '@/hooks/useAuth';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
+import { useSocketContext } from '@/contexts/SocketContext';
 
 const PlayerControls = () => {
+  const { socket } = useSocketContext();
+  const { isAdmin } = useAuth();
   const { playerState, togglePlaying, toggleControls, disableInitialMute } = usePlayerContext();
   const { isPlaying, playedSeconds, duration, controlsVisible, initialMute } = playerState;
   const controlsTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
-  const handlePlaying = () => (initialMute ? disableInitialMute() : togglePlaying());
+  const handlePlaying = () => {
+    if (initialMute) {
+      disableInitialMute();
+    } else if (isAdmin && socket) {
+      togglePlaying(!isPlaying);
+      socket.emit('TOGGLE_PLAYING', !isPlaying);
+    }
+  };
 
   useEffect(() => {
     controlsTimerRef.current = isPlaying && !initialMute ? setTimeout(() => toggleControls(false), 4000) : undefined;

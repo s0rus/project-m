@@ -6,6 +6,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 import {
@@ -27,7 +28,7 @@ const PlayerContext = createContext<InitialContextProps>(initialContextProps);
 export const usePlayerContext = () => useContext<InitialContextProps>(PlayerContext);
 
 export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { isAdmin } = useAuth();
+  const { isAdmin, currentUser, isAuthLoading } = useAuth();
   const { socket } = useSocketContext();
   const { currentVideo, requestNextVideo } = usePlaylistContext();
   const [playerState, setPlayerState] = useState<PlayerState>(initialPlayerState);
@@ -36,6 +37,8 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const seekTo = useCallback((seconds: number) => playerRef?.current.seekTo(seconds, 'seconds'), [playerRef]);
   const getDuration = useCallback(() => playerRef?.current.getDuration(), [playerRef]);
+  const getPlayedSeconds = useCallback(() => playerRef?.current.getCurrentTime(), [playerRef]);
+  const isPlayerPlaying = useMemo(() => playerState.isPlaying, [playerState.isPlaying]);
 
   useEffect(() => {
     setPlayerState((prevPlayerState) => {
@@ -56,20 +59,14 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     });
   }, []);
 
-  const togglePlaying = useCallback(() => {
-    if (isAdmin) {
-      //TODO: add local toggle for admin
-      socket.emit('TOGGLE_PLAYING');
-    }
+  const togglePlaying = useCallback((newPlayingState: boolean) => {
     setPlayerState((prevPlayerState) => {
-      //TODO: handle synchro after local pause
-
       return {
         ...prevPlayerState,
-        isPlaying: !prevPlayerState.isPlaying,
+        isPlaying: newPlayingState,
       };
     });
-  }, [isAdmin, socket]);
+  }, []);
 
   const toggleMuted = useCallback(() => {
     setPlayerState((prevPlayerState) => {
@@ -160,22 +157,64 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     if (!socket) return;
 
-    socket.emit('REQUEST_PLAYER_STATE', (receivedPlayerState) => seekTo(receivedPlayerState?.playedSeconds || 0));
-  }, [socket, seekTo]);
+    socket.on('RECEIVE_REQUEST_PLAYER_STATE', (socketId) => {
+      const currentPlayedSeconds = getPlayedSeconds() || 0;
+      const playedSecondsWithDelay = isPlayerPlaying ? currentPlayedSeconds + 1 : currentPlayedSeconds;
+
+      socket.emit(
+        'SEND_PLAYER_STATE',
+        {
+          isPlaying: isPlayerPlaying,
+          playedSeconds: playedSecondsWithDelay,
+        },
+        socketId
+      );
+    });
+  }, [socket, getPlayedSeconds, isPlayerPlaying]);
 
   useEffect(() => {
     if (!socket) return;
 
-    socket.on('RECEIVE_TOGGLE_PLAYING', () => togglePlaying());
-  }, [socket, togglePlaying]);
-
-  useEffect(() => {
-    if (!socket) return;
-
+    socket.emit('REQUEST_PLAYER_STATE');
+    socket.on('RECEIVE_TOGGLE_PLAYING', (newPlayingState) => togglePlaying(newPlayingState));
     socket.on('RECEIVE_SEEK_TO', (newSecondsPlayed) => seekTo(newSecondsPlayed));
-
     socket.on('RECEIVE_SKIP_VIDEO', () => handleOnEnd());
-  }, [socket, seekTo, togglePlaying, handleOnEnd]);
+    socket.on('RECEIVE_PLAYER_STATE', (receivedPlayerState) => {
+      if (receivedPlayerState) {
+        setPlayerState((prevPlayerState) => {
+          return {
+            ...prevPlayerState,
+            isPlaying: receivedPlayerState.isPlaying,
+            playedSeconds: receivedPlayerState.playedSeconds,
+          };
+        });
+        seekTo(receivedPlayerState.playedSeconds);
+      }
+    });
+
+    return () => {
+      socket.off('RECEIVE_TOGGLE_PLAYING');
+      socket.off('RECEIVE_SEEK_TO');
+      socket.off('RECEIVE_SKIP_VIDEO');
+      socket.off('RECEIVE_PLAYER_STATE');
+    };
+  }, [socket, togglePlaying, handleOnEnd, seekTo]);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    if (currentUser && !isAuthLoading) {
+      socket.on('connect', () => {
+        console.log('CONNECTED', socket.id);
+        socket.emit('JOIN_USER', {
+          socketId: socket.id,
+          isAdmin: currentUser.isAdmin,
+          userId: currentUser.id,
+          username: currentUser.name,
+        });
+      });
+    }
+  }, [socket, currentUser, isAuthLoading]);
 
   const value = {
     playerState,

@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 import { Routes } from '@/server/router/routes';
 import { SocketProvider } from '@/server/sockets';
@@ -17,6 +17,7 @@ export const useSocketContext = () => useContext<InitialContextProps>(SocketCont
 
 export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [value, setValue] = useState<InitialContextProps>({});
+  const socketValue = useMemo(() => value, [value]);
 
   const socketInitializer = useCallback(async () => {
     await fetch(Routes.SOCKET).then(() => {
@@ -26,26 +27,14 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
       });
     });
 
-    socket.on('connect', () => {
-      console.info('CONNECTED');
-      console.info(socket.id);
-    });
-
     socket.on('connect_error', (err: Error) => {
       console.error(`CONNECT_ERROR: ${err}`);
     });
-
-    return () => {
-      socket.off('connect');
-      socket.off('connect_error');
-      socket.off('RECEIVE_NEW_VIDEO');
-      socket.off('RECEIVE_SEEK_TO');
-    };
   }, []);
 
   useEffect(() => {
     socketInitializer();
   }, [socketInitializer]);
 
-  return <SocketContext.Provider value={value}>{children}</SocketContext.Provider>;
+  return <SocketContext.Provider value={socketValue}>{children}</SocketContext.Provider>;
 };
