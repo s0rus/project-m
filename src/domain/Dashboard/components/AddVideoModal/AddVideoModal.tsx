@@ -48,6 +48,12 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
     formState: { isValid },
   } = methods;
 
+  const handleReset = () => {
+    reset();
+    handleClose();
+    setPlayerReady(false);
+  };
+
   const onSubmit = async ({ videoTitle, videoUrl }: NewVideoForm) => {
     try {
       const possibleThumbnail = getYoutubeThumbnail(videoUrl);
@@ -66,12 +72,10 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
 
       addVideo(newVideo);
       socket.emit('ADD_NEW_VIDEO', newVideo);
-      reset();
-      handleClose();
-      setPlayerReady(false);
-    } catch (error) {
-      console.log(error);
-      toast.error('Coś poszło nie tak...');
+      handleReset();
+    } catch {
+      handleReset();
+      toast.error(t('addVideoError'));
     }
   };
 
@@ -99,16 +103,18 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
                 {t('addVideoModal.buttonTxt')}
               </ButtonWithLoader>
             </AddVideoWrapper>
-            <SamplePlayer
-              ref={sampleVideoRef}
-              onReady={() => setPlayerReady(true)}
-              url={getValues('videoUrl')}
-              muted
-              autoPlay
-              playing={true}
-              width={0}
-              height={0}
-            />
+            {isValid ? (
+              <SamplePlayer
+                ref={sampleVideoRef}
+                onReady={() => setPlayerReady(true)}
+                url={getValues('videoUrl')}
+                muted
+                autoPlay
+                playing={true}
+                width={0}
+                height={0}
+              />
+            ) : null}
           </form>
         </FormProvider>
       </ModalContent>

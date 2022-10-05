@@ -17,6 +17,7 @@ export const PlaylistItemContent = styled(CardContent)`
   flex: 1;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
 `;
 
 export const PlaylistItemBox = styled(Box)`

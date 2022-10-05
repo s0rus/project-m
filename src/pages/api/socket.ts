@@ -34,6 +34,8 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
     socket.on('JOIN_USER', (userData) => {
       const { socketId, isAdmin, userId, username } = userData;
 
+      console.log(userData);
+
       if (socketId && userId && username) {
         if (isAdmin) {
           // ADMIN USER
@@ -54,9 +56,9 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
           userId: undefined,
           username: undefined,
         });
-      }
 
-      console.log(USERS);
+        console.log('LEADER: ', LEADER);
+      }
     });
 
     socket.on('disconnect', () => {
@@ -79,6 +81,8 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
           LEADER = null;
         }
       }
+
+      console.log('LEADER: ', LEADER);
     });
   };
 

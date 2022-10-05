@@ -1,16 +1,19 @@
 import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { InitialContextProps, PlaylistWithUsers, initialContextProps } from '../model/Playlist.model';
 
+import { queryParams } from '../utils/queryParams';
 import { toast } from 'react-toastify';
 import { trpc } from '@/utils/trpc';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useSocketContext } from '@/contexts/SocketContext';
+import { useTranslation } from 'react-i18next';
 
 const PlaylistContext = createContext<InitialContextProps>(initialContextProps);
 
 export const usePlaylistContext = () => useContext<InitialContextProps>(PlaylistContext);
 
 export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => {
+  const { t } = useTranslation();
   const { socket } = useSocketContext();
   const { isAdmin } = useAuthContext();
   const [currentVideo, setCurrentVideo] = useState<PlaylistWithUsers | undefined>(undefined);
@@ -20,26 +23,26 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     data: playlistData,
     isSuccess,
     isLoading: isPlaylistLoading,
-  } = trpc.useQuery(['playlist.get-all'], {
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    staleTime: Infinity,
-    cacheTime: Infinity,
-  });
-  const { data: playlistState, isSuccess: isPlaylistStateSuccess } = trpc.useQuery(['playlist.get-playlist-state'], {
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    staleTime: Infinity,
-    cacheTime: Infinity,
-  });
+  } = trpc.useQuery(['playlist.get-all'], queryParams);
+  const { data: playlistState, isSuccess: isPlaylistStateSuccess } = trpc.useQuery(
+    ['playlist.get-playlist-state'],
+    queryParams
+  );
   const { mutateAsync } = trpc.useMutation('playlist.delete-one');
   const { mutateAsync: mutatePlaylistState } = trpc.useMutation('protected-playlist.set-playlist-state');
 
   const properPlaylist = useMemo(
     () => playlist.filter((video) => video.videoId !== currentVideo?.videoId),
     [currentVideo, playlist]
+  );
+
+  const timeSum = useMemo(
+    () =>
+      (playlist as PlaylistWithUsers[]).reduce<number>(
+        (acc: number, curr: PlaylistWithUsers) => acc + curr.videoDuration,
+        0
+      ),
+    [playlist]
   );
 
   const cachedPlaylistData = useMemo(() => {
@@ -75,8 +78,10 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
 
       setCurrentVideo(filteredPlaylist[0]);
       setPlaylist(filteredPlaylist);
-    } catch {}
-  }, [currentVideo, playlist, mutateAsync, isAdmin]);
+    } catch {
+      toast.error(t('requestVideoError'));
+    }
+  }, [currentVideo, playlist, mutateAsync, isAdmin, t]);
 
   const togglePlaylistLocked = async () => {
     try {
@@ -86,7 +91,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
         setPlaylistLocked((prevLocked) => !prevLocked);
       }
     } catch {
-      toast.error('EHEHE');
+      toast.error(t('togglePlaylistError'));
     }
   };
 
@@ -105,8 +110,12 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     if (!socket) return;
 
     socket.on('RECEIVE_TOGGLE_PLAYLIST', () => setPlaylistLocked((prevLocked) => !prevLocked));
-
     socket.on('RECEIVE_NEW_VIDEO', (newVideo) => setPlaylist((prevPlaylist) => [...prevPlaylist, newVideo]));
+
+    return () => {
+      socket.off('RECEIVE_TOGGLE_PLAYING');
+      socket.off('RECEIVE_NEW_VIDEO');
+    };
   }, [socket]);
 
   const value = {
@@ -118,6 +127,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     togglePlaylistLocked,
     isPlaylistLoading,
     properPlaylist,
+    timeSum,
   };
 
   return <PlaylistContext.Provider value={value}>{children}</PlaylistContext.Provider>;

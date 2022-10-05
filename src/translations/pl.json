@@ -1,7 +1,6 @@
 {
   "logIn": "Zaloguj się",
   "logOut": "Wyloguj się",
-  "genericErrorMessage": "Ups! Coś poszło nie tak...",
   "cancelMute": "Anuluj wyciszenie",
   "video": {
     "thumbnailAlt": "Miniaturka filmu {{videoTitle}}",
@@ -28,5 +27,9 @@
       "title": "Aktualnie nic nie leci.",
       "subtitle": "Dodaj film, by zacząć oglądać."
     }
-  }
+  },
+  "genericErrorMessage": "Ups! Coś poszło nie tak...",
+  "addVideoError": "Wystąpił błąd podczas dodawania filmu...",
+  "requestVideoError": "Nie udało się pobrać kolejnego filmu...",
+  "togglePlaylistError": "Nie udało się zmienić stanu playlisty..."
 }

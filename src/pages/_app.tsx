@@ -1,43 +1,16 @@
-import 'react-toastify/dist/ReactToastify.css';
 import './_i18n';
 
-import { CssBaseline, ThemeProvider } from '@mui/material';
-
+import AllProviders from '@/utils/AllProviders';
 import type { AppRouter } from '../server/router';
 import type { AppType } from 'next/dist/shared/lib/utils';
-import { AuthContextProvider } from '@/contexts/AuthContext';
-import { PlayerContextProvider } from '@/domain/VideoPlayer/context/PlayerContext';
-import { PlaylistContextProvider } from '@/domain/Playlist/context/PlaylistContext';
-import { SessionProvider } from 'next-auth/react';
-import { SocketContextProvider } from '@/contexts/SocketContext';
-import { ToastContainer } from 'react-toastify';
 import superjson from 'superjson';
-import { theme } from '@/styles/theme';
 import { withTRPC } from '@trpc/next';
 
 const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => {
   return (
-    <SessionProvider session={session}>
-      <AuthContextProvider>
-        <SocketContextProvider>
-          <PlaylistContextProvider>
-            <PlayerContextProvider>
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Component {...pageProps} />
-                <ToastContainer
-                  position='bottom-left'
-                  autoClose={5000}
-                  closeButton={false}
-                  hideProgressBar={true}
-                  draggable={false}
-                />
-              </ThemeProvider>
-            </PlayerContextProvider>
-          </PlaylistContextProvider>
-        </SocketContextProvider>
-      </AuthContextProvider>
-    </SessionProvider>
+    <AllProviders session={session}>
+      <Component {...pageProps} />
+    </AllProviders>
   );
 };
 

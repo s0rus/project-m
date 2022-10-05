@@ -12,9 +12,11 @@ import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 
 interface ControlsBarProps {
   handlePlaying: () => void;
+  onMouseOver: () => void;
+  onMouseLeave: () => void;
 }
 
-const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying }) => {
+const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouseLeave }) => {
   const { isAdmin } = useAuthContext();
   const { handleSeek, seeking, setSeeking, seekTo, playerState } = usePlayerContext();
   const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo } = playerState;
@@ -42,7 +44,7 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying }) => {
   }, [seeking, handleSeekMouseUp]);
 
   return (
-    <ControlsBarWrapper controls={controlsVisible}>
+    <ControlsBarWrapper controls={controlsVisible} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
       <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
       <VolumeControl />
       <Timer islong={duration >= 3600 ? 1 : 0}>

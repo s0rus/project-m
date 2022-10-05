@@ -1,5 +1,6 @@
 import { Box, Slider, styled } from '@mui/material';
 
+import hexToRgba from 'hex-to-rgba';
 import { theme } from '@/styles/theme';
 
 export const ControlsBarWrapper = styled(Box)<{ controls: boolean }>`
@@ -11,6 +12,9 @@ export const ControlsBarWrapper = styled(Box)<{ controls: boolean }>`
 
   transition: transform 0.2s ease-in-out;
   transform: ${({ controls }) => (controls ? 'translateY(0px)' : 'translateY(80px)')};
+
+  border-radius: 0.5rem;
+  background-color: ${hexToRgba(theme.palette.background.paper, 0.2)};
 `;
 
 export const Seeker = styled(Slider)`

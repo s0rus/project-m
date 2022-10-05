@@ -18,6 +18,7 @@ export interface InitialContextProps {
   playlistLocked: boolean;
   togglePlaylistLocked: () => void;
   isPlaylistLoading: boolean;
+  timeSum: number;
 }
 
 export const initialContextProps: InitialContextProps = {
@@ -29,4 +30,5 @@ export const initialContextProps: InitialContextProps = {
   playlistLocked: true,
   togglePlaylistLocked: () => null,
   isPlaylistLoading: true,
+  timeSum: 0,
 };

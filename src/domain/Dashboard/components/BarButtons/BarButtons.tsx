@@ -1,6 +1,6 @@
 import { Button, Hidden } from '@mui/material';
 import { LogoutRounded, PlaylistAddRounded } from '@mui/icons-material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import AddVideoModal from '../AddVideoModal';
 import ButtonWithLoader from '@/components/shared/ButtonWithLoader';
@@ -15,10 +15,6 @@ const BarButtons = () => {
   const { isAdmin, isLoggedIn, isAuthLoading, authChange, loginWithTwitch, logoutOfTwitch } = useAuthContext();
   const { playlistLocked } = usePlaylistContext();
   const [modalOpen, setModalOpen] = useState(false);
-
-  useEffect(() => {
-    console.log(authChange);
-  }, [authChange]);
 
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);

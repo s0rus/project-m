@@ -203,14 +203,10 @@ export const theme = createTheme({
         },
 
         '.Toastify__toast': {
-          backgroundColor: `${hexToRgba(globalTheme.palette.primary.main, 0.2)}!important`,
+          backgroundColor: `${globalTheme.palette.background.paper}!important`,
           border: `1px solid ${globalTheme.palette.primary.main}`,
           borderRadius: '8px',
         },
-
-        // '.Toastify__toast--rtl': {
-        //   backgroundColor: hexToRgba(globalTheme.palette.primary.main, 0.9),
-        // },
 
         '.Toastify__toast-body': {
           color: globalTheme.palette.text.primary,

@@ -14,7 +14,7 @@ export const newVideoSchema = z.object({
     .max(titleBounds.MAX, { message: i18n.t('addVideoModal.titleTooLong') }),
   videoUrl: z
     .string()
-    .url({ message: 'URL jest nieprawidłowy.' })
+    .url({ message: i18n.t('addVideoModal.wrongUrl') })
     .refine((v) => ReactPlayer.canPlay(v), { message: i18n.t('addVideoModal.wrongUrl') }),
 });
 
