@@ -6,7 +6,7 @@ import React, { FC, useCallback, useEffect, useState } from 'react';
 import VolumeControl from '../VolumeControl';
 import { getPlayingStateIcon } from '../../model/VideoPlayer.model';
 import timeFormatter from '@/utils/timeFormatter';
-import useAuth from '@/hooks/useAuth';
+import { useAuthContext } from '@/contexts/AuthContext';
 import useFullscreen from '@/domain/VideoPlayer/hooks/useFullscreen';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 
@@ -15,7 +15,7 @@ interface ControlsBarProps {
 }
 
 const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying }) => {
-  const { isAdmin } = useAuth();
+  const { isAdmin } = useAuthContext();
   const { handleSeek, seeking, setSeeking, seekTo, playerState } = usePlayerContext();
   const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo } = playerState;
   const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);

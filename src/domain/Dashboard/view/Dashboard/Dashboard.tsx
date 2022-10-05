@@ -5,7 +5,7 @@ import DashboardBar from '../../components/DashboardBar';
 import Playlist from '@/domain/Playlist/view/Playlist';
 import React from 'react';
 import { toast } from 'react-toastify';
-import useAuth from '@/hooks/useAuth';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
   const { socket } = useSocketContext();
-  const { isAdmin } = useAuth();
+  const { isAdmin } = useAuthContext();
   const { t } = useTranslation();
   const { handleOnEnd } = usePlayerContext();
   const { togglePlaylistLocked } = usePlaylistContext();

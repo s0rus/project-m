@@ -3,7 +3,7 @@ import { InitialContextProps, PlaylistWithUsers, initialContextProps } from '../
 
 import { toast } from 'react-toastify';
 import { trpc } from '@/utils/trpc';
-import useAuth from '@/hooks/useAuth';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 
 const PlaylistContext = createContext<InitialContextProps>(initialContextProps);
@@ -12,7 +12,7 @@ export const usePlaylistContext = () => useContext<InitialContextProps>(Playlist
 
 export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const { socket } = useSocketContext();
-  const { isAdmin } = useAuth();
+  const { isAdmin } = useAuthContext();
   const [currentVideo, setCurrentVideo] = useState<PlaylistWithUsers | undefined>(undefined);
   const [playlistLocked, setPlaylistLocked] = useState<boolean>(true);
   const [playlist, setPlaylist] = useState<PlaylistWithUsers[] | []>([]);

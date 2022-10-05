@@ -19,7 +19,7 @@ import {
 
 import { LocalStorageKeys } from '@/utils/localStorageKeys';
 import ReactPlayer from 'react-player';
-import useAuth from '@/hooks/useAuth';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '../../Playlist/context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 
@@ -28,7 +28,7 @@ const PlayerContext = createContext<InitialContextProps>(initialContextProps);
 export const usePlayerContext = () => useContext<InitialContextProps>(PlayerContext);
 
 export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { isAdmin, currentUser, isAuthLoading } = useAuth();
+  const { isAdmin, currentUser, isAuthLoading } = useAuthContext();
   const { socket } = useSocketContext();
   const { currentVideo, requestNextVideo } = usePlaylistContext();
   const [playerState, setPlayerState] = useState<PlayerState>(initialPlayerState);

@@ -11,7 +11,7 @@ import ReactPlayer from 'react-player';
 import { getYoutubeThumbnail } from '@/domain/Dashboard/utils/youtubeUtils';
 import { toast } from 'react-toastify';
 import { trpc } from '@/utils/trpc';
-import useAuth from '@/hooks/useAuth';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
@@ -23,7 +23,7 @@ interface AddVideoModalProps {
 }
 
 const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
-  const { isAdmin } = useAuth();
+  const { isAdmin } = useAuthContext();
   const { socket } = useSocketContext();
   const { t } = useTranslation();
   const { addVideo, playlistLocked } = usePlaylistContext();

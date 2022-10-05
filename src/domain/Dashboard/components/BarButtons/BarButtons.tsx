@@ -1,21 +1,24 @@
 import { Button, Hidden } from '@mui/material';
 import { LogoutRounded, PlaylistAddRounded } from '@mui/icons-material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import AddVideoModal from '../AddVideoModal';
 import ButtonWithLoader from '@/components/shared/ButtonWithLoader';
 import ButtonsSkeleton from '../../skeletons/ButtonsSkeleton';
 import { Twitch } from '@/assets/logos/Twitch';
-import useAuth from '@/hooks/useAuth';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
 
 const BarButtons = () => {
-  const { isAdmin } = useAuth();
   const { t } = useTranslation();
-  const { isLoggedIn, isAuthLoading, authChange, loginWithTwitch, logoutOfTwitch } = useAuth();
+  const { isAdmin, isLoggedIn, isAuthLoading, authChange, loginWithTwitch, logoutOfTwitch } = useAuthContext();
   const { playlistLocked } = usePlaylistContext();
   const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    console.log(authChange);
+  }, [authChange]);
 
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
@@ -38,8 +41,8 @@ const BarButtons = () => {
             </Button>
             <ButtonWithLoader
               onClick={logoutOfTwitch}
-              loading={authChange}
-              disabled={authChange}
+              loading={authChange || isAuthLoading}
+              disabled={authChange || isAuthLoading}
               variant='contained'
               startIcon={<LogoutRounded />}
             >
@@ -52,8 +55,8 @@ const BarButtons = () => {
             </Button>
             <ButtonWithLoader
               onClick={logoutOfTwitch}
-              loading={authChange}
-              disabled={authChange}
+              loading={authChange || isAuthLoading}
+              disabled={authChange || isAuthLoading}
               variant='contained'
               iconVariant
             >
@@ -67,8 +70,8 @@ const BarButtons = () => {
           <Hidden lgDown>
             <ButtonWithLoader
               onClick={loginWithTwitch}
-              loading={authChange}
-              disabled={authChange}
+              loading={authChange || isAuthLoading}
+              disabled={authChange || isAuthLoading}
               variant='contained'
               startIcon={<Twitch />}
             >
@@ -78,8 +81,8 @@ const BarButtons = () => {
           <Hidden lgUp>
             <ButtonWithLoader
               onClick={loginWithTwitch}
-              loading={authChange}
-              disabled={authChange}
+              loading={authChange || isAuthLoading}
+              disabled={authChange || isAuthLoading}
               variant='contained'
               iconVariant
             >
