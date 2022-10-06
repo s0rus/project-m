@@ -3,6 +3,7 @@ import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffec
 import { Routes } from '@/server/router/routes';
 import { SocketProvider } from '@/server/sockets';
 import { io } from 'socket.io-client';
+import { toast } from 'react-toastify';
 import { useAuthContext } from './AuthContext';
 
 interface SocketContextProps {
@@ -39,6 +40,8 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
           username: currentUser.name,
         });
       });
+
+      socket.on('RECEIVE_TOAST', (message) => toast(message));
 
       socket.on('connect_error', (err: Error) => {
         console.error(`CONNECT_ERROR: ${err}`);

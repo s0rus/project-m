@@ -28,6 +28,10 @@
       "subtitle": "Dodaj film, by zacząć oglądać."
     }
   },
+  "toast": {
+    "playlistLocked": "{{username}} zablokował playliste",
+    "playlistUnlocked": "{{username}} odblokował playliste"
+  },
   "genericErrorMessage": "Ups! Coś poszło nie tak...",
   "addVideoError": "Wystąpił błąd podczas dodawania filmu...",
   "requestVideoError": "Nie udało się pobrać kolejnego filmu...",

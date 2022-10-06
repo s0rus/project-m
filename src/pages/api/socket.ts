@@ -3,6 +3,7 @@ import { NextApiResponseServerIO } from '../../types';
 import { ServerOptions } from 'socket.io';
 import { SocketProvider } from '@/server/sockets';
 import { UserData } from '@/server/sockets/SocketProvider';
+import toastHandler from '@/server/sockets/toastHandler';
 import videoHandler from '@/server/sockets/videoHandler';
 
 export default function SocketHandler(req: NextApiRequest, res: NextApiResponseServerIO) {
@@ -20,6 +21,7 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
 
   const onConnection = (socket: SocketProvider.ServerIO) => {
     videoHandler(socket);
+    toastHandler(socket);
 
     socket.on('REQUEST_PLAYER_STATE', () => {
       if (LEADER && LEADER.socketId) {

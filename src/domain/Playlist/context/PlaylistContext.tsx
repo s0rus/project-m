@@ -15,7 +15,7 @@ export const usePlaylistContext = () => useContext<InitialContextProps>(Playlist
 export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation();
   const { socket } = useSocketContext();
-  const { isAdmin } = useAuthContext();
+  const { isAdmin, currentUser } = useAuthContext();
   const [currentVideo, setCurrentVideo] = useState<PlaylistWithUsers | undefined>(undefined);
   const [playlistLocked, setPlaylistLocked] = useState<boolean>(true);
   const [playlist, setPlaylist] = useState<PlaylistWithUsers[] | []>([]);
@@ -88,6 +88,10 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
       if (isAdmin && socket) {
         await mutatePlaylistState({ newPlaylistState: !playlistLocked });
         socket.emit('TOGGLE_PLAYLIST');
+        socket.emit(
+          'SEND_TOAST',
+          t(playlistLocked ? 'toast.playlistUnlocked' : 'toast.playlistLocked', { username: currentUser.name })
+        );
         setPlaylistLocked((prevLocked) => !prevLocked);
       }
     } catch {
