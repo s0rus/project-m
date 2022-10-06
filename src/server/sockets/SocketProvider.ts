@@ -30,6 +30,7 @@ export interface ServerToClientEvents {
   RECEIVE_TOGGLE_PLAYLIST: () => void;
   RECEIVE_PLAYER_STATE: (playerState: EssentialPlayerState) => void;
   RECEIVE_REQUEST_PLAYER_STATE: (socketId: string) => void;
+  RECEIVE_NEW_LEADER: (userData: UserData) => void;
 }
 
 export interface ClientToServerEvents {
@@ -38,10 +39,9 @@ export interface ClientToServerEvents {
   ADD_NEW_VIDEO: (data: PlaylistWithUsers) => void;
   SKIP_VIDEO: () => void;
   TOGGLE_PLAYLIST: () => void;
-  REQUEST_PLAYER_STATE: (playedSecondsOnly?: boolean) => void;
+  REQUEST_PLAYER_STATE: () => void;
   SEND_PLAYER_STATE: (playerState: EssentialPlayerState, socketId: string) => void;
   JOIN_USER: (userData: UserData) => void;
-  DISCONNECT_USER: (userId: string | undefined) => void;
 }
 
 export interface InterServerEvents {

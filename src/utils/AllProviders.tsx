@@ -15,8 +15,8 @@ import { theme } from '@/styles/theme';
 const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ children, session }) => {
   return (
     <SessionProvider session={session}>
-      <SocketContextProvider>
-        <AuthContextProvider>
+      <AuthContextProvider>
+        <SocketContextProvider>
           <PlaylistContextProvider>
             <PlayerContextProvider>
               <ThemeProvider theme={theme}>
@@ -32,8 +32,8 @@ const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ chi
               </ThemeProvider>
             </PlayerContextProvider>
           </PlaylistContextProvider>
-        </AuthContextProvider>
-      </SocketContextProvider>
+        </SocketContextProvider>
+      </AuthContextProvider>
     </SessionProvider>
   );
 };

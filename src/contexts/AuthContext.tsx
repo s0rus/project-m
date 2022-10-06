@@ -8,13 +8,11 @@ import {
   useState,
   Dispatch,
   SetStateAction,
-  useEffect,
 } from 'react';
 import { useSession } from 'next-auth/react';
 import { type Session } from 'next-auth';
 import { useNewWindow } from '@/hooks/useNewWindow';
 import { Routes } from '@/server/router/routes';
-import { useSocketContext } from './SocketContext';
 
 interface InitialContextProps {
   session: Session | null;
@@ -57,7 +55,6 @@ const AuthContext = createContext<InitialContextProps>(initialContextProps);
 export const useAuthContext = () => useContext<InitialContextProps>(AuthContext);
 
 export const AuthContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { socket } = useSocketContext();
   const { data: session, status } = useSession();
   const [authChange, setAuthChange] = useState(false);
   const currentUser = useMemo(() => {

@@ -28,7 +28,7 @@ const PlayerContext = createContext<InitialContextProps>(initialContextProps);
 export const usePlayerContext = () => useContext<InitialContextProps>(PlayerContext);
 
 export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { isAdmin, currentUser, isAuthLoading } = useAuthContext();
+  const { isAdmin } = useAuthContext();
   const { socket } = useSocketContext();
   const { currentVideo, requestNextVideo } = usePlaylistContext();
   const [playerState, setPlayerState] = useState<PlayerState>(initialPlayerState);
@@ -199,22 +199,6 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
       socket.off('RECEIVE_PLAYER_STATE');
     };
   }, [socket, togglePlaying, handleOnEnd, seekTo]);
-
-  useEffect(() => {
-    if (!socket) return;
-
-    if (currentUser && !isAuthLoading) {
-      socket.on('connect', () => {
-        console.log('CONNECTED', socket.id);
-        socket.emit('JOIN_USER', {
-          socketId: socket.id,
-          isAdmin: currentUser.isAdmin,
-          userId: currentUser.id,
-          username: currentUser.name,
-        });
-      });
-    }
-  }, [socket, currentUser, isAuthLoading]);
 
   const value = {
     playerState,

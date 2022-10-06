@@ -34,8 +34,6 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
     socket.on('JOIN_USER', (userData) => {
       const { socketId, isAdmin, userId, username } = userData;
 
-      console.log(userData);
-
       if (socketId && userId && username) {
         if (isAdmin) {
           // ADMIN USER
@@ -43,6 +41,7 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
 
           if (!LEADER || !LEADER.isAdmin) {
             LEADER = userData;
+            socket.broadcast.emit('RECEIVE_NEW_LEADER', LEADER as UserData);
           }
         } else {
           // REGULAR USER WITH AUTH
@@ -56,23 +55,27 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
           userId: undefined,
           username: undefined,
         });
-
-        console.log('LEADER: ', LEADER);
       }
+
+      console.log('-----------ON_JOIN----------');
+      console.log('USER JOINED: ', userData);
+      console.log('LEADER: ', LEADER);
+      console.log('USERS ARRAY:', USERS);
+      console.log('ADMINS ARRAY:', ADMINS);
+      console.log('--------------------------');
     });
 
     socket.on('disconnect', () => {
-      const PRESENT_USER = USERS.find((user) => user.socketId == socket.id);
+      const PRESENT_USER = [...USERS, ...ADMINS].find((user) => user.socketId == socket.id);
       const IS_PRESENT_USER_LEADER = PRESENT_USER?.socketId === LEADER?.socketId;
 
       if (PRESENT_USER && PRESENT_USER.isAdmin) {
-        ADMINS = ADMINS.filter((admin) => admin != PRESENT_USER);
+        ADMINS = ADMINS.filter((admin) => admin.socketId != PRESENT_USER.socketId);
       } else {
-        USERS = USERS.filter((user) => user != PRESENT_USER);
+        USERS = USERS.filter((user) => user.socketId != PRESENT_USER?.socketId);
       }
 
       if (IS_PRESENT_USER_LEADER) {
-        LEADER = null;
         if (ADMINS.length) {
           LEADER = ADMINS[Math.floor(Math.random() * ADMINS.length)];
         } else if (USERS.length) {
@@ -80,9 +83,16 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
         } else {
           LEADER = null;
         }
+        socket.broadcast.emit('RECEIVE_NEW_LEADER', LEADER as UserData);
       }
 
-      console.log('LEADER: ', LEADER);
+      console.log('--------ON_DISCONNECT-----');
+      console.log('USER THAT DISSCONNECTED: ', PRESENT_USER);
+      console.log('WAS THIS USER LEADER?', IS_PRESENT_USER_LEADER);
+      console.log('USERS ARRAY:', USERS);
+      console.log('ADMINS ARRAY:', ADMINS);
+      console.log('CURRENT LEADER', LEADER);
+      console.log('--------------------------');
     });
   };
 

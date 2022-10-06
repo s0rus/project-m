@@ -1,9 +1,10 @@
 import { Button, Grid, Paper, Typography } from '@mui/material';
 import { DashboardContainer, DashboardWrapper } from './Dashboard.styles';
+import React, { useEffect, useState } from 'react';
 
 import DashboardBar from '../../components/DashboardBar';
 import Playlist from '@/domain/Playlist/view/Playlist';
-import React from 'react';
+import { UserData } from '@/server/sockets/SocketProvider';
 import { toast } from 'react-toastify';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
@@ -17,6 +18,13 @@ const Dashboard = () => {
   const { t } = useTranslation();
   const { handleOnEnd } = usePlayerContext();
   const { togglePlaylistLocked } = usePlaylistContext();
+  const [leader, setLeader] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on('RECEIVE_NEW_LEADER', (userData) => setLeader(userData));
+  }, [socket]);
 
   return (
     <DashboardWrapper>
@@ -49,6 +57,7 @@ const Dashboard = () => {
                     Toggle Playlist
                   </Button>
                   isAdmin: {isAdmin ? 'yup' : 'nopers'}
+                  <em>{JSON.stringify(leader)}</em>
                 </Paper>
               </Grid>
             </Grid>
