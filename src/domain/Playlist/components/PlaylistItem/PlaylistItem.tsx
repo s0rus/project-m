@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 
 import { ListItem } from '@mui/material';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
-import VideoThumbnail from '@/components/shared/VideoThumbnail/';
+import VideoThumbnail from '@/components/VideoThumbnail';
 import { useTranslation } from 'react-i18next';
 
 interface PlaylistItemsProps {

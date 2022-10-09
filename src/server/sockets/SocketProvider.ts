@@ -2,6 +2,7 @@ import { Server, ServerOptions, Socket as ServerSocket } from 'socket.io';
 
 import { Socket as ClientSocket } from 'socket.io-client';
 import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
+import { ToastTypes } from '@/utils/ToastTypes';
 
 export interface UserData {
   username?: string | null;
@@ -31,7 +32,7 @@ export interface ServerToClientEvents {
   RECEIVE_PLAYER_STATE: (playerState: EssentialPlayerState) => void;
   RECEIVE_REQUEST_PLAYER_STATE: (socketId: string) => void;
   RECEIVE_NEW_LEADER: (userData: UserData) => void;
-  RECEIVE_TOAST: (message: string) => void;
+  RECEIVE_TOAST: (message: string, type: ToastTypes) => void;
 }
 
 export interface ClientToServerEvents {
@@ -43,7 +44,8 @@ export interface ClientToServerEvents {
   REQUEST_PLAYER_STATE: () => void;
   SEND_PLAYER_STATE: (playerState: EssentialPlayerState, socketId: string) => void;
   JOIN_USER: (userData: UserData) => void;
-  SEND_TOAST: (message: string) => void;
+  UPDATE_USER: (userData: UserData) => void;
+  SEND_TOAST: (message: string, type: ToastTypes) => void;
 }
 
 export interface InterServerEvents {

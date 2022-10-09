@@ -6,7 +6,7 @@ import React, { FC, PropsWithChildren } from 'react';
 import { AuthContextProvider } from '@/contexts/AuthContext';
 import { PlayerContextProvider } from '@/domain/VideoPlayer/context/PlayerContext';
 import { PlaylistContextProvider } from '@/domain/Playlist/context/PlaylistContext';
-import { Session } from 'next-auth';
+import { type Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import { SocketContextProvider } from '@/contexts/SocketContext';
 import { ToastContainer } from 'react-toastify';
@@ -14,7 +14,7 @@ import { theme } from '@/styles/theme';
 
 const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ children, session }) => {
   return (
-    <SessionProvider session={session}>
+    <SessionProvider session={session} refetchOnWindowFocus={false}>
       <AuthContextProvider>
         <SocketContextProvider>
           <PlaylistContextProvider>

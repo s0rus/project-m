@@ -1,12 +1,17 @@
 import { useCallback, useEffect } from 'react';
 
 import { signOut } from 'next-auth/react';
+import { useSocketContext } from '@/contexts/SocketContext';
 
 const SignInPage = () => {
+  const { socket } = useSocketContext();
+
   const handleLogout = useCallback(async () => {
+    if (!socket) return;
+    socket.off('connect');
     await signOut();
     window.close();
-  }, []);
+  }, [socket]);
 
   useEffect(() => {
     handleLogout();

@@ -1,4 +1,4 @@
-import './_i18n';
+import '../translations/i18n';
 
 import AllProviders from '@/utils/AllProviders';
 import type { AppRouter } from '../server/router';

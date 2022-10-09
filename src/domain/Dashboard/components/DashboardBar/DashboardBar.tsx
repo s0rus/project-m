@@ -3,7 +3,7 @@ import { Divider, Grid } from '@mui/material';
 
 import BarButtons from '../BarButtons';
 import React from 'react';
-import VideoCard from '@/components/shared/VideoCard';
+import VideoCard from '@/components/VideoCard';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 
 const DashboardBar = () => {

@@ -7,6 +7,7 @@ import { trpc } from '@/utils/trpc';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
+import { ToastTypes } from '@/utils/ToastTypes';
 
 const PlaylistContext = createContext<InitialContextProps>(initialContextProps);
 
@@ -83,21 +84,22 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     }
   }, [currentVideo, playlist, mutateAsync, isAdmin, t]);
 
-  const togglePlaylistLocked = async () => {
+  const togglePlaylistLocked = useCallback(async () => {
     try {
       if (isAdmin && socket) {
         await mutatePlaylistState({ newPlaylistState: !playlistLocked });
         socket.emit('TOGGLE_PLAYLIST');
         socket.emit(
           'SEND_TOAST',
-          t(playlistLocked ? 'toast.playlistUnlocked' : 'toast.playlistLocked', { username: currentUser.name })
+          t(playlistLocked ? 'toast.playlistUnlocked' : 'toast.playlistLocked', { username: currentUser.name }),
+          playlistLocked ? ToastTypes.PlaylistUnlocked : ToastTypes.PlaylistLocked
         );
         setPlaylistLocked((prevLocked) => !prevLocked);
       }
     } catch {
       toast.error(t('togglePlaylistError'));
     }
-  };
+  }, [currentUser.name, isAdmin, mutatePlaylistState, t, playlistLocked, socket]);
 
   useEffect(() => {
     if (currentVideo) return;
@@ -122,17 +124,30 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     };
   }, [socket]);
 
-  const value = {
-    currentVideo,
-    playlist,
-    requestNextVideo,
-    addVideo,
-    playlistLocked,
-    togglePlaylistLocked,
-    isPlaylistLoading,
-    properPlaylist,
-    timeSum,
-  };
+  const value = useMemo(
+    () => ({
+      currentVideo,
+      playlist,
+      requestNextVideo,
+      addVideo,
+      playlistLocked,
+      togglePlaylistLocked,
+      isPlaylistLoading,
+      properPlaylist,
+      timeSum,
+    }),
+    [
+      currentVideo,
+      playlist,
+      requestNextVideo,
+      addVideo,
+      playlistLocked,
+      togglePlaylistLocked,
+      isPlaylistLoading,
+      properPlaylist,
+      timeSum,
+    ]
+  );
 
   return <PlaylistContext.Provider value={value}>{children}</PlaylistContext.Provider>;
 };

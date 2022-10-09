@@ -6,7 +6,6 @@ import { Box } from '@mui/material';
 import Dashboard from '@/domain/Dashboard/view/Dashboard';
 import Head from 'next/head';
 import type { NextPage } from 'next';
-import React from 'react';
 import SimpleBar from 'simplebar-react';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import VideoPlayer from '@/domain/VideoPlayer/view/VideoPlayer';
@@ -26,9 +25,9 @@ const Home: NextPage = () => {
             <Dashboard />
           </SimpleBar>
         </MainContent>
-        {/* <Box>
+        <Box>
           <TwitchChat />
-        </Box> */}
+        </Box>
       </MainLayout>
     </>
   );

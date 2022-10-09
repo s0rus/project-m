@@ -1,7 +1,8 @@
-import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useState } from 'react';
 
 import { Routes } from '@/server/router/routes';
 import { SocketProvider } from '@/server/sockets';
+import { UserData } from '@/server/sockets/SocketProvider';
 import { io } from 'socket.io-client';
 import { toast } from 'react-toastify';
 import { useAuthContext } from './AuthContext';
@@ -10,17 +11,25 @@ interface SocketContextProps {
   socket: SocketProvider.ClientIO;
 }
 
-type InitialContextProps = SocketContextProps | Record<string, never>;
+type SocketValueProps = SocketContextProps | Record<string, never>;
+
+interface InitialContextProps {
+  socket: SocketProvider.ClientIO | Record<string, never>;
+  leader: UserData | null;
+}
 
 let socket: SocketProvider.ClientIO;
-const SocketContext = createContext<InitialContextProps>({});
+const SocketContext = createContext<InitialContextProps>({
+  socket: {},
+  leader: null,
+});
 
 export const useSocketContext = () => useContext<InitialContextProps>(SocketContext);
 
 export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { currentUser, isAuthLoading } = useAuthContext();
-  const [value, setValue] = useState<InitialContextProps>({});
-  const socketValue = useMemo(() => value, [value]);
+  const { currentUser, isAuthLoading, authChange } = useAuthContext();
+  const [value, setValue] = useState<SocketValueProps>({});
+  const [leader, setLeader] = useState<UserData | null>(null);
 
   const socketInitializer = useCallback(async () => {
     if (currentUser && !isAuthLoading) {
@@ -42,6 +51,7 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
       });
 
       socket.on('RECEIVE_TOAST', (message) => toast(message));
+      socket.on('RECEIVE_NEW_LEADER', (userData) => setLeader(userData));
 
       socket.on('connect_error', (err: Error) => {
         console.error(`CONNECT_ERROR: ${err}`);
@@ -50,8 +60,34 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [currentUser, isAuthLoading]);
 
   useEffect(() => {
+    if (!socket) return;
+
+    if (currentUser && !authChange) {
+      console.log('INVOKED', currentUser);
+      console.log('UPDATE_SOCKET', socket.id);
+      socket.emit('UPDATE_USER', {
+        socketId: socket.id,
+        isAdmin: currentUser.isAdmin,
+        userId: currentUser.id,
+        username: currentUser.name,
+      });
+    }
+  }, [authChange, currentUser]);
+
+  useEffect(() => {
+    if (socket) return;
+
     socketInitializer();
   }, [socketInitializer]);
 
-  return <SocketContext.Provider value={socketValue}>{children}</SocketContext.Provider>;
+  return (
+    <SocketContext.Provider
+      value={{
+        socket: value.socket,
+        leader,
+      }}
+    >
+      {children}
+    </SocketContext.Provider>
+  );
 };

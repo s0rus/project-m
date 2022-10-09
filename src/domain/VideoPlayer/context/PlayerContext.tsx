@@ -35,9 +35,9 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [seeking, setSeeking] = useState(false);
   const [playerRef, setPlayerRef] = useState<MutableRefObject<ReactPlayer> | null>(null);
 
-  const seekTo = useCallback((seconds: number) => playerRef?.current.seekTo(seconds, 'seconds'), [playerRef]);
-  const getDuration = useCallback(() => playerRef?.current.getDuration(), [playerRef]);
-  const getPlayedSeconds = useCallback(() => playerRef?.current.getCurrentTime(), [playerRef]);
+  const seekTo = useCallback((seconds: number) => playerRef?.current?.seekTo(seconds, 'seconds'), [playerRef]);
+  const getDuration = useCallback(() => playerRef?.current?.getDuration() || 0, [playerRef]);
+  const getPlayedSeconds = useCallback(() => playerRef?.current?.getCurrentTime() || 0, [playerRef]);
   const isPlayerPlaying = useMemo(() => playerState.isPlaying, [playerState.isPlaying]);
 
   useEffect(() => {
@@ -200,22 +200,40 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     };
   }, [socket, togglePlaying, handleOnEnd, seekTo]);
 
-  const value = {
-    playerState,
-    setPlayerState,
-    seekTo,
-    setPlayerRef,
-    handleProgress,
-    handleOnEnd,
-    togglePlaying,
-    handleSeek,
-    seeking,
-    setSeeking,
-    toggleMuted,
-    setVolume,
-    toggleControls,
-    disableInitialMute,
-  };
+  const value = useMemo(
+    () => ({
+      playerState,
+      setPlayerState,
+      seekTo,
+      setPlayerRef,
+      handleProgress,
+      handleOnEnd,
+      togglePlaying,
+      handleSeek,
+      seeking,
+      setSeeking,
+      toggleMuted,
+      setVolume,
+      toggleControls,
+      disableInitialMute,
+    }),
+    [
+      playerState,
+      setPlayerState,
+      seekTo,
+      setPlayerRef,
+      handleProgress,
+      handleOnEnd,
+      togglePlaying,
+      handleSeek,
+      seeking,
+      setSeeking,
+      toggleMuted,
+      setVolume,
+      toggleControls,
+      disableInitialMute,
+    ]
+  );
 
   return <PlayerContext.Provider value={value}>{children}</PlayerContext.Provider>;
 };

@@ -1,5 +1,5 @@
 import ReactPlayer from 'react-player';
-import i18n from '@/pages/_i18n';
+import i18n from '@/translations/i18n';
 import { z } from 'zod';
 
 export const titleBounds = {

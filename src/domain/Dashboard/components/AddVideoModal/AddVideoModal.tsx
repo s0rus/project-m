@@ -4,8 +4,8 @@ import { Modal, Typography } from '@mui/material';
 import { NewVideoForm, newVideoSchema } from '../../model/NewVideo.model';
 import React, { FC, useRef, useState } from 'react';
 
-import ButtonWithLoader from '@/components/shared/ButtonWithLoader';
-import FormInput from '@/components/shared/FormInput';
+import ButtonWithLoader from '@/components/ButtonWithLoader';
+import FormInput from '@/components/FormInput';
 import { PlaylistAddCheck } from '@mui/icons-material';
 import ReactPlayer from 'react-player';
 import { getYoutubeThumbnail } from '@/domain/Dashboard/utils/youtubeUtils';

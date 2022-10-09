@@ -3,7 +3,7 @@ import { LogoutRounded, PlaylistAddRounded } from '@mui/icons-material';
 import React, { useState } from 'react';
 
 import AddVideoModal from '../AddVideoModal';
-import ButtonWithLoader from '@/components/shared/ButtonWithLoader';
+import ButtonWithLoader from '@/components/ButtonWithLoader';
 import ButtonsSkeleton from '../../skeletons/ButtonsSkeleton';
 import { Twitch } from '@/assets/logos/Twitch';
 import { useAuthContext } from '@/contexts/AuthContext';

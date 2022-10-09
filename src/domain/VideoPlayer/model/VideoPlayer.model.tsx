@@ -14,7 +14,6 @@ export interface PlayerState {
   controlsVisible: boolean;
   initialMute: boolean;
   activeVideo: Playlist | undefined;
-  localPause: boolean;
 }
 
 export const initialPlayerState: PlayerState = {
@@ -27,7 +26,6 @@ export const initialPlayerState: PlayerState = {
   controlsVisible: true,
   initialMute: true,
   activeVideo: undefined,
-  localPause: false,
 };
 
 export interface InitialContextProps {

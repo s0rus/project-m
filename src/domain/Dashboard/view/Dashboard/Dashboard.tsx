@@ -1,10 +1,9 @@
 import { Button, Grid, Paper, Typography } from '@mui/material';
 import { DashboardContainer, DashboardWrapper } from './Dashboard.styles';
-import React, { useEffect, useState } from 'react';
 
 import DashboardBar from '../../components/DashboardBar';
 import Playlist from '@/domain/Playlist/view/Playlist';
-import { UserData } from '@/server/sockets/SocketProvider';
+import React from 'react';
 import { toast } from 'react-toastify';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
@@ -13,18 +12,11 @@ import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
-  const { socket } = useSocketContext();
+  const { socket, leader } = useSocketContext();
   const { isAdmin } = useAuthContext();
   const { t } = useTranslation();
   const { handleOnEnd } = usePlayerContext();
   const { togglePlaylistLocked } = usePlaylistContext();
-  const [leader, setLeader] = useState<UserData | null>(null);
-
-  useEffect(() => {
-    if (!socket) return;
-
-    socket.on('RECEIVE_NEW_LEADER', (userData) => setLeader(userData));
-  }, [socket]);
 
   return (
     <DashboardWrapper>
@@ -57,7 +49,8 @@ const Dashboard = () => {
                     Toggle Playlist
                   </Button>
                   isAdmin: {isAdmin ? 'yup' : 'nopers'}
-                  <em>{JSON.stringify(leader)}</em>
+                  <br />
+                  currentLeader: {JSON.stringify(leader, null, 2)}
                 </Paper>
               </Grid>
             </Grid>

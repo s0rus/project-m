@@ -65,7 +65,7 @@ const globalTheme = {
   },
 
   shape: {
-    borderRadius: '8px',
+    borderRadius: '0.5rem',
   },
   spacing: 8,
 };
@@ -198,14 +198,15 @@ export const theme = createTheme({
           '&::before': {
             background: `${globalTheme.palette.primary.main}!important`,
             pointerEvents: 'all!important',
-            borderRadius: '8px!important',
+            borderRadius: '0.5rem!important',
           },
         },
 
         '.Toastify__toast': {
           backgroundColor: `${globalTheme.palette.background.paper}!important`,
           border: `1px solid ${globalTheme.palette.primary.main}`,
-          borderRadius: '8px',
+          borderRadius: '0.5rem',
+          width: '360px',
         },
 
         '.Toastify__toast-body': {
