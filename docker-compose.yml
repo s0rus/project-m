@@ -5,8 +5,8 @@ services:
     image: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: databasem
-      MYSQL_DATABASE: mpassword
+      MYSQL_ROOT_PASSWORD: mpassword
+      MYSQL_DATABASE: databasem
   app:
     platform: "linux/amd64"
     build:
