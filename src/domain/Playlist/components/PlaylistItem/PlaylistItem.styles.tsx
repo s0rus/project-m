@@ -1,28 +1,30 @@
 import { Avatar, Box, Card, CardContent, Stack, styled } from '@mui/material';
-import { gradients, theme } from '@/styles/theme';
+import { theme } from '@/styles/theme';
 
 export const PlaylistItemWrapper = styled(Card)`
   width: 100%;
-
+  height: 100%;
   display: flex;
-  background: ${gradients.currentVideo};
-  border-radius: 4px;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  transition: 0.3s ease-in-out;
+  &:hover{
+    transform: scale(0.95,0.95);
+    background: ${theme.palette.background.paper};
+  }
 `;
 
 export const PlaylistItemContent = styled(CardContent)`
   width: 100%;
   max-width: 100%;
-
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
 `;
 
 export const PlaylistItemBox = styled(Box)`
   width: 100%;
-
   display: flex;
   overflow: hidden;
 `;
@@ -44,5 +46,4 @@ export const AddedByWrapper = styled(Stack)`
 
 export const AddedByAvatar = styled(Avatar)`
   border-radius: 4px;
-  border: 1px solid ${theme.palette.primary.main};
 `;

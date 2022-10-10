@@ -5,7 +5,8 @@
   "video": {
     "thumbnailAlt": "Thumbnail of the video titled {{videoTitle}}",
     "add": "Add video",
-    "addedBy": "Added by"
+    "addedBy": "Added by",
+    "skip": "Skip video"
   },
   "addVideoModal": {
     "header": "Add video to the queue",
@@ -15,6 +16,16 @@
     "titleRequired": "Title is required",
     "titleTooLong": "The title can have up to 30 characters.",
     "wrongUrl": "URL is invalid."
+  },
+  "options":{
+    "optionsTitle": "Options",
+    "twitchTitle": "Twitch",
+    "chatTitle": "Chat",
+    "camTitle": "Streamer cam",
+    "twitchSubTitleLOGIN": "Log in to add movies.",
+    "twitchSubTitleLOGOUT": "Log out.",
+    "chatSubTitle": "Chat visibility.",
+    "camSubTitle": "Streamer cam visibility."
   },
   "playlist": {
     "header": "Playlist",
@@ -28,12 +39,20 @@
       "subtitle": "Add video to start watching."
     }
   },
+  "Navigation": {
+    "discord": "Discord",
+    "twitch": "Twitch",
+    "regulations": "Regulations"
+  },
   "toast": {
-    "playlistLocked": "{{username}} has locked the playlist.",
-    "playlistUnlocked": "{{username}} has unlocked the playlist."
+    "playlistLocked": "🛡️{{username}} has locked the playlist.",
+    "playlistUnlocked": "🛡️{{username}} has unlocked the playlist.",
+    "skipVideo": "🛡️ {{username}} skipped the video",
+    "skipProgress": "🛡️ {{username}} changed the video time" 
   },
   "genericErrorMessage": "Whoops! Something went wrong...",
   "addVideoError": "There was an error while adding video...",
   "requestVideoError": "The next video couldn't be fetched...",
+  "skipVideoError": "Could not skip the video...",
   "togglePlaylistError": "State of the playlist couldn't be changed..."
 }

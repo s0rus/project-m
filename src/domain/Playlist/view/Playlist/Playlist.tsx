@@ -1,4 +1,5 @@
 import { AccessTimeFilledRounded, AutoAwesomeMotionRounded } from '@mui/icons-material';
+import { List, Tooltip, Typography } from '@mui/material';
 import {
   EmptyPlaylistBox,
   PlaylistContainer,
@@ -6,24 +7,51 @@ import {
   PlaylistHeader,
   PlaylistWrapper,
 } from './Playlist.styles';
-import { List, Tooltip, Typography } from '@mui/material';
-
+import React, { useMemo } from 'react';
+import { useAuthContext } from '@/contexts/AuthContext';
 import PlaylistItem from '../../components/PlaylistItem';
-import React from 'react';
+import { PlaylistWithUsers } from '../../model/Playlist.model';
 import timeFormatter from '@/utils/timeFormatter';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
+import Image from 'next/image';
+import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
+import { ButtonLocker } from '@/styles/style';
 
 const Playlist = () => {
   const { t } = useTranslation();
-  const { timeSum, properPlaylist, playlistLocked } = usePlaylistContext();
+  const { playlist, properPlaylist, playlistLocked } = usePlaylistContext();
   const [animatedList] = useAutoAnimate();
+  const { togglePlaylistLocked } = usePlaylistContext();
+  const timeSum = useMemo(
+    () =>
+      (playlist as PlaylistWithUsers[]).reduce<number>(
+        (acc: number, curr: PlaylistWithUsers) => acc + curr.videoDuration,
+        0
+      ),
+    [playlist]
+  );
+
+
 
   return (
     <>
       <PlaylistWrapper locked={playlistLocked ? 1 : 0}>
         <PlaylistHeader>
+        {playlistLocked ? (
+
+        <ButtonLocker>  
+        <LockOutlinedIcon onClick={() => togglePlaylistLocked()} style={{color: 'red'}} />
+        </ButtonLocker>
+        ) : (
+          <ButtonLocker> 
+         <LockOpenOutlinedIcon  onClick={() => togglePlaylistLocked()} style={{color: 'green'}} />
+         </ButtonLocker>
+         )} 
+
           <Typography variant='h2'>{t('playlist.header')}</Typography>
           <Tooltip title={t('playlist.tooltip.videoCount')}>
             <PlaylistDetail>
@@ -47,7 +75,7 @@ const Playlist = () => {
             ))
           ) : (
             <EmptyPlaylistBox>
-              <Typography variant='h4'>{t('playlist.empty')}</Typography>
+              <Typography variant='h4'>{t('playlist.empty')} <div style={{marginTop: '10px', marginLeft: '40%'}} > <Image src={MadgeIcon} alt='Madge' height={48} width={48} /></div>  </Typography>
             </EmptyPlaylistBox>
           )}
         </PlaylistContainer>

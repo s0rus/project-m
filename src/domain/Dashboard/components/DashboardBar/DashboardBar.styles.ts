@@ -9,14 +9,12 @@ export const DashboardBarWrapper = styled(Box)`
 export const DashboardBarContainer = styled(Grid)`
   min-height: 100px;
   height: 100%;
-
   justify-content: space-between;
 `;
 
 export const DashboardBarButtons = styled(Stack)`
   width: 100%;
   height: 100%;
-
   display: flex;
   flex-direction: row;
   align-items: center;

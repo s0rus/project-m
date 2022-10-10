@@ -1,19 +1,22 @@
 import { Avatar, Box, Card, CardContent, Stack, styled } from '@mui/material';
-import { gradients, theme } from '@/styles/theme';
+import { theme } from '@/styles/theme';
 
 export const VideoCardWrapper = styled(Card)`
   width: 100%;
   height: 100%;
-
+  margin-bottom: -10px;
   display: flex;
-  background: ${gradients.currentVideo};
-  border-radius: 4px;
+  background-color: rgba(255,255,255,0.1);
+  transition: 0.3s ease-in-out;
+  &:hover{
+    transform: scale(0.95,0.95);
+    background: ${theme.palette.background.paper}
+  }
 `;
 
 export const VideoContent = styled(CardContent)`
   width: 100%;
   max-width: 100%;
-
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -22,7 +25,6 @@ export const VideoContent = styled(CardContent)`
 
 export const VideoBox = styled(Box)`
   width: 100%;
-
   display: flex;
   overflow: hidden;
 `;
@@ -50,8 +52,7 @@ export const AddedByAvatar = styled(Avatar)`
 export const EmptyVideoCard = styled(Box)`
   width: 100%;
   height: 100%;
-  padding-left: 1rem;
-
+  padding-left: 2rem;
   display: flex;
   justify-content: center;
   flex-flow: column nowrap;

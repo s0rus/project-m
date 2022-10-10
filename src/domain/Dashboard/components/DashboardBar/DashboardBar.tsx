@@ -1,6 +1,6 @@
 import { DashboardBarButtons, DashboardBarContainer, DashboardBarWrapper } from './DashboardBar.styles';
 import { Divider, Grid } from '@mui/material';
-
+import { theme } from '@/styles/theme';
 import BarButtons from '../BarButtons';
 import React from 'react';
 import VideoCard from '@/components/VideoCard';
@@ -23,7 +23,7 @@ const DashboardBar = () => {
           </Grid>
         </DashboardBarContainer>
       </DashboardBarWrapper>
-      <Divider />
+      <Divider style={{background: `${theme.palette.primary.main}`}} />
     </>
   );
 };

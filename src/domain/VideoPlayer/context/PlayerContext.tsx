@@ -16,25 +16,27 @@ import {
   initialContextProps,
   initialPlayerState,
 } from '../model/VideoPlayer.model';
-
+import { ToastTypes } from '@/utils/ToastTypes';
 import { LocalStorageKeys } from '@/utils/localStorageKeys';
 import ReactPlayer from 'react-player';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '../../Playlist/context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 const PlayerContext = createContext<InitialContextProps>(initialContextProps);
 
 export const usePlayerContext = () => useContext<InitialContextProps>(PlayerContext);
 
 export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { isAdmin } = useAuthContext();
+  const { isAdmin, currentUser } = useAuthContext();
   const { socket } = useSocketContext();
   const { currentVideo, requestNextVideo } = usePlaylistContext();
   const [playerState, setPlayerState] = useState<PlayerState>(initialPlayerState);
   const [seeking, setSeeking] = useState(false);
   const [playerRef, setPlayerRef] = useState<MutableRefObject<ReactPlayer> | null>(null);
-
+  const { t } = useTranslation();
   const seekTo = useCallback((seconds: number) => playerRef?.current?.seekTo(seconds, 'seconds'), [playerRef]);
   const getDuration = useCallback(() => playerRef?.current?.getDuration() || 0, [playerRef]);
   const getPlayedSeconds = useCallback(() => playerRef?.current?.getCurrentTime() || 0, [playerRef]);
@@ -116,6 +118,11 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
             playedSeconds: newPlayedSeconds,
           };
         });
+        socket.emit(
+          'SEND_TOAST',
+          t('toast.skipProgress', { username: currentUser.name }),
+           ToastTypes.VideoSeeked,
+        );
       }
     },
     [isAdmin, socket]
@@ -152,6 +159,17 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     });
 
     requestNextVideo();
+    if (isAdmin) {
+      try{
+        socket.emit(
+          'SEND_TOAST',
+          t('toast.skipVideo', { username: currentUser.name }),
+           ToastTypes.VideoSkipped,
+        );
+      }
+      catch {
+        toast.error(t('skipVideoError'));}
+  }
   }, [requestNextVideo]);
 
   useEffect(() => {

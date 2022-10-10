@@ -7,37 +7,44 @@ const globalTheme = {
     h1: {
       fontWeight: 700,
       fontSize: '2.5rem',
+      cursor: 'default',
     },
     h2: {
       fontWeight: 600,
       fontSize: '1.8rem',
+      cursor: 'default',
     },
     h3: {
       fontWeight: 500,
       fontSize: '1.5rem',
+      cursor: 'default',
     },
     h4: {
       fontWeight: 600,
       fontSize: '1.2rem',
+      cursor: 'default',
     },
     h5: {
       fontWeight: 600,
       fontSize: '1rem',
+      cursor: 'default',
     },
     subtitle1: {
       fontWeight: '700',
       fontSize: '1.2rem',
+      cursor: 'default',
     },
     subtitle2: {
       fontWeight: 400,
       fontSize: '0.85rem',
+      cursor: 'default',
     },
   },
 
   palette: {
     primary: {
-      main: '#E01673',
-      light: '#F91880',
+      main: '#7c3dda',
+      light: '#6430ff',
       contrastText: '#EFEFF1',
     },
 
@@ -65,25 +72,22 @@ const globalTheme = {
   },
 
   shape: {
-    borderRadius: '0.5rem',
+    borderRadius: '8px',
   },
   spacing: 8,
 };
 
 export const gradients = {
-  gradientPaper: 'linear-gradient(220deg, rgba(14,14,16,0) 0%, rgba(14,14,16,1) 80%)',
+  gradientPaper: '#18181b',
   playlistUnlocked: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.success.light, 0)} 0%,  ${hexToRgba(
     globalTheme.palette.success.dark,
-    0.1
+    0.2
   )} 100%)`,
   playlistLocked: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.error.light, 0)} 0%,  ${hexToRgba(
     globalTheme.palette.error.dark,
-    0.6
+    0.2
   )} 100%)`,
-  currentVideo: `linear-gradient(90deg, ${hexToRgba(globalTheme.palette.background.paper, 1)} 50%,  ${hexToRgba(
-    globalTheme.palette.background.paper,
-    0
-  )} 100%)`,
+  currentVideo: `rgba(255,255,255,0.1);`,
 };
 
 export const theme = createTheme({
@@ -161,15 +165,6 @@ export const theme = createTheme({
       },
     },
 
-    MuiTooltip: {
-      styleOverrides: {
-        tooltip: {
-          backgroundColor: `${globalTheme.palette.primary.main}`,
-          borderRadius: '0.5rem',
-        },
-      },
-    },
-
     MuiCssBaseline: {
       styleOverrides: {
         html: {
@@ -198,16 +193,20 @@ export const theme = createTheme({
           '&::before': {
             background: `${globalTheme.palette.primary.main}!important`,
             pointerEvents: 'all!important',
-            borderRadius: '0.5rem!important',
+            borderRadius: '8px!important',
           },
         },
 
         '.Toastify__toast': {
-          backgroundColor: `${globalTheme.palette.background.paper}!important`,
+          backgroundColor: `${hexToRgba(globalTheme.palette.primary.main, 0.2)}!important`,
           border: `1px solid ${globalTheme.palette.primary.main}`,
-          borderRadius: '0.5rem',
-          width: '360px',
+          borderRadius: '8px',
+          zIndex: '999',
         },
+
+        // '.Toastify__toast--rtl': {
+        //   backgroundColor: hexToRgba(globalTheme.palette.primary.main, 0.9),
+        // },
 
         '.Toastify__toast-body': {
           color: globalTheme.palette.text.primary,

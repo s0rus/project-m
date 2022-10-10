@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import translationEN from './en.json';
 import translationPL from './pl.json';
 
-export const defaultNS = 'translationEN';
+export const defaultNS = 'translationPL';
 export const resources = {
   pl: {
     translationPL,
@@ -14,7 +14,7 @@ export const resources = {
 } as const;
 
 i18n.use(initReactI18next).init({
-  lng: 'en',
+  lng: 'pl',
   ns: ['translationPL', 'translationEN'],
   defaultNS,
   resources,
