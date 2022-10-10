@@ -20,8 +20,8 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Projekt M</title>
-        <meta name='description' content='Projekt M sussy' />
+        <title>Murzyniarnia</title>
+        <meta name='description' content='Strona do oglądania filmów' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <MainLayout>
