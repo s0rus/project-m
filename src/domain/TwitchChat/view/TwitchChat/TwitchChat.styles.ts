@@ -20,4 +20,5 @@ export const TwitchChatHolder = styled('iframe')`
   width: 100%;
   pointerEvents: pointerActive ? 'none' : 'auto';
   border: none;
+  overflow: hidden;
 `;
