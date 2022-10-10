@@ -20,7 +20,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Murzyniarnia</title>
+        <title>Murzyniarnia.TV</title>
         <meta name='description' content='Strona do oglądania filmów' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
