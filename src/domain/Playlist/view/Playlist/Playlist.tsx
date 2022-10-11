@@ -8,7 +8,6 @@ import {
   PlaylistWrapper,
 } from './Playlist.styles';
 import React, { useMemo } from 'react';
-import { useAuthContext } from '@/contexts/AuthContext';
 import PlaylistItem from '../../components/PlaylistItem';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import timeFormatter from '@/utils/timeFormatter';

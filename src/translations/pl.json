@@ -30,6 +30,7 @@
   "playlist": {
     "header": "Playlista",
     "empty": "Playlista jest pusta.",
+    "copy": "📋 Skopiowano do schowka.",
     "tooltip": {
       "videoCount": "Ilość filmów w kolejce",
       "timeSum": "Łączny czas kolejki"

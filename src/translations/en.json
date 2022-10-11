@@ -30,6 +30,7 @@
   "playlist": {
     "header": "Playlist",
     "empty": "Playlist is empty.",
+    "copy": "📋 Copied to the clipboard.",
     "tooltip": {
       "videoCount": "Count of videos in queue",
       "timeSum": "Total playlist time"

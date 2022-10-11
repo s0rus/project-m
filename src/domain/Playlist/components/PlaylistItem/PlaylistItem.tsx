@@ -8,6 +8,7 @@ import VideoThumbnail from '@/components/VideoThumbnail/';
 import { AddedByAvatar, AddedByWrapper } from '@/styles/style'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 interface PlaylistItemsProps {
   video: PlaylistWithUsers;
@@ -15,10 +16,10 @@ interface PlaylistItemsProps {
 
 const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   const { videoThumbnail, videoTitle, videoUrl, addedBy, videoDuration } = video;
-
+  const { t } = useTranslation();
   const CopyThis = () => {
     navigator.clipboard.writeText(videoUrl);
-    toast('📋 Skopiowano do schowka.', {
+    toast(t('playlist.copy'), {
       position: "bottom-left",
       autoClose: 1500,
       hideProgressBar: false,
@@ -90,11 +91,11 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
 
         <PlaylistItemBox>
           <PlaylistItemContent>
-            <Link href={videoUrl} target='_blank' rel='noopener norefferer' sx={{ width: '100%' }}>
+
               <Typography noWrap variant='h4'>
                 {videoTitle}
               </Typography>
-            </Link>
+
             <Seeker aria-label='time-indicator'size='small'/>
             <AddedByWrapper>
           {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}

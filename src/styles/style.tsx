@@ -235,8 +235,8 @@ export const Seeker = styled(Slider)`
 color: ${theme.palette.primary.main};
 height: 4px;
 pointer-events: none;
-margin: 0;
 padding: 0;
+margin: 0;
 margin-bottom: 5px;
 border-radius: 8px;
 & .MuiSlider-thumb {
@@ -258,6 +258,7 @@ border-radius: 8px;
   height: 0px;
 }
 & .MuiSlider-rail {
-  opacity: 0.28;
+  color: gray;
+  opacity: 0.50;
 }
 `;
