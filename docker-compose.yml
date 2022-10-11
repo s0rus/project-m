@@ -5,8 +5,8 @@ services:
     image: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: mpassword
-      MYSQL_DATABASE: databasem
+      MYSQL_ROOT_PASSWORD: databasem
+      MYSQL_DATABASE: mpassword
   app:
     platform: "linux/amd64"
     build:
@@ -19,10 +19,9 @@ services:
       - "3000:3000"
     image: t3-app
     environment:
-      - DATABASE_URL='mysql://root:databasem@database:3309/mpassword'
+      - DATABASE_URL='mysql://root:mpassword@database:3309/databasem'
       - TWITCH_CLIENT_ID='58jxo2kz56sileqihj509h4bd0ll9z'
       - TWITCH_CLIENT_SECRET='2xry5j0z6ijmiblcgn6294gt340lq6'
-      - NODE_ENV='development'
   nginx:
     platform: "linux/amd64"
     build:

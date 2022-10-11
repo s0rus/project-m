@@ -39,4 +39,5 @@ left: 5px;
 top: 5px;
 border-radius: 10px;
 position: absolute;
+overflow: hidden;
 `;

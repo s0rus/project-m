@@ -5,14 +5,16 @@ import { theme } from '@/styles/theme';
 export const TwitchChatBox = styled(Box)`
   height: 100%;
   width: 100%;
-  min-width: 340px;
+  min-width: 280px;
   pointerEvents: pointerActive ? 'none' : 'auto';
+  overflow: hidden;
 `;
 
 export const TwitchChatContainer = styled(Box)`
   width: 100%;
   height: 100%;
   pointerEvents: pointerActive ? 'none' : 'auto';
+  overflow: hidden;
 `;
 
 export const TwitchChatHolder = styled('iframe')`

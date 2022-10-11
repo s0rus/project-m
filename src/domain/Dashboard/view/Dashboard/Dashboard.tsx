@@ -65,18 +65,7 @@ const Dashboard = () => {
                 </SubTitleOption>
               </ChatBox>
               )}
-              <ChatBox>
-              <ChatBubbleOutlineIcon  style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }} />
-                <TitleOption>
-                  {t('options.chatTitle')}
-                </TitleOption>
-                <SubTitleOption>
-                {t('options.chatSubTitle')}
-                </SubTitleOption>
-                <Checkbox style={{color: `${theme.palette.primary.main}`, display: 'flex', position: 'absolute', right: '20px', bottom: '22px' , padding: '0px', transform: "scale(1.3)", zIndex:' 999' ,}} 
-                defaultChecked/>
-              </ChatBox>
-              <ChatBox>
+               <ChatBox>
               <MovieCreationOutlinedIcon style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }} />
                 <TitleOption>
                 {t('options.camTitle')}
@@ -86,6 +75,17 @@ const Dashboard = () => {
                 </SubTitleOption>
                 <Checkbox style={{color: `${theme.palette.primary.main}`, display: 'flex', position: 'absolute', right: '20px', bottom: '22px' , padding: '0px', transform: "scale(1.3)", zIndex:' 999' ,}} 
                 onClick={() => toggleTwitchVideo((prev) => !prev)}/>
+              </ChatBox>
+              <ChatBox>
+              <ChatBubbleOutlineIcon  style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }} />
+                <TitleOption>
+                  {t('options.chatTitle')}
+                </TitleOption>
+                <SubTitleOption>
+                {t('options.chatSubTitle')}
+                </SubTitleOption>
+                <Checkbox style={{color: `gray`, display: 'flex', position: 'absolute', right: '20px', bottom: '22px' , padding: '0px', transform: "scale(1.3)", zIndex:' 999' ,}} 
+                disabled checked />
               </ChatBox>
               </OptionsBox>
                 </Options>
