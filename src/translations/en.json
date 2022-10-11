@@ -51,6 +51,10 @@
     "twitch": "Twitch",
     "regulations": "Regulations"
   },
+  "noResponsive": {
+    "title": "Murzyniarnia does not support phones at the moment.",
+    "subtitle": "We will try to fix it in the near future but promises nothing."
+  },
   "toast": {
     "playlistLocked": "🛡️{{username}} has locked the playlist.",
     "playlistUnlocked": "🛡️{{username}} has unlocked the playlist.",

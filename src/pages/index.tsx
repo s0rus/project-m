@@ -11,11 +11,15 @@ import VideoPlayer from '@/domain/VideoPlayer/view/VideoPlayer';
 import { HorizontalPageSplit} from 'react-page-split';
 import 'react-page-split/style.css';
 import { useState } from 'react';
-
+import { useTranslation } from 'react-i18next';
+import Image from 'next/image';
+import noResponsive from '@/domain/Icons/noResponsive.svg'
+import Obiecuje from '@/domain/Icons/Obiecuje.svg'
 const Home: NextPage = () => {
   const [pointerActive, setIsActive] = useState(false);
   const setPointerActive = () => {setIsActive(true)}
   const setPointerRemove = () => {setIsActive(false)}
+  const { t } = useTranslation();
 
   return (
     <>
@@ -27,26 +31,39 @@ const Home: NextPage = () => {
       <MainLayout>
         <Hidden lgDown>
       <HorizontalPageSplit onResizeMove={setPointerActive} onResizeEnd={setPointerRemove} >
-
       <div style={{minWidth: '57%' }} >
         <MainContent>
-          <SimpleBar style={{ maxHeight: '100vh', zIndex: '100',
-                              background: 'radial-gradient(circle, rgba(60, 60, 62, 1) 0%, rgba(23, 25, 31, 1) 100%)', }}>
+          <SimpleBar style={{ maxHeight: '100vh', zIndex: '100',background: 'radial-gradient(circle, rgba(60, 60, 62, 1) 0%, rgba(23, 25, 31, 1) 100%)', }}>
             <VideoPlayer />
             <Dashboard />
           </SimpleBar>
         </MainContent>
         </div>
-
-              <div style={{minWidth: '15%', maxWidth:'36%'}}>
-                <TwitchChat />
-              </div>
-              
-          </HorizontalPageSplit>
+        <div style={{minWidth: '15%', maxWidth:'36%'}}>
+            <TwitchChat />
+        </div>
+      </HorizontalPageSplit>
           </Hidden>
 
+
+
           <Hidden lgUp>
-          <VideoPlayer/>
+            <div style={{height: '100vh', width: '100%'}} >
+            <SimpleBar style={{ maxHeight: '100vh', zIndex: '100',background: 'radial-gradient(circle, rgba(60, 60, 62, 1) 0%, rgba(23, 25, 31, 1) 100%)', }}>
+            <VideoPlayer />
+            <div style={{ marginLeft: '25%', marginTop: '30px'}} >
+            <Image src={noResponsive} />
+            </div>
+            <h1 style={{textAlign: 'center'}} >
+            {t('noResponsive.title')}
+            </h1>
+
+            <h3 style={{textAlign: 'center', fontWeight: '200'}} >
+            {t('noResponsive.subtitle')}
+            <Image style={{height: '40px', width: '40px'}} src={Obiecuje} />
+            </h3>
+          </SimpleBar>
+            </div>
           </Hidden>
 
       </MainLayout>

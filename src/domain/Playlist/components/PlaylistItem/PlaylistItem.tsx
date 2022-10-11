@@ -87,8 +87,6 @@ const [copied, setCopied] = useState(false)
 
 
   return (
-    <div>
-    <Hidden lgDown>
     <ListItem dense>
       <PlaylistItemWrapper>
         <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
@@ -127,19 +125,6 @@ const [copied, setCopied] = useState(false)
         </PlaylistItemBox>
       </PlaylistItemWrapper>
     </ListItem>
-    </Hidden>
-
-    <Hidden lgUp>
-          <ListItem dense>
-      <PlaylistItemWrapper style={{width: '218px',}} >
-        <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
-          <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
-        </Link>
-      </PlaylistItemWrapper>
-    </ListItem>
-    </Hidden>
-    </div>
-
   );
 };
 

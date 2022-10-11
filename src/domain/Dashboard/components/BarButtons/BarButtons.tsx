@@ -52,7 +52,7 @@ const BarButtons = () => {
             <StyledButton
               onClick={handleOpen}
               disabled={playlistLocked && !isAdmin}
-              style={{marginRight: '8%'}}
+              style={{marginRight: '2rem'}}
             >
               <PlaylistAddRounded style={{marginRight: '5px'}} />
               {t('video.add')}
@@ -65,7 +65,7 @@ const BarButtons = () => {
         <Tooltip title={t('options.twitchSubTitleLOGIN')}>
               <StyledButtonSkeleton
               disabled={playlistLocked && !isAdmin}
-              style={{marginRight: '8%'}}
+              style={{marginRight: '2rem'}}
             >
               <PlaylistAddRounded style={{marginRight: '5px', color: 'gray'}} />
             </StyledButtonSkeleton>
