@@ -17,7 +17,7 @@ transition: 0.3s ease-in-out;
 `
 
 export const OptionsTitle = styled('h1')`
-font-size: 1.8rem;
+font-size: 1.5rem;
 font-weight: 600;
 text-align: left;
 `

@@ -29,11 +29,13 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <MainLayout>
+
+
         <Hidden lgDown>
       <HorizontalPageSplit onResizeMove={setPointerActive} onResizeEnd={setPointerRemove} >
       <div style={{minWidth: '57%' }} >
         <MainContent>
-          <SimpleBar style={{ maxHeight: '100vh', zIndex: '100',background: 'radial-gradient(circle, rgba(60, 60, 62, 1) 0%, rgba(23, 25, 31, 1) 100%)', }}>
+          <SimpleBar style={{ maxHeight: '100vh', zIndex: '100',background: 'linear-gradient(to right bottom, rgb(24, 26, 33), rgb(36, 37, 46))', }}>
             <VideoPlayer />
             <Dashboard />
           </SimpleBar>
@@ -49,21 +51,27 @@ const Home: NextPage = () => {
 
           <Hidden lgUp>
             <div style={{height: '100vh', width: '100%'}} >
-            <SimpleBar style={{ maxHeight: '100vh', zIndex: '100',background: 'radial-gradient(circle, rgba(60, 60, 62, 1) 0%, rgba(23, 25, 31, 1) 100%)', }}>
+            <SimpleBar style={{ maxHeight: '100vh', zIndex: '100',background: 'linear-gradient(to right bottom, rgb(24, 26, 33), rgb(36, 37, 46))', }}>
             <VideoPlayer />
-            <div style={{ marginLeft: '25%', marginTop: '30px'}} >
+            <div style={{height: '50vh', width: '100%', padding: '0px 24px', display: 'flex', boxAlign: 'center', alignItems: 'center', boxPack: 'center', justifyContent: 'center', flexFlow: 'column', textAlign: 'center'}} >
+
             <Image src={noResponsive} />
-            </div>
+
             <h1 style={{textAlign: 'center'}} >
             {t('noResponsive.title')}
             </h1>
 
             <h3 style={{textAlign: 'center', fontWeight: '200'}} >
             {t('noResponsive.subtitle')}
-            <Image style={{height: '40px', width: '40px'}} src={Obiecuje} />
             </h3>
-          </SimpleBar>
+
+            <Image src={Obiecuje} />
+
             </div>
+          </SimpleBar>
+          
+            </div>
+            
           </Hidden>
 
       </MainLayout>

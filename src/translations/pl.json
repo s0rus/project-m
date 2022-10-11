@@ -27,6 +27,10 @@
     "chatSubTitle": "Widoczność czatu.",
     "camSubTitle": "Widoczność kamerki."
   },
+
+  "Repertuar":{
+    "Title": "Repertuar"
+  },
   "playlist": {
     "header": "Playlista",
     "empty": "Playlista jest pusta.",

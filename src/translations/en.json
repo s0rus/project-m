@@ -17,6 +17,9 @@
     "titleTooLong": "The title can have up to 30 characters.",
     "wrongUrl": "URL is invalid."
   },
+  "Repertuar":{
+    "Title": "Repertoire"
+  },
   "options":{
     "optionsTitle": "Options",
     "twitchTitle": "Twitch",
