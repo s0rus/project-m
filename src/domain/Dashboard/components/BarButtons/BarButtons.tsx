@@ -1,4 +1,4 @@
-import {  Hidden } from '@mui/material';
+import {  Hidden, Tooltip } from '@mui/material';
 import { PlaylistAddRounded } from '@mui/icons-material';
 import React, { useState } from 'react';
 import AddVideoModal from '../AddVideoModal';
@@ -10,6 +10,7 @@ import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { StyledButton } from '@/styles/style';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { useSocketContext } from '@/contexts/SocketContext';
+import { theme } from '@/styles/theme';
 
 
 const BarButtons = () => {
@@ -29,7 +30,15 @@ const BarButtons = () => {
       {isLoggedIn ? (
         <>
           <Hidden lgDown>
-          {isAdmin ? (<AdminPanelSettingsIcon style={{color: 'red'}} />) : (<AdminPanelSettingsIcon style={{color: 'gray'}} />)}
+          {isAdmin ? (
+            <Tooltip title={t('playlist.tooltip.admin')} >
+            <AdminPanelSettingsIcon style={{color: 'red'}} />
+              </Tooltip>
+          ) : (
+            <Tooltip title={t('playlist.tooltip.logged')} >
+          <AdminPanelSettingsIcon style={{color: `${theme.palette.primary.main}`}} />
+            </Tooltip>
+          )}
           {isAdmin &&
             <StyledButton
             onClick={() => {

@@ -36,7 +36,9 @@
       "timeSum": "Total playlist time",
       "copy": "Copy link to video",
       "lock": "Lock playlist",
-      "unlock": "Unlock playlist"
+      "unlock": "Unlock playlist",
+      "admin": "Admin",
+      "logged": "Logged"
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",

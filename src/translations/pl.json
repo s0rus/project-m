@@ -36,7 +36,9 @@
       "timeSum": "Łączny czas kolejki",
       "copy": "Skopiuj link do filmu",
       "lock": "Zablokuj playliste",
-      "unlock": "Odblokuj playliste"
+      "unlock": "Odblokuj playliste",
+      "admin": "Administrator",
+      "logged": "Zalogowany"
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",
