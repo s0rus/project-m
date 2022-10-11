@@ -35,6 +35,7 @@
       "videoCount": "Ilość filmów w kolejce",
       "timeSum": "Łączny czas kolejki",
       "copy": "Skopiuj link do filmu",
+      "copied": "Skopiowano link do schowka",
       "lock": "Zablokuj playliste",
       "unlock": "Odblokuj playliste",
       "admin": "Administrator",

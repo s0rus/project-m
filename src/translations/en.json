@@ -35,6 +35,7 @@
       "videoCount": "Count of videos in queue",
       "timeSum": "Total playlist time",
       "copy": "Copy link to video",
+      "copied": "Link copied to clipboard",
       "lock": "Lock playlist",
       "unlock": "Unlock playlist",
       "admin": "Admin",

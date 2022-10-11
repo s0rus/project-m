@@ -9,6 +9,7 @@ import { AddedByAvatar, AddedByWrapper } from '@/styles/style'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import CheckIcon from '@mui/icons-material/Check';
 
 interface PlaylistItemsProps {
   video: PlaylistWithUsers;
@@ -17,8 +18,19 @@ interface PlaylistItemsProps {
 const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   const { videoThumbnail, videoTitle, videoUrl, addedBy, videoDuration } = video;
   const { t } = useTranslation();
+
+
+
+
+
+
+const [beforecopy, setCopiedBefore] = useState(true)
+const [copied, setCopied] = useState(false)
+  
   const CopyThis = () => {
     navigator.clipboard.writeText(videoUrl);
+    setCopied(true);
+    setCopiedBefore(false);
     toast(t('playlist.copy'), {
       position: "bottom-left",
       autoClose: 1500,
@@ -82,6 +94,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
         <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
           <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
         </Link>
+{beforecopy &&
 <Tooltip title={t('playlist.tooltip.copy')} >
   <ContentCopyIcon style={{color: isHovering ? 'white' : 'hsla(298, 100%, 100%, 0.25)',  position: 'absolute', right: '10px', top: '10px', cursor: 'pointer',
   }}
@@ -89,6 +102,15 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   onMouseLeave={handleMouseLeave}
   onClick={CopyThis}/>
 </Tooltip>
+}
+{copied &&
+  <Tooltip title={t('playlist.tooltip.copied')} >
+  <CheckIcon style={{color: 'rgba(38, 255, 0, 0.49)',  position: 'absolute', right: '10px', top: '10px', cursor: 'pointer',
+  }}
+  onMouseEnter={handleMouseEnter}
+  onMouseLeave={handleMouseLeave}/>
+</Tooltip>
+}
         <PlaylistItemBox>
           <PlaylistItemContent>
 
