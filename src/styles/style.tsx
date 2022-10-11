@@ -143,6 +143,28 @@ text-transform: capitalize;
   transform: scale(0.5,0.5);
 }
 ` 
+export const StyledButtonSkeleton = styled(Button)`
+color: #FFF;
+transition: all 0.5s;
+border-radius: 8px;
+width: 130px;
+height: 40px;
+position: relative; all 0.3s;
+text-transform: capitalize;
+cursor: default;
+&:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 8px;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(255,255,255,0.1);
+  transition: all 0.3s;
+}
+` 
 
 export const StyledButtonModal = styled(Button)`
 color: #FFF;

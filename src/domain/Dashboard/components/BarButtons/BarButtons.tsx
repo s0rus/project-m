@@ -7,11 +7,10 @@ import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
-import { StyledButton } from '@/styles/style';
+import { StyledButton, StyledButtonSkeleton } from '@/styles/style';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { theme } from '@/styles/theme';
-
 
 const BarButtons = () => {
   const { isAdmin } = useAuthContext();
@@ -59,33 +58,18 @@ const BarButtons = () => {
               {t('video.add')}
             </StyledButton>
           </Hidden>
-          <Hidden lgUp>
-          {isAdmin ? (<AdminPanelSettingsIcon style={{color: 'red'}} />) : (<AdminPanelSettingsIcon style={{color: 'gray'}} />)}
-          {isAdmin &&
-            <StyledButton
-            onClick={() => {
-              handleOnEnd();
-              socket.emit('SKIP_VIDEO');
-            }}
-            disabled={authChange}
-          >
-            <SkipNextIcon style={{marginBottom: '-6px', marginRight: '5px'}} />
-            </StyledButton>
-          }
-            <StyledButton
-              onClick={handleOpen}
-              disabled={playlistLocked && !isAdmin}
-              style={{marginRight: '8%'}}
-            >
-              <PlaylistAddRounded style={{marginBottom: '-6px', marginRight: '5px'}} />
-            </StyledButton>
-          </Hidden>
           <AddVideoModal handleClose={handleClose} open={modalOpen} />
         </>
       ) : (
         <>
-          <Hidden lgDown>
-          </Hidden>
+        <Tooltip title={t('options.twitchSubTitleLOGIN')}>
+              <StyledButtonSkeleton
+              disabled={playlistLocked && !isAdmin}
+              style={{marginRight: '8%'}}
+            >
+              <PlaylistAddRounded style={{marginRight: '5px', color: 'gray'}} />
+            </StyledButtonSkeleton>
+        </Tooltip>
         </>
       )}
     </>

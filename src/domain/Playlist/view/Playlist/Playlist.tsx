@@ -68,13 +68,13 @@ const Playlist = () => {
           <Tooltip title={t('playlist.tooltip.videoCount')}>
             <PlaylistDetail>
               <AutoAwesomeMotionRounded />
-              <Typography variant='h4'>{properPlaylist.length || 0}</Typography>
+              <Typography variant='h5'>{properPlaylist.length || 0}</Typography>
             </PlaylistDetail>
           </Tooltip>
           <Tooltip title={t('playlist.tooltip.timeSum')}>
             <PlaylistDetail>
               <AccessTimeFilledRounded />
-              <Typography variant='h4'>{timeFormatter(timeSum)}</Typography>
+              <Typography variant='h5' >{timeFormatter(timeSum)}</Typography>
             </PlaylistDetail>
           </Tooltip>
         </PlaylistHeader>
