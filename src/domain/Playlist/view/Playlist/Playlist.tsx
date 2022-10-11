@@ -51,17 +51,17 @@ const Playlist = () => {
         <PlaylistHeader>
         {playlistLocked ? (
 
-
+          <Tooltip title={t('playlist.tooltip.unlock')} >
         <LockOutlinedIcon onClick={() => togglePlaylistLocked()} style={{color: isHovering ? 'white' : 'rgba(255, 0, 0, 0.49)', cursor: 'pointer'}}
          onMouseEnter={handleMouseEnter}
          onMouseLeave={handleMouseLeave} />
-
+          </Tooltip>
         ) : (
-
+          <Tooltip title={t('playlist.tooltip.lock')} >
          <LockOpenOutlinedIcon  onClick={() => togglePlaylistLocked()} style={{color: isHovering ? 'white' : 'rgba(38, 255, 0, 0.49)', cursor: 'pointer'}}
          onMouseEnter={handleMouseEnter}
          onMouseLeave={handleMouseLeave} />
-
+         </Tooltip>
          )} 
 
           <Typography variant='h2'>{t('playlist.header')}</Typography>

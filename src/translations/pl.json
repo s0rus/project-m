@@ -34,7 +34,9 @@
     "tooltip": {
       "videoCount": "Ilość filmów w kolejce",
       "timeSum": "Łączny czas kolejki",
-      "copy": "Skopiuj link do filmu"
+      "copy": "Skopiuj link do filmu",
+      "lock": "Zablokuj playliste",
+      "unlock": "Odblokuj playliste"
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",

@@ -34,7 +34,9 @@
     "tooltip": {
       "videoCount": "Count of videos in queue",
       "timeSum": "Total playlist time",
-      "copy": "Copy link to video"
+      "copy": "Copy link to video",
+      "lock": "Lock playlist",
+      "unlock": "Unlock playlist"
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",
