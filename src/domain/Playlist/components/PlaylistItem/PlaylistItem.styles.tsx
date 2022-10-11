@@ -9,7 +9,7 @@ export const PlaylistItemWrapper = styled(Card)`
   border-radius: 8px;
   transition: 0.3s ease-in-out;
   &:hover{
-    transform: scale(0.95,0.95);
+    transform: scale(1.02,1.02);
     background: ${theme.palette.background.paper};
   }
 `;

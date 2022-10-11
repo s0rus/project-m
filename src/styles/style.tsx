@@ -4,10 +4,12 @@ import { theme } from '@/styles/theme';
  export const Options = styled('div')`
 position: relative;
 width: 100%;
-padding-left: 20px;`
+padding-left: 2rem;
+padding-right: 2rem;
+padding-top: 1rem;`
 
 export const OptionsBox = styled('div')`
-width: 90%;
+width: 100%;
 box-sizing: border-box;
 -webkit-font-smoothing: antialiased;
 outline-color: rgb(117, 122, 255);
@@ -15,7 +17,7 @@ transition: 0.3s ease-in-out;
 `
 
 export const OptionsTitle = styled('h1')`
-font-size 2.4rem;
+font-size: 1.8rem;
 font-weight: 600;
 text-align: left;
 `
@@ -219,17 +221,6 @@ export const AddedByWrapper = styled(Stack)`
 export const AddedByAvatar = styled(Avatar)`
   border-radius: 4px;
 `;
-
-export const ButtonLocker = styled(Button)`
-color: #FFF;
-display: flex;
-top: 0px;
-transition: all 0.5s;
-border-radius: 8px;
-width: 50px;
-height: 40px;
-position: relative; all 0.3s;
-text-transform: capitalize;`
 
 export const Seeker = styled(Slider)`
 color: ${theme.palette.primary.main};

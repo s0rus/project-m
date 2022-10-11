@@ -33,7 +33,8 @@
     "copy": "📋 Skopiowano do schowka.",
     "tooltip": {
       "videoCount": "Ilość filmów w kolejce",
-      "timeSum": "Łączny czas kolejki"
+      "timeSum": "Łączny czas kolejki",
+      "copy": "Skopiuj link do filmu"
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",

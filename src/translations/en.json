@@ -33,7 +33,8 @@
     "copy": "📋 Copied to the clipboard.",
     "tooltip": {
       "videoCount": "Count of videos in queue",
-      "timeSum": "Total playlist time"
+      "timeSum": "Total playlist time",
+      "copy": "Copy link to video"
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",

@@ -7,7 +7,7 @@ import {
   PlaylistHeader,
   PlaylistWrapper,
 } from './Playlist.styles';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import PlaylistItem from '../../components/PlaylistItem';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import timeFormatter from '@/utils/timeFormatter';
@@ -18,7 +18,7 @@ import Image from 'next/image';
 import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
-import { ButtonLocker } from '@/styles/style';
+
 
 const Playlist = () => {
   const { t } = useTranslation();
@@ -35,6 +35,15 @@ const Playlist = () => {
   );
 
 
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
 
   return (
     <>
@@ -42,13 +51,17 @@ const Playlist = () => {
         <PlaylistHeader>
         {playlistLocked ? (
 
-        <ButtonLocker>  
-        <LockOutlinedIcon onClick={() => togglePlaylistLocked()} style={{color: 'red'}} />
-        </ButtonLocker>
+
+        <LockOutlinedIcon onClick={() => togglePlaylistLocked()} style={{color: isHovering ? 'white' : 'rgba(255, 0, 0, 0.49)', cursor: 'pointer'}}
+         onMouseEnter={handleMouseEnter}
+         onMouseLeave={handleMouseLeave} />
+
         ) : (
-          <ButtonLocker> 
-         <LockOpenOutlinedIcon  onClick={() => togglePlaylistLocked()} style={{color: 'green'}} />
-         </ButtonLocker>
+
+         <LockOpenOutlinedIcon  onClick={() => togglePlaylistLocked()} style={{color: isHovering ? 'white' : 'rgba(38, 255, 0, 0.49)', cursor: 'pointer'}}
+         onMouseEnter={handleMouseEnter}
+         onMouseLeave={handleMouseLeave} />
+
          )} 
 
           <Typography variant='h2'>{t('playlist.header')}</Typography>

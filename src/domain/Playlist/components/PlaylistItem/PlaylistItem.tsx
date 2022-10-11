@@ -2,7 +2,7 @@ import { Link, Typography, styled, Slider, Hidden } from '@mui/material';
 import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper } from './PlaylistItem.styles';
 import React, { FC, useState } from 'react';
 import { theme } from '@/styles/theme';
-import { ListItem} from '@mui/material';
+import { ListItem, Tooltip} from '@mui/material';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import VideoThumbnail from '@/components/VideoThumbnail/';
 import { AddedByAvatar, AddedByWrapper } from '@/styles/style'
@@ -82,13 +82,13 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
         <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
           <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
         </Link>
-
+<Tooltip title={t('playlist.tooltip.copy')} >
   <ContentCopyIcon style={{color: isHovering ? 'white' : 'hsla(298, 100%, 100%, 0.25)',  position: 'absolute', right: '10px', top: '10px', cursor: 'pointer',
   }}
   onMouseEnter={handleMouseEnter}
   onMouseLeave={handleMouseLeave}
   onClick={CopyThis}/>
-
+</Tooltip>
         <PlaylistItemBox>
           <PlaylistItemContent>
 
