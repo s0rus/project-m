@@ -22,7 +22,6 @@ export const VideoThumbnailContainer = styled(Box)`
 
 export const VideoThumbnailImage = styled(Image)`
   border-radius: 8px 0 0 8px;
-  border-right: 2px solid ${theme.palette.primary.main}!important;
   background-color: ${theme.palette.background.paper};
 `;
 

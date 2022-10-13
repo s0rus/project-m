@@ -18,9 +18,10 @@ import Image from 'next/image';
 import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
-
-
+import CurrentAuth from '@/domain/Dashboard/components/CurrentAuth';
+import { useAuthContext } from '@/contexts/AuthContext';
 const Playlist = () => {
+  const { isAdmin } = useAuthContext();
   const { t } = useTranslation();
   const { playlist, properPlaylist, playlistLocked } = usePlaylistContext();
   const [animatedList] = useAutoAnimate();
@@ -49,6 +50,8 @@ const Playlist = () => {
     <>
       <PlaylistWrapper locked={playlistLocked ? 1 : 0}>
         <PlaylistHeader>
+{isAdmin ? (
+          <div style={{marginTop: '8px'}} >
         {playlistLocked ? (
 
           <Tooltip title={t('playlist.tooltip.unlock')} >
@@ -63,6 +66,24 @@ const Playlist = () => {
          onMouseLeave={handleMouseLeave} />
          </Tooltip>
          )} 
+          </div>
+
+) : (
+
+  <div style={{marginTop: '8px'}} >
+  {playlistLocked ? (
+              <Tooltip title={t('playlist.tooltip.locked')} >
+  <LockOutlinedIcon style={{color: 'rgba(255, 0, 0, 0.49)'}} />
+              </Tooltip>
+  ) : (
+              <Tooltip title={t('playlist.tooltip.unlocked')} >
+   <LockOpenOutlinedIcon style={{color: 'rgba(38, 255, 0, 0.49)'}} />
+              </Tooltip>
+   )} 
+    </div>
+
+)}
+
 
           <Typography variant='h2'>{t('playlist.header')}</Typography>
           <Tooltip title={t('playlist.tooltip.videoCount')}>
@@ -77,6 +98,10 @@ const Playlist = () => {
               <Typography variant='h5' >{timeFormatter(timeSum)}</Typography>
             </PlaylistDetail>
           </Tooltip>
+          <PlaylistDetail>
+          <CurrentAuth/>
+            </PlaylistDetail>
+
         </PlaylistHeader>
         <PlaylistContainer component={List} ref={animatedList}>
           {properPlaylist.length ? (

@@ -1,4 +1,4 @@
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, Divider } from '@mui/material';
 import { DashboardContainer, DashboardWrapper } from './Dashboard.styles';
 import {  Options, OptionsBox, OptionsTitle, ChatBox, TitleOption, SubTitleOption } from '@/styles/style';
 import DashboardBar from '../../components/DashboardBar';
@@ -16,7 +16,7 @@ import { Twitch } from '@/assets/logos/Twitch';
 import Navigation from '@/domain/Navigation';
 import { theme } from '@/styles/theme';
 import { useAuthContext } from '@/contexts/AuthContext';
-
+import CurrentAuth from '@/domain/Dashboard/components/CurrentAuth';
 
 const Dashboard = () => {
 
@@ -95,6 +95,7 @@ const Dashboard = () => {
             </Grid>
           </Grid>
       </DashboardContainer>
+      <Divider style={{background: `${theme.palette.primary.main}`}} />
       <Navigation/>
     </DashboardWrapper>
   );

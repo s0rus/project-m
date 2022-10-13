@@ -2,6 +2,7 @@ import { TwitchChatBox, TwitchChatContainer, TwitchChatHolder } from './TwitchCh
 import React from 'react';
 import { getTwitchChatParent } from '@/pages/_app';
 
+
 const TwitchChat = () => {
 
   return (

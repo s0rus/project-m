@@ -42,8 +42,11 @@
       "copied": "Skopiowano link do schowka",
       "lock": "Zablokuj playliste",
       "unlock": "Odblokuj playliste",
+      "locked": "Playlista jest zablokowana",
+      "unlocked": "Playlista jest odblokowana",
       "admin": "Administrator",
-      "logged": "Zalogowany"
+      "logged": "Zalogowany",
+      "guest": "Gość"
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",

@@ -41,8 +41,11 @@
       "copied": "Link copied to clipboard",
       "lock": "Lock playlist",
       "unlock": "Unlock playlist",
+      "locked": "Playlist is locked",
+      "unlocked": "Playlist is unlocked",
       "admin": "Admin",
-      "logged": "Logged"
+      "logged": "Logged",
+      "guest": "Guest"
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",

@@ -64,6 +64,7 @@ export const AuthContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const isLoggedIn = useMemo(() => (session?.user && status === 'authenticated' ? true : false), [session, status]);
   const isAuthLoading = useMemo(() => status === 'loading', [status]);
+  const userName = useMemo(() => currentUser && "image", "name" );
   const isAdmin = useMemo(() => (isLoggedIn && session?.user.isAdmin ? true : false), [session, isLoggedIn]);
 
   const loginWithTwitch = useCallback(async () => {
@@ -77,6 +78,7 @@ export const AuthContextProvider: FC<PropsWithChildren> = ({ children }) => {
     await newWindow(Routes.TWITCH_LOGOUT, 'Logging out...');
     setAuthChange(false);
   }, [newWindow]);
+
 
   const value = {
     session,

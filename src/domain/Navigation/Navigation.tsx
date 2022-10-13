@@ -1,18 +1,17 @@
 
 import * as React from 'react';
-import { Box, Hidden } from '@mui/material';
+import { Box } from '@mui/material';
 import Image from 'next/image';
 import Twitch from '@/domain/Icons/Twitch.svg'
 import Discord from '@/domain/Icons/Discord.svg'
 import { useTranslation } from 'react-i18next';
 import { TwitchBox, DiscordBox, NavText, Paper } from './Navigation.style'
-import { theme } from '@/styles/theme';
 const Navigation = () => {
   const { t } = useTranslation();
 
 
   return (
-    <Box sx={{ width: '100%', height: '56px', background: 'rgba(0, 0, 0, 0.30)', display: 'flex', position: 'absolute' , gap: '150px', justifyContent: 'center', overflow: 'hidden', borderTop: `1px solid ${theme.palette.primary.main}`}}>
+    <Box sx={{ width: '100%', height: '56px', display: 'flex', position: 'absolute' , gap: '150px', justifyContent: 'center', overflow: 'hidden'}}>
 
 <a href='https://www.twitch.tv/khamires' >
         <TwitchBox>

@@ -5,19 +5,15 @@ import AddVideoModal from '../AddVideoModal';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { StyledButton, StyledButtonSkeleton } from '@/styles/style';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { useSocketContext } from '@/contexts/SocketContext';
-import { theme } from '@/styles/theme';
-
-
 const BarButtons = () => {
   const { isAdmin } = useAuthContext();
   const { socket } = useSocketContext();
   const { t } = useTranslation();
-  const { isLoggedIn, authChange} = useAuthContext();
+  const { isLoggedIn, authChange, currentUser} = useAuthContext();
   const { playlistLocked } = usePlaylistContext();
   const [modalOpen, setModalOpen] = useState(false);
   const { handleOnEnd } = usePlayerContext();
@@ -30,15 +26,6 @@ const BarButtons = () => {
       {isLoggedIn ? (
         <>
           <Hidden lgDown>
-          {isAdmin ? (
-            <Tooltip title={t('playlist.tooltip.admin')} >
-            <AdminPanelSettingsIcon style={{color: 'red'}} />
-              </Tooltip>
-          ) : (
-            <Tooltip title={t('playlist.tooltip.logged')} >
-          <AdminPanelSettingsIcon style={{color: `${theme.palette.primary.main}`}} />
-            </Tooltip>
-          )}
           {isAdmin &&
             <StyledButton
             onClick={() => {

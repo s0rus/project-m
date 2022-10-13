@@ -103,6 +103,7 @@ color: #FFF;
 transition: all 0.5s;
 border-radius: 8px;
 width: 130px;
+min-width: 130px;
 height: 40px;
 position: relative; all 0.3s;
 text-transform: capitalize;

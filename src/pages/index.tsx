@@ -36,7 +36,7 @@ const Home: NextPage = () => {
       <HorizontalPageSplit onResizeMove={setPointerActive} onResizeEnd={setPointerRemove} >
       <div style={{minWidth: '57%' }} >
         <MainContent>
-          <SimpleBar style={{ maxHeight: '100vh', zIndex: '100',background: 'linear-gradient(to right bottom, rgb(24, 26, 33), rgb(36, 37, 46))', }}>
+          <SimpleBar style={{ maxHeight: '100vh', zIndex: '100',background: 'linear-gradient(0deg, rgba(24,24,27,1) 0%, rgba(36,39,45,1) 70%)', }}>
             <VideoPlayer />
             <Dashboard />
           </SimpleBar>
@@ -44,9 +44,9 @@ const Home: NextPage = () => {
         </div>
         <div style={{minWidth: '15%', maxWidth:'36%'}}>
             <TwitchChat />
-</div>
+        </div>
       </HorizontalPageSplit>
-          </Hidden>
+        </Hidden>
 
 
 
