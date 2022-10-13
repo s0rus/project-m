@@ -16,7 +16,6 @@ import { Twitch } from '@/assets/logos/Twitch';
 import Navigation from '@/domain/Navigation';
 import { theme } from '@/styles/theme';
 import { useAuthContext } from '@/contexts/AuthContext';
-import CurrentAuth from '@/domain/Dashboard/components/CurrentAuth';
 
 const Dashboard = () => {
 
