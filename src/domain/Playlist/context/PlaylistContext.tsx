@@ -8,7 +8,7 @@ import { useAuthContext } from '@/contexts/AuthContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
 import { ToastTypes } from '@/utils/ToastTypes';
-
+import { CustomToast } from '@/utils/sendToast';
 const PlaylistContext = createContext<InitialContextProps>(initialContextProps);
 
 export const usePlaylistContext = () => useContext<InitialContextProps>(PlaylistContext);
@@ -89,8 +89,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
       if (isAdmin && socket) {
         await mutatePlaylistState({ newPlaylistState: !playlistLocked });
         socket.emit('TOGGLE_PLAYLIST');
-        socket.emit(
-          'SEND_TOAST',
+      CustomToast.send(
           t(playlistLocked ? 'toast.playlistUnlocked' : 'toast.playlistLocked', { username: currentUser.name }),
           playlistLocked ? ToastTypes.PlaylistUnlocked : ToastTypes.PlaylistLocked
         );

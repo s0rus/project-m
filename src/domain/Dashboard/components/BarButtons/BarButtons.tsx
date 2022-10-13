@@ -12,6 +12,7 @@ import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { theme } from '@/styles/theme';
 
+
 const BarButtons = () => {
   const { isAdmin } = useAuthContext();
   const { socket } = useSocketContext();

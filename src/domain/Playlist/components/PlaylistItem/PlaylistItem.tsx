@@ -1,15 +1,16 @@
 import { Link, Typography, styled, Slider, Hidden } from '@mui/material';
 import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper } from './PlaylistItem.styles';
 import React, { FC, useState } from 'react';
-import { theme } from '@/styles/theme';
 import { ListItem, Tooltip} from '@mui/material';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import VideoThumbnail from '@/components/VideoThumbnail/';
 import { AddedByAvatar, AddedByWrapper } from '@/styles/style'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import CheckIcon from '@mui/icons-material/Check';
+import { ToastTypes } from '@/utils/ToastTypes';
+import { CustomToast } from '@/utils/sendToast';
+import { Seeker }  from '@/styles/style'
 
 interface PlaylistItemsProps {
   video: PlaylistWithUsers;
@@ -31,15 +32,7 @@ const [copied, setCopied] = useState(false)
     navigator.clipboard.writeText(videoUrl);
     setCopied(true);
     setCopiedBefore(false);
-    toast(t('playlist.copy'), {
-      position: "bottom-left",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: false,
-      pauseOnFocusLoss: false,
-      theme: "dark",
-      });
+    CustomToast.send(t('playlist.copy'), ToastTypes.Copy );
   }
 
   const [isHovering, setIsHovering] = useState(false);
@@ -51,39 +44,6 @@ const [copied, setCopied] = useState(false)
   const handleMouseLeave = () => {
     setIsHovering(false);
   };
-
-  
-  const Seeker = styled(Slider)`
-  color: ${theme.palette.primary.main};
-  height: 4px;
-  pointer-events: none;
-  padding: 0;
-  margin: 0;
-  margin-bottom: 5px;
-  border-radius: 8px;
-  & .MuiSlider-thumb {
-    width: 0px;
-    height: 0px;
-    color: white;
-  }
-  &::before {
-    display: none;
-    opacity: 0;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
-  }
-  &:hover,
-  &.Mui-focusVisible {
-    box-shadow: ${theme.palette.primary.main};
-  }
-  &.Mui-active {
-    width: 0px;
-    height: 0px;
-  }
-  & .MuiSlider-rail {
-    color: gray;
-    opacity: 0.50;
-  }
-`;
 
 
   return (

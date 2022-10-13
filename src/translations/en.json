@@ -33,7 +33,7 @@
   "playlist": {
     "header": "Playlist",
     "empty": "Playlist is empty.",
-    "copy": "📋 Copied to the clipboard.",
+    "copy": "Copied to the clipboard.",
     "tooltip": {
       "videoCount": "Count of videos in queue",
       "timeSum": "Total playlist time",
@@ -59,10 +59,10 @@
     "subtitle": "We will try to fix it in the near future but promises nothing."
   },
   "toast": {
-    "playlistLocked": "🛡️{{username}} has locked the playlist.",
-    "playlistUnlocked": "🛡️{{username}} has unlocked the playlist.",
-    "skipVideo": "🛡️ {{username}} skipped the video",
-    "skipProgress": "🛡️ {{username}} changed the video time" 
+    "playlistLocked": "{{username}} has locked the playlist.",
+    "playlistUnlocked": "{{username}} has unlocked the playlist.",
+    "skipVideo": "{{username}} skipped the video",
+    "skipProgress": "{{username}} changed the video time" 
   },
   "genericErrorMessage": "Whoops! Something went wrong...",
   "addVideoError": "There was an error while adding video...",

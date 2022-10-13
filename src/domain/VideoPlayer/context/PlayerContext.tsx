@@ -24,7 +24,7 @@ import { usePlaylistContext } from '../../Playlist/context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-
+import { CustomToast } from '@/utils/sendToast';
 const PlayerContext = createContext<InitialContextProps>(initialContextProps);
 
 export const usePlayerContext = () => useContext<InitialContextProps>(PlayerContext);
@@ -118,8 +118,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
             playedSeconds: newPlayedSeconds,
           };
         });
-        socket.emit(
-          'SEND_TOAST',
+          CustomToast.send(
           t('toast.skipProgress', { username: currentUser.name }),
            ToastTypes.VideoSeeked,
         );
@@ -159,10 +158,9 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     });
 
     requestNextVideo();
-    if (isAdmin) {
+    if (isAdmin && socket ) {
       try{
-        socket.emit(
-          'SEND_TOAST',
+        CustomToast.send(
           t('toast.skipVideo', { username: currentUser.name }),
            ToastTypes.VideoSkipped,
         );

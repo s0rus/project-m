@@ -15,12 +15,13 @@ import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
 import noResponsive from '@/domain/Icons/noResponsive.svg'
 import Obiecuje from '@/domain/Icons/Obiecuje.svg'
+
 const Home: NextPage = () => {
   const [pointerActive, setIsActive] = useState(false);
   const setPointerActive = () => {setIsActive(true)}
   const setPointerRemove = () => {setIsActive(false)}
   const { t } = useTranslation();
-
+  
   return (
     <>
       <Head>
@@ -43,7 +44,7 @@ const Home: NextPage = () => {
         </div>
         <div style={{minWidth: '15%', maxWidth:'36%'}}>
             <TwitchChat />
-        </div>
+</div>
       </HorizontalPageSplit>
           </Hidden>
 

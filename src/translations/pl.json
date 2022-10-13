@@ -34,7 +34,7 @@
   "playlist": {
     "header": "Playlista",
     "empty": "Playlista jest pusta.",
-    "copy": "📋 Skopiowano do schowka.",
+    "copy": "Skopiowano do schowka.",
     "tooltip": {
       "videoCount": "Ilość filmów w kolejce",
       "timeSum": "Łączny czas kolejki",
@@ -60,10 +60,10 @@
     "subtitle": "Postaramy się to naprawić w niedalekiej przyszłości ale nic nie"
   },
   "toast": {
-    "playlistLocked": "🛡️{{username}} zablokował playlistę.",
-    "playlistUnlocked": "🛡️{{username}} odblokował playlistę.",
-    "skipVideo": "🛡️ {{username}} pominął film.",
-    "skipProgress": "🛡️ {{username}} zmienił czas filmu."
+    "playlistLocked": "{{username}} zablokował playlistę.",
+    "playlistUnlocked": "{{username}} odblokował playlistę.",
+    "skipVideo": " {{username}} pominął film.",
+    "skipProgress": " {{username}} zmienił czas filmu."
   },
   "genericErrorMessage": "Ups! Coś poszło nie tak...",
   "addVideoError": "Wystąpił błąd podczas dodawania filmu...",
