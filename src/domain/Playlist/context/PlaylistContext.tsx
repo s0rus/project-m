@@ -86,7 +86,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
 
   const handleSkipVideo = useCallback(async () => {
     try {
-      if (currentVideo && isAdmin) {
+      if (currentVideo && isAdmin && socket ) {
         await mutateAsync({ videoId: currentVideo.videoId });
 
         const newPlaylist = [...playlist];
@@ -96,6 +96,11 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
         setPlaylist(filteredPlaylist);
 
         socket.emit('SKIP_VIDEO');
+        socket.emit(
+          'SEND_TOAST',
+          t('toast.videoSkipped', { username: currentUser.name }),
+          ToastTypes.VideoSkipped
+        );
       }
     } catch {
       CustomToast.send(t('requestVideoError'), ToastTypes.Error);

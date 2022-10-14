@@ -43,8 +43,8 @@ const globalTheme = {
 
   palette: {
     primary: {
-      main: '#7c3dda',
-      light: '#6430ff',
+      main: '#3d00ff',
+      light: '#3d00ff',
       contrastText: '#EFEFF1',
     },
 
@@ -81,11 +81,11 @@ export const gradients = {
   gradientPaper: '#18181b',
   playlistUnlocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.success.light, 0)} -20%,  ${hexToRgba(
     globalTheme.palette.success.dark,
-    0.6
+    0.3
   )} 100%)`,
   playlistLocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.error.light, 0)} -20%,  ${hexToRgba(
     globalTheme.palette.error.dark,
-    0.6
+    0.3
   )} 100%)`,
   currentVideo: `rgba(255,255,255,0.1);`,
   gradientMain: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.primary.main, 0)} 0%,  ${hexToRgba(

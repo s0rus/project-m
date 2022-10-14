@@ -12,7 +12,6 @@ import { Twitch } from '@/assets/logos/Twitch';
 import {  Options, OptionsBox, OptionsTitle, ChatBox, TitleOption, SubTitleOption } from '@/styles/style';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { Grid, Box } from '@mui/material';
-import { theme } from '@/styles/theme';
 
 const Settings = () => {
   const { isChatOn, setIsChatOn } = useAddonsContext();
@@ -23,6 +22,7 @@ const Settings = () => {
 
   return (
     <Grid item sm={12} md={4} mt={-3}>
+
     <Options> 
    <OptionsTitle>
    {t('options.optionsTitle')}
@@ -72,6 +72,7 @@ const Settings = () => {
     </ChatBox>
     </OptionsBox>
       </Options>
+
       <Box> { twitchvideo && <TwitchVideo/> }</Box> 
       </Grid>
   );

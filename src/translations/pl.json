@@ -63,6 +63,7 @@
     "playlistLocked": "{{username}} zablokował playlistę.",
     "playlistUnlocked": "{{username}} odblokował playlistę.",
     "videoSeeked": "{{username}} przewinął film.",
+    "videoSkipped": "{{username}} pominął film.",
     "videoError": "Film nie mógł być odtworzony."
   },
   "genericErrorMessage": "Ups! Coś poszło nie tak...",

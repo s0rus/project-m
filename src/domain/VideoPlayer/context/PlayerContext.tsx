@@ -173,7 +173,6 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [handleSkipVideo]);
 
   const handleOnError = useCallback(() => {
-    CustomToast.send(t('toast.videoError'), ToastTypes.VideoSkipped);
     setPlayerState((prevPlayerState) => {
       return {
         ...prevPlayerState,
