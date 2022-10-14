@@ -33,6 +33,6 @@
     }
   },
 
-  "include": ["src/types/next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"],
+  "include": ["src/types/next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.pdf"],
   "exclude": ["node_modules"]
 }

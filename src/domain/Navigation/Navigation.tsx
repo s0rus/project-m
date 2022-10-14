@@ -6,6 +6,7 @@ import Twitch from '@/domain/Icons/Twitch.svg'
 import Discord from '@/domain/Icons/Discord.svg'
 import { useTranslation } from 'react-i18next';
 import { TwitchBox, DiscordBox, NavText } from './Navigation.style'
+import ReceiptIcon from '@mui/icons-material/Receipt';
 const Navigation = () => {
   const { t } = useTranslation();
 
@@ -24,6 +25,15 @@ const Navigation = () => {
         <Image src={Discord} alt='Discord' />
         </DiscordBox></a>
 <NavText>{t('Navigation.discord')}</NavText>
+
+
+<a href = "/Regulamin.pdf" target = "_blank">
+        <TwitchBox style={{alignItems: 'center', justifyContent: 'center'}}>
+        <ReceiptIcon style={{ color: 'white',}} />
+        </TwitchBox>
+        </a>
+
+<NavText>{t('Navigation.regulations')}</NavText>
 
     </Box>
   );
