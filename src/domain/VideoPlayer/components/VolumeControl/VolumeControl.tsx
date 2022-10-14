@@ -1,6 +1,5 @@
 import { VolumeSlider, VolumeSliderBox, VolumeSliderPopver } from './VolumeControl.styles';
 import { bindHover, bindPopover, usePopupState } from 'material-ui-popup-state/hooks';
-
 import { IconButton } from '@mui/material';
 import { getVolumeIcon } from '../../model/VideoPlayer.model';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';

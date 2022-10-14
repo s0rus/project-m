@@ -5,12 +5,14 @@ export const TwitchChatBox = styled(Box)`
   width: 100%;
   min-width: 280px;
   overflow: hidden;
+  border: none;
 `;
 
 export const TwitchChatContainer = styled(Box)`
   width: 100%;
   height: 100%;
   overflow: hidden;
+  border: none;
 `;
 
 export const TwitchChatHolder = styled('iframe')`

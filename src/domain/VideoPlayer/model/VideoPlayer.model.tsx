@@ -1,4 +1,4 @@
-import { Dispatch, MutableRefObject, SetStateAction } from 'react';
+import React, { Dispatch, MutableRefObject, SetStateAction } from 'react';
 import { PauseRounded, PlayArrowRounded, VolumeDown, VolumeOff, VolumeUp } from '@mui/icons-material';
 
 import { Playlist } from '@prisma/client';

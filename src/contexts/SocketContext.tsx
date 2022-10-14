@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useState } from 'react';
+import React , { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useState } from 'react';
 
 import { Routes } from '@/server/router/routes';
 import { SocketProvider } from '@/server/sockets';

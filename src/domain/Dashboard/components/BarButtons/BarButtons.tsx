@@ -13,7 +13,7 @@ const BarButtons = () => {
   const { isAdmin } = useAuthContext();
   const { socket } = useSocketContext();
   const { t } = useTranslation();
-  const { isLoggedIn, authChange, currentUser} = useAuthContext();
+  const { isLoggedIn, authChange } = useAuthContext();
   const { playlistLocked } = usePlaylistContext();
   const [modalOpen, setModalOpen] = useState(false);
   const { handleOnEnd } = usePlayerContext();

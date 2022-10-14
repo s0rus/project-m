@@ -1,4 +1,4 @@
-import { Link, Typography, styled, Slider, Hidden } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper } from './PlaylistItem.styles';
 import React, { FC, useState } from 'react';
 import { ListItem, Tooltip} from '@mui/material';

@@ -1,7 +1,5 @@
 import { Box, Stack, styled } from '@mui/material';
-import { gradients, theme } from '@/styles/theme';
-
-import hexToRgba from 'hex-to-rgba';
+import { gradients } from '@/styles/theme';
 
 export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   padding: 1rem;

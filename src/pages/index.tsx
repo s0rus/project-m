@@ -10,7 +10,7 @@ import VideoPlayer from '@/domain/VideoPlayer/view/VideoPlayer';
 import { HorizontalPageSplit } from 'react-page-split';
 import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
-import noResponsive from '@/domain/Icons/noResponsive.svg'
+import noResponsive from '@/domain/Icons/Noresponsive.svg'
 import Obiecuje from '@/domain/Icons/Obiecuje.svg'
 import { Background } from '@/styles/style';
 
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
       </Head>
       <MainLayout>
       <Hidden lgDown>
-        <HorizontalPageSplit>
+        <HorizontalPageSplit style={{overflow: 'hidden'}} >
       <div style={{minWidth: '57%' }} >
         <MainContent>
           <Background>
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
           </Background>
         </MainContent>
       </div>
-        <div style={{minWidth: '15%', maxWidth:'36%'}}>
+        <div style={{minWidth: '15%', maxWidth:'36%', overflow: 'hidden'}}>
           <TwitchChat />
         </div>
         </HorizontalPageSplit>
