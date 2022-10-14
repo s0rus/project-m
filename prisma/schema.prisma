@@ -71,6 +71,6 @@ model Playlist {
 }
 
 model Overseer {
-    overseerId     String  @id
+    overseerId     String  @id @default("OVERSEER")
     playlistLocked Boolean @default(true)
 }

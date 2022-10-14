@@ -3,7 +3,19 @@ import hexToRgba from 'hex-to-rgba';
 
 const globalTheme = {
   typography: {
-    fontFamily: 'Poppins',
+    fontFamily: [
+      'Poppins',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
     h1: {
       fontWeight: 700,
       fontSize: '2.5rem',
@@ -83,6 +95,10 @@ export const gradients = {
   currentVideo: `linear-gradient(90deg, ${hexToRgba(globalTheme.palette.background.paper, 1)} 50%,  ${hexToRgba(
     globalTheme.palette.background.paper,
     0
+  )} 100%)`,
+  gradientMain: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.primary.main, 0)} 0%,  ${hexToRgba(
+    globalTheme.palette.primary.main,
+    0.3
   )} 100%)`,
 };
 
@@ -171,49 +187,92 @@ export const theme = createTheme({
     },
 
     MuiCssBaseline: {
-      styleOverrides: {
-        html: {
-          background: globalTheme.palette.background.default,
-          overflow: 'hidden',
-        },
-        body: {
-          backgroundColor: `${globalTheme.palette.background.default}!important`,
-          minHeight: '100vh',
-        },
+      styleOverrides: `
+        @font-face {
+          font-family: 'Poppins';
+          font-style: normal;
+          font-display: swap;
+          font-weight: 400;
+          src:
+            local(''), 
+            url('/fonts/poppins-v20-latin-regular.woff') format('woff'),
+            url('/fonts/poppins-v20-latin-regular.woff2') format('woff2');
+        }
 
-        '	.MuiIconButton-root': {
-          color: `${globalTheme.palette.text.primary}!important`,
+        @font-face {
+          font-family: 'Poppins';
+          font-style: normal;
+          font-display: swap;
+          font-weight: 500;
+          src:
+            local(''), 
+            url('/fonts/poppins-v20-latin-500.woff') format('woff'),
+            url('/fonts/poppins-v20-latin-500.woff2') format('woff2');
+        }
 
-          '& svg': {
-            width: '2rem',
-            height: '2rem',
-          },
-        },
+        @font-face {
+          font-family: 'Poppins';
+          font-style: normal;
+          font-display: swap;
+          font-weight: 600;
+          src:
+            local(''), 
+            url('/fonts/poppins-v20-latin-600.woff') format('woff'),
+            url('/fonts/poppins-v20-latin-600.woff2') format('woff2');
+        }
 
-        '.MuiButtonBase-root:disabled': {
-          color: 'rgba(255, 255, 255, 0.40)!important',
-        },
+        @font-face {
+          font-family: 'Poppins';
+          font-style: normal;
+          font-display: swap;
+          font-weight: 700;
+          src:
+            local(''), 
+            url('/fonts/poppins-v20-latin-700.woff') format('woff'),
+            url('/fonts/poppins-v20-latin-700.woff2') format('woff2');
+        }
 
-        '.simplebar-scrollbar': {
-          '&::before': {
-            background: `${globalTheme.palette.primary.main}!important`,
-            pointerEvents: 'all!important',
-            borderRadius: '0.5rem!important',
-          },
-        },
+        html {
+          background: ${globalTheme.palette.background.default};
+          overflow: hidden;
+        }
 
-        '.Toastify__toast': {
-          backgroundColor: `${globalTheme.palette.background.paper}!important`,
-          border: `1px solid ${globalTheme.palette.primary.main}`,
-          borderRadius: '0.5rem',
-          width: '360px',
-        },
+        body {
+          background-color: ${globalTheme.palette.background.default}!important;
+          min-height: 100vh;
+        }
 
-        '.Toastify__toast-body': {
-          color: globalTheme.palette.text.primary,
-          fontFamily: globalTheme.typography.fontFamily,
-        },
-      },
+        .MuiIconButton-root {
+          color: ${globalTheme.palette.text.primary}!important;
+
+          & svg {
+            width: 2rem;
+            height: 2rem;
+          }
+        }
+
+        .MuiButtonBase-root:disabled {
+          color: rgba(255, 255, 255, 0.40)!important;
+        }
+
+        .simplebar-scrollbar {
+          &::before {
+            background: ${globalTheme.palette.primary.main}!important;
+            pointer-events: all!important;
+            border-radius: 0.5rem!important;
+          }
+        }
+
+        .Toastify__toast {
+          background-color: ${globalTheme.palette.background.paper}!important;
+          border: 1px solid ${globalTheme.palette.primary.main};
+          borderRadius: 0.5rem;
+        }
+
+        .Toastify__toast-body {
+          color: ${globalTheme.palette.text.primary};
+          font-family: ${globalTheme.typography.fontFamily};
+        }`,
     },
   },
 });

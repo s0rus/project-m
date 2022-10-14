@@ -23,7 +23,7 @@ export const ControlsWrapper = styled(Box)<{ playing: number; initialmute: numbe
   overflow: hidden;
 `;
 
-export const SeekerPreview = styled('span')<{ controls: number; playedPercentage: number }>`
+export const SeekerPreview = styled('span')<{ controls: number; playedPercentage: number; loadedPercentage: number }>`
   width: 100%;
   height: 4px;
 
@@ -32,7 +32,7 @@ export const SeekerPreview = styled('span')<{ controls: number; playedPercentage
 
   z-index: 1;
 
-  background-color: ${hexToRgba(theme.palette.primary.light, 0.4)};
+  background-color: ${hexToRgba(theme.palette.primary.main, 0.3)};
 
   transition: transform 0.2s ease-in-out;
   transform: ${({ controls }) => (!controls ? 'translateY(0px)' : 'translateY(8px)')};
@@ -50,10 +50,10 @@ export const SeekerPreview = styled('span')<{ controls: number; playedPercentage
     transition: width 0.1s ease-in-out;
   }
 
-  // '&::before': {
-  //   width: '80%',
-  //   backgroundColor: 'blue',
-  // },
+  &::before {
+    width: ${({ loadedPercentage }) => `${loadedPercentage || 0}%`};
+    background-color: ${hexToRgba(theme.palette.primary.light, 0.2)};
+  }
 
   &::after {
     width: ${({ playedPercentage }) => `${playedPercentage || 0}%`};

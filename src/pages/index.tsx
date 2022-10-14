@@ -9,8 +9,11 @@ import type { NextPage } from 'next';
 import SimpleBar from 'simplebar-react';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import VideoPlayer from '@/domain/VideoPlayer/view/VideoPlayer';
+import { useAddonsContext } from '@/contexts/AddonsContext';
 
 const Home: NextPage = () => {
+  const { isChatOn } = useAddonsContext();
+
   return (
     <>
       <Head>
@@ -25,9 +28,11 @@ const Home: NextPage = () => {
             <Dashboard />
           </SimpleBar>
         </MainContent>
-        <Box>
-          <TwitchChat />
-        </Box>
+        {isChatOn && (
+          <Box>
+            <TwitchChat />
+          </Box>
+        )}
       </MainLayout>
     </>
   );

@@ -14,7 +14,15 @@
     "buttonTxt": "Dodaj",
     "titleRequired": "Tytuł jest wymagany.",
     "titleTooLong": "Tytuł może mieć maksymalnie 30 znaków.",
-    "wrongUrl": "URL jest nieprawidłowy."
+    "wrongUrl": "URL jest nieprawidłowy.",
+    "videoAdded": "Film został dodany do kolejki."
+  },
+  "settings": {
+    "header": "Ustawienia",
+    "chat": {
+      "header": "Czat",
+      "subititle": "Włącz/wyłącz czat"
+    }
   },
   "playlist": {
     "header": "Playlista",
@@ -30,7 +38,10 @@
   },
   "toast": {
     "playlistLocked": "{{username}} zablokował playlistę.",
-    "playlistUnlocked": "{{username}} odblokował playlistę."
+    "playlistUnlocked": "{{username}} odblokował playlistę.",
+    "videoSeeked": "{{username}} przewinął film.",
+    "videoSkipped": "{{username}} pominął film.",
+    "videoError": "Film nie mógł być odtworzony."
   },
   "genericErrorMessage": "Ups! Coś poszło nie tak...",
   "addVideoError": "Wystąpił błąd podczas dodawania filmu...",

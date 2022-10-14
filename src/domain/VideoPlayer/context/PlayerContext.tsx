@@ -17,20 +17,24 @@ import {
   initialPlayerState,
 } from '../model/VideoPlayer.model';
 
+import { CustomToast } from '@/utils/sendToast';
 import { LocalStorageKeys } from '@/utils/localStorageKeys';
 import ReactPlayer from 'react-player';
+import { ToastTypes } from '@/utils/ToastTypes';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '../../Playlist/context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
+import { useTranslation } from 'react-i18next';
 
 const PlayerContext = createContext<InitialContextProps>(initialContextProps);
 
 export const usePlayerContext = () => useContext<InitialContextProps>(PlayerContext);
 
 export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
+  const { t } = useTranslation();
   const { isAdmin } = useAuthContext();
   const { socket } = useSocketContext();
-  const { currentVideo, requestNextVideo } = usePlaylistContext();
+  const { currentVideo, requestNextVideo, handleSkipVideo } = usePlaylistContext();
   const [playerState, setPlayerState] = useState<PlayerState>(initialPlayerState);
   const [seeking, setSeeking] = useState(false);
   const [playerRef, setPlayerRef] = useState<MutableRefObject<ReactPlayer> | null>(null);
@@ -72,8 +76,8 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     setPlayerState((prevPlayerState) => {
       return {
         ...prevPlayerState,
-        isMuted: !prevPlayerState.isMuted,
-        initialMute: prevPlayerState.initialMute && false,
+        isMuted: prevPlayerState.isReady && !prevPlayerState.isMuted,
+        initialMute: prevPlayerState.initialMute && prevPlayerState.isReady && false,
       };
     });
   }, []);
@@ -154,6 +158,45 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     requestNextVideo();
   }, [requestNextVideo]);
 
+  const handleOnVideoSkip = useCallback(() => {
+    setPlayerState((prevPlayerState) => {
+      return {
+        ...prevPlayerState,
+        duration: 0,
+        playedSeconds: 0,
+        loadedSeconds: 0,
+        activeVideo: undefined,
+      };
+    });
+
+    handleSkipVideo();
+  }, [handleSkipVideo]);
+
+  const handleOnError = useCallback(() => {
+    CustomToast.send(t('toast.videoError'), ToastTypes.VideoSkipped);
+    setPlayerState((prevPlayerState) => {
+      return {
+        ...prevPlayerState,
+        duration: 0,
+        playedSeconds: 0,
+        loadedSeconds: 0,
+        activeVideo: undefined,
+      };
+    });
+    requestNextVideo();
+  }, [t, requestNextVideo]);
+
+  const handleOnReady = useCallback(() => {
+    if (!playerState.isReady) {
+      setPlayerState((prevPlayerState) => {
+        return {
+          ...prevPlayerState,
+          isReady: true,
+        };
+      });
+    }
+  }, [playerState.isReady]);
+
   useEffect(() => {
     if (!socket) return;
 
@@ -207,7 +250,10 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
       seekTo,
       setPlayerRef,
       handleProgress,
+      handleOnVideoSkip,
       handleOnEnd,
+      handleOnError,
+      handleOnReady,
       togglePlaying,
       handleSeek,
       seeking,
@@ -223,7 +269,10 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
       seekTo,
       setPlayerRef,
       handleProgress,
+      handleOnVideoSkip,
       handleOnEnd,
+      handleOnError,
+      handleOnReady,
       togglePlaying,
       handleSeek,
       seeking,

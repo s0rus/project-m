@@ -1,7 +1,15 @@
+import {
+  DoneRounded,
+  FastForwardRounded,
+  LockOpenRounded,
+  LockRounded,
+  PriorityHighRounded,
+  SkipNextRounded,
+} from '@mui/icons-material';
+
 import { ToastTypes } from '@/utils/ToastTypes';
-import { toast } from 'react-toastify';
-import { LockRounded, LockOpenRounded, FastForwardRounded, SkipNextRounded } from '@mui/icons-material';
 import { theme } from '@/styles/theme';
+import { toast } from 'react-toastify';
 
 export class CustomToast {
   private static determineIcon = (type: ToastTypes) => {
@@ -14,12 +22,21 @@ export class CustomToast {
         return <FastForwardRounded sx={{ color: theme.palette.primary.main }} />;
       case ToastTypes.VideoSkipped:
         return <SkipNextRounded sx={{ color: theme.palette.primary.main }} />;
+      case ToastTypes.Sucess:
+        return <DoneRounded sx={{ color: theme.palette.primary.main }} />;
+      case ToastTypes.Error:
+        return <PriorityHighRounded sx={{ color: theme.palette.primary.main }} />;
+      default:
+        return undefined;
     }
   };
 
   static send = (message: string, type: ToastTypes) => {
+    toast.dismiss();
+    toast.clearWaitingQueue();
     toast(message, {
       icon: CustomToast.determineIcon(type),
+      toastId: message,
     });
   };
 }

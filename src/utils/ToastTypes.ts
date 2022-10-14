@@ -3,4 +3,6 @@ export enum ToastTypes {
   PlaylistUnlocked = 'PLAYLIST_UNLOCKED',
   VideoSkipped = 'VIDEO_SKIPPED',
   VideoSeeked = 'VIDEO_SEEKED',
+  Sucess = 'SUCCESS',
+  Error = 'ERROR',
 }

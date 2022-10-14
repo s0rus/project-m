@@ -1,4 +1,4 @@
-import { styled, Box, Stack } from '@mui/material';
+import { Box, Stack, styled } from '@mui/material';
 import React, { FC, PropsWithChildren } from 'react';
 
 const MainBox = styled(Box)`

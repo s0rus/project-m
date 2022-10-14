@@ -11,16 +11,18 @@ const PlayerControls = () => {
   const { socket } = useSocketContext();
   const { isAdmin } = useAuthContext();
   const { playerState, togglePlaying, toggleControls, disableInitialMute } = usePlayerContext();
-  const { isPlaying, playedSeconds, duration, controlsVisible, initialMute } = playerState;
+  const { isPlaying, playedSeconds, duration, controlsVisible, initialMute, isReady, loadedSeconds } = playerState;
   const controlsTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const [controlsHovered, setControlsHovered] = useState(false);
 
   const handlePlaying = () => {
-    if (initialMute) {
-      disableInitialMute();
-    } else if (isAdmin && socket) {
-      togglePlaying(!isPlaying);
-      socket.emit('TOGGLE_PLAYING', !isPlaying);
+    if (isReady) {
+      if (initialMute) {
+        disableInitialMute();
+      } else if (isAdmin && socket) {
+        togglePlaying(!isPlaying);
+        socket.emit('TOGGLE_PLAYING', !isPlaying);
+      }
     }
   };
 
@@ -51,7 +53,11 @@ const PlayerControls = () => {
       onMouseMove={handleControlsOnMouseMove}
       onMouseLeave={handleControlsOnMouseLeave}
     >
-      <SeekerPreview controls={+controlsVisible} playedPercentage={(playedSeconds / duration) * 100} />
+      <SeekerPreview
+        controls={+controlsVisible}
+        playedPercentage={(playedSeconds / duration) * 100}
+        loadedPercentage={(loadedSeconds / duration) * 100}
+      />
       <ControlsContainer>
         <VideoTitle variant='h1' noWrap controls={+controlsVisible}>
           {playerState.activeVideo?.videoTitle || ''}

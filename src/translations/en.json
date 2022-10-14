@@ -14,7 +14,15 @@
     "buttonTxt": "Add",
     "titleRequired": "Title is required",
     "titleTooLong": "The title can have up to 30 characters.",
-    "wrongUrl": "URL is invalid."
+    "wrongUrl": "URL is invalid.",
+    "videoAdded": "Video has been added to playlist."
+  },
+  "settings": {
+    "header": "Settings",
+    "chat": {
+      "header": "Chat",
+      "subititle": "Toggle chat visibility"
+    }
   },
   "playlist": {
     "header": "Playlist",
@@ -30,7 +38,10 @@
   },
   "toast": {
     "playlistLocked": "{{username}} has locked the playlist.",
-    "playlistUnlocked": "{{username}} has unlocked the playlist."
+    "playlistUnlocked": "{{username}} has unlocked the playlist.",
+    "videoSeeked": "{{username}} rewinded the video.",
+    "videoSkipped": "{{username}} skipped the video.",
+    "videoError": "Video couldn't be played. Skipping..."
   },
   "genericErrorMessage": "Whoops! Something went wrong...",
   "addVideoError": "There was an error while adding video...",
