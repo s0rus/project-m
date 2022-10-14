@@ -5,13 +5,9 @@ display: flex;
 position: fixed;
 left: 1px;
 top: 1px;
-z-index: 1000;`
+z-index: 1000000000000;`
 
 export const VideoBox = styled('div')`
-maxWidth: 150px;
-maxHeight: 30px;
-minWidth: 150px;
-minHeight: 20px;
 display: flex;
 position: relative;`
 
@@ -19,7 +15,8 @@ export const MoveIconBox2 = styled('div')`
 display:flex;
 position: absolute;
 cursor:move;
-left: -100px;
+left: 0px;
+top: 0px;
 height: 30px;
 margin-left: 380px;
 width: 30px;
@@ -31,8 +28,8 @@ border-radius: 8px;
 }`
 
 export const TwitchVideoHolder = styled('iframe')`
-height: 200px;
-width: 300px;
+height: 250px;
+width: 400px;
 border: none;
 display:flex;
 left: 5px;

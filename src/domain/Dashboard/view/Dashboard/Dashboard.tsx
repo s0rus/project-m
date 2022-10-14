@@ -7,7 +7,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Checkbox from '@mui/material/Checkbox';
@@ -74,17 +73,6 @@ const Dashboard = () => {
                 </SubTitleOption>
                 <Checkbox style={{color: `${theme.palette.primary.main}`, display: 'flex', position: 'absolute', right: '20px', bottom: '22px' , padding: '0px', transform: "scale(1.3)", zIndex:' 999' ,}} 
                 onClick={() => toggleTwitchVideo((prev) => !prev)}/>
-              </ChatBox>
-              <ChatBox>
-              <ChatBubbleOutlineIcon  style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }} />
-                <TitleOption>
-                  {t('options.chatTitle')}
-                </TitleOption>
-                <SubTitleOption>
-                {t('options.chatSubTitle')}
-                </SubTitleOption>
-                <Checkbox style={{color: `gray`, display: 'flex', position: 'absolute', right: '20px', bottom: '22px' , padding: '0px', transform: "scale(1.3)", zIndex:' 999' ,}} 
-                disabled checked />
               </ChatBox>
               </OptionsBox>
                 </Options>

@@ -37,6 +37,7 @@ display: flex;
 position: relative;
 margin-left: -140px;
 margin-top: 20px;
+text-shadow: 0px 0px 10px white;
 font-weight: 600;
 cursor: default;`
 

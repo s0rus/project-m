@@ -31,7 +31,7 @@ const CurrentAuth = () => {
     z-index: 1;
     opacity: 0;
     transition: all 0.2s;
-    border: 1px solid hsla(255, 68%, 45%, 0.50);
+    box-shadow: 0px 0px 10px ${theme.palette.primary.main};
     transform: scale(1.2,1.2);
   }
   &:before{

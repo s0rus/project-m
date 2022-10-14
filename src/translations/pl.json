@@ -20,11 +20,9 @@
   "options":{
     "optionsTitle": "Ustawienia",
     "twitchTitle": "Twitch",
-    "chatTitle": "Chat",
     "camTitle": "Kamerka",
     "twitchSubTitleLOGIN": "Zaloguj się aby dodać film.",
     "twitchSubTitleLOGOUT": "Wyloguj się.",
-    "chatSubTitle": "Widoczność czatu.",
     "camSubTitle": "Widoczność kamerki."
   },
 

@@ -79,13 +79,13 @@ const globalTheme = {
 
 export const gradients = {
   gradientPaper: '#18181b',
-  playlistUnlocked: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.success.light, 0)} 0%,  ${hexToRgba(
+  playlistUnlocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.success.light, 0)} -20%,  ${hexToRgba(
     globalTheme.palette.success.dark,
-    0.2
+    0.6
   )} 100%)`,
-  playlistLocked: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.error.light, 0)} 0%,  ${hexToRgba(
+  playlistLocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.error.light, 0)} -20%,  ${hexToRgba(
     globalTheme.palette.error.dark,
-    0.2
+    0.6
   )} 100%)`,
   currentVideo: `rgba(255,255,255,0.1);`,
 };
@@ -191,10 +191,42 @@ export const theme = createTheme({
 
         '.simplebar-scrollbar': {
           '&::before': {
+            marginLeft: '3px',
+            marginRight: '-2px',
             background: `${globalTheme.palette.primary.main}!important`,
             pointerEvents: 'all!important',
             borderRadius: '8px!important',
+            height: '65%',
           },
+        },
+
+        '.react-page-split__divider': {
+          '&:focus': {
+            backgroundColor: `${globalTheme.palette.primary.main}!important`,
+            transition: `0.2s`,
+            height: '100vh',
+            backgroundImage: 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==)',
+            cursor: 'row-resize',
+            touchAction: 'pan-x',
+            borderRadius: '20px',
+          },
+          '&:hover': {
+            backgroundColor: `#3a3740`,
+            transition: `0.2s`,
+            cursor: 'row-resize',
+            
+            height: '100vh',
+            borderRadius: '20px',
+          },
+        },
+
+        '.react-page-split__divider--horizontal': {
+          backgroundColor: `rgba(0, 0, 0, 0)`,
+          transition: `0.2s`,
+          cursor: 'row-resize',
+          touchAction: 'pan-x',
+          height: '100vh',
+          borderRadius: '20px',
         },
 
         '.Toastify__toast': {
@@ -203,10 +235,6 @@ export const theme = createTheme({
           borderRadius: '20px',
           zIndex: '999',
         },
-
-        // '.Toastify__toast--rtl': {
-        //   backgroundColor: hexToRgba(globalTheme.palette.primary.main, 0.9),
-        // },
 
         '.Toastify__toast-body': {
           color: globalTheme.palette.text.primary,

@@ -23,11 +23,9 @@
   "options":{
     "optionsTitle": "Options",
     "twitchTitle": "Twitch",
-    "chatTitle": "Chat",
     "camTitle": "Streamer cam",
     "twitchSubTitleLOGIN": "Log in to add movies.",
     "twitchSubTitleLOGOUT": "Log out.",
-    "chatSubTitle": "Chat visibility.",
     "camSubTitle": "Streamer cam visibility."
   },
   "playlist": {

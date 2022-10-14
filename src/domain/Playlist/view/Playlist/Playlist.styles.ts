@@ -9,8 +9,6 @@ export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   display: flex;
   flex-flow: column nowrap;
   background: ${({ locked }) => (locked ? gradients.playlistLocked : gradients.playlistUnlocked)};
-  border: 1px solid
-    ${({ locked }) => (locked ? hexToRgba(theme.palette.error.main, 0.1) : hexToRgba(theme.palette.success.main, 0.1))};
   border-radius: 8px;
 `;
 

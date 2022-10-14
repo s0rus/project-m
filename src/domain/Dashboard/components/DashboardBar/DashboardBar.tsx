@@ -23,7 +23,7 @@ const DashboardBar = () => {
           </Grid>
         </DashboardBarContainer>
       </DashboardBarWrapper>
-      <Divider style={{background: `${theme.palette.primary.main}`}} />
+      <Divider style={{background: `${theme.palette.primary.main}`, marginRight: '2rem'}} />
     </>
   );
 };

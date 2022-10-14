@@ -11,7 +11,7 @@ const Navigation = () => {
 
 
   return (
-    <Box sx={{ width: '100%', height: '56px', display: 'flex', position: 'absolute' , gap: '150px', justifyContent: 'center', overflow: 'hidden'}}>
+    <Box sx={{ width: '100%', height: '56px', display: 'flex', position: 'absolute' , gap: '150px', justifyContent: 'center', overflow: 'hidden', background: 'rgba(0, 0, 0, 0.43)'}}>
 
 <a href='https://www.twitch.tv/khamires' >
         <TwitchBox>

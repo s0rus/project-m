@@ -23,7 +23,7 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
     return (
       <VideoCardWrapper elevation={0}>
         <EmptyVideoCard>
-          <Typography variant='h3'>{t('playlist.noCurrentVideo.title')}</Typography>
+          <Typography variant='h3' style={{textShadow: '0px 0px 10px white'}} >{t('playlist.noCurrentVideo.title')}</Typography>
           <Typography variant='body2' style={{cursor: 'default'}} >{t('playlist.noCurrentVideo.subtitle')}</Typography>
         </EmptyVideoCard>
       </VideoCardWrapper>
@@ -38,7 +38,7 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
       <VideoBox>
         <VideoContent>
           <Link href={videoUrl} target='_blank' rel='noopener norefferer' sx={{ width: '98%' }}>
-            <Typography noWrap variant='h2'>
+            <Typography variant='h2' style={{textShadow: '0px 0px 4px white', color: 'white'}} >
               {videoTitle}
             </Typography>
           </Link>

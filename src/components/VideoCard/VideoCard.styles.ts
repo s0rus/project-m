@@ -46,7 +46,6 @@ export const AddedByWrapper = styled(Stack)`
 
 export const AddedByAvatar = styled(Avatar)`
   border-radius: 4px;
-  border: 1px solid ${theme.palette.primary.main};
 `;
 
 export const EmptyVideoCard = styled(Box)`

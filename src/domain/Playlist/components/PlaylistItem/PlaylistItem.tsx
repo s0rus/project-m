@@ -72,7 +72,7 @@ const [copied, setCopied] = useState(false)
         <PlaylistItemBox>
           <PlaylistItemContent>
 
-              <Typography noWrap variant='h4'>
+              <Typography style={{textShadow: '0px 0px 4px white'}} variant='h4'>
                 {videoTitle}
               </Typography>
 

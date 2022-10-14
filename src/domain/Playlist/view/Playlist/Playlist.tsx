@@ -55,7 +55,7 @@ const Playlist = () => {
         {playlistLocked ? (
 
           <Tooltip title={t('playlist.tooltip.unlock')} >
-        <LockOutlinedIcon onClick={() => togglePlaylistLocked()} style={{color: isHovering ? 'white' : 'rgba(255, 0, 0, 0.49)', cursor: 'pointer'}}
+        <LockOutlinedIcon onClick={() => togglePlaylistLocked()} style={{color: isHovering ? 'white' : 'rgba(255, 0, 0, 0.49),', cursor: 'pointer'}}
          onMouseEnter={handleMouseEnter}
          onMouseLeave={handleMouseLeave} />
           </Tooltip>
@@ -85,17 +85,17 @@ const Playlist = () => {
 )}
 
 
-          <Typography variant='h2'>{t('playlist.header')}</Typography>
+          <Typography variant='h2' style={{textShadow: '0px 0px 10px white'}} >{t('playlist.header')}</Typography>
           <Tooltip title={t('playlist.tooltip.videoCount')}>
             <PlaylistDetail>
               <AutoAwesomeMotionRounded />
-              <Typography variant='h5'>{properPlaylist.length || 0}</Typography>
+              <Typography variant='h5' style={{textShadow: '0px 0px 10px white'}} >{properPlaylist.length || 0}</Typography>
             </PlaylistDetail>
           </Tooltip>
           <Tooltip title={t('playlist.tooltip.timeSum')}>
             <PlaylistDetail>
               <AccessTimeFilledRounded />
-              <Typography variant='h5' >{timeFormatter(timeSum)}</Typography>
+              <Typography variant='h5' style={{textShadow: '0px 0px 10px white'}} >{timeFormatter(timeSum)}</Typography>
             </PlaylistDetail>
           </Tooltip>
           <PlaylistDetail>
@@ -112,7 +112,7 @@ const Playlist = () => {
             ))
           ) : (
             <EmptyPlaylistBox>
-              <Typography variant='h4'>{t('playlist.empty')} <div style={{marginTop: '10px', marginLeft: '40%'}} > <Image src={MadgeIcon} alt='Madge' height={48} width={48} /></div>  </Typography>
+              <Typography style={{textShadow: '0px 0px 10px white'}} variant='h4'>{t('playlist.empty')} <div style={{marginTop: '10px', marginLeft: '40%'}} > <Image src={MadgeIcon} alt='Madge' height={48} width={48} /></div>  </Typography>
             </EmptyPlaylistBox>
           )}
         </PlaylistContainer>
