@@ -1,4 +1,4 @@
-import React, {
+import {
   FC,
   MutableRefObject,
   PropsWithChildren,
@@ -16,27 +16,29 @@ import {
   initialContextProps,
   initialPlayerState,
 } from '../model/VideoPlayer.model';
-import { ToastTypes } from '@/utils/ToastTypes';
+
+import { CustomToast } from '@/utils/sendToast';
 import { LocalStorageKeys } from '@/utils/localStorageKeys';
 import ReactPlayer from 'react-player';
+import { ToastTypes } from '@/utils/ToastTypes';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '../../Playlist/context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
-import { toast } from 'react-toastify';
-import { CustomToast } from '@/utils/sendToast';
+
 const PlayerContext = createContext<InitialContextProps>(initialContextProps);
 
 export const usePlayerContext = () => useContext<InitialContextProps>(PlayerContext);
 
 export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { isAdmin, currentUser } = useAuthContext();
+  const { t } = useTranslation();
+  const { isAdmin } = useAuthContext();
   const { socket } = useSocketContext();
-  const { currentVideo, requestNextVideo } = usePlaylistContext();
+  const { currentVideo, requestNextVideo, handleSkipVideo } = usePlaylistContext();
   const [playerState, setPlayerState] = useState<PlayerState>(initialPlayerState);
   const [seeking, setSeeking] = useState(false);
   const [playerRef, setPlayerRef] = useState<MutableRefObject<ReactPlayer> | null>(null);
-  const { t } = useTranslation();
+
   const seekTo = useCallback((seconds: number) => playerRef?.current?.seekTo(seconds, 'seconds'), [playerRef]);
   const getDuration = useCallback(() => playerRef?.current?.getDuration() || 0, [playerRef]);
   const getPlayedSeconds = useCallback(() => playerRef?.current?.getCurrentTime() || 0, [playerRef]);
@@ -74,8 +76,8 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     setPlayerState((prevPlayerState) => {
       return {
         ...prevPlayerState,
-        isMuted: !prevPlayerState.isMuted,
-        initialMute: prevPlayerState.initialMute && false,
+        isMuted: prevPlayerState.isReady && !prevPlayerState.isMuted,
+        initialMute: prevPlayerState.initialMute && prevPlayerState.isReady && false,
       };
     });
   }, []);
@@ -118,10 +120,6 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
             playedSeconds: newPlayedSeconds,
           };
         });
-          CustomToast.send(
-          t('toast.skipProgress', { username: currentUser.name }),
-           ToastTypes.VideoSeeked,
-        );
       }
     },
     [isAdmin, socket]
@@ -158,17 +156,46 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     });
 
     requestNextVideo();
-    if (isAdmin && socket ) {
-      try{
-        CustomToast.send(
-          t('toast.skipVideo', { username: currentUser.name }),
-           ToastTypes.VideoSkipped,
-        );
-      }
-      catch {
-        toast.error(t('skipVideoError'));}
-  }
   }, [requestNextVideo]);
+
+  const handleOnVideoSkip = useCallback(() => {
+    setPlayerState((prevPlayerState) => {
+      return {
+        ...prevPlayerState,
+        duration: 0,
+        playedSeconds: 0,
+        loadedSeconds: 0,
+        activeVideo: undefined,
+      };
+    });
+
+    handleSkipVideo();
+  }, [handleSkipVideo]);
+
+  const handleOnError = useCallback(() => {
+    CustomToast.send(t('toast.videoError'), ToastTypes.VideoSkipped);
+    setPlayerState((prevPlayerState) => {
+      return {
+        ...prevPlayerState,
+        duration: 0,
+        playedSeconds: 0,
+        loadedSeconds: 0,
+        activeVideo: undefined,
+      };
+    });
+    requestNextVideo();
+  }, [t, requestNextVideo]);
+
+  const handleOnReady = useCallback(() => {
+    if (!playerState.isReady) {
+      setPlayerState((prevPlayerState) => {
+        return {
+          ...prevPlayerState,
+          isReady: true,
+        };
+      });
+    }
+  }, [playerState.isReady]);
 
   useEffect(() => {
     if (!socket) return;
@@ -223,7 +250,10 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
       seekTo,
       setPlayerRef,
       handleProgress,
+      handleOnVideoSkip,
       handleOnEnd,
+      handleOnError,
+      handleOnReady,
       togglePlaying,
       handleSeek,
       seeking,
@@ -239,7 +269,10 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
       seekTo,
       setPlayerRef,
       handleProgress,
+      handleOnVideoSkip,
       handleOnEnd,
+      handleOnError,
+      handleOnReady,
       togglePlaying,
       handleSeek,
       seeking,

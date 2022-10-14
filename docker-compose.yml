@@ -19,7 +19,7 @@ services:
       - "3000:3000"
     image: t3-app
     environment:
-      - DATABASE_URL='mysql://root:mpassword@database:3309/databasem'
+      - DATABASE_URL='mysql://root:databasem@database:3306/mpassword'
       - TWITCH_CLIENT_ID='58jxo2kz56sileqihj509h4bd0ll9z'
       - TWITCH_CLIENT_SECRET='2xry5j0z6ijmiblcgn6294gt340lq6'
   nginx:

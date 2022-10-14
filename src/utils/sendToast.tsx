@@ -1,6 +1,6 @@
 import { ToastTypes } from '@/utils/ToastTypes';
 import { toast } from 'react-toastify';
-import { LockRounded, LockOpenRounded, FastForwardRounded, SkipNextRounded, ContentCopyRounded } from '@mui/icons-material';
+import { LockRounded, LockOpenRounded, FastForwardRounded, SkipNextRounded, ContentCopyRounded, PriorityHighRounded, DoneRounded } from '@mui/icons-material';
 import { theme } from '@/styles/theme';
 
 export class CustomToast {
@@ -16,6 +16,10 @@ export class CustomToast {
         return <SkipNextRounded sx={{ color: theme.palette.primary.main }} />
         case ToastTypes.Copy:
           return <ContentCopyRounded sx={{ color: theme.palette.primary.main }} />
+        case ToastTypes.Sucess:
+        return <DoneRounded sx={{ color: theme.palette.primary.main }} />;
+      case ToastTypes.Error:
+        return <PriorityHighRounded sx={{ color: theme.palette.primary.main }} />;
     }
 
 

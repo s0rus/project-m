@@ -1,10 +1,10 @@
-import React , { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useState } from 'react';
 
+import { CustomToast } from '@/utils/sendToast';
 import { Routes } from '@/server/router/routes';
 import { SocketProvider } from '@/server/sockets';
 import { UserData } from '@/server/sockets/SocketProvider';
 import { io } from 'socket.io-client';
-import { toast } from 'react-toastify';
 import { useAuthContext } from './AuthContext';
 
 interface SocketContextProps {
@@ -50,7 +50,7 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
         });
       });
 
-      socket.on('RECEIVE_TOAST', (message) => toast(message));
+      socket.on('RECEIVE_TOAST', (message, type) => CustomToast.send(message, type));
       socket.on('RECEIVE_NEW_LEADER', (userData) => setLeader(userData));
 
       socket.on('connect_error', (err: Error) => {
@@ -63,8 +63,6 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
     if (!socket) return;
 
     if (currentUser && !authChange) {
-      console.log('INVOKED', currentUser);
-      console.log('UPDATE_SOCKET', socket.id);
       socket.emit('UPDATE_USER', {
         socketId: socket.id,
         isAdmin: currentUser.isAdmin,

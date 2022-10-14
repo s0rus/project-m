@@ -5,11 +5,12 @@ import { NewVideoForm, newVideoSchema } from '../../model/NewVideo.model';
 import React, { FC, useRef, useState } from 'react';
 
 import ButtonWithLoader from '@/components/ButtonWithLoader';
+import { CustomToast } from '@/utils/sendToast';
 import FormInput from '@/components/FormInput';
 import { PlaylistAddCheck } from '@mui/icons-material';
 import ReactPlayer from 'react-player';
+import { ToastTypes } from '@/utils/ToastTypes';
 import { getYoutubeThumbnail } from '@/domain/Dashboard/utils/youtubeUtils';
-import { toast } from 'react-toastify';
 import { trpc } from '@/utils/trpc';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
@@ -72,10 +73,11 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
 
       addVideo(newVideo);
       socket.emit('ADD_NEW_VIDEO', newVideo);
+      CustomToast.send(t('addVideoModal.videoAdded'), ToastTypes.Sucess);
       handleReset();
     } catch {
+      CustomToast.send(t('addVideoError'), ToastTypes.Error);
       handleReset();
-      toast.error(t('addVideoError'));
     }
   };
 

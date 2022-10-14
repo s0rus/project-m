@@ -19,6 +19,7 @@ const BarButtons = () => {
   const { handleOnEnd } = usePlayerContext();
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
+  const { handleOnVideoSkip } = usePlayerContext();
 
 
   return (
@@ -27,12 +28,7 @@ const BarButtons = () => {
         <>
           <Hidden lgDown>
           {isAdmin &&
-            <StyledButton
-            onClick={() => {
-              handleOnEnd();
-              socket.emit('SKIP_VIDEO')}}
-              disabled={authChange}
-            >
+            <StyledButton onClick={() => handleOnVideoSkip()} >
               <SkipNextIcon style={{marginRight: '5px'}} />
               {t('video.skip')}
             </StyledButton>
@@ -52,6 +48,7 @@ const BarButtons = () => {
         <>
         <Tooltip title={t('options.twitchSubTitleLOGIN')}>
               <StyledButtonSkeleton
+              
               disabled={playlistLocked && !isAdmin}
               style={{marginRight: '2rem'}}
             >

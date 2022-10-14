@@ -1,4 +1,4 @@
-import React, {
+import {
   FC,
   PropsWithChildren,
   createContext,
@@ -77,7 +77,6 @@ export const AuthContextProvider: FC<PropsWithChildren> = ({ children }) => {
     await newWindow(Routes.TWITCH_LOGOUT, 'Logging out...');
     setAuthChange(false);
   }, [newWindow]);
-
 
   const value = {
     session,

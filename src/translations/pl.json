@@ -15,19 +15,18 @@
     "buttonTxt": "Dodaj",
     "titleRequired": "Tytuł jest wymagany.",
     "titleTooLong": "Tytuł może mieć maksymalnie 30 znaków.",
-    "wrongUrl": "URL jest nieprawidłowy."
+    "wrongUrl": "URL jest nieprawidłowy.",
+    "videoAdded": "Film został dodany do kolejki."
   },
   "options":{
     "optionsTitle": "Ustawienia",
     "twitchTitle": "Twitch",
     "camTitle": "Kamerka",
+    "chatTitle": "Czat",
     "twitchSubTitleLOGIN": "Zaloguj się aby dodać film.",
     "twitchSubTitleLOGOUT": "Wyloguj się.",
-    "camSubTitle": "Widoczność kamerki."
-  },
-
-  "Repertuar":{
-    "Title": "Repertuar"
+    "camSubTitle": "Widoczność kamerki.",
+    "chatSubTitle": "Widoczność czatu."
   },
   "playlist": {
     "header": "Playlista",
@@ -63,12 +62,11 @@
   "toast": {
     "playlistLocked": "{{username}} zablokował playlistę.",
     "playlistUnlocked": "{{username}} odblokował playlistę.",
-    "skipVideo": " {{username}} pominął film.",
-    "skipProgress": " {{username}} zmienił czas filmu."
+    "videoSeeked": "{{username}} przewinął film.",
+    "videoError": "Film nie mógł być odtworzony."
   },
   "genericErrorMessage": "Ups! Coś poszło nie tak...",
   "addVideoError": "Wystąpił błąd podczas dodawania filmu...",
   "requestVideoError": "Nie udało się pobrać kolejnego filmu...",
-  "skipVideoError": "Nie udało się pominąć filmu...",
   "togglePlaylistError": "Nie udało się zmienić stanu playlisty..."
 }

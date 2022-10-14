@@ -22,7 +22,10 @@ export const getBaseUrl = () => {
 
 export const getTwitchChatParent = () => {
   if (process.env.VERCEL_URL) return `${process.env.VERCEL_URL}`;
-  return `localhost`;
+  if (typeof window !== 'undefined') {
+    return window.location.hostname;
+  }
+  return 'localhost';
 };
 
 export default withTRPC<AppRouter>({

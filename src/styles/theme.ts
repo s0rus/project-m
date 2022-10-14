@@ -72,7 +72,7 @@ const globalTheme = {
   },
 
   shape: {
-    borderRadius: '8px',
+    borderRadius: '0.5rem',
   },
   spacing: 8,
 };
@@ -88,6 +88,10 @@ export const gradients = {
     0.6
   )} 100%)`,
   currentVideo: `rgba(255,255,255,0.1);`,
+  gradientMain: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.primary.main, 0)} 0%,  ${hexToRgba(
+    globalTheme.palette.primary.main,
+    0.3
+  )} 100%)`,
 };
 
 export const theme = createTheme({
@@ -139,6 +143,15 @@ export const theme = createTheme({
           '& > *:nth-of-type(1)': {
             fontSize: 24,
           },
+        },
+      },
+    },
+
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: `${globalTheme.palette.primary.main}`,
+          borderRadius: '0.5rem',
         },
       },
     },
@@ -231,7 +244,7 @@ export const theme = createTheme({
 
         '.Toastify__toast': {
           backgroundColor: `${hexToRgba(globalTheme.palette.background.paper, 0.50)}!important`,
-          border: `2px solid ${globalTheme.palette.primary.main}`,
+          border: `1px solid ${globalTheme.palette.primary.main}`,
           borderRadius: '20px',
           zIndex: '999',
         },

@@ -1,21 +1,21 @@
-import React, { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { InitialContextProps, PlaylistWithUsers, initialContextProps } from '../model/Playlist.model';
 
+import { CustomToast } from '@/utils/sendToast';
+import { ToastTypes } from '@/utils/ToastTypes';
 import { queryParams } from '../utils/queryParams';
-import { toast } from 'react-toastify';
 import { trpc } from '@/utils/trpc';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
-import { ToastTypes } from '@/utils/ToastTypes';
-import { CustomToast } from '@/utils/sendToast';
+
 const PlaylistContext = createContext<InitialContextProps>(initialContextProps);
 
 export const usePlaylistContext = () => useContext<InitialContextProps>(PlaylistContext);
 
 export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const { t } = useTranslation();
-  const { socket } = useSocketContext();
+  const { socket, leader } = useSocketContext();
   const { isAdmin, currentUser } = useAuthContext();
   const [currentVideo, setCurrentVideo] = useState<PlaylistWithUsers | undefined>(undefined);
   const [playlistLocked, setPlaylistLocked] = useState<boolean>(true);
@@ -70,7 +70,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
 
   const requestNextVideo = useCallback(async () => {
     try {
-      if (currentVideo && isAdmin) {
+      if (currentVideo && leader?.userId === currentUser.id) {
         await mutateAsync({ videoId: currentVideo.videoId });
       }
 
@@ -80,23 +80,42 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
       setCurrentVideo(filteredPlaylist[0]);
       setPlaylist(filteredPlaylist);
     } catch {
-      toast.error(t('requestVideoError'));
+      CustomToast.send(t('requestVideoError'), ToastTypes.Error);
     }
-  }, [currentVideo, playlist, mutateAsync, isAdmin, t]);
+  }, [currentVideo, playlist, mutateAsync, leader, t, currentUser.id]);
+
+  const handleSkipVideo = useCallback(async () => {
+    try {
+      if (currentVideo && isAdmin) {
+        await mutateAsync({ videoId: currentVideo.videoId });
+
+        const newPlaylist = [...playlist];
+        const filteredPlaylist = newPlaylist.filter((video) => video.videoId !== currentVideo?.videoId);
+
+        setCurrentVideo(filteredPlaylist[0]);
+        setPlaylist(filteredPlaylist);
+
+        socket.emit('SKIP_VIDEO');
+      }
+    } catch {
+      CustomToast.send(t('requestVideoError'), ToastTypes.Error);
+    }
+  }, [currentVideo, isAdmin, mutateAsync, t, socket, currentUser.name, playlist]);
 
   const togglePlaylistLocked = useCallback(async () => {
     try {
       if (isAdmin && socket) {
         await mutatePlaylistState({ newPlaylistState: !playlistLocked });
         socket.emit('TOGGLE_PLAYLIST');
-      CustomToast.send(
+        socket.emit(
+          'SEND_TOAST',
           t(playlistLocked ? 'toast.playlistUnlocked' : 'toast.playlistLocked', { username: currentUser.name }),
           playlistLocked ? ToastTypes.PlaylistUnlocked : ToastTypes.PlaylistLocked
         );
         setPlaylistLocked((prevLocked) => !prevLocked);
       }
     } catch {
-      toast.error(t('togglePlaylistError'));
+      CustomToast.send(t('togglePlaylistError'), ToastTypes.Error);
     }
   }, [currentUser.name, isAdmin, mutatePlaylistState, t, playlistLocked, socket]);
 
@@ -128,6 +147,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
       currentVideo,
       playlist,
       requestNextVideo,
+      handleSkipVideo,
       addVideo,
       playlistLocked,
       togglePlaylistLocked,
@@ -139,6 +159,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
       currentVideo,
       playlist,
       requestNextVideo,
+      handleSkipVideo,
       addVideo,
       playlistLocked,
       togglePlaylistLocked,

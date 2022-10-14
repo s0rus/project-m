@@ -13,11 +13,13 @@ import Image from 'next/image';
 import noResponsive from '@/domain/Icons/Noresponsive.svg'
 import Obiecuje from '@/domain/Icons/Obiecuje.svg'
 import { Background } from '@/styles/style';
+import { useAddonsContext } from '@/contexts/AddonsContext';
 
 
 const Home: NextPage = () => {
   const { t } = useTranslation();
-  
+  const { isChatOn } = useAddonsContext();
+
   return (
     <>
       <Head>
@@ -26,23 +28,41 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <MainLayout>
-      <Hidden lgDown>
-        <HorizontalPageSplit style={{overflow: 'hidden'}} >
-      <div style={{minWidth: '57%' }} >
+
+        <Hidden lgDown >
+        {isChatOn ? ( 
+
+        <HorizontalPageSplit>
+        <div style={{minWidth: '65%'}} >
         <MainContent>
           <Background>
             <VideoPlayer/>
             <Dashboard />
           </Background>
         </MainContent>
-      </div>
-        <div style={{minWidth: '15%', maxWidth:'36%', overflow: 'hidden'}}>
-          <TwitchChat />
+        </div>
+        <div style={{minWidth: '15%', maxWidth:'100%'}}>
+            <TwitchChat />
         </div>
         </HorizontalPageSplit>
-      </Hidden>
 
-          <Hidden lgUp>
+        ) : ( 
+          <MainLayout>
+          <MainContent>
+            <Background>
+              <VideoPlayer/>
+              <Dashboard />
+            </Background>
+          </MainContent>
+          </MainLayout>
+        )}
+        </Hidden>
+
+
+
+
+
+        <Hidden lgUp>
             <div style={{height: '100vh', width: '100%'}} >
             <Background>
             <VideoPlayer />
@@ -59,7 +79,6 @@ const Home: NextPage = () => {
           </Background>
             </div>
           </Hidden>
-
       </MainLayout>
     </>
   );

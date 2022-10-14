@@ -15,17 +15,17 @@
     "buttonTxt": "Add",
     "titleRequired": "Title is required",
     "titleTooLong": "The title can have up to 30 characters.",
-    "wrongUrl": "URL is invalid."
-  },
-  "Repertuar":{
-    "Title": "Repertoire"
+    "wrongUrl": "URL is invalid.",
+    "videoAdded": "Video has been added to playlist."
   },
   "options":{
     "optionsTitle": "Options",
     "twitchTitle": "Twitch",
     "camTitle": "Streamer cam",
+    "czatTitle": "Chat",
     "twitchSubTitleLOGIN": "Log in to add movies.",
     "twitchSubTitleLOGOUT": "Log out.",
+    "czatSubTitle": "Chat visibility.",
     "camSubTitle": "Streamer cam visibility."
   },
   "playlist": {
@@ -62,12 +62,12 @@
   "toast": {
     "playlistLocked": "{{username}} has locked the playlist.",
     "playlistUnlocked": "{{username}} has unlocked the playlist.",
-    "skipVideo": "{{username}} skipped the video",
-    "skipProgress": "{{username}} changed the video time" 
+    "videoSeeked": "{{username}} rewinded the video.",
+    "videoSkipped": "{{username}} skipped the video.",
+    "videoError": "Video couldn't be played. Skipping..."
   },
   "genericErrorMessage": "Whoops! Something went wrong...",
   "addVideoError": "There was an error while adding video...",
   "requestVideoError": "The next video couldn't be fetched...",
-  "skipVideoError": "Could not skip the video...",
   "togglePlaylistError": "State of the playlist couldn't be changed..."
 }

@@ -1,4 +1,4 @@
-import React, { Dispatch, MutableRefObject, SetStateAction } from 'react';
+import { Dispatch, MutableRefObject, SetStateAction } from 'react';
 import { PauseRounded, PlayArrowRounded, VolumeDown, VolumeOff, VolumeUp } from '@mui/icons-material';
 
 import { Playlist } from '@prisma/client';
@@ -14,6 +14,7 @@ export interface PlayerState {
   controlsVisible: boolean;
   initialMute: boolean;
   activeVideo: Playlist | undefined;
+  isReady: boolean;
 }
 
 export const initialPlayerState: PlayerState = {
@@ -26,6 +27,7 @@ export const initialPlayerState: PlayerState = {
   controlsVisible: true,
   initialMute: true,
   activeVideo: undefined,
+  isReady: false,
 };
 
 export interface InitialContextProps {
@@ -35,6 +37,9 @@ export interface InitialContextProps {
   seekTo: (seconds: number) => void;
   handleProgress: (event: ProgressProps) => void;
   handleOnEnd: () => void;
+  handleOnVideoSkip: () => void;
+  handleOnError: () => void;
+  handleOnReady: () => void;
   togglePlaying: (newPlayingState: boolean, localPause?: boolean) => void;
   handleSeek: (newSecondsPlayed: number) => void;
   seeking: boolean;
@@ -52,6 +57,9 @@ export const initialContextProps = {
   setPlayerRef: () => null,
   handleProgress: () => null,
   handleOnEnd: () => null,
+  handleOnVideoSkip: () => null,
+  handleOnError: () => null,
+  handleOnReady: () => null,
   togglePlaying: () => null,
   handleSeek: () => null,
   seeking: false,
