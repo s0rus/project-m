@@ -43,7 +43,9 @@
       "unlocked": "Playlista jest odblokowana",
       "admin": "Administrator",
       "logged": "Zalogowany",
-      "guest": "Gość"
+      "guest": "Gość",
+      "discord": "Uwusiownia",
+      "twitch": "Khamires"
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",

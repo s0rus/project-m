@@ -43,7 +43,9 @@
       "unlocked": "Playlist is unlocked",
       "admin": "Admin",
       "logged": "Logged",
-      "guest": "Guest"
+      "guest": "Guest",
+      "discord": "Uwusiownia",
+      "twitch": "Khamires"
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",
