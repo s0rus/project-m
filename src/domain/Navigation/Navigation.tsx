@@ -5,14 +5,14 @@ import Image from 'next/image';
 import Twitch from '@/domain/Icons/Twitch.svg'
 import Discord from '@/domain/Icons/Discord.svg'
 import { useTranslation } from 'react-i18next';
-import { TwitchBox, DiscordBox, NavText } from './Navigation.style'
+import { TwitchBox, DiscordBox, NavText, NavHolder } from './Navigation.style'
 import ReceiptIcon from '@mui/icons-material/Receipt';
 const Navigation = () => {
   const { t } = useTranslation();
 
 
   return (
-    <Box sx={{ width: '100%', height: '56px', display: 'flex', position: 'absolute' , gap: '150px', justifyContent: 'center', overflow: 'hidden', background: 'rgba(0, 0, 0, 0.50)'}}>
+    <NavHolder>
 <a href='https://www.twitch.tv/khamires' >
 <Tooltip title={t('playlist.tooltip.twitch')}>
         <TwitchBox>
@@ -38,7 +38,7 @@ const Navigation = () => {
 
 <NavText>{t('Navigation.regulations')}</NavText>
 
-    </Box>
+    </NavHolder>
   );
 };
 

@@ -8,6 +8,6 @@ export const DashboardWrapper = styled(Box)`
 export const DashboardContainer = styled(Box)`
   width: 100%;
   height: 100%;
-
+  margin-bottom: 2rem;
   padding: 1rem 2vw;
 `;

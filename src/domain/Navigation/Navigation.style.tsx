@@ -1,5 +1,33 @@
 
 import { styled } from '@mui/material';
+import { theme } from '@/styles/theme';
+import hexToRgba from 'hex-to-rgba';
+
+export const NavHolder = styled('div')`
+transition: all 0.2s;
+position: relative; all 0.3s;
+text-transform: capitalize;
+width: 700px;
+height: 56px;
+display: flex;
+position: relative;
+gap: 150px;
+justify-content: center;
+background: rgba(0, 0, 0, 0.20);
+left: 50%;
+margin: 0;
+padding: 0;
+transform: translate(-50%, -50%);
+box-shadow: rgba(0, 0, 0, 0.75) 0px 25px 20px -20px;
+border-right: 1px solid ${hexToRgba(theme.palette.primary.main, 0.50)};
+border-left: 1px solid ${hexToRgba(theme.palette.primary.main, 0.50)};
+border-radius: 8px;
+&:hover{
+    border-right: 3px solid ${hexToRgba(theme.palette.primary.main, 1)};
+    border-left: 3px solid ${hexToRgba(theme.palette.primary.main, 1)};
+    background: rgba(0, 0, 0, 0.35);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}`
 
 export const TwitchBox = styled('div')`
 height: 40px;

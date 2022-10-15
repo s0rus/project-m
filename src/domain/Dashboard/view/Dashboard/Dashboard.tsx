@@ -1,10 +1,9 @@
-import { Grid, Divider } from '@mui/material';
+import { Grid } from '@mui/material';
 import { DashboardContainer, DashboardWrapper } from './Dashboard.styles';
 import DashboardBar from '../../components/DashboardBar';
 import Playlist from '@/domain/Playlist/view/Playlist';
 import React from 'react';
 import Navigation from '@/domain/Navigation';
-import { theme } from '@/styles/theme';
 import Settings from '../../components/Settings';
 
 const Dashboard = () => {
@@ -26,7 +25,6 @@ const Dashboard = () => {
             </Grid>
           </Grid>
       </DashboardContainer>
-      <Divider style={{background: `${theme.palette.primary.main}`}} />
       <Navigation/>
     </DashboardWrapper>
   );
