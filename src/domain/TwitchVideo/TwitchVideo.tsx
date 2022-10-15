@@ -16,7 +16,7 @@ const setPointerRemove = () => {
 }
 
   return (
-<Draggable bounds={{left: -5, top: -10, right: 1180, bottom: 680,}} onStart={setPointerActive} onStop={setPointerRemove} >
+<Draggable bounds={{left: -5, top: -10, right: 1470, bottom: 680,}} onStart={setPointerActive} onStop={setPointerRemove} >
     <TwitchVideoBox>
     <div style={{ pointerEvents: pointeractive ? 'none' : 'auto', }} >
       <TwitchVideoHolder src={`https://player.twitch.tv/?channel=khamires&parent=${getTwitchChatParent()}&muted=true`}>
