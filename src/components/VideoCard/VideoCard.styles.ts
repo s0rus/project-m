@@ -6,6 +6,7 @@ export const VideoCardWrapper = styled(Card)`
   height: 100%;
   margin-bottom: -10px;
   display: flex;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   background-color: rgba(255,255,255,0.1);
   transition: 0.3s ease-in-out;
   &:hover{
@@ -18,6 +19,7 @@ export const VideoContent = styled(CardContent)`
   width: 100%;
   max-width: 100%;
   display: flex;
+
   flex: 1;
   flex-direction: column;
   justify-content: center;

@@ -47,6 +47,7 @@ const Home: NextPage = () => {
         </HorizontalPageSplit>
 
         ) : ( 
+
           <MainLayout>
           <MainContent>
             <Background>

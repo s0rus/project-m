@@ -79,7 +79,7 @@ const [copied, setCopied] = useState(false)
             <Seeker aria-label='time-indicator'size='small'/>
             <AddedByWrapper>
           {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
-          <Typography component='span'>{addedBy.name}</Typography>
+          <Typography component='span' style={{textShadow: '0px 0px 4px white'}} >{addedBy.name}</Typography>
         </AddedByWrapper>
           </PlaylistItemContent>
         </PlaylistItemBox>

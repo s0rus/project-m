@@ -45,7 +45,7 @@ const Playlist = () => {
   const handleMouseLeave = () => {
     setIsHovering(false);
   };
-
+  
   return (
     <>
       <PlaylistWrapper locked={playlistLocked ? 1 : 0}>

@@ -81,11 +81,11 @@ export const gradients = {
   gradientPaper: '#18181b',
   playlistUnlocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.success.light, 0)} -20%,  ${hexToRgba(
     globalTheme.palette.success.dark,
-    0.3
+    0.2
   )} 100%)`,
   playlistLocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.error.light, 0)} -20%,  ${hexToRgba(
     globalTheme.palette.error.dark,
-    0.3
+    0.2
   )} 100%)`,
   currentVideo: `rgba(255,255,255,0.1);`,
   gradientMain: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.primary.main, 0)} 0%,  ${hexToRgba(
@@ -150,8 +150,11 @@ export const theme = createTheme({
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          backgroundColor: `${globalTheme.palette.primary.main}`,
+          backgroundColor: `${hexToRgba(globalTheme.palette.primary.main, 0.75)}`,
           borderRadius: '0.5rem',
+          color: 'white',
+          width: '100%',
+          boxShadow: '0 2px 12px 0 rgba(0, 0, 0, 0.4)',
         },
       },
     },
@@ -213,6 +216,10 @@ export const theme = createTheme({
           },
         },
 
+
+        '.react-page-split': {
+          transition: `0.2s`,
+        },
         '.react-page-split__divider': {
           '&:focus': {
             backgroundColor: `${globalTheme.palette.primary.main}!important`,

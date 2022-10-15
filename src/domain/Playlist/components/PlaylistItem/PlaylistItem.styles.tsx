@@ -5,6 +5,7 @@ export const PlaylistItemWrapper = styled(Card)`
   width: 100%;
   height: 100%;
   display: flex;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   background-color: rgba(255,255,255,0.1);
   border-radius: 8px;
   transition: 0.3s ease-in-out;

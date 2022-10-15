@@ -8,6 +8,7 @@ export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   flex-flow: column nowrap;
   background: ${({ locked }) => (locked ? gradients.playlistLocked : gradients.playlistUnlocked)};
   border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 `;
 
 export const PlaylistHeader = styled(Stack)`
