@@ -13,7 +13,7 @@ const CurrentAuth = () => {
   return (
     <div>
         {isLoggedIn ? (
-    <div style={{display: 'flex', position: 'relative', right: '5%', bottom: '0px'}} >
+    <div style={{display: 'flex',}} >
     {isAdmin ? (
 <Tooltip style={{cursor: 'default'}} title={t('playlist.tooltip.admin')} >
 <CurrentAuthHolder>

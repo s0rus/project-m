@@ -3,6 +3,17 @@ import { Box, Slider, styled } from '@mui/material';
 import hexToRgba from 'hex-to-rgba';
 import { theme } from '@/styles/theme';
 
+
+export const BoxIcon = styled('div')`
+height: 50px;
+width: 50px;
+transition: 0.2s;
+border-radius: 8px;
+&:hover{
+background: rgba(255, 255, 255, 0.20);
+}
+`
+
 export const ControlsBarWrapper = styled(Box)<{ controls: boolean }>`
   width: 100%;
 
@@ -20,10 +31,18 @@ export const ControlsBarWrapper = styled(Box)<{ controls: boolean }>`
 export const Seeker = styled(Slider)<{ loadedPercentage: number }>`
   color: ${theme.palette.primary.main};
   height: 4px;
-
+&:hover{
+  height: 10px;
+}
   & .MuiSlider-thumb {
-    width: 1rem;
-    height: 1rem;
+    width: 0.8rem;
+    color: white;
+    height: 0.8rem;
+    &:hover{
+      transition: 0.1s;
+      width: 1.2rem;
+      height: 1.2rem;
+    }
   }
 
   &::before {
@@ -42,7 +61,7 @@ export const Seeker = styled(Slider)<{ loadedPercentage: number }>`
 
   & .MuiSlider-rail {
     opacity: 0.5;
-    background-color: ${theme.palette.primary.dark};
+    background-color: rgba(74, 74, 74, 0.78);
 
     &::before {
       content: '';
@@ -53,7 +72,8 @@ export const Seeker = styled(Slider)<{ loadedPercentage: number }>`
 
       transition: width 0.1s ease-in-out;
       width: ${({ loadedPercentage }) => `${loadedPercentage || 0}%`};
-      background-color: ${theme.palette.primary.light};
+      background-color: rgba(97, 97, 97, 0.78);
+      border-radius: 8px;
     }
   }
 `;

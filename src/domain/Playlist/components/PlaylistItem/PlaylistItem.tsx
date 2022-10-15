@@ -1,7 +1,7 @@
 import { Link, Typography } from '@mui/material';
-import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper } from './PlaylistItem.styles';
+import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper, Current, Delete } from './PlaylistItem.styles';
 import React, { FC, useState } from 'react';
-import { ListItem, Tooltip} from '@mui/material';
+import { ListItem, Tooltip, styled} from '@mui/material';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import VideoThumbnail from '@/components/VideoThumbnail/';
 import { AddedByAvatar, AddedByWrapper } from '@/styles/style'
@@ -11,7 +11,9 @@ import CheckIcon from '@mui/icons-material/Check';
 import { ToastTypes } from '@/utils/ToastTypes';
 import { CustomToast } from '@/utils/sendToast';
 import { Seeker }  from '@/styles/style'
-
+import ClearIcon from '@mui/icons-material/Clear';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import { useAuthContext } from '@/contexts/AuthContext';
 interface PlaylistItemsProps {
   video: PlaylistWithUsers;
 }
@@ -19,6 +21,7 @@ interface PlaylistItemsProps {
 const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   const { videoThumbnail, videoTitle, videoUrl, addedBy, videoDuration } = video;
   const { t } = useTranslation();
+  const { isAdmin } = useAuthContext();
 
 
 
@@ -45,17 +48,29 @@ const [copied, setCopied] = useState(false)
     setIsHovering(false);
   };
 
-
   return (
     <ListItem dense>
       <PlaylistItemWrapper>
         <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
           <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
         </Link>
+        {isAdmin &&
+        <div>
+              <Tooltip title={t('playlist.tooltip.requestcurrent')} >
+          <Current style={{ position: 'absolute', right: '10px', top: '40px',}} >
+              <ArrowUpwardIcon style={{width: '40px', height: '40px'}} />
+          </Current>
+              </Tooltip>
+              <Tooltip title={t('playlist.tooltip.delete')} >
+          <Delete style={{ position: 'absolute', right: '60px', top: '50px'}} >
+              <ClearIcon  style={{width: '40px', height: '40px'}}  />
+          </Delete>
+              </Tooltip>
+        </div>
+            }
 {beforecopy &&
 <Tooltip title={t('playlist.tooltip.copy')} >
-  <ContentCopyIcon style={{color: isHovering ? 'white' : 'hsla(298, 100%, 100%, 0.25)',  position: 'absolute', right: '10px', top: '10px', cursor: 'pointer',
-  }}
+  <ContentCopyIcon style={{color: isHovering ? 'white' : 'hsla(298, 100%, 100%, 0.25)',  position: 'absolute', right: '10px', top: '10px', cursor: 'pointer',}}
   onMouseEnter={handleMouseEnter}
   onMouseLeave={handleMouseLeave}
   onClick={CopyThis}/>

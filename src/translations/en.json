@@ -45,7 +45,9 @@
       "logged": "Logged",
       "guest": "Guest",
       "discord": "Uwusiownia",
-      "twitch": "Khamires"
+      "twitch": "Khamires",
+      "delete": "Delete video from queue",
+      "requestcurrent": "Play video now"
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",

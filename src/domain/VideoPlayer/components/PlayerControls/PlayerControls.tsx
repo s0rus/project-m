@@ -28,7 +28,7 @@ const PlayerControls = () => {
 
   useEffect(() => {
     controlsTimerRef.current =
-      isPlaying && !initialMute && !controlsHovered ? setTimeout(() => toggleControls(false), 4000) : undefined;
+      isPlaying && !initialMute && !controlsHovered ? setTimeout(() => toggleControls(false), 5000) : undefined;
 
     return () => clearTimeout(controlsTimerRef.current);
   }, [controlsVisible, toggleControls, isPlaying, initialMute, controlsHovered]);

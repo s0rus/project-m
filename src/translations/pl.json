@@ -45,7 +45,10 @@
       "logged": "Zalogowany",
       "guest": "Gość",
       "discord": "Uwusiownia",
-      "twitch": "Khamires"
+      "twitch": "Khamires",
+      "delete": "Usuń film z kolejki",
+      "requestcurrent": "Odtwórz film teraz"
+      
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",

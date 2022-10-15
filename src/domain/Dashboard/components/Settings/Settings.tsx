@@ -12,7 +12,7 @@ import { Twitch } from '@/assets/logos/Twitch';
 import {  Options, OptionsBox, OptionsTitle, ChatBox, TitleOption, SubTitleOption } from '@/styles/style';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { Grid, Box } from '@mui/material';
-
+import CurrentAuth from '../CurrentAuth';
 const Settings = () => {
   const { isChatOn, setIsChatOn } = useAddonsContext();
   const { loginWithTwitch, logoutOfTwitch } = useAuthContext();
@@ -27,6 +27,7 @@ const Settings = () => {
    <OptionsTitle>
    {t('options.optionsTitle')}
    </OptionsTitle>
+   <CurrentAuth/>
     <OptionsBox>
     {session && status === 'authenticated' ? (
       <ChatBox onClick={logoutOfTwitch} style={{cursor: 'pointer'}} >

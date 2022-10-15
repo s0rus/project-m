@@ -1,4 +1,4 @@
-import { ControlsBarWrapper, Seeker, Timer } from './ControlsBar.styles';
+import { ControlsBarWrapper, Seeker, Timer, BoxIcon } from './ControlsBar.styles';
 import { FullscreenExitRounded, FullscreenRounded } from '@mui/icons-material';
 import { IconButton, Typography } from '@mui/material';
 import React, { FC, useCallback, useEffect, useState } from 'react';
@@ -49,10 +49,15 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
     };
   }, [seeking, handleSeekMouseUp]);
 
+
   return (
     <ControlsBarWrapper controls={controlsVisible} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+      <BoxIcon>
       <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
+      </BoxIcon>
+      <BoxIcon>
       <VolumeControl />
+      </BoxIcon>
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(playedSeconds, duration >= 3600)}</Typography>
       </Timer>
@@ -71,9 +76,11 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(duration)}</Typography>
       </Timer>
+      <BoxIcon>
       <IconButton onClick={() => toggleFullscreen()}>
         {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}
       </IconButton>
+      </BoxIcon>
     </ControlsBarWrapper>
   );
 };

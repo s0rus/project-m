@@ -195,8 +195,7 @@ export const AddedByWrapper = styled(Stack)`
   background-color: #18181b;
   border-radius: 4px;
   padding-right: 0.8rem;
-  border-top-left-radius: 37%;
-  border-bottom-left-radius: 37%;
+  border-radius: 8px;
 `;
 
 export const AddedByAvatar = styled(Avatar)`
@@ -209,6 +208,7 @@ height: 4px;
 pointer-events: none;
 padding: 0;
 margin: 0;
+background-color: rgba(51, 51, 51, 0.53);
 margin-bottom: 5px;
 border-radius: 8px;
 & .MuiSlider-thumb {

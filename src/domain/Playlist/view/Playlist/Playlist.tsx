@@ -18,7 +18,6 @@ import Image from 'next/image';
 import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
-import CurrentAuth from '@/domain/Dashboard/components/CurrentAuth';
 import { useAuthContext } from '@/contexts/AuthContext';
 const Playlist = () => {
   const { isAdmin } = useAuthContext();
@@ -88,7 +87,7 @@ const Playlist = () => {
           <Typography variant='h2' style={{textShadow: '0px 0px 10px white'}} >{t('playlist.header')}</Typography>
           <Tooltip title={t('playlist.tooltip.videoCount')}>
             <PlaylistDetail>
-              <AutoAwesomeMotionRounded />
+              <AutoAwesomeMotionRounded/>
               <Typography variant='h5' style={{textShadow: '0px 0px 10px white'}} >{properPlaylist.length || 0}</Typography>
             </PlaylistDetail>
           </Tooltip>
@@ -98,10 +97,6 @@ const Playlist = () => {
               <Typography variant='h5' style={{textShadow: '0px 0px 10px white'}} >{timeFormatter(timeSum)}</Typography>
             </PlaylistDetail>
           </Tooltip>
-          <PlaylistDetail>
-          <CurrentAuth/>
-            </PlaylistDetail>
-
         </PlaylistHeader>
         <PlaylistContainer component={List} ref={animatedList}>
           {properPlaylist.length ? (

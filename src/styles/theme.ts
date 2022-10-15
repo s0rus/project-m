@@ -150,7 +150,7 @@ export const theme = createTheme({
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          backgroundColor: `${hexToRgba(globalTheme.palette.primary.main, 0.75)}`,
+          backgroundColor: `${hexToRgba(globalTheme.palette.background.paper, 0.50)}`,
           borderRadius: '0.5rem',
           color: 'white',
           width: '100%',
