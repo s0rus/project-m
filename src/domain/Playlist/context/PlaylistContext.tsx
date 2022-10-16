@@ -84,24 +84,42 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     }
   }, [currentVideo, playlist, mutateAsync, leader, t, currentUser.id]);
 
-  const handleSkipVideo = useCallback(async () => {
-    try {
-      if (currentVideo && isAdmin) {
-        await mutateAsync({ videoId: currentVideo.videoId });
+  const handleSkipVideo = useCallback(
+    async (targetVideoId?: string) => {
+      try {
+        if (currentVideo && isAdmin) {
+          const newPlaylist = [...playlist];
+          if (targetVideoId) {
+            await mutateAsync({ videoId: targetVideoId });
+            const filteredPlaylist = newPlaylist.filter((video) => video.videoId !== targetVideoId);
+            setPlaylist(filteredPlaylist);
+          } else {
+            await mutateAsync({ videoId: currentVideo.videoId });
 
-        const newPlaylist = [...playlist];
-        const filteredPlaylist = newPlaylist.filter((video) => video.videoId !== currentVideo?.videoId);
+            const filteredPlaylist = newPlaylist.filter((video) => video.videoId !== currentVideo?.videoId);
 
-        setCurrentVideo(filteredPlaylist[0]);
-        setPlaylist(filteredPlaylist);
+            setCurrentVideo(filteredPlaylist[0]);
+            setPlaylist(filteredPlaylist);
 
-        socket.emit('SKIP_VIDEO');
-        socket.emit('SEND_TOAST', t('toast.videoSkipped', { username: currentUser.name }), ToastTypes.VideoSkipped);
+            socket.emit('SKIP_VIDEO');
+            socket.emit('SEND_TOAST', t('toast.videoSkipped', { username: currentUser.name }), ToastTypes.VideoSkipped);
+          }
+        }
+      } catch {
+        CustomToast.send(t('requestVideoError'), ToastTypes.Error);
       }
-    } catch {
-      CustomToast.send(t('requestVideoError'), ToastTypes.Error);
-    }
-  }, [currentVideo, isAdmin, mutateAsync, t, socket, currentUser.name, playlist]);
+    },
+    [currentVideo, isAdmin, mutateAsync, t, socket, currentUser.name, playlist]
+  );
+
+  const handleDeleteVideo = useCallback(
+    (targetVideoId: string) => {
+      const newPlaylist = [...playlist];
+      const filteredPlaylist = newPlaylist.filter((video) => video.videoId !== targetVideoId);
+      setPlaylist(filteredPlaylist);
+    },
+    [playlist]
+  );
 
   const togglePlaylistLocked = useCallback(async () => {
     try {
@@ -136,12 +154,14 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
 
     socket.on('RECEIVE_TOGGLE_PLAYLIST', () => setPlaylistLocked((prevLocked) => !prevLocked));
     socket.on('RECEIVE_NEW_VIDEO', (newVideo) => setPlaylist((prevPlaylist) => [...prevPlaylist, newVideo]));
+    socket.on('RECEIVE_DELETE_VIDEO', (videoId) => handleDeleteVideo(videoId));
 
     return () => {
       socket.off('RECEIVE_TOGGLE_PLAYING');
       socket.off('RECEIVE_NEW_VIDEO');
+      socket.off('RECEIVE_DELETE_VIDEO');
     };
-  }, [socket]);
+  }, [socket, handleDeleteVideo]);
 
   const value = useMemo(
     () => ({

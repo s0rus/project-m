@@ -22,6 +22,10 @@
     "chat": {
       "header": "Chat",
       "subititle": "Toggle chat visibility"
+    },
+    "language": {
+      "header": "Language",
+      "subititle": "Choose language"
     }
   },
   "playlist": {
@@ -29,12 +33,15 @@
     "empty": "Playlist is empty.",
     "tooltip": {
       "videoCount": "Count of videos in queue",
-      "timeSum": "Total playlist time"
+      "timeSum": "Total playlist time",
+      "deleteVideo": "Remove from playlist"
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",
       "subtitle": "Add video to start watching."
-    }
+    },
+    "removeVideoError": "There was an error while removing video...",
+    "videoRemoved": "Video removed successfully!"
   },
   "toast": {
     "playlistLocked": "{{username}} has locked the playlist.",
@@ -46,5 +53,9 @@
   "genericErrorMessage": "Whoops! Something went wrong...",
   "addVideoError": "There was an error while adding video...",
   "requestVideoError": "The next video couldn't be fetched...",
-  "togglePlaylistError": "State of the playlist couldn't be changed..."
+  "togglePlaylistError": "State of the playlist couldn't be changed...",
+  "language": {
+    "pl": "Polski",
+    "en": "English"
+  }
 }

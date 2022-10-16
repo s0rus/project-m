@@ -1,6 +1,6 @@
-import { Box, Checkbox, Stack, Typography, styled } from '@mui/material';
+import { Box, Checkbox, Typography } from '@mui/material';
+import { InnerStack, SettingStack } from './SettingWithCheckbox.styles';
 import React, { Dispatch, FC, SetStateAction } from 'react';
-import { gradients, theme } from '@/styles/theme';
 
 import { ChatRounded } from '@mui/icons-material';
 
@@ -10,32 +10,6 @@ interface SettingWithCheckbox {
   checked: boolean;
   setter: Dispatch<SetStateAction<boolean>>;
 }
-
-const SettingStack = styled(Stack)<{ checked: boolean }>`
-  margin-top: 1rem;
-
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-
-  border: 1px solid ${theme.palette.primary.dark};
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: ${({ checked }) => (checked ? gradients.gradientMain : 'transparent')};
-
-  cursor: pointer;
-`;
-
-const InnerStack = styled(Stack)`
-  flex-direction: row;
-  align-items: center;
-  gap: 1.5rem;
-
-  & svg {
-    width: 2rem;
-    height: 2rem;
-  }
-`;
 
 const SettingWithCheckbox: FC<SettingWithCheckbox> = ({ setter, checked, header, subtitle }) => {
   const handleOnChange = () => setter(!checked);

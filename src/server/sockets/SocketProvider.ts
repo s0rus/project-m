@@ -28,6 +28,7 @@ export interface ServerToClientEvents {
   RECEIVE_TOGGLE_PLAYING: (newPlayingState: boolean) => void;
   RECEIVE_NEW_VIDEO: (data: PlaylistWithUsers) => void;
   RECEIVE_SKIP_VIDEO: () => void;
+  RECEIVE_DELETE_VIDEO: (videoId: string) => void;
   RECEIVE_TOGGLE_PLAYLIST: () => void;
   RECEIVE_PLAYER_STATE: (playerState: EssentialPlayerState) => void;
   RECEIVE_REQUEST_PLAYER_STATE: (socketId: string) => void;
@@ -40,6 +41,7 @@ export interface ClientToServerEvents {
   TOGGLE_PLAYING: (newPlayingState: boolean) => void;
   ADD_NEW_VIDEO: (data: PlaylistWithUsers) => void;
   SKIP_VIDEO: () => void;
+  DELETE_VIDEO: (videoId: string) => void;
   TOGGLE_PLAYLIST: () => void;
   REQUEST_PLAYER_STATE: () => void;
   SEND_PLAYER_STATE: (playerState: EssentialPlayerState, socketId: string) => void;
@@ -49,14 +51,11 @@ export interface ClientToServerEvents {
 }
 
 export interface InterServerEvents {
-  void: () => void;
+  void: void;
 }
 
 export interface SocketData {
-  playerState: {
-    playedSeconds?: number;
-  };
-  leader: CertainUserData | null;
+  server: Server<ServerToClientEvents, ClientToServerEvents, InterServerEvents>;
 }
 
 export const ServerIO = (server: Partial<ServerOptions>) => {

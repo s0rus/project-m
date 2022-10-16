@@ -4,6 +4,7 @@ import { PauseRounded, PlayArrowRounded, VolumeDown, VolumeOff, VolumeUp } from 
 import { Playlist } from '@prisma/client';
 import ReactPlayer from 'react-player';
 
+export const HIDE_CONTROLS_TIMEOUT = 4000;
 export interface PlayerState {
   isPlaying: boolean;
   playedSeconds: number;

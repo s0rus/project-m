@@ -17,7 +17,7 @@ export const ControlsBarWrapper = styled(Box)<{ controls: boolean }>`
   background-color: ${hexToRgba(theme.palette.background.paper, 0.2)};
 `;
 
-export const Seeker = styled(Slider)<{ loadedPercentage: number }>`
+export const Seeker = styled(Slider)<{ loadedpercentage: number }>`
   color: ${theme.palette.primary.main};
   height: 4px;
 
@@ -52,7 +52,7 @@ export const Seeker = styled(Slider)<{ loadedPercentage: number }>`
       top: 0;
 
       transition: width 0.1s ease-in-out;
-      width: ${({ loadedPercentage }) => `${loadedPercentage || 0}%`};
+      width: ${({ loadedpercentage }) => `${loadedpercentage || 0}%`};
       background-color: ${theme.palette.primary.light};
     }
   }

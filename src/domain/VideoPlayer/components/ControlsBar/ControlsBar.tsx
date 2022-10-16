@@ -66,7 +66,7 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
         onChange={handleOnChange}
         onMouseDown={() => setSeeking(true)}
         disabled={!activeVideo || !isAdmin}
-        loadedPercentage={(loadedSeconds / duration) * 100}
+        loadedpercentage={loadedSeconds ? (loadedSeconds / duration) * 100 : 0}
       />
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(duration)}</Typography>

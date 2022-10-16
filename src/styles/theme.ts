@@ -129,6 +129,20 @@ export const theme = createTheme({
       },
     },
 
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          background: gradients.gradientMain,
+          border: `1px solid ${globalTheme.palette.primary.main}`,
+          padding: '0.7rem 1rem',
+          boxShadow: 'none',
+        },
+        icon: {
+          color: globalTheme.palette.primary.contrastText,
+        },
+      },
+    },
+
     MuiPaper: {
       styleOverrides: {
         root: {

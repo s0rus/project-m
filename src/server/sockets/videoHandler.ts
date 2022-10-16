@@ -10,12 +10,15 @@ const videoHandler = (socket: SocketProvider.ServerIO) => {
 
   const ADD_NEW_VIDEO = (newVideo: PlaylistWithUsers) => socket.broadcast.emit('RECEIVE_NEW_VIDEO', newVideo);
 
+  const DELETE_VIDEO = (videoId: string) => socket.broadcast.emit('RECEIVE_DELETE_VIDEO', videoId);
+
   const TOGGLE_PLAYLIST = () => socket.broadcast.emit('RECEIVE_TOGGLE_PLAYLIST');
 
   socket.on('SEEK_TO', SEEK_TO);
   socket.on('TOGGLE_PLAYING', TOGGLE_PLAYING);
   socket.on('SKIP_VIDEO', SKIP_VIDEO);
   socket.on('ADD_NEW_VIDEO', ADD_NEW_VIDEO);
+  socket.on('DELETE_VIDEO', DELETE_VIDEO);
   socket.on('TOGGLE_PLAYLIST', TOGGLE_PLAYLIST);
 };
 

@@ -22,6 +22,10 @@
     "chat": {
       "header": "Czat",
       "subititle": "Włącz/wyłącz czat"
+    },
+    "language": {
+      "header": "Język",
+      "subititle": "Wybierz język"
     }
   },
   "playlist": {
@@ -29,12 +33,15 @@
     "empty": "Playlista jest pusta.",
     "tooltip": {
       "videoCount": "Ilość filmów w kolejce",
-      "timeSum": "Łączny czas kolejki"
+      "timeSum": "Łączny czas kolejki",
+      "deleteVideo": "Usuń z kolejki"
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",
       "subtitle": "Dodaj film, by zacząć oglądać."
-    }
+    },
+    "removeVideoError": "Nie udało się usunąć filmu...",
+    "videoRemoved": "Film został usunięty z kolejki!"
   },
   "toast": {
     "playlistLocked": "{{username}} zablokował playlistę.",
@@ -46,5 +53,9 @@
   "genericErrorMessage": "Ups! Coś poszło nie tak...",
   "addVideoError": "Wystąpił błąd podczas dodawania filmu...",
   "requestVideoError": "Nie udało się pobrać kolejnego filmu...",
-  "togglePlaylistError": "Nie udało się zmienić stanu playlisty..."
+  "togglePlaylistError": "Nie udało się zmienić stanu playlisty...",
+  "language": {
+    "pl": "Polski",
+    "en": "English"
+  }
 }

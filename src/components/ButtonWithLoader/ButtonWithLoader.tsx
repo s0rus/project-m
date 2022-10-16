@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import { CircularProgress, type ButtonProps, Button } from '@mui/material';
+import { CircularProgress, type ButtonProps, Button, Tooltip } from '@mui/material';
 
 export interface ButtonWithLoaderProps extends ButtonProps {
   loading: boolean;
   iconVariant?: boolean;
+  tooltip?: string;
 }
 
 const ButtonWithLoader: FC<ButtonWithLoaderProps> = ({
@@ -12,12 +13,15 @@ const ButtonWithLoader: FC<ButtonWithLoaderProps> = ({
   startIcon,
   size = 'large',
   iconVariant,
+  tooltip,
   ...props
 }) => {
   return (
-    <Button startIcon={loading && !iconVariant ? <CircularProgress size={24} /> : startIcon} size={size} {...props}>
-      {iconVariant && loading ? <CircularProgress size={24} /> : children}
-    </Button>
+    <Tooltip title={tooltip || ''}>
+      <Button startIcon={loading && !iconVariant ? <CircularProgress size={24} /> : startIcon} size={size} {...props}>
+        {iconVariant && loading ? <CircularProgress size={24} /> : children}
+      </Button>
+    </Tooltip>
   );
 };
 

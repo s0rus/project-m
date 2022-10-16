@@ -22,6 +22,7 @@ export const PlaylistItemContent = styled(CardContent)`
 
 export const PlaylistItemBox = styled(Box)`
   width: 100%;
+  margin-right: 1rem;
 
   display: flex;
   overflow: hidden;
