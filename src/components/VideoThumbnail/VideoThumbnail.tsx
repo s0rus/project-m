@@ -21,9 +21,7 @@ const VideoThumbnail: FC<VideoThumbnailProps> = ({ thumbnailUrl, videoTitle, vid
   const { t } = useTranslation();
 
   return (
-    <Tooltip title={t('video.thumbnailAlt', {
-      videoTitle,
-    })}>
+
     <VideoThumbnailWrapper
     >
       <VideoThumbnailContainer>
@@ -38,7 +36,7 @@ const VideoThumbnail: FC<VideoThumbnailProps> = ({ thumbnailUrl, videoTitle, vid
         <VideoDurationSpan variant='body1'>{timeFormatter(videoDuration)}</VideoDurationSpan>
       </VideoThumbnailContainer>
     </VideoThumbnailWrapper>
-    </Tooltip>
+
   );
 };
 

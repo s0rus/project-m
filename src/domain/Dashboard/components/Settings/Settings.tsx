@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import SettingWithCheckbox from '@/components/SettingWithCheckbox';
 import { useAddonsContext } from '@/contexts/AddonsContext';
 import { useTranslation } from 'react-i18next';
@@ -13,21 +13,25 @@ import {  Options, OptionsBox, OptionsTitle, ChatBox, TitleOption, SubTitleOptio
 import { useAuthContext } from '@/contexts/AuthContext';
 import { Grid, Box } from '@mui/material';
 import CurrentAuth from '../CurrentAuth';
+import SettingWithSelect from '@/components/SettingWithSelect';
+
 const Settings = () => {
-  const { isChatOn, setIsChatOn } = useAddonsContext();
+  const { isChatOn, setIsChatOn, language, setLanguage  } = useAddonsContext();
   const { loginWithTwitch, logoutOfTwitch } = useAuthContext();
   const { data: session, status } = useSession();
   const [twitchvideo, toggleTwitchVideo] = useState(false);
   const { t } = useTranslation();
 
-  return (
-    <Grid item sm={12} md={4} mt={-3}>
 
+  return (
+    <div style={{margin: '0', padding: '0', minWidth: '100px'}} >
     <Options> 
+      <div style={{display: 'flex'}} >
    <OptionsTitle>
    {t('options.optionsTitle')}
    </OptionsTitle>
    <CurrentAuth/>
+      </div>
     <OptionsBox>
     {session && status === 'authenticated' ? (
       <ChatBox onClick={logoutOfTwitch} style={{cursor: 'pointer'}} >
@@ -71,11 +75,18 @@ const Settings = () => {
       <Checkbox style={{color: `white`, display: 'flex', position: 'absolute', right: '20px', bottom: '22px' , padding: '0px', transform: "scale(1.3)", zIndex:' 999' ,}} 
       onClick={() => toggleTwitchVideo((prev) => !prev)}/>
     </ChatBox>
+    <div style={{marginTop: '-15px', height: '110px'}} >
+    <SettingWithSelect
+          value={language}
+          setter={setLanguage as Dispatch<SetStateAction<string>>}
+          header={t('options.languageTitle')}
+          subtitle={t('options.languageSubTitle')}
+        />
+    </div>
     </OptionsBox>
       </Options>
-
       <Box> { twitchvideo && <TwitchVideo/> }</Box> 
-      </Grid>
+      </div>
   );
 };
 

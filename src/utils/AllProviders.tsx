@@ -26,13 +26,13 @@ const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ chi
                   {children}
                   <ToastContainer
                     transition={Slide}
-                    position='bottom-left'
-                    autoClose={5000}
+                    position='bottom-center'
+                    autoClose={2500}
                     closeButton={false}
                     hideProgressBar={true}
                     draggable={false}
-                    limit={1}
-                    style={{ width: 'auto' }}
+                    limit={3}
+                    style={{ width: 'auto', textShadow: '0px 0px 10px white' }}
                   />
                 </ThemeProvider>
               </AddonsContextProvider>

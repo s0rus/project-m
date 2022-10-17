@@ -19,14 +19,16 @@
     "videoAdded": "Video has been added to playlist."
   },
   "options":{
-    "optionsTitle": "Options",
+    "optionsTitle": "Settings",
     "twitchTitle": "Twitch",
-    "camTitle": "Streamer cam",
-    "czatTitle": "Chat",
-    "twitchSubTitleLOGIN": "Log in to add movies.",
+    "camTitle": "Cam",
+    "chatTitle": "Chat",
+    "languageTitle": "Language",
+    "twitchSubTitleLOGIN": "Login to add videos.",
     "twitchSubTitleLOGOUT": "Log out.",
-    "czatSubTitle": "Chat visibility.",
-    "camSubTitle": "Streamer cam visibility."
+    "camSubTitle": "Streamer cam visibility.",
+    "chatSubTitle": "Chat visibility.",
+    "languageSubTitle": "Choose language."
   },
   "playlist": {
     "header": "Playlist",
@@ -52,7 +54,9 @@
     "noCurrentVideo": {
       "title": "There is nothing to be played.",
       "subtitle": "Add video to start watching."
-    }
+    },
+    "removeVideoError": "There was an error while removing video...",
+    "videoRemoved": "Video removed successfully!"
   },
   "Navigation": {
     "discord": "Discord",
@@ -73,5 +77,9 @@
   "genericErrorMessage": "Whoops! Something went wrong...",
   "addVideoError": "There was an error while adding video...",
   "requestVideoError": "The next video couldn't be fetched...",
-  "togglePlaylistError": "State of the playlist couldn't be changed..."
+  "togglePlaylistError": "State of the playlist couldn't be changed...",
+  "language": {
+    "pl": "Polish",
+    "en": "English"
+  }
 }

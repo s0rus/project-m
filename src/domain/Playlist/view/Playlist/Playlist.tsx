@@ -1,5 +1,5 @@
 import { AccessTimeFilledRounded, AutoAwesomeMotionRounded } from '@mui/icons-material';
-import { List, Tooltip, Typography } from '@mui/material';
+import { List, Tooltip, Typography, Hidden } from '@mui/material';
 import {
   EmptyPlaylistBox,
   PlaylistContainer,
@@ -47,6 +47,7 @@ const Playlist = () => {
   
   return (
     <>
+
       <PlaylistWrapper locked={playlistLocked ? 1 : 0}>
         <PlaylistHeader>
 {isAdmin ? (
@@ -98,6 +99,9 @@ const Playlist = () => {
             </PlaylistDetail>
           </Tooltip>
         </PlaylistHeader>
+
+
+
         <PlaylistContainer component={List} ref={animatedList}>
           {properPlaylist.length ? (
             properPlaylist.map((video) => (
@@ -110,6 +114,9 @@ const Playlist = () => {
               <Typography style={{textShadow: '0px 0px 10px white'}} variant='h4'>{t('playlist.empty')} <div style={{marginTop: '10px', marginLeft: '40%'}} > <Image src={MadgeIcon} alt='Madge' height={48} width={48} /></div>  </Typography>
             </EmptyPlaylistBox>
           )}
+
+
+
         </PlaylistContainer>
       </PlaylistWrapper>
     </>

@@ -27,7 +27,7 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
   const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo, loadedSeconds } = playerState;
   const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);
   const { toggleFullscreen, isFullscreen } = useFullscreen();
-
+  
   const handleSeekMouseUp = useCallback(() => {
     setSeeking(false);
     seekTo(newSecondsPlayed);
@@ -49,8 +49,8 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
     };
   }, [seeking, handleSeekMouseUp]);
 
-
   return (
+
     <ControlsBarWrapper controls={controlsVisible} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
       <BoxIcon>
       <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
@@ -71,7 +71,7 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
         onChange={handleOnChange}
         onMouseDown={() => setSeeking(true)}
         disabled={!activeVideo || !isAdmin}
-        loadedPercentage={(loadedSeconds / duration) * 100}
+        loadedPercentage={loadedSeconds ? (loadedSeconds / duration) * 100 : 0}
       />
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(duration)}</Typography>

@@ -1,5 +1,5 @@
 import { DashboardBarButtons, DashboardBarContainer, DashboardBarWrapper } from './DashboardBar.styles';
-import { Divider, Grid } from '@mui/material';
+import { Divider, Grid, Hidden } from '@mui/material';
 import { theme } from '@/styles/theme';
 import BarButtons from '../BarButtons';
 import React from 'react';
@@ -11,6 +11,7 @@ const DashboardBar = () => {
 
   return (
     <>
+    <Hidden lgDown >
       <DashboardBarWrapper>
         <DashboardBarContainer container>
           <Grid item sm={12} md={7}>
@@ -24,6 +25,20 @@ const DashboardBar = () => {
         </DashboardBarContainer>
       </DashboardBarWrapper>
       <Divider style={{background: `${theme.palette.primary.main}`, marginRight: '2rem'}} />
+      </Hidden>
+
+
+      <Hidden lgUp >
+      <DashboardBarWrapper>
+        <DashboardBarContainer container>
+
+            <DashboardBarButtons style={{marginTop: '50px'}} >
+              <BarButtons />
+            </DashboardBarButtons>
+
+        </DashboardBarContainer>
+      </DashboardBarWrapper>
+      </Hidden>
     </>
   );
 };

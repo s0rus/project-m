@@ -1,7 +1,7 @@
-import { Link, Typography } from '@mui/material';
+import { Link, Typography, CircularProgress } from '@mui/material';
 import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper, Current, Delete } from './PlaylistItem.styles';
 import React, { FC, useState } from 'react';
-import { ListItem, Tooltip, styled} from '@mui/material';
+import { ListItem, Tooltip} from '@mui/material';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import VideoThumbnail from '@/components/VideoThumbnail/';
 import { AddedByAvatar, AddedByWrapper } from '@/styles/style'
@@ -11,25 +11,25 @@ import CheckIcon from '@mui/icons-material/Check';
 import { ToastTypes } from '@/utils/ToastTypes';
 import { CustomToast } from '@/utils/sendToast';
 import { Seeker }  from '@/styles/style'
-import ClearIcon from '@mui/icons-material/Clear';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { usePlaylistContext } from '../../context/PlaylistContext';
+import { useSocketContext } from '@/contexts/SocketContext';
+import { IconButton } from '@mui/material';
+import ClearIcon from '@mui/icons-material/Clear';
 interface PlaylistItemsProps {
   video: PlaylistWithUsers;
 }
 
 const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
-  const { videoThumbnail, videoTitle, videoUrl, addedBy, videoDuration } = video;
+  const { videoId, videoThumbnail, videoTitle, videoUrl, addedBy, videoDuration } = video;
+  const { socket } = useSocketContext();
   const { t } = useTranslation();
   const { isAdmin } = useAuthContext();
-
-
-
-
-
-
-const [beforecopy, setCopiedBefore] = useState(true)
-const [copied, setCopied] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false);
+  const { handleSkipVideo } = usePlaylistContext();
+  const [beforecopy, setCopiedBefore] = useState(true)
+  const [copied, setCopied] = useState(false)
   
   const CopyThis = () => {
     navigator.clipboard.writeText(videoUrl);
@@ -48,6 +48,22 @@ const [copied, setCopied] = useState(false)
     setIsHovering(false);
   };
 
+  const handleRemoveVideo = async () => {
+    try {
+      if (isAdmin) {
+        setIsDeleting(true);
+        await handleSkipVideo(videoId);
+        socket.emit('DELETE_VIDEO', videoId);
+        setIsDeleting(false);
+        CustomToast.send(t('playlist.videoRemoved'), ToastTypes.Sucess);
+      } else {
+        throw new Error();
+      }
+    } catch {
+      CustomToast.send(t('playlist.removeVideoError'), ToastTypes.Error);
+    }
+  };
+
   return (
     <ListItem dense>
       <PlaylistItemWrapper>
@@ -57,14 +73,19 @@ const [copied, setCopied] = useState(false)
         {isAdmin &&
         <div>
               <Tooltip title={t('playlist.tooltip.requestcurrent')} >
-          <Current style={{ position: 'absolute', right: '10px', top: '40px',}} >
-              <ArrowUpwardIcon style={{width: '40px', height: '40px'}} />
+              <IconButton onClick={handleRemoveVideo} disabled={isDeleting} style={{ position: 'absolute', right: '10px', top: '30px',}} >
+          <Current>
+          {isDeleting ? <CircularProgress size={32} /> : <ArrowUpwardIcon  style={{width: '40px', height: '40px'}}  />}
           </Current>
+              </IconButton>
               </Tooltip>
+
               <Tooltip title={t('playlist.tooltip.delete')} >
-          <Delete style={{ position: 'absolute', right: '60px', top: '50px'}} >
-              <ClearIcon  style={{width: '40px', height: '40px'}}  />
-          </Delete>
+              <IconButton onClick={handleRemoveVideo} disabled={isDeleting} style={{ position: 'absolute', right: '60px', top: '40px',}} >
+              <Delete>
+                {isDeleting ? <CircularProgress size={32} /> : <ClearIcon  style={{width: '40px', height: '40px'}}  />}
+              </Delete>
+              </IconButton>
               </Tooltip>
         </div>
             }

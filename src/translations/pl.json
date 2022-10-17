@@ -23,10 +23,12 @@
     "twitchTitle": "Twitch",
     "camTitle": "Kamerka",
     "chatTitle": "Czat",
+    "languageTitle": "Język",
     "twitchSubTitleLOGIN": "Zaloguj się aby dodać film.",
     "twitchSubTitleLOGOUT": "Wyloguj się.",
     "camSubTitle": "Widoczność kamerki.",
-    "chatSubTitle": "Widoczność czatu."
+    "chatSubTitle": "Widoczność czatu.",
+    "languageSubTitle": "Wybierz język."
   },
   "playlist": {
     "header": "Playlista",
@@ -53,7 +55,9 @@
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",
       "subtitle": "Dodaj film, by zacząć oglądać."
-    }
+    },
+    "removeVideoError": "Nie udało się usunąć filmu...",
+    "videoRemoved": "Film został usunięty z kolejki!"
   },
   "Navigation": {
     "discord": "Discord",
@@ -74,5 +78,9 @@
   "genericErrorMessage": "Ups! Coś poszło nie tak...",
   "addVideoError": "Wystąpił błąd podczas dodawania filmu...",
   "requestVideoError": "Nie udało się pobrać kolejnego filmu...",
-  "togglePlaylistError": "Nie udało się zmienić stanu playlisty..."
+  "togglePlaylistError": "Nie udało się zmienić stanu playlisty...",
+  "language": {
+    "pl": "Polski",
+    "en": "Angielski"
+  }
 }

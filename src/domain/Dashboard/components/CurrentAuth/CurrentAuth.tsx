@@ -11,9 +11,9 @@ const CurrentAuth = () => {
   const { t } = useTranslation();
   
   return (
-    <div>
+    <>
         {isLoggedIn ? (
-    <div style={{display: 'flex',}} >
+    <>
     {isAdmin ? (
 <Tooltip style={{cursor: 'default'}} title={t('playlist.tooltip.admin')} >
 <CurrentAuthHolder>
@@ -28,7 +28,7 @@ const CurrentAuth = () => {
 </CurrentAuthHolder>
 </Tooltip>
       )}
-      </div>
+      </>
 
 ): (
 
@@ -38,7 +38,7 @@ const CurrentAuth = () => {
 </CurrentAuthHolder>
 </Tooltip>
 )}
-      </div>
+      </>
   );
 };
 

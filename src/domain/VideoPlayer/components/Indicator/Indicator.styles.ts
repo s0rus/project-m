@@ -27,7 +27,7 @@ export const IndicatorContainer = styled(Box)`
 export const IndicatorElement = styled(Box)<{ playing: number; initialmute: number }>`
   width: 5rem;
   height: 5rem;
-  border-radius: 8px;
+  border-radius: 50%;
 
   display: flex;
   align-items: center;
@@ -35,7 +35,7 @@ export const IndicatorElement = styled(Box)<{ playing: number; initialmute: numb
   position: relative;
 
   transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-  background-color: ${hexToRgba(theme.palette.primary.main, 0.6)};
+  background-color: ${hexToRgba(theme.palette.primary.main, 0.4)};
 
   opacity: ${({ playing, initialmute }) => (!playing || initialmute ? 1 : 0)};
 
@@ -44,8 +44,8 @@ export const IndicatorElement = styled(Box)<{ playing: number; initialmute: numb
   }
 
   & svg {
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
   }
 
   & > h5 {

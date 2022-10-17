@@ -5,6 +5,8 @@ export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   padding: 1rem;
   margin-bottom: 1vh;
   display: flex;
+  width: 100%;
+  min-width: 100%;
   flex-flow: column nowrap;
   background: ${({ locked }) => (locked ? gradients.playlistLocked : gradients.playlistUnlocked)};
   border-radius: 8px;

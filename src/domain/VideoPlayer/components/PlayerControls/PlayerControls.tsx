@@ -2,6 +2,7 @@ import { ControlsContainer, ControlsWrapper, SeekerPreview, VideoTitle } from '.
 import React, { useEffect, useRef, useState } from 'react';
 
 import ControlsBar from '../ControlsBar';
+import { HIDE_CONTROLS_TIMEOUT } from '../../model/VideoPlayer.model';
 import Indicator from '../Indicator';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
@@ -28,7 +29,9 @@ const PlayerControls = () => {
 
   useEffect(() => {
     controlsTimerRef.current =
-      isPlaying && !initialMute && !controlsHovered ? setTimeout(() => toggleControls(false), 5000) : undefined;
+      isPlaying && !initialMute && !controlsHovered
+        ? setTimeout(() => toggleControls(false), HIDE_CONTROLS_TIMEOUT)
+        : undefined;
 
     return () => clearTimeout(controlsTimerRef.current);
   }, [controlsVisible, toggleControls, isPlaying, initialMute, controlsHovered]);
@@ -56,7 +59,7 @@ const PlayerControls = () => {
       <SeekerPreview
         controls={+controlsVisible}
         playedPercentage={(playedSeconds / duration) * 100}
-        loadedPercentage={(loadedSeconds / duration) * 100}
+        loadedPercentage={(loadedSeconds || 0 / duration) * 100}
       />
       <ControlsContainer>
         <VideoTitle variant='h1' noWrap controls={+controlsVisible}>

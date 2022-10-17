@@ -1,5 +1,5 @@
 import { EmptyVideoCard, VideoBox, VideoCardWrapper, VideoContent, } from './VideoCard.styles';
-import { Link, Typography } from '@mui/material';
+import { Link, Typography, Hidden } from '@mui/material';
 import React, { FC } from 'react';
 
 import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
@@ -31,6 +31,7 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
   const { videoTitle, videoThumbnail, videoDuration, addedBy, videoUrl } = video;
 
   return (
+    <Hidden lgDown >
     <VideoCardWrapper elevation={0}>
       <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
         <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
@@ -57,6 +58,15 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
         </VideoContent>
       </VideoBox>
     </VideoCardWrapper>
+    <Hidden lgUp >
+       <VideoCardWrapper elevation={0}>
+         <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
+           <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
+         </Link>
+       </VideoCardWrapper>
+       </Hidden>
+    </Hidden>
+
   );
 };
 

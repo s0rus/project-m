@@ -43,8 +43,8 @@ const globalTheme = {
 
   palette: {
     primary: {
-      main: '#5500ff',
-      light: '#5500ff',
+      main: '#4f00ff',
+      light: '#4f00ff',
       contrastText: '#EFEFF1',
     },
 
@@ -79,19 +79,10 @@ const globalTheme = {
 
 export const gradients = {
   gradientPaper: '#18181b',
-  playlistUnlocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.success.light, 0)} -20%,  ${hexToRgba(
-    globalTheme.palette.success.dark,
-    0.2
-  )} 100%)`,
-  playlistLocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.error.light, 0)} -20%,  ${hexToRgba(
-    globalTheme.palette.error.dark,
-    0.2
-  )} 100%)`,
+  playlistUnlocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.success.light, 0)} -20%,  ${hexToRgba(globalTheme.palette.success.dark,0.2)} 100%)`,
+  playlistLocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.error.light, 0)} -20%,  ${hexToRgba(globalTheme.palette.error.dark,0.2)} 100%)`,
+  gradientMain: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.primary.main, 0.3)} 80%,  ${hexToRgba(globalTheme.palette.background.default,0.2)} 90%)`,
   currentVideo: `rgba(255,255,255,0.1);`,
-  gradientMain: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.primary.main, 0)} 0%,  ${hexToRgba(
-    globalTheme.palette.primary.main,
-    0.3
-  )} 100%)`,
 };
 
 export const theme = createTheme({
@@ -251,9 +242,10 @@ export const theme = createTheme({
 
         '.Toastify__toast': {
           backgroundColor: `${hexToRgba(globalTheme.palette.background.paper, 0.50)}!important`,
-          border: `1px solid ${globalTheme.palette.primary.main}`,
+          border: `2px solid ${globalTheme.palette.primary.main}`,
           borderRadius: '20px',
           zIndex: '999',
+          boxShadow: 'rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px'
         },
 
         '.Toastify__toast-body': {
