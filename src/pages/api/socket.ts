@@ -45,11 +45,6 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
         if (isAdmin) {
           // ADMIN USER
           ADMINS.push(userData);
-
-          if (!LEADER || !LEADER.isAdmin) {
-            LEADER = userData;
-            socket.broadcast.emit('RECEIVE_NEW_LEADER', LEADER as UserData);
-          }
         } else {
           // REGULAR USER WITH AUTH
           USERS.push(userData);
@@ -60,6 +55,12 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
           socketId: socket.id,
           ...initialUserData,
         });
+      }
+
+      if (!LEADER || !LEADER.isAdmin) {
+        LEADER = userData;
+        socket.emit('RECEIVE_NEW_LEADER', LEADER as UserData);
+        socket.broadcast.emit('RECEIVE_NEW_LEADER', LEADER as UserData);
       }
 
       console.log('-----------ON_JOIN--------');

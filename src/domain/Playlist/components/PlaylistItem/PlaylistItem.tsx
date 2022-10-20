@@ -1,15 +1,14 @@
-import { CircularProgress, Link, Tooltip, Typography } from '@mui/material';
+import { CircularProgress, IconButton, Link, ListItem, Stack, Tooltip, Typography } from '@mui/material';
+import { NorthRounded, PlaylistRemove } from '@mui/icons-material';
 import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper } from './PlaylistItem.styles';
 import React, { FC, useState } from 'react';
 
 import { CustomToast } from '@/utils/sendToast';
-import { IconButton } from '@mui/material';
-import { ListItem } from '@mui/material';
-import { PlaylistRemove } from '@mui/icons-material';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import { ToastTypes } from '@/utils/ToastTypes';
 import VideoThumbnail from '@/components/VideoThumbnail';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { usePlaylistContext } from '../../context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
@@ -22,8 +21,10 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   const { t } = useTranslation();
   const { socket } = useSocketContext();
   const { isAdmin } = useAuthContext();
-  const { handleSkipVideo } = usePlaylistContext();
+  const { handleSkipVideo, handlePlayVideoNow } = usePlaylistContext();
+  const { handleOnPlayVideoNow } = usePlayerContext();
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isSkipping, setIsSkipping] = useState(false);
   const { videoId, videoThumbnail, videoTitle, videoUrl, addedBy, videoDuration } = video;
 
   const handleRemoveVideo = async () => {
@@ -33,6 +34,23 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
         await handleSkipVideo(videoId);
         socket.emit('DELETE_VIDEO', videoId);
         setIsDeleting(false);
+        CustomToast.send(t('playlist.videoRemoved'), ToastTypes.Sucess);
+      } else {
+        throw new Error();
+      }
+    } catch {
+      CustomToast.send(t('playlist.removeVideoError'), ToastTypes.Error);
+    }
+  };
+
+  const handleSkipToVideo = async () => {
+    try {
+      if (isAdmin) {
+        setIsSkipping(true);
+        await handlePlayVideoNow(videoId);
+        socket.emit('SKIP_VIDEO', videoId);
+        handleOnPlayVideoNow();
+        setIsSkipping(false);
         CustomToast.send(t('playlist.videoRemoved'), ToastTypes.Sucess);
       } else {
         throw new Error();
@@ -60,11 +78,18 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
             </Typography>
           </PlaylistItemContent>
           {isAdmin && (
-            <Tooltip title={t('playlist.tooltip.deleteVideo')}>
-              <IconButton sx={{ alignSelf: 'center' }} onClick={handleRemoveVideo} disabled={isDeleting}>
-                {isDeleting ? <CircularProgress size={32} /> : <PlaylistRemove />}
-              </IconButton>
-            </Tooltip>
+            <Stack flexDirection={'row'} alignItems='center'>
+              <Tooltip title={t('playlist.tooltip.deleteVideo')}>
+                <IconButton sx={{ alignSelf: 'center' }} onClick={handleRemoveVideo} disabled={isDeleting}>
+                  {isDeleting ? <CircularProgress size={32} /> : <PlaylistRemove />}
+                </IconButton>
+              </Tooltip>
+              <Tooltip title={t('playlist.tooltip.deleteVideo')}>
+                <IconButton sx={{ alignSelf: 'center' }} onClick={handleSkipToVideo} disabled={isSkipping}>
+                  {isSkipping ? <CircularProgress size={32} /> : <NorthRounded />}
+                </IconButton>
+              </Tooltip>
+            </Stack>
           )}
         </PlaylistItemBox>
       </PlaylistItemWrapper>

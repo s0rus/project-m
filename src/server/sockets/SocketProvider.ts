@@ -27,7 +27,7 @@ export interface ServerToClientEvents {
   RECEIVE_SEEK_TO: (newPlayedSeconds: number) => void;
   RECEIVE_TOGGLE_PLAYING: (newPlayingState: boolean) => void;
   RECEIVE_NEW_VIDEO: (data: PlaylistWithUsers) => void;
-  RECEIVE_SKIP_VIDEO: () => void;
+  RECEIVE_SKIP_VIDEO: (targetVideoId?: string) => void;
   RECEIVE_DELETE_VIDEO: (videoId: string) => void;
   RECEIVE_TOGGLE_PLAYLIST: () => void;
   RECEIVE_PLAYER_STATE: (playerState: EssentialPlayerState) => void;
@@ -40,7 +40,7 @@ export interface ClientToServerEvents {
   SEEK_TO: (newPlayedSeconds: number) => void;
   TOGGLE_PLAYING: (newPlayingState: boolean) => void;
   ADD_NEW_VIDEO: (data: PlaylistWithUsers) => void;
-  SKIP_VIDEO: () => void;
+  SKIP_VIDEO: (targetVideoId?: string) => void;
   DELETE_VIDEO: (videoId: string) => void;
   TOGGLE_PLAYLIST: () => void;
   REQUEST_PLAYER_STATE: () => void;

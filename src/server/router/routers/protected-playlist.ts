@@ -19,6 +19,7 @@ export const protectedPlaylistRouter = createProtectedRouter()
           videoTitle: input.videoTitle,
           videoUrl: input.videoUrl,
           addedAt: dayjs().toDate(),
+          updatedAt: dayjs().toDate(),
           videoDuration: input.videoDuration,
           videoThumbnail: input.videoThumbnail,
           addedBy: {
@@ -46,6 +47,19 @@ export const protectedPlaylistRouter = createProtectedRouter()
         },
         data: {
           playlistLocked: input.newPlaylistState,
+        },
+      });
+    },
+  })
+  .mutation('skip-to-video', {
+    input: z.object({ videoId: z.string() }).required(),
+    resolve: async ({ ctx, input }) => {
+      return ctx.prisma.playlist.update({
+        where: {
+          videoId: input.videoId,
+        },
+        data: {
+          addedAt: dayjs().add(-1, 'day').toDate(),
         },
       });
     },

@@ -144,19 +144,22 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     });
   }, []);
 
-  const handleOnEnd = useCallback(() => {
-    setPlayerState((prevPlayerState) => {
-      return {
-        ...prevPlayerState,
-        duration: 0,
-        playedSeconds: 0,
-        loadedSeconds: 0,
-        activeVideo: undefined,
-      };
-    });
+  const handleOnEnd = useCallback(
+    (targetVideoId?: string) => {
+      setPlayerState((prevPlayerState) => {
+        return {
+          ...prevPlayerState,
+          duration: 0,
+          playedSeconds: 0,
+          loadedSeconds: 0,
+          activeVideo: undefined,
+        };
+      });
 
-    requestNextVideo();
-  }, [requestNextVideo]);
+      requestNextVideo(targetVideoId);
+    },
+    [requestNextVideo]
+  );
 
   const handleOnVideoSkip = useCallback(() => {
     setPlayerState((prevPlayerState) => {
@@ -185,6 +188,18 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     });
     requestNextVideo();
   }, [t, requestNextVideo]);
+
+  const handleOnPlayVideoNow = useCallback(() => {
+    setPlayerState((prevPlayerState) => {
+      return {
+        ...prevPlayerState,
+        duration: 0,
+        playedSeconds: 0,
+        loadedSeconds: 0,
+        activeVideo: undefined,
+      };
+    });
+  }, []);
 
   const handleOnReady = useCallback(() => {
     if (!playerState.isReady) {
@@ -221,7 +236,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     socket.emit('REQUEST_PLAYER_STATE');
     socket.on('RECEIVE_TOGGLE_PLAYING', (newPlayingState) => togglePlaying(newPlayingState));
     socket.on('RECEIVE_SEEK_TO', (newSecondsPlayed) => seekTo(newSecondsPlayed));
-    socket.on('RECEIVE_SKIP_VIDEO', () => handleOnEnd());
+    socket.on('RECEIVE_SKIP_VIDEO', (targetVideoId) => handleOnEnd(targetVideoId));
     socket.on('RECEIVE_PLAYER_STATE', (receivedPlayerState) => {
       if (receivedPlayerState) {
         setPlayerState((prevPlayerState) => {
@@ -251,6 +266,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
       setPlayerRef,
       handleProgress,
       handleOnVideoSkip,
+      handleOnPlayVideoNow,
       handleOnEnd,
       handleOnError,
       handleOnReady,
@@ -270,6 +286,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
       setPlayerRef,
       handleProgress,
       handleOnVideoSkip,
+      handleOnPlayVideoNow,
       handleOnEnd,
       handleOnError,
       handleOnReady,

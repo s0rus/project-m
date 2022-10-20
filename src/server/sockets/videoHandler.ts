@@ -6,7 +6,7 @@ const videoHandler = (socket: SocketProvider.ServerIO) => {
 
   const TOGGLE_PLAYING = (newPlayingState: boolean) => socket.broadcast.emit('RECEIVE_TOGGLE_PLAYING', newPlayingState);
 
-  const SKIP_VIDEO = () => socket.broadcast.emit('RECEIVE_SKIP_VIDEO');
+  const SKIP_VIDEO = (targetVideoId?: string) => socket.broadcast.emit('RECEIVE_SKIP_VIDEO', targetVideoId);
 
   const ADD_NEW_VIDEO = (newVideo: PlaylistWithUsers) => socket.broadcast.emit('RECEIVE_NEW_VIDEO', newVideo);
 

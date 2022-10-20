@@ -31,6 +31,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
   );
   const { mutateAsync } = trpc.useMutation('playlist.delete-one');
   const { mutateAsync: mutatePlaylistState } = trpc.useMutation('protected-playlist.set-playlist-state');
+  const { mutateAsync: mutateSkipToVideo } = trpc.useMutation('protected-playlist.skip-to-video');
 
   const properPlaylist = useMemo(
     () => playlist.filter((video) => video.videoId !== currentVideo?.videoId),
@@ -50,7 +51,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     if (isSuccess) {
       return playlistData;
     }
-    return undefined;
+    return [];
   }, [playlistData, isSuccess]);
 
   const cachedPlaylistState = useMemo(() => {
@@ -68,21 +69,28 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
     [currentVideo]
   );
 
-  const requestNextVideo = useCallback(async () => {
-    try {
-      if (currentVideo && leader?.userId === currentUser.id) {
-        await mutateAsync({ videoId: currentVideo.videoId });
+  const requestNextVideo = useCallback(
+    async (targetVideoId?: string) => {
+      try {
+        if (currentVideo && leader?.userId === currentUser.id) {
+          await mutateAsync({ videoId: currentVideo.videoId });
+        }
+
+        const newPlaylist = [...playlist];
+        const filteredPlaylist = newPlaylist.filter((video) => video.videoId !== currentVideo?.videoId);
+        if (targetVideoId) {
+          const targetVideo = filteredPlaylist.find((video) => video.videoId === targetVideoId);
+          setCurrentVideo(targetVideo);
+        } else {
+          setCurrentVideo(filteredPlaylist[0]);
+        }
+        setPlaylist(filteredPlaylist);
+      } catch {
+        CustomToast.send(t('requestVideoError'), ToastTypes.Error);
       }
-
-      const newPlaylist = [...playlist];
-      const filteredPlaylist = newPlaylist.filter((video) => video.videoId !== currentVideo?.videoId);
-
-      setCurrentVideo(filteredPlaylist[0]);
-      setPlaylist(filteredPlaylist);
-    } catch {
-      CustomToast.send(t('requestVideoError'), ToastTypes.Error);
-    }
-  }, [currentVideo, playlist, mutateAsync, leader, t, currentUser.id]);
+    },
+    [currentVideo, playlist, mutateAsync, leader, t, currentUser.id]
+  );
 
   const handleSkipVideo = useCallback(
     async (targetVideoId?: string) => {
@@ -119,6 +127,29 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
       setPlaylist(filteredPlaylist);
     },
     [playlist]
+  );
+
+  const handlePlayVideoNow = useCallback(
+    async (targetVideoId: string) => {
+      try {
+        const newPlaylist = [...playlist];
+        const filteredPlaylist = newPlaylist.filter(
+          (video) => video.videoId !== currentVideo?.videoId && video.videoId !== targetVideoId
+        );
+        const targetVideo = newPlaylist.find((video) => video.videoId === targetVideoId);
+        if (targetVideo && currentVideo && isAdmin) {
+          const targetPlaylist = [targetVideo, ...filteredPlaylist];
+          await mutateAsync({ videoId: currentVideo.videoId });
+          await mutateSkipToVideo({ videoId: targetVideoId });
+
+          setCurrentVideo(targetPlaylist[0]);
+          setPlaylist(targetPlaylist);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [playlist, mutateSkipToVideo, mutateAsync, currentVideo, isAdmin]
   );
 
   const togglePlaylistLocked = useCallback(async () => {
@@ -169,6 +200,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
       playlist,
       requestNextVideo,
       handleSkipVideo,
+      handlePlayVideoNow,
       addVideo,
       playlistLocked,
       togglePlaylistLocked,
@@ -181,6 +213,7 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
       playlist,
       requestNextVideo,
       handleSkipVideo,
+      handlePlayVideoNow,
       addVideo,
       playlistLocked,
       togglePlaylistLocked,
