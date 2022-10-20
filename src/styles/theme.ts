@@ -208,13 +208,10 @@ export const theme = createTheme({
         },
 
 
-        '.react-page-split': {
-          transition: `0.2s`,
-        },
         '.react-page-split__divider': {
           '&:focus': {
             backgroundColor: `${globalTheme.palette.primary.main}!important`,
-            transition: `0.2s`,
+            transition: `0.1s`,
             height: '100vh',
             backgroundImage: 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==)',
             cursor: 'col-resize',
@@ -223,9 +220,8 @@ export const theme = createTheme({
           },
           '&:hover': {
             backgroundColor: `#3a3740`,
-            transition: `0.2s`,
+            transition: `0.5s`,
             cursor: 'col-resize',
-            
             height: '100vh',
             borderRadius: '20px',
           },
@@ -233,7 +229,7 @@ export const theme = createTheme({
 
         '.react-page-split__divider--horizontal': {
           backgroundColor: `rgba(0, 0, 0, 0)`,
-          transition: `0.2s`,
+          transition: `0.1s`,
           cursor: 'col-resize',
           touchAction: 'pan-x',
           height: '100vh',

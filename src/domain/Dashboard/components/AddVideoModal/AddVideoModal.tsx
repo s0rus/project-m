@@ -1,4 +1,4 @@
-import { AddVideoWrapper, ModalContent, SamplePlayer } from './AddVideoModal.styles';
+import { AddVideoWrapper, ModalContent, SamplePlayer, ExitButton } from './AddVideoModal.styles';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Modal, Typography } from '@mui/material';
 import { NewVideoForm, newVideoSchema } from '../../model/NewVideo.model';
@@ -17,7 +17,7 @@ import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
-
+import CloseIcon from '@mui/icons-material/Close';
 interface AddVideoModalProps {
   open: boolean;
   handleClose: () => void;
@@ -86,7 +86,10 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
   return (
     <Modal open={open} onClose={handleClose}>
       <ModalContent>
-        <Typography variant='h3'>{t('addVideoModal.header')}:</Typography>
+        <ExitButton>
+        <CloseIcon style={{height: '40px', width: '40px'}} onClick={handleClose}/>
+        </ExitButton>
+        <Typography variant='h3'>{t('addVideoModal.header')}</Typography>
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <AddVideoWrapper>
@@ -120,6 +123,7 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
           </form>
         </FormProvider>
       </ModalContent>
+
     </Modal>
   );
 };

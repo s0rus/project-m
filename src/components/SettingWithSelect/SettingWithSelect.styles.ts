@@ -7,14 +7,12 @@ export const SettingStack = styled(Stack)`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  border: none;
 `;
 
 export const InnerStack = styled(Stack)`
   flex-direction: row;
   align-items: center;
   gap: 1.5rem;
-  border: none;
   & svg {
     width: 2rem;
     height: 2rem;

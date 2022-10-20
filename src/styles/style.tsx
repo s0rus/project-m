@@ -1,7 +1,7 @@
 import { styled, Button, Box, Stack, Avatar, Slider } from '@mui/material';
 import { theme } from '@/styles/theme';
 import SimpleBar from 'simplebar-react';
- export const Options = styled('div')<{ locked: number }>`
+ export const Options = styled('div')`
 position: relative;
 min-width: 150px;
 max-width: 100%;
@@ -9,10 +9,9 @@ border-radius: 8px;
 padding-top: 1rem;
 transition: 1s;
 &:hover{
-  box-shadow: ${theme.palette.primary.main} 0px 2px 10px 1px;
+  box-shadow: rgb(0, 0, 0, 0.5) 0px 20px 30px -10px;
 }
 `
-//${theme.palette.primary.main}
 export const OptionsBox = styled('div')`
 min-width: 150px;
 max-width: 100%;
@@ -27,7 +26,7 @@ export const OptionsTitle = styled('h1')`
 font-size: 1.5rem;
 font-weight: 600;
 text-align: left;
-margin-left: 35px;
+margin-left: 20px;
 margin-top: 0px;
 cursor: default;
 text-shadow: 0px 0px 10px white;

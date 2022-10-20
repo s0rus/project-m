@@ -1,5 +1,5 @@
 import { Link, Typography, CircularProgress } from '@mui/material';
-import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper, Current, Delete } from './PlaylistItem.styles';
+import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper, Delete } from './PlaylistItem.styles';
 import React, { FC, useState } from 'react';
 import { ListItem, Tooltip} from '@mui/material';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
@@ -11,7 +11,6 @@ import CheckIcon from '@mui/icons-material/Check';
 import { ToastTypes } from '@/utils/ToastTypes';
 import { CustomToast } from '@/utils/sendToast';
 import { Seeker }  from '@/styles/style'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '../../context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
@@ -67,21 +66,11 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   return (
     <ListItem dense>
       <PlaylistItemWrapper>
-        <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
           <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
-        </Link>
         {isAdmin &&
         <div>
-              <Tooltip title={t('playlist.tooltip.requestcurrent')} >
-              <IconButton onClick={handleRemoveVideo} disabled={isDeleting} style={{ position: 'absolute', right: '10px', top: '30px',}} >
-          <Current>
-          {isDeleting ? <CircularProgress size={32} /> : <ArrowUpwardIcon  style={{width: '40px', height: '40px'}}  />}
-          </Current>
-              </IconButton>
-              </Tooltip>
-
               <Tooltip title={t('playlist.tooltip.delete')} >
-              <IconButton onClick={handleRemoveVideo} disabled={isDeleting} style={{ position: 'absolute', right: '60px', top: '40px',}} >
+              <IconButton onClick={handleRemoveVideo} disabled={isDeleting} style={{ position: 'absolute', right: '10px', top: '40px',}} >
               <Delete>
                 {isDeleting ? <CircularProgress size={32} /> : <ClearIcon  style={{width: '40px', height: '40px'}}  />}
               </Delete>
@@ -107,11 +96,11 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
 }
         <PlaylistItemBox>
           <PlaylistItemContent>
-
+          <Link href={videoUrl} style={{color: 'white'}} target='_blank' rel='noopener norefferer'>
               <Typography style={{textShadow: '0px 0px 4px white'}} variant='h4'>
                 {videoTitle}
               </Typography>
-
+          </Link>
             <Seeker aria-label='time-indicator'size='small'/>
             <AddedByWrapper>
           {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}

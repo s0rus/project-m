@@ -1,4 +1,4 @@
-import { Box, Typography, styled } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { ExpandMoreRounded, LanguageRounded } from '@mui/icons-material';
 import { InnerStack, SettingStack, StyledSelect } from './SettingWithSelect.styles';
 import React, { Dispatch, FC, SetStateAction } from 'react';
@@ -22,7 +22,7 @@ const SettingWithSelect: FC<SettingWithSelect> = ({ setter, value, header, subti
       id='language-selector'
       value={value}
       onChange={(e) => setter(e.target.value as string)}
-      sx={{ mt: '1rem' }}
+      sx={{ mt: '1rem', cursor: 'pointer' }}
       style={{width: '100%', minWidth: '150px',}}
       IconComponent={ExpandMoreRounded}
       renderValue={(value) => {

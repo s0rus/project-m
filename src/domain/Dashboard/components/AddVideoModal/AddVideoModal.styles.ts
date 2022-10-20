@@ -11,10 +11,9 @@ export const ModalContent = styled(Box)`
   position: absolute;
   top: 50%;
   left: 50%;
-
+  transition: all 0.3s;
   transform: translate(-50%, -50%);
   background-color: ${theme.palette.background.paper};
-  border: 1px solid ${theme.palette.primary.dark};
 `;
 
 export const AddVideoWrapper = styled(Stack)`
@@ -32,3 +31,20 @@ export const AddVideoWrapper = styled(Stack)`
 export const SamplePlayer = styled(ReactPlayer)`
   display: none;
 `;
+
+export const ExitButton = styled('div')`
+height: 40px;
+width: 40px;
+color: #18181b;
+transition: all 0.3s;
+position: absolute;
+right: 20px;
+top: 20px;
+color: white;
+cursor: pointer;
+background: rgba(0, 0, 0, 0.35);
+border-radius: 8px;
+&:hover{
+  color: ${theme.palette.primary.main};
+  background: rgba(0, 0, 0, 0.50);
+}`

@@ -14,7 +14,7 @@ import { useAuthContext } from '@/contexts/AuthContext';
 import { Grid, Box } from '@mui/material';
 import CurrentAuth from '../CurrentAuth';
 import SettingWithSelect from '@/components/SettingWithSelect';
-
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 const Settings = () => {
   const { isChatOn, setIsChatOn, language, setLanguage  } = useAddonsContext();
   const { loginWithTwitch, logoutOfTwitch } = useAuthContext();
@@ -36,26 +36,26 @@ const Settings = () => {
     {session && status === 'authenticated' ? (
       <ChatBox onClick={logoutOfTwitch} style={{cursor: 'pointer'}} >
       <LogoutIcon style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }}/>
-      <TitleOption>
+      <TitleOption style={{cursor: 'pointer'}} >
       {t('options.twitchTitle')}
       </TitleOption>
-      <SubTitleOption>
+      <SubTitleOption style={{cursor: 'pointer'}} >
       {t('options.twitchSubTitleLOGOUT')}
       </SubTitleOption>
     </ChatBox>
     ):(
     <ChatBox onClick={loginWithTwitch} style={{cursor: 'pointer'}} >
       <Twitch  style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }} />
-      <TitleOption>
+      <TitleOption style={{cursor: 'pointer'}} >
       {t('options.twitchTitle')}
       </TitleOption>
-      <SubTitleOption>
+      <SubTitleOption style={{cursor: 'pointer'}} >
       {t('options.twitchSubTitleLOGIN')}
       </SubTitleOption>
     </ChatBox>
     )}
      <ChatBox>
-    <MovieCreationOutlinedIcon style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }} />
+    <ChatBubbleOutlineIcon style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }} />
       <TitleOption>
       {t('options.chatTitle')}
       </TitleOption>

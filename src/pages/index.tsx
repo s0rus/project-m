@@ -35,7 +35,7 @@ const Home: NextPage = () => {
           </Background>
         </MainContent>
         </div>
-        <div style={{minWidth: '11.4%', maxWidth:'100%'}}>
+        <div style={{minWidth: '11%', width: '15%'}}>
             <TwitchChat />
         </div>
         </HorizontalPageSplit>
