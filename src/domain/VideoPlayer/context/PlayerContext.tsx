@@ -6,6 +6,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 import {
@@ -16,22 +17,32 @@ import {
   initialPlayerState,
 } from '../model/VideoPlayer.model';
 
+import { CustomToast } from '@/utils/sendToast';
 import { LocalStorageKeys } from '@/utils/localStorageKeys';
 import ReactPlayer from 'react-player';
+import { ToastTypes } from '@/utils/ToastTypes';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '../../Playlist/context/PlaylistContext';
+import { useSocketContext } from '@/contexts/SocketContext';
+import { useTranslation } from 'react-i18next';
 
 const PlayerContext = createContext<InitialContextProps>(initialContextProps);
 
 export const usePlayerContext = () => useContext<InitialContextProps>(PlayerContext);
 
 export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { currentVideo, requestNextVideo } = usePlaylistContext();
+  const { t } = useTranslation();
+  const { isAdmin } = useAuthContext();
+  const { socket } = useSocketContext();
+  const { currentVideo, requestNextVideo, handleSkipVideo } = usePlaylistContext();
   const [playerState, setPlayerState] = useState<PlayerState>(initialPlayerState);
   const [seeking, setSeeking] = useState(false);
   const [playerRef, setPlayerRef] = useState<MutableRefObject<ReactPlayer> | null>(null);
 
-  const seekTo = useCallback((seconds: number) => playerRef?.current.seekTo(seconds, 'seconds'), [playerRef]);
-  const getDuration = useCallback(() => playerRef?.current.getDuration(), [playerRef]);
+  const seekTo = useCallback((seconds: number) => playerRef?.current?.seekTo(seconds, 'seconds'), [playerRef]);
+  const getDuration = useCallback(() => playerRef?.current?.getDuration() || 0, [playerRef]);
+  const getPlayedSeconds = useCallback(() => playerRef?.current?.getCurrentTime() || 0, [playerRef]);
+  const isPlayerPlaying = useMemo(() => playerState.isPlaying, [playerState.isPlaying]);
 
   useEffect(() => {
     setPlayerState((prevPlayerState) => {
@@ -52,11 +63,11 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     });
   }, []);
 
-  const togglePlaying = useCallback(() => {
+  const togglePlaying = useCallback((newPlayingState: boolean) => {
     setPlayerState((prevPlayerState) => {
       return {
         ...prevPlayerState,
-        isPlaying: !prevPlayerState.isPlaying,
+        isPlaying: newPlayingState,
       };
     });
   }, []);
@@ -65,8 +76,8 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     setPlayerState((prevPlayerState) => {
       return {
         ...prevPlayerState,
-        isMuted: !prevPlayerState.isMuted,
-        initialMute: prevPlayerState.initialMute && false,
+        isMuted: prevPlayerState.isReady && !prevPlayerState.isMuted,
+        initialMute: prevPlayerState.initialMute && prevPlayerState.isReady && false,
       };
     });
   }, []);
@@ -99,14 +110,20 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     [seeking, getDuration]
   );
 
-  const handleSeek = useCallback((newPlayedSeconds: number) => {
-    setPlayerState((prevPlayerState) => {
-      return {
-        ...prevPlayerState,
-        playedSeconds: newPlayedSeconds,
-      };
-    });
-  }, []);
+  const handleSeek = useCallback(
+    (newPlayedSeconds: number) => {
+      if (isAdmin) {
+        socket && socket.emit('SEEK_TO', newPlayedSeconds);
+        setPlayerState((prevPlayerState) => {
+          return {
+            ...prevPlayerState,
+            playedSeconds: newPlayedSeconds,
+          };
+        });
+      }
+    },
+    [isAdmin, socket]
+  );
 
   const toggleControls = useCallback((newControlsVisibility: boolean) => {
     setPlayerState((prevPlayerState) => {
@@ -127,7 +144,24 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     });
   }, []);
 
-  const handleOnEnd = () => {
+  const handleOnEnd = useCallback(
+    (targetVideoId?: string) => {
+      setPlayerState((prevPlayerState) => {
+        return {
+          ...prevPlayerState,
+          duration: 0,
+          playedSeconds: 0,
+          loadedSeconds: 0,
+          activeVideo: undefined,
+        };
+      });
+
+      requestNextVideo(targetVideoId);
+    },
+    [requestNextVideo]
+  );
+
+  const handleOnVideoSkip = useCallback(() => {
     setPlayerState((prevPlayerState) => {
       return {
         ...prevPlayerState,
@@ -138,25 +172,134 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
       };
     });
 
-    requestNextVideo();
-  };
+    handleSkipVideo();
+  }, [handleSkipVideo]);
 
-  const value = {
-    playerState,
-    setPlayerState,
-    seekTo,
-    setPlayerRef,
-    handleProgress,
-    handleOnEnd,
-    togglePlaying,
-    handleSeek,
-    seeking,
-    setSeeking,
-    toggleMuted,
-    setVolume,
-    toggleControls,
-    disableInitialMute,
-  };
+  const handleOnError = useCallback(() => {
+    CustomToast.send(t('toast.videoError'), ToastTypes.VideoSkipped);
+    setPlayerState((prevPlayerState) => {
+      return {
+        ...prevPlayerState,
+        duration: 0,
+        playedSeconds: 0,
+        loadedSeconds: 0,
+        activeVideo: undefined,
+      };
+    });
+    requestNextVideo();
+  }, [t, requestNextVideo]);
+
+  const handleOnPlayVideoNow = useCallback(() => {
+    setPlayerState((prevPlayerState) => {
+      return {
+        ...prevPlayerState,
+        duration: 0,
+        playedSeconds: 0,
+        loadedSeconds: 0,
+        activeVideo: undefined,
+      };
+    });
+  }, []);
+
+  const handleOnReady = useCallback(() => {
+    if (!playerState.isReady) {
+      setPlayerState((prevPlayerState) => {
+        return {
+          ...prevPlayerState,
+          isReady: true,
+        };
+      });
+    }
+  }, [playerState.isReady]);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on('RECEIVE_REQUEST_PLAYER_STATE', (socketId) => {
+      const currentPlayedSeconds = getPlayedSeconds() || 0;
+      const playedSecondsWithDelay = isPlayerPlaying ? currentPlayedSeconds + 1 : currentPlayedSeconds;
+
+      socket.emit(
+        'SEND_PLAYER_STATE',
+        {
+          isPlaying: isPlayerPlaying,
+          playedSeconds: playedSecondsWithDelay,
+        },
+        socketId
+      );
+    });
+  }, [socket, getPlayedSeconds, isPlayerPlaying]);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.emit('REQUEST_PLAYER_STATE');
+    socket.on('RECEIVE_TOGGLE_PLAYING', (newPlayingState) => togglePlaying(newPlayingState));
+    socket.on('RECEIVE_SEEK_TO', (newSecondsPlayed) => seekTo(newSecondsPlayed));
+    socket.on('RECEIVE_SKIP_VIDEO', (targetVideoId) => handleOnEnd(targetVideoId));
+    socket.on('RECEIVE_PLAYER_STATE', (receivedPlayerState) => {
+      if (receivedPlayerState) {
+        setPlayerState((prevPlayerState) => {
+          return {
+            ...prevPlayerState,
+            isPlaying: receivedPlayerState.isPlaying,
+            playedSeconds: receivedPlayerState.playedSeconds,
+          };
+        });
+        seekTo(receivedPlayerState.playedSeconds);
+      }
+    });
+
+    return () => {
+      socket.off('RECEIVE_TOGGLE_PLAYING');
+      socket.off('RECEIVE_SEEK_TO');
+      socket.off('RECEIVE_SKIP_VIDEO');
+      socket.off('RECEIVE_PLAYER_STATE');
+    };
+  }, [socket, togglePlaying, handleOnEnd, seekTo]);
+
+  const value = useMemo(
+    () => ({
+      playerState,
+      setPlayerState,
+      seekTo,
+      setPlayerRef,
+      handleProgress,
+      handleOnVideoSkip,
+      handleOnPlayVideoNow,
+      handleOnEnd,
+      handleOnError,
+      handleOnReady,
+      togglePlaying,
+      handleSeek,
+      seeking,
+      setSeeking,
+      toggleMuted,
+      setVolume,
+      toggleControls,
+      disableInitialMute,
+    }),
+    [
+      playerState,
+      setPlayerState,
+      seekTo,
+      setPlayerRef,
+      handleProgress,
+      handleOnVideoSkip,
+      handleOnPlayVideoNow,
+      handleOnEnd,
+      handleOnError,
+      handleOnReady,
+      togglePlaying,
+      handleSeek,
+      seeking,
+      setSeeking,
+      toggleMuted,
+      setVolume,
+      toggleControls,
+      disableInitialMute,
+    ]
+  );
 
   return <PlayerContext.Provider value={value}>{children}</PlayerContext.Provider>;
 };

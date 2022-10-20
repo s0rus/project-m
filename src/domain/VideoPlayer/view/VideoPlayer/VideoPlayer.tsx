@@ -4,15 +4,13 @@ import { StyledReactPlayer, VideoPlayerBox } from './VideoPlayer.styles';
 import PlayerControls from '../../components/PlayerControls';
 import ReactPlayer from 'react-player';
 import useHasWindow from '../../utils/hasWindow';
-// import { useSocketContext } from '@/contexts/SocketContext';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 
 const VideoPlayer = () => {
-  const { setPlayerRef, handleProgress, handleOnEnd, playerState } = usePlayerContext();
+  const { setPlayerRef, handleProgress, handleOnEnd, playerState, handleOnError, handleOnReady } = usePlayerContext();
   const { isPlaying, volume, isMuted, activeVideo } = playerState;
   const playerRef = useRef<ReactPlayer | null>(null);
   const hasWindow = useHasWindow();
-  // const { socket } = useSocketContext();
 
   useEffect(() => {
     setPlayerRef(playerRef as MutableRefObject<ReactPlayer>);
@@ -23,6 +21,8 @@ const VideoPlayer = () => {
       {hasWindow && (
         <>
           <StyledReactPlayer
+            onReady={handleOnReady}
+            onError={handleOnError}
             onProgress={handleProgress}
             onEnded={handleOnEnd}
             playing={isPlaying}

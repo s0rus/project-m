@@ -1,44 +1,91 @@
 import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useState } from 'react';
 
+import { CustomToast } from '@/utils/sendToast';
 import { Routes } from '@/server/router/routes';
 import { SocketProvider } from '@/server/sockets';
+import { UserData } from '@/server/sockets/SocketProvider';
 import { io } from 'socket.io-client';
+import { useAuthContext } from './AuthContext';
 
 interface SocketContextProps {
   socket: SocketProvider.ClientIO;
 }
 
-type InitialContextProps = SocketContextProps | Record<string, never>;
+type SocketValueProps = SocketContextProps | Record<string, never>;
+
+interface InitialContextProps {
+  socket: SocketProvider.ClientIO | Record<string, never>;
+  leader: UserData | null;
+}
 
 let socket: SocketProvider.ClientIO;
-const SocketContext = createContext<InitialContextProps>({});
+const SocketContext = createContext<InitialContextProps>({
+  socket: {},
+  leader: null,
+});
 
 export const useSocketContext = () => useContext<InitialContextProps>(SocketContext);
 
 export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [value, setValue] = useState<InitialContextProps>({});
+  const { currentUser, isAuthLoading, authChange } = useAuthContext();
+  const [value, setValue] = useState<SocketValueProps>({});
+  const [leader, setLeader] = useState<UserData | null>(null);
 
   const socketInitializer = useCallback(async () => {
-    await fetch(Routes.SOCKET).then(() => {
-      socket = io();
-      setValue({
-        socket,
+    if (currentUser && !isAuthLoading) {
+      await fetch(Routes.SOCKET).then(() => {
+        socket = io();
+        setValue({
+          socket,
+        });
       });
-    });
 
-    socket.on('connect', () => {
-      console.info('CONNECTED');
-      console.info(socket.id);
-    });
+      socket.on('connect', () => {
+        console.log('CONNECTED', socket.id);
+        socket.emit('JOIN_USER', {
+          socketId: socket.id,
+          isAdmin: currentUser.isAdmin,
+          userId: currentUser.id,
+          username: currentUser.name,
+        });
+      });
 
-    socket.on('connect_error', (err: Error) => {
-      console.error(`CONNECT_ERROR: ${err}`);
-    });
-  }, []);
+      socket.on('RECEIVE_TOAST', (message, type) => CustomToast.send(message, type));
+      socket.on('RECEIVE_NEW_LEADER', (userData) => setLeader(userData));
+
+      socket.on('connect_error', (err: Error) => {
+        console.error(`CONNECT_ERROR: ${err}`);
+      });
+    }
+  }, [currentUser, isAuthLoading]);
 
   useEffect(() => {
+    if (!socket) return;
+
+    if (currentUser && !authChange) {
+      socket.emit('UPDATE_USER', {
+        socketId: socket.id,
+        isAdmin: currentUser.isAdmin,
+        userId: currentUser.id,
+        username: currentUser.name,
+      });
+    }
+  }, [authChange, currentUser]);
+
+  useEffect(() => {
+    if (socket) return;
+
     socketInitializer();
   }, [socketInitializer]);
 
-  return <SocketContext.Provider value={value}>{children}</SocketContext.Provider>;
+  return (
+    <SocketContext.Provider
+      value={{
+        socket: value.socket,
+        leader,
+      }}
+    >
+      {children}
+    </SocketContext.Provider>
+  );
 };

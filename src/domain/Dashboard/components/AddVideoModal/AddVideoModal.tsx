@@ -4,14 +4,17 @@ import { Modal, Typography } from '@mui/material';
 import { NewVideoForm, newVideoSchema } from '../../model/NewVideo.model';
 import React, { FC, useRef, useState } from 'react';
 
-import ButtonWithLoader from '@/components/shared/ButtonWithLoader';
-import FormInput from '@/components/shared/FormInput';
+import ButtonWithLoader from '@/components/ButtonWithLoader';
+import { CustomToast } from '@/utils/sendToast';
+import FormInput from '@/components/FormInput';
 import { PlaylistAddCheck } from '@mui/icons-material';
 import ReactPlayer from 'react-player';
+import { ToastTypes } from '@/utils/ToastTypes';
 import { getYoutubeThumbnail } from '@/domain/Dashboard/utils/youtubeUtils';
-import { toast } from 'react-toastify';
 import { trpc } from '@/utils/trpc';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
+import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -21,6 +24,8 @@ interface AddVideoModalProps {
 }
 
 const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
+  const { isAdmin } = useAuthContext();
+  const { socket } = useSocketContext();
   const { t } = useTranslation();
   const { addVideo, playlistLocked } = usePlaylistContext();
   const { mutateAsync, isLoading } = trpc.useMutation(['protected-playlist.add-video']);
@@ -44,6 +49,12 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
     formState: { isValid },
   } = methods;
 
+  const handleReset = () => {
+    reset();
+    handleClose();
+    setPlayerReady(false);
+  };
+
   const onSubmit = async ({ videoTitle, videoUrl }: NewVideoForm) => {
     try {
       const possibleThumbnail = getYoutubeThumbnail(videoUrl);
@@ -61,16 +72,16 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
       });
 
       addVideo(newVideo);
-      reset();
-      handleClose();
-      setPlayerReady(false);
-    } catch (error) {
-      console.log(error);
-      toast.error('Coś poszło nie tak...');
+      socket.emit('ADD_NEW_VIDEO', newVideo);
+      CustomToast.send(t('addVideoModal.videoAdded'), ToastTypes.Sucess);
+      handleReset();
+    } catch {
+      CustomToast.send(t('addVideoError'), ToastTypes.Error);
+      handleReset();
     }
   };
 
-  if (playlistLocked) return null;
+  if (playlistLocked && !isAdmin) handleClose();
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -94,16 +105,18 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
                 {t('addVideoModal.buttonTxt')}
               </ButtonWithLoader>
             </AddVideoWrapper>
-            <SamplePlayer
-              ref={sampleVideoRef}
-              onReady={() => setPlayerReady(true)}
-              url={getValues('videoUrl')}
-              muted
-              autoPlay
-              playing={true}
-              width={0}
-              height={0}
-            />
+            {isValid ? (
+              <SamplePlayer
+                ref={sampleVideoRef}
+                onReady={() => setPlayerReady(true)}
+                url={getValues('videoUrl')}
+                muted
+                autoPlay
+                playing={true}
+                width={0}
+                height={0}
+              />
+            ) : null}
           </form>
         </FormProvider>
       </ModalContent>

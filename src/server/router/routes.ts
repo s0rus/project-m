@@ -1,5 +1,6 @@
 export enum Routes {
   SOCKET = '/api/socket',
-  VIDEO_DURATION = '/api/video-duration/',
   DEFAULT_THUMBNAIL = '/assets/default-thumbnail.png',
+  TWITCH_LOGIN = '/twitch-signin',
+  TWITCH_LOGOUT = '/twitch-signout',
 }

@@ -5,7 +5,6 @@ import { FC } from 'react';
 
 type IFormInputProps = {
   name: string;
-  lablel?: string;
 } & TextFieldProps;
 
 const FormInput: FC<IFormInputProps> = ({ name, label, ...props }) => {

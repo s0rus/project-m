@@ -1,5 +1,5 @@
 import ReactPlayer from 'react-player';
-import i18n from '@/pages/_i18n';
+import i18n from '@/translations/i18n';
 import { z } from 'zod';
 
 export const titleBounds = {
@@ -14,7 +14,7 @@ export const newVideoSchema = z.object({
     .max(titleBounds.MAX, { message: i18n.t('addVideoModal.titleTooLong') }),
   videoUrl: z
     .string()
-    .url({ message: 'URL jest nieprawidłowy.' })
+    .url({ message: i18n.t('addVideoModal.wrongUrl') })
     .refine((v) => ReactPlayer.canPlay(v), { message: i18n.t('addVideoModal.wrongUrl') }),
 });
 

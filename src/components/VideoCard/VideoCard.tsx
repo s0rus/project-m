@@ -3,7 +3,7 @@ import { Link, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
 import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
-import VideoThumbnail from '@/components/shared/VideoThumbnail';
+import VideoThumbnail from '@/components/VideoThumbnail';
 import { useTranslation } from 'react-i18next';
 
 interface VideoCardProps {
@@ -31,11 +31,11 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
       </Link>
       <VideoBox>
         <VideoContent>
-          <Link href={videoUrl} target='_blank' rel='noopener norefferer' sx={{ width: '98%' }}>
-            <Typography noWrap variant='h2'>
+          <Typography noWrap variant='h2' sx={{ width: '98%' }}>
+            <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
               {videoTitle}
-            </Typography>
-          </Link>
+            </Link>
+          </Typography>
           <Typography variant='body1'>
             {t('video.addedBy')}: {addedBy.name}
           </Typography>

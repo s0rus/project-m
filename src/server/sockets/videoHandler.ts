@@ -1,33 +1,25 @@
+import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
 import { SocketProvider } from '.';
-import { PlayerState } from './SocketProvider';
 
 const videoHandler = (socket: SocketProvider.ServerIO) => {
-  socket.data.playerState = {
-    loadedSeconds: 0,
-    playedSeconds: 0,
-    duration: 0,
-    playing: false,
-  };
+  const SEEK_TO = (newPlayedSeconds: number) => socket.broadcast.emit('RECEIVE_SEEK_TO', newPlayedSeconds);
 
-  const PLAY_VIDEO = (receivedData: PlayerState) => {
-    socket.data.playerState = receivedData;
-    // console.log(socket.data.playerState);
-    socket.broadcast.emit('RECEIVE_PLAY_VIDEO', receivedData);
-  };
+  const TOGGLE_PLAYING = (newPlayingState: boolean) => socket.broadcast.emit('RECEIVE_TOGGLE_PLAYING', newPlayingState);
 
-  const PAUSE_VIDEO = (receivedData: PlayerState) => {
-    socket.data.playerState = receivedData;
-    // console.log(socket.data.playerState);
-    socket.broadcast.emit('RECEIVE_PAUSE_VIDEO', receivedData);
-  };
+  const SKIP_VIDEO = (targetVideoId?: string) => socket.broadcast.emit('RECEIVE_SKIP_VIDEO', targetVideoId);
 
-  const REQUEST_PLAYER_STATE = (callback: (obj: { yikes: string }) => void) => {
-    callback({ yikes: 'yikers' });
-  };
+  const ADD_NEW_VIDEO = (newVideo: PlaylistWithUsers) => socket.broadcast.emit('RECEIVE_NEW_VIDEO', newVideo);
 
-  socket.on('PLAY_VIDEO', PLAY_VIDEO);
-  socket.on('PAUSE_VIDEO', PAUSE_VIDEO);
-  socket.on('REQUEST_PLAYER_STATE', REQUEST_PLAYER_STATE);
+  const DELETE_VIDEO = (videoId: string) => socket.broadcast.emit('RECEIVE_DELETE_VIDEO', videoId);
+
+  const TOGGLE_PLAYLIST = () => socket.broadcast.emit('RECEIVE_TOGGLE_PLAYLIST');
+
+  socket.on('SEEK_TO', SEEK_TO);
+  socket.on('TOGGLE_PLAYING', TOGGLE_PLAYING);
+  socket.on('SKIP_VIDEO', SKIP_VIDEO);
+  socket.on('ADD_NEW_VIDEO', ADD_NEW_VIDEO);
+  socket.on('DELETE_VIDEO', DELETE_VIDEO);
+  socket.on('TOGGLE_PLAYLIST', TOGGLE_PLAYLIST);
 };
 
 export default videoHandler;

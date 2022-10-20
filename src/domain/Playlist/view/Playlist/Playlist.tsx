@@ -1,5 +1,4 @@
 import { AccessTimeFilledRounded, AutoAwesomeMotionRounded } from '@mui/icons-material';
-import { Box, List, Tooltip, Typography } from '@mui/material';
 import {
   EmptyPlaylistBox,
   PlaylistContainer,
@@ -7,10 +6,10 @@ import {
   PlaylistHeader,
   PlaylistWrapper,
 } from './Playlist.styles';
-import React, { useMemo } from 'react';
+import { List, Tooltip, Typography } from '@mui/material';
 
 import PlaylistItem from '../../components/PlaylistItem';
-import { PlaylistWithUsers } from '../../model/Playlist.model';
+import React from 'react';
 import timeFormatter from '@/utils/timeFormatter';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
@@ -18,17 +17,8 @@ import { useTranslation } from 'react-i18next';
 
 const Playlist = () => {
   const { t } = useTranslation();
-  const { playlist, properPlaylist, playlistLocked } = usePlaylistContext();
+  const { timeSum, properPlaylist, playlistLocked } = usePlaylistContext();
   const [animatedList] = useAutoAnimate();
-
-  const timeSum = useMemo(
-    () =>
-      (playlist as PlaylistWithUsers[]).reduce<number>(
-        (acc: number, curr: PlaylistWithUsers) => acc + curr.videoDuration,
-        0
-      ),
-    [playlist]
-  );
 
   return (
     <>

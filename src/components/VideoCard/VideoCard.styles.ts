@@ -50,7 +50,7 @@ export const AddedByAvatar = styled(Avatar)`
 export const EmptyVideoCard = styled(Box)`
   width: 100%;
   height: 100%;
-  padding-left: 2rem;
+  padding-left: 1rem;
 
   display: flex;
   justify-content: center;

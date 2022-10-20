@@ -11,24 +11,28 @@ export interface AddedBy {
 
 export interface InitialContextProps {
   currentVideo: PlaylistWithUsers | undefined;
-  previousVideo: PlaylistWithUsers | undefined;
   playlist: PlaylistWithUsers[] | [];
   properPlaylist: PlaylistWithUsers[] | [];
-  requestNextVideo: () => void;
+  requestNextVideo: (targetVideoId?: string) => void;
+  handleSkipVideo: (targetVideoId?: string) => Promise<void>;
+  handlePlayVideoNow: (targetVideoId: string) => Promise<void>;
   addVideo: (newVideo: PlaylistWithUsers) => void;
   playlistLocked: boolean;
   togglePlaylistLocked: () => void;
   isPlaylistLoading: boolean;
+  timeSum: number;
 }
 
 export const initialContextProps: InitialContextProps = {
   currentVideo: undefined,
-  previousVideo: undefined,
   playlist: [],
   properPlaylist: [],
   requestNextVideo: () => null,
+  handleSkipVideo: () => Promise.resolve(),
+  handlePlayVideoNow: () => Promise.resolve(),
   addVideo: () => null,
   playlistLocked: true,
   togglePlaylistLocked: () => null,
   isPlaylistLoading: true,
+  timeSum: 0,
 };

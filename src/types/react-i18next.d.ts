@@ -1,8 +1,10 @@
-import { resources, defaultNS } from '../pages/_i18n';
+import { resources } from '../translations/i18n';
 
 declare module 'react-i18next' {
   interface CustomTypeOptions {
-    defaultNS: typeof defaultNS;
-    resources: typeof resources['pl'];
+    defaultNS: 'translation';
+    resources: {
+      translation: typeof resources.pl.translation;
+    };
   }
 }

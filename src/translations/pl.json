@@ -1,7 +1,6 @@
 {
   "logIn": "Zaloguj się",
   "logOut": "Wyloguj się",
-  "genericErrorMessage": "Ups! Coś poszło nie tak...",
   "cancelMute": "Anuluj wyciszenie",
   "video": {
     "thumbnailAlt": "Miniaturka filmu {{videoTitle}}",
@@ -15,18 +14,48 @@
     "buttonTxt": "Dodaj",
     "titleRequired": "Tytuł jest wymagany.",
     "titleTooLong": "Tytuł może mieć maksymalnie 30 znaków.",
-    "wrongUrl": "URL jest nieprawidłowy."
+    "wrongUrl": "URL jest nieprawidłowy.",
+    "videoAdded": "Film został dodany do kolejki."
+  },
+  "settings": {
+    "header": "Ustawienia",
+    "chat": {
+      "header": "Czat",
+      "subititle": "Włącz/wyłącz czat"
+    },
+    "language": {
+      "header": "Język",
+      "subititle": "Wybierz język"
+    }
   },
   "playlist": {
     "header": "Playlista",
     "empty": "Playlista jest pusta.",
     "tooltip": {
       "videoCount": "Ilość filmów w kolejce",
-      "timeSum": "Łączny czas kolejki"
+      "timeSum": "Łączny czas kolejki",
+      "deleteVideo": "Usuń z kolejki"
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",
       "subtitle": "Dodaj film, by zacząć oglądać."
-    }
+    },
+    "removeVideoError": "Nie udało się usunąć filmu...",
+    "videoRemoved": "Film został usunięty z kolejki!"
+  },
+  "toast": {
+    "playlistLocked": "{{username}} zablokował playlistę.",
+    "playlistUnlocked": "{{username}} odblokował playlistę.",
+    "videoSeeked": "{{username}} przewinął film.",
+    "videoSkipped": "{{username}} pominął film.",
+    "videoError": "Film nie mógł być odtworzony."
+  },
+  "genericErrorMessage": "Ups! Coś poszło nie tak...",
+  "addVideoError": "Wystąpił błąd podczas dodawania filmu...",
+  "requestVideoError": "Nie udało się pobrać kolejnego filmu...",
+  "togglePlaylistError": "Nie udało się zmienić stanu playlisty...",
+  "language": {
+    "pl": "Polski",
+    "en": "English"
   }
 }

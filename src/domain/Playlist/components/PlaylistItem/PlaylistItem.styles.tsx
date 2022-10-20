@@ -17,10 +17,12 @@ export const PlaylistItemContent = styled(CardContent)`
   flex: 1;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
 `;
 
 export const PlaylistItemBox = styled(Box)`
   width: 100%;
+  margin-right: 1rem;
 
   display: flex;
   overflow: hidden;

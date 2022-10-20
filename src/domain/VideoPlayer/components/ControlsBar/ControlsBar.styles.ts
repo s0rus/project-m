@@ -1,5 +1,6 @@
 import { Box, Slider, styled } from '@mui/material';
 
+import hexToRgba from 'hex-to-rgba';
 import { theme } from '@/styles/theme';
 
 export const ControlsBarWrapper = styled(Box)<{ controls: boolean }>`
@@ -11,15 +12,18 @@ export const ControlsBarWrapper = styled(Box)<{ controls: boolean }>`
 
   transition: transform 0.2s ease-in-out;
   transform: ${({ controls }) => (controls ? 'translateY(0px)' : 'translateY(80px)')};
+
+  border-radius: 0.5rem;
+  background-color: ${hexToRgba(theme.palette.background.paper, 0.2)};
 `;
 
-export const Seeker = styled(Slider)`
+export const Seeker = styled(Slider)<{ loadedpercentage: number }>`
   color: ${theme.palette.primary.main};
   height: 4px;
 
   & .MuiSlider-thumb {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
   }
 
   &::before {
@@ -37,7 +41,20 @@ export const Seeker = styled(Slider)`
   }
 
   & .MuiSlider-rail {
-    opacity: 0.28;
+    opacity: 0.5;
+    background-color: ${theme.palette.primary.dark};
+
+    &::before {
+      content: '';
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+
+      transition: width 0.1s ease-in-out;
+      width: ${({ loadedpercentage }) => `${loadedpercentage || 0}%`};
+      background-color: ${theme.palette.primary.light};
+    }
   }
 `;
 
