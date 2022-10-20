@@ -19,7 +19,6 @@ export const protectedPlaylistRouter = createProtectedRouter()
           videoTitle: input.videoTitle,
           videoUrl: input.videoUrl,
           addedAt: dayjs().toDate(),
-          updatedAt: dayjs().toDate(),
           videoDuration: input.videoDuration,
           videoThumbnail: input.videoThumbnail,
           addedBy: {
