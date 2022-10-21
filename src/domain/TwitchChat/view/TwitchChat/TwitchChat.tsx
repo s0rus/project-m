@@ -9,7 +9,7 @@ const TwitchChat = () => {
     <TwitchChatBox>
       <TwitchChatContainer>
       <TwitchChatHolder
-          src={`https://www.twitch.tv/embed/khamires/chat?parent=${getTwitchChatParent()}&darkpopout`}/>
+          src={`https://www.twitch.tv/embed/khamires/chat?parent=murzyniarnia.com&darkpopout`}/>
       </TwitchChatContainer>
     </TwitchChatBox>
   );
