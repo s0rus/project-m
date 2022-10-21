@@ -9,8 +9,6 @@ import VideoPlayer from '@/domain/VideoPlayer/view/VideoPlayer';
 import { HorizontalPageSplit } from 'react-page-split';
 import { Background } from '@/styles/style';
 import { useAddonsContext } from '@/contexts/AddonsContext';
-import { Hidden } from '@mui/material';
-import DashboardBar from '@/domain/Dashboard/components/DashboardBar';
 
 const Home: NextPage = () => {
   const { isChatOn } = useAddonsContext();
@@ -18,12 +16,12 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Murzyniarnia.TV</title>
+        <title>Murzyniarnia</title>
         <meta name='description' content='Strona do oglądania filmów' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
 <>
-      <Hidden lgDown >
+
       <MainLayout>
         {isChatOn ? ( 
         <HorizontalPageSplit>
@@ -51,36 +49,8 @@ const Home: NextPage = () => {
           </MainLayout>
         )}
       </MainLayout>
-      </Hidden>
 
 
-      <Hidden lgUp >
-      {isChatOn ? ( 
-      <MainLayout>
-        <MainContent>
-          <Background>
-            <VideoPlayer/>
-            <DashboardBar/>
-            <div>
-            <TwitchChat />
-              </div>
-            <Dashboard />
-          </Background>
-        </MainContent>
-        </MainLayout>
-
-        ) : ( 
-      <MainLayout>
-          <MainContent>
-            <Background>
-              <VideoPlayer/>
-              <DashboardBar/>
-              <Dashboard />
-            </Background>
-          </MainContent>
-      </MainLayout>
-      )}
-      </Hidden>
       </>
     </>
   );

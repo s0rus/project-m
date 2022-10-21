@@ -102,20 +102,3 @@ transition: color 0.2s;
     -webkit-text-stroke-color: black;
     color: #5529da;
 }`
-export const Paper = styled('div')`
-height: 100vh;
-width: 50vw;
-cursor: move;
-position: fixed;
-left: 10%;
-top: 0%;
-transform: translate(-50%, -50%);
-border: 2px solid hsla(255, 68%, 45%, 0.57);
-background: #1f1f1f;
-padding: 10px;
-z-index: 9999999;
-transition: background 0.3s;
-&:hover{
-    background: #18181b;
-}
-`

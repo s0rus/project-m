@@ -49,4 +49,17 @@ export const protectedPlaylistRouter = createProtectedRouter()
         },
       });
     },
+  })
+  .mutation('skip-to-video', {
+    input: z.object({ videoId: z.string() }).required(),
+    resolve: async ({ ctx, input }) => {
+      return ctx.prisma.playlist.update({
+        where: {
+          videoId: input.videoId,
+        },
+        data: {
+          addedAt: dayjs().add(-1, 'day').toDate(),
+        },
+      });
+    },
   });

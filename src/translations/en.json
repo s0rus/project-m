@@ -56,7 +56,9 @@
       "subtitle": "Add video to start watching."
     },
     "removeVideoError": "There was an error while removing video...",
-    "videoRemoved": "Video removed successfully!"
+    "videoRemoved": "Video removed successfully!",
+    "setVideoError": "An error occurred while trying to play the video...",
+    "setVideo": "Video played successfully!"
   },
   "Navigation": {
     "discord": "Discord",

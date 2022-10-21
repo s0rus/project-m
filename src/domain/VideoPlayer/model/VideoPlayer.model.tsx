@@ -39,6 +39,7 @@ export interface InitialContextProps {
   handleProgress: (event: ProgressProps) => void;
   handleOnEnd: () => void;
   handleOnVideoSkip: () => void;
+  handleOnPlayVideoNow: () => void;
   handleOnError: () => void;
   handleOnReady: () => void;
   togglePlaying: (newPlayingState: boolean, localPause?: boolean) => void;
@@ -59,6 +60,7 @@ export const initialContextProps = {
   handleProgress: () => null,
   handleOnEnd: () => null,
   handleOnVideoSkip: () => null,
+  handleOnPlayVideoNow: () => null,
   handleOnError: () => null,
   handleOnReady: () => null,
   togglePlaying: () => null,

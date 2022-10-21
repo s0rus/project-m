@@ -25,7 +25,7 @@ const SignInPage = () => {
         position: 'absolute',
         left: 0,
         top: 0,
-        background: 'white',
+        background: '#18181b',
       }}
     ></div>
   );

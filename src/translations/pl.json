@@ -57,7 +57,9 @@
       "subtitle": "Dodaj film, by zacząć oglądać."
     },
     "removeVideoError": "Nie udało się usunąć filmu...",
-    "videoRemoved": "Film został usunięty z kolejki!"
+    "videoRemoved": "Film został usunięty z kolejki!",
+    "setVideoError": "Wystąpił błąd podczas próby odtworzenia filmu...",
+    "setVideo": "Film odtworzony pomyślnie!"
   },
   "Navigation": {
     "discord": "Discord",

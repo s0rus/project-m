@@ -13,8 +13,9 @@ export interface InitialContextProps {
   currentVideo: PlaylistWithUsers | undefined;
   playlist: PlaylistWithUsers[] | [];
   properPlaylist: PlaylistWithUsers[] | [];
-  requestNextVideo: () => void;
+  requestNextVideo: (targetVideoId?: string) => void;
   handleSkipVideo: (targetVideoId?: string) => Promise<void>;
+  handlePlayVideoNow: (targetVideoId: string) => Promise<void>;
   addVideo: (newVideo: PlaylistWithUsers) => void;
   playlistLocked: boolean;
   togglePlaylistLocked: () => void;
@@ -28,6 +29,7 @@ export const initialContextProps: InitialContextProps = {
   properPlaylist: [],
   requestNextVideo: () => null,
   handleSkipVideo: () => Promise.resolve(),
+  handlePlayVideoNow: () => Promise.resolve(),
   addVideo: () => null,
   playlistLocked: true,
   togglePlaylistLocked: () => null,

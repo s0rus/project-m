@@ -99,3 +99,53 @@ text-transform: capitalize;
   border-radius: 8px;
   transform: scale(0.5,0.5);
 }`
+export const Current = styled('div')`
+height: 40px;
+width: 40px;
+transition: all 0.5s;
+box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+border-radius: 8px;
+position: relative; all 0.3s;
+margin-bottom: 20px;
+cursor: pointer;
+margin-right: 5px;
+margin-top: 10px;
+text-transform: capitalize;
+&:hover{
+  color: green;
+}
+&:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  border-radius: 8px;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.2s;
+  transform: scale(1.2,1.2);
+}
+&:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 8px;
+  height: 100%;
+  background-color: rgba(255,255,255,0.1);
+  transition: all 0.3s;
+}
+&:hover::after{
+  opacity: 1;
+  border-radius: 8px;
+  transform: scale(1,1);
+}
+&:hover::before{
+  opacity: 0 ;
+  cursor: pointer;
+  border-radius: 8px;
+  transform: scale(0.5,0.5);
+}`
