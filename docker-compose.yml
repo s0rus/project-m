@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 services:
   database:
     # platform: linux/amd64
@@ -8,24 +8,26 @@ services:
       MYSQL_ROOT_PASSWORD: databasem
       MYSQL_DATABASE: mpassword
   app:
-    platform: "linux/amd64"
+    platform: 'linux/amd64'
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_CLIENTVAR: "clientvar"
+        NEXT_PUBLIC_CLIENTVAR: 'clientvar'
     working_dir: /app
     ports:
-      - "3000:3000"
+      - '3000:3000'
     image: t3-app
     environment:
-      - DATABASE_URL='mysql://root:databasem@database:3306/mpassword'
-      - TWITCH_CLIENT_ID='58jxo2kz56sileqihj509h4bd0ll9z'
-      - TWITCH_CLIENT_SECRET='2xry5j0z6ijmiblcgn6294gt340lq6'
+      - DATABASE_URL='mysql://znfmgpr55nginqry7u3i:pscale_pw_B2uJagsllnZiGfoEbxpD37d703X4EBNOzblZ7NhtZ01@eu-west.connect.psdb.cloud/murzyniarnia?sslaccept=strict'
+      - TWITCH_CLIENT_ID='u4j3e7fq3tufq8z6czxytxbqf0xrxv'
+      - TWITCH_CLIENT_SECRET='12pt8d14ona7bykwb6oqidesqtqfvt'
+      - NEXTAUTH_URL='https://murzyniarnia.com/'
+      - NEXTAUTH_SECRET='kvdAGgcNRkYjwP3/D28nhnjyaZ9snl78jEqZUvKX0qU='
   nginx:
-    platform: "linux/amd64"
+    platform: 'linux/amd64'
     build:
       context: nginx/
       dockerfile: Dockerfile
     ports:
-      - "443:443"
+      - '443:443'
