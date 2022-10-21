@@ -228,7 +228,7 @@ export const theme = createTheme({
         },
 
         '.react-page-split__divider--horizontal': {
-          backgroundColor: `rgba(0, 0, 0, 0)`,
+          backgroundColor: `#141529`,
           transition: `0.1s`,
           cursor: 'col-resize',
           touchAction: 'pan-x',
@@ -237,7 +237,9 @@ export const theme = createTheme({
         },
 
         '.Toastify__toast': {
-          backgroundColor: `${hexToRgba(globalTheme.palette.background.paper, 0.50)}!important`,
+          padding: '0',
+          margin: '0',
+          backgroundColor: `${hexToRgba(globalTheme.palette.background.paper, 0.90)}!important`,
           border: `2px solid ${globalTheme.palette.primary.main}`,
           borderRadius: '20px',
           zIndex: '999',
@@ -245,6 +247,8 @@ export const theme = createTheme({
         },
 
         '.Toastify__toast-body': {
+          padding: 0,
+          margin: 0,
           color: globalTheme.palette.text.primary,
           fontFamily: globalTheme.typography.fontFamily,
         },

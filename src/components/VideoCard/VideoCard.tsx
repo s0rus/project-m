@@ -7,7 +7,8 @@ import VideoThumbnail from '@/components/VideoThumbnail';
 import { useTranslation } from 'react-i18next';
 import { AddedByAvatar, AddedByWrapper } from '@/styles/style'
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
-
+import Image from 'next/image';
+import Ok from '@/domain/Icons/Ok.svg'
 import { Seeker }  from '@/styles/style'
 interface VideoCardProps {
   video: PlaylistWithUsers | undefined;
@@ -23,8 +24,11 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
     return (
       <VideoCardWrapper elevation={0}>
         <EmptyVideoCard>
-          <Typography variant='h3' style={{textShadow: '0px 0px 10px white'}} >{t('playlist.noCurrentVideo.title')}</Typography>
-          <Typography variant='body2' style={{cursor: 'default'}} >{t('playlist.noCurrentVideo.subtitle')}</Typography>
+          <div style={{display: 'flex' ,position: 'relative', height: '60px', width: '60px', left: '-20px', marginTop: '10px',}}>
+          <Image src={Ok} style={{ borderRadius: '30%'}} />
+          </div>
+          <Typography variant='h3' style={{textShadow: '0px 0px 10px white', position: 'absolute', marginLeft: '50px'}} >{t('playlist.noCurrentVideo.title')}</Typography>
+          <Typography variant='body2' style={{cursor: 'default', marginTop: '-20px',marginLeft: '50px'}} >{t('playlist.noCurrentVideo.subtitle')}</Typography>
         </EmptyVideoCard>
       </VideoCardWrapper>
     );

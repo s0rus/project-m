@@ -9,7 +9,7 @@ import { PlaylistContextProvider } from '@/domain/Playlist/context/PlaylistConte
 import { type Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import { SocketContextProvider } from '@/contexts/SocketContext';
-import { ToastContainer, Slide } from 'react-toastify';
+import { ToastContainer, Zoom } from 'react-toastify';
 import { theme } from '@/styles/theme';
 import { AddonsContextProvider } from '@/contexts/AddonsContext';
 
@@ -25,14 +25,14 @@ const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ chi
                   <CssBaseline />
                   {children}
                   <ToastContainer
-                    transition={Slide}
+                    transition={Zoom}
                     position='bottom-center'
                     autoClose={2500}
                     closeButton={false}
                     hideProgressBar={true}
                     draggable={false}
-                    limit={3}
-                    style={{ width: 'auto', textShadow: '0px 0px 10px white' }}
+                    limit={2}
+                    style={{ width: 'auto', textShadow: '0px 0px 10px white',}}
                   />
                 </ThemeProvider>
               </AddonsContextProvider>

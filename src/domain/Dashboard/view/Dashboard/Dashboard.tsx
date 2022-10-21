@@ -38,6 +38,7 @@ const Dashboard = () => {
   <DashboardContainer>
     <Grid container>
       <Grid item xs={12}>
+                <DashboardBar />
                 <Playlist />
                 <Settings />
       </Grid>

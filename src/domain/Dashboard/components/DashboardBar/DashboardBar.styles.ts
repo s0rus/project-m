@@ -2,7 +2,7 @@ import { Box, Grid, Stack, styled } from '@mui/material';
 
 export const DashboardBarWrapper = styled(Box)`
   width: 100%;
-  min-height: 100px;
+  min-height: 140px;
   margin-bottom: 2rem;
 `;
 

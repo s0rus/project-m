@@ -42,21 +42,23 @@ const BarButtons = () => {
               {t('video.add')}
             </StyledButton>
           </Hidden>
+
+
           <Hidden lgUp>
           {isAdmin &&
             <StyledButtonMini 
-            style={{marginTop: '4rem', paddingRight: '0.5rem', paddingLeft: '0.5rem'}}
+            style={{marginTop: '4rem', paddingRight: '0.5rem', paddingLeft: '0.5rem', marginRight: '40px'}}
             onClick={() => handleOnVideoSkip()} >
               <SkipNextIcon style={{marginRight: '5px'}} />
-              {t('video.skip')}
+
             </StyledButtonMini>
           }
             <StyledButtonMini
               onClick={handleOpen}
               disabled={playlistLocked && !isAdmin}
-              style={{marginBottom: '6rem', paddingRight: '0.5rem', paddingLeft: '0.5rem'}}
+              style={{marginBottom: '6rem', paddingRight: '0.5rem', paddingLeft: '0.5rem',  marginRight: '40px'}}
             >
-                            {t('video.add')}
+
               <PlaylistAddRounded style={{marginRight: '5px'}} />
             </StyledButtonMini>
 

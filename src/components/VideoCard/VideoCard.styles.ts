@@ -4,8 +4,8 @@ import { theme } from '@/styles/theme';
 export const VideoCardWrapper = styled(Card)`
   width: 100%;
   height: 100%;
-  margin-bottom: -10px;
-  min-height: 120px;
+  margin-top: 10px;
+  min-height: 100px;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   background-color: rgba(255,255,255,0.1);
@@ -53,7 +53,7 @@ export const AddedByAvatar = styled(Avatar)`
 
 export const EmptyVideoCard = styled(Box)`
   width: 100%;
-  height: 100%;
+  height: 90%;
   padding-left: 2rem;
   display: flex;
   justify-content: center;
