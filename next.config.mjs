@@ -11,16 +11,10 @@
 }
 
 export default defineNextConfig({
-  /**
-   * There is a bug where some events of ReactPlayer do not fire when strict mode is enabled
-   * (Happens only in dev though)
-   *
-   * @link https://github.com/cookpete/react-player/issues/1453
-   */
-  reactStrictMode: false,
+  reactStrictMode: process.env.NODE_ENV === 'production' ? true : false,
   swcMinify: true,
   images: {
     domains: ['img.youtube.com'],
   },
-  output: "standalone",
+  output: 'standalone',
 });

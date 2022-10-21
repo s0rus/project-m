@@ -1,12 +1,5 @@
 version: "3.9"
 services:
-  database:
-    # platform: linux/amd64
-    image: mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: databasem
-      MYSQL_DATABASE: mpassword
   app:
     platform: "linux/amd64"
     build:
