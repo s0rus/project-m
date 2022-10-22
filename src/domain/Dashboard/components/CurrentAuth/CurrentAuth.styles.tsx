@@ -1,4 +1,3 @@
-import { theme } from "@/styles/theme"
 import { styled } from '@mui/material'
 
 export const CurrentAuthHolder = styled('div')`
