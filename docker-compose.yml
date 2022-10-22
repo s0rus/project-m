@@ -15,7 +15,7 @@ services:
       - DATABASE_URL='mysql://znfmgpr55nginqry7u3i:pscale_pw_B2uJagsllnZiGfoEbxpD37d703X4EBNOzblZ7NhtZ01@eu-west.connect.psdb.cloud/murzyniarnia?sslaccept=strict'
       - TWITCH_CLIENT_ID='u4j3e7fq3tufq8z6czxytxbqf0xrxv'
       - TWITCH_CLIENT_SECRET='12pt8d14ona7bykwb6oqidesqtqfvt'
-      - NEXTAUTH_URL='https://murzyniarnia.com:3000'
+      - NEXTAUTH_URL='https://murzyniarnia.com/'
       - NEXTAUTH_SECRET='kvdAGgcNRkYjwP3/D28nhnjyaZ9snl78jEqZUvKX0qU='
   nginx:
     platform: "linux/amd64"
