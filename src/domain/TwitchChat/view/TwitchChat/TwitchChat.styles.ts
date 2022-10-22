@@ -6,6 +6,7 @@ export const TwitchChatBox = styled(Box)`
   height: 100%;
   width: 100%;
   min-width: 340px;
+  max-width: 340px;
 `;
 
 export const TwitchChatContainer = styled(Box)`

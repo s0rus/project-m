@@ -2,16 +2,18 @@ import 'simplebar/dist/simplebar.min.css';
 
 import MainLayout, { MainContent } from '@/layouts/MainLayout';
 
-import { Box } from '@mui/material';
 import Dashboard from '@/domain/Dashboard/view/Dashboard';
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import SimpleBar from 'simplebar-react';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import VideoPlayer from '@/domain/VideoPlayer/view/VideoPlayer';
+import { theme } from '@/styles/theme';
 import { useAddonsContext } from '@/contexts/AddonsContext';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Home: NextPage = () => {
+  const isMediumUp = useMediaQuery(theme.breakpoints.up('lg'));
   const { isChatOn } = useAddonsContext();
 
   return (
@@ -28,11 +30,7 @@ const Home: NextPage = () => {
             <Dashboard />
           </SimpleBar>
         </MainContent>
-        {isChatOn && (
-          <Box>
-            <TwitchChat />
-          </Box>
-        )}
+        {isChatOn && isMediumUp && <TwitchChat />}
       </MainLayout>
     </>
   );
