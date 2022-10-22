@@ -11,19 +11,19 @@ export class CustomToast {
   private static determineIcon = (type: ToastTypes) => {
     switch (type) {
         case ToastTypes.PlaylistLocked:
-          return <Image src={Sad}/>
+          return <Image alt='' src={Sad}/>
         case ToastTypes.PlaylistUnlocked:
-          return <Image src={Happy}/>
+          return <Image alt='' src={Happy}/>
         case ToastTypes.VideoSeeked:
-          return <Image src={Ez}/>
+          return <Image alt='' src={Ez}/>
         case ToastTypes.VideoSkipped:
-          return <Image src={Ez}/>
+          return <Image alt='' src={Ez}/>
         case ToastTypes.Copy:
-          return <Image src={Ok}/>
+          return <Image alt='' src={Ok}/>
         case ToastTypes.Sucess:
-          return <Image src={Ok}/>
+          return <Image alt='' src={Ok}/>
         case ToastTypes.Error:
-          return <Image src={Mad}/>
+          return <Image alt='' src={Mad}/>
     }
 
 

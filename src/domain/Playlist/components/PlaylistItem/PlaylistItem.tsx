@@ -1,4 +1,4 @@
-import { Link, Typography, CircularProgress, Hidden } from '@mui/material';
+import { Link, Typography, CircularProgress  } from '@mui/material';
 import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper, Delete, Current } from './PlaylistItem.styles';
 import React, { FC, useState } from 'react';
 import { ListItem, Tooltip} from '@mui/material';

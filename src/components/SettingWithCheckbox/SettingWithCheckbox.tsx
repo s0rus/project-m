@@ -1,6 +1,5 @@
 import { Checkbox } from '@mui/material';
 import React, { Dispatch, FC, SetStateAction } from 'react';
-import { theme } from '@/styles/theme';
 interface SettingWithCheckbox {
   checked: boolean;
   setter: Dispatch<SetStateAction<boolean>>;

@@ -9,7 +9,6 @@ import {
 import { Routes } from '@/server/router/routes';
 import timeFormatter from '@/utils/timeFormatter';
 import { useTranslation } from 'react-i18next';
-import { Tooltip } from '@mui/material';
 
 interface VideoThumbnailProps {
   thumbnailUrl: string | null;

@@ -1,7 +1,6 @@
 import { Typography, styled } from '@mui/material';
 
 import { Box } from '@mui/system';
-import hexToRgba from 'hex-to-rgba';
 import { theme } from '@/styles/theme';
 
 export const ControlsWrapper = styled(Box)<{ playing: number; initialmute: number; controls: number }>`

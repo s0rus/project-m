@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { CurrentAuthHolder } from './CurrentAuth.styles';
 const CurrentAuth = () => {
   const { isAdmin, isLoggedIn } = useAuthContext();
-  const { currentUser} = useAuthContext();
   const { t } = useTranslation();
   
   return (

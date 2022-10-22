@@ -11,7 +11,7 @@ import TwitchVideo from 'domain/TwitchVideo/TwitchVideo';
 import { Twitch } from '@/assets/logos/Twitch';
 import {  Options, OptionsBox, OptionsTitle, ChatBox, TitleOption, SubTitleOption } from '@/styles/style';
 import { useAuthContext } from '@/contexts/AuthContext';
-import { Grid, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import CurrentAuth from '../CurrentAuth';
 import SettingWithSelect from '@/components/SettingWithSelect';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
