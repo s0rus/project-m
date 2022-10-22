@@ -1,5 +1,5 @@
 import { AccessTimeFilledRounded, AutoAwesomeMotionRounded } from '@mui/icons-material';
-import { List, Tooltip, Typography, Hidden } from '@mui/material';
+import { List, Tooltip, Typography } from '@mui/material';
 import {
   EmptyPlaylistBox,
   PlaylistContainer,
