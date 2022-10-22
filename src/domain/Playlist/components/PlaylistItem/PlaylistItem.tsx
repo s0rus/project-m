@@ -86,7 +86,6 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
 
   return (
     <ListItem dense>
-      <Hidden lgDown >
       <PlaylistItemWrapper>
           <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
         {isAdmin &&
@@ -138,30 +137,6 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
           </PlaylistItemContent>
         </PlaylistItemBox>
       </PlaylistItemWrapper>
-      </Hidden>
-
-
-
-
-      <Hidden lgUp >
-      <PlaylistItemWrapper>
-          <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
-        <PlaylistItemBox>
-          <PlaylistItemContent>
-          <Link href={videoUrl} style={{color: 'white'}} target='_blank' rel='noopener norefferer'>
-              <Typography style={{textShadow: '0px 0px 4px white'}} variant='h4'>
-                {videoTitle}
-              </Typography>
-          </Link>
-            <Seeker aria-label='time-indicator'size='small'/>
-            <AddedByWrapper>
-          {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
-          <Typography component='span' style={{textShadow: '0px 0px 4px white'}} >{addedBy.name}</Typography>
-        </AddedByWrapper>
-          </PlaylistItemContent>
-        </PlaylistItemBox>
-      </PlaylistItemWrapper>
-      </Hidden>
     </ListItem>
   );
 };
