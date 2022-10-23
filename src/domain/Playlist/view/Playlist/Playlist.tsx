@@ -48,7 +48,6 @@ const Playlist = () => {
   
   return (
     <>
-    <Hidden lgDown>
     <PlaylistWrapper locked={playlistLocked ? 1 : 0}>
         <PlaylistHeader>
 {isAdmin ? (
@@ -110,73 +109,6 @@ const Playlist = () => {
           )}
         </PlaylistContainer>
       </PlaylistWrapper>
-    </Hidden>
-
-
-
-    <Hidden lgUp>
-    <PlaylistWrapper locked={playlistLocked ? 1 : 0}>
-        <PlaylistHeader>
-{isAdmin ? (
-          <div style={{marginTop: '8px'}} >
-        {playlistLocked ? (
-
-          <Tooltip title={t('playlist.tooltip.unlock')} >
-        <LockOutlinedIcon onClick={() => togglePlaylistLocked()} style={{color: isHovering ? 'white' : 'rgba(255, 0, 0, 0.49),', cursor: 'pointer'}}
-         onMouseEnter={handleMouseEnter}
-         onMouseLeave={handleMouseLeave} />
-          </Tooltip>
-        ) : (
-          <Tooltip title={t('playlist.tooltip.lock')} >
-         <LockOpenOutlinedIcon  onClick={() => togglePlaylistLocked()} style={{color: isHovering ? 'white' : 'rgba(38, 255, 0, 0.49)', cursor: 'pointer'}}
-         onMouseEnter={handleMouseEnter}
-         onMouseLeave={handleMouseLeave} />
-         </Tooltip>
-         )} 
-          </div>
-) : (
-  <div style={{marginTop: '8px'}} >
-  {playlistLocked ? (
-              <Tooltip title={t('playlist.tooltip.locked')} >
-  <LockOutlinedIcon style={{color: 'rgba(255, 0, 0, 0.49)'}} />
-              </Tooltip>
-  ) : (
-              <Tooltip title={t('playlist.tooltip.unlocked')} >
-   <LockOpenOutlinedIcon style={{color: 'rgba(38, 255, 0, 0.49)'}} />
-              </Tooltip>
-   )} 
-    </div>
-
-)}
-          <Typography variant='h4' style={{textShadow: '0px 0px 10px white'}} >{t('playlist.header')}</Typography>
-          <Tooltip title={t('playlist.tooltip.videoCount')}>
-            <PlaylistDetail>
-              <AutoAwesomeMotionRounded/>
-              <Typography variant='h6' style={{textShadow: '0px 0px 10px white', fontSize: '13px'}} >{properPlaylist.length || 0}</Typography>
-            </PlaylistDetail>
-          </Tooltip>
-          <Tooltip title={t('playlist.tooltip.timeSum')}>
-            <PlaylistDetail>
-              <AccessTimeFilledRounded />
-              <Typography variant='h6' style={{textShadow: '0px 0px 10px white', fontSize: '13px'}} >{timeFormatter(timeSum)}</Typography>
-            </PlaylistDetail>
-          </Tooltip>
-        </PlaylistHeader>
-        <PlaylistContainer component={List} ref={animatedList}>
-          {properPlaylist.length ? (
-            properPlaylist.map((video) => (
-              <React.Fragment key={video.videoId}>
-                <PlaylistItem video={video} />
-              </React.Fragment>
-            ))
-          ) : (
-            <EmptyPlaylistBox>
-              <Typography style={{textShadow: '0px 0px 10px white'}} variant='h4'>{t('playlist.empty')} <div style={{marginTop: '10px', marginLeft: '40%'}} > <Image src={MadgeIcon} alt='Madge' height={48} width={48} /></div>  </Typography>
-            </EmptyPlaylistBox>
-          )}
-        </PlaylistContainer>
-      </PlaylistWrapper>
-    </Hidden>
     </>
   );
 };
