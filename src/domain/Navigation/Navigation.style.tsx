@@ -42,7 +42,6 @@ box-shadow: rgba(0, 0, 0, 0.75) 0px 25px 20px -20px;
 border-radius: 8px;
 transition: 1s;
 &:hover{
-    width: 90%;
     background: rgba(0, 0, 0, 0.35);
 }`
 
@@ -102,3 +101,14 @@ transition: color 0.2s;
     -webkit-text-stroke-color: black;
     color: #5529da;
 }`
+
+export const Halloween1 = styled('div')`
+height: 100px;
+width: 100px;
+position: absolute;
+right: 50px;
+&:hover{
+    transform:rotate(0.25deg);
+    transition:.5s  cubic-bezier(0.5,120,0.5,-120);
+}
+`

@@ -1,12 +1,14 @@
 
 import * as React from 'react';
 import { Tooltip, Hidden } from '@mui/material';
-import Image from 'next/image';
 import Twitch from '@/domain/Icons/Twitch.svg'
 import Discord from '@/domain/Icons/Discord.svg'
 import { useTranslation } from 'react-i18next';
-import { TwitchBox, DiscordBox, NavText, NavHolder, NavHolderFull } from './Navigation.style'
+import { TwitchBox, DiscordBox, NavText, NavHolder, NavHolderFull , Halloween1} from './Navigation.style'
 import ReceiptIcon from '@mui/icons-material/Receipt';
+import Image from 'next/image';
+import Jan from '@/domain/Icons/Jan.svg'
+
 const Navigation = () => {
   const { t } = useTranslation();
 
@@ -31,7 +33,6 @@ const Navigation = () => {
         </Tooltip></a>
 <NavText>{t('Navigation.discord')}</NavText>
 
-
 <a href = "/Regulamin.pdf" target = "_blank">
         <TwitchBox style={{alignItems: 'center', justifyContent: 'center'}}>
         <ReceiptIcon style={{ color: 'white',}} />
@@ -39,6 +40,13 @@ const Navigation = () => {
         </a>
 
 <NavText>{t('Navigation.regulations')}</NavText>
+
+<Tooltip title='Strasznego halloween!🎃'>
+<Halloween1>
+        <Image src={Jan} alt=''/>
+</Halloween1>
+</Tooltip>
+
 </NavHolderFull>
 </Hidden>
 

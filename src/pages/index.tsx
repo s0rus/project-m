@@ -12,6 +12,7 @@ import { useAddonsContext } from '@/contexts/AddonsContext';
 import { useState } from 'react';
 import { LightMode, DarkMode  } from '@mui/icons-material';
 
+
 const Home: NextPage = () => {
   const { isChatOn } = useAddonsContext();
   const [background, setBackground] = useState(true)
@@ -29,7 +30,7 @@ const Home: NextPage = () => {
         <HorizontalPageSplit>
         <div style={{minWidth: isChatOn ? '65%' : '100%'}} >
         <MainContent>
-          <Background style={{background: background ? 'radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 100%)' : '#0f0f0f' }} >
+          <Background style={background ? {background: 'radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 100%)'}:{}} >
             <VideoPlayer/>
 
 
