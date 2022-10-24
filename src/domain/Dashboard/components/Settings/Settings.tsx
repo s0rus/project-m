@@ -22,7 +22,6 @@ const Settings = () => {
   const [twitchvideo, toggleTwitchVideo] = useState(false);
   const { t } = useTranslation();
 
-
   return (
     <div style={{margin: '0', padding: '0', minWidth: '100px'}} >
     <Options> 
