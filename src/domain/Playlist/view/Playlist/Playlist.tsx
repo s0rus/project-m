@@ -81,7 +81,8 @@ const Playlist = () => {
     </div>
 
 )}
-          <Typography variant='h2' style={{textShadow: '0px 0px 10px white'}} >{t('playlist.header')}</Typography>
+<Hidden lgDown >
+          <Typography variant='h2' style={{textShadow: '0px 0px 10px white',}} >{t('playlist.header')}</Typography>
           <Tooltip title={t('playlist.tooltip.videoCount')}>
             <PlaylistDetail>
               <AutoAwesomeMotionRounded/>
@@ -94,6 +95,22 @@ const Playlist = () => {
               <Typography variant='h5' style={{textShadow: '0px 0px 10px white'}} >{timeFormatter(timeSum)}</Typography>
             </PlaylistDetail>
           </Tooltip>
+</Hidden>
+<Hidden lgUp >
+          <Typography variant='h2' style={{textShadow: '0px 0px 10px white', overflow: 'hidden'}} >{t('playlist.header')}</Typography>
+          <Tooltip title={t('playlist.tooltip.videoCount')}>
+            <PlaylistDetail>
+              <AutoAwesomeMotionRounded/>
+              <Typography variant='h5' style={{textShadow: '0px 0px 10px white', overflow: 'hidden'}} >{properPlaylist.length || 0}</Typography>
+            </PlaylistDetail>
+          </Tooltip>
+          <Tooltip title={t('playlist.tooltip.timeSum')}>
+            <PlaylistDetail>
+              <AccessTimeFilledRounded />
+              <Typography variant='h5' style={{textShadow: '0px 0px 10px white', overflow: 'hidden'}} >{timeFormatter(timeSum)}</Typography>
+            </PlaylistDetail>
+          </Tooltip>
+</Hidden>
         </PlaylistHeader>
         <PlaylistContainer component={List} ref={animatedList}>
           {properPlaylist.length ? (

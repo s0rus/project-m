@@ -35,7 +35,7 @@ const Home: NextPage = () => {
 
 
             <div style={{position: 'absolute', right: '20px', marginTop: '20px' , height: '40px', width: '20px' }} onClick={() => setBackground((prev) => !prev)}>
-{background ? <DarkMode style={{color: 'gray', cursor: 'pointer'}} /> : <LightMode style={{color: 'gray', cursor: 'pointer'}} /> }
+{background ? <h1 style={{color: 'gray', cursor: 'pointer', position: 'relative' , marginTop: '-15px', right: '5px'}} >🎃</h1> : <LightMode style={{color: 'gray', cursor: 'pointer'}} /> }
             </div>
 
             <Dashboard />
