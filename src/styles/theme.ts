@@ -3,7 +3,7 @@ import hexToRgba from 'hex-to-rgba';
 
 const globalTheme = {
   typography: {
-    fontFamily: 'Poppins',
+    fontFamily: 'B612',
     h1: {
       fontWeight: 700,
       fontSize: '2.5rem',

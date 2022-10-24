@@ -10,8 +10,8 @@ import { HorizontalPageSplit } from 'react-page-split';
 import { Background } from '@/styles/style';
 import { useAddonsContext } from '@/contexts/AddonsContext';
 import { useState } from 'react';
-import { LightMode, DarkMode  } from '@mui/icons-material';
-
+import { LightMode } from '@mui/icons-material';
+import Tooltip from '@mui/material/Tooltip';
 
 const Home: NextPage = () => {
   const { isChatOn } = useAddonsContext();
@@ -24,6 +24,9 @@ const Home: NextPage = () => {
         <title>Murzyniarnia</title>
         <meta name='description' content='Strona do oglądania filmów' />
         <link rel='icon' href='/favicon.ico' />
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=B612&display=swap" rel="stylesheet"/>
       </Head>
 <>
       <MainLayout>
@@ -35,7 +38,13 @@ const Home: NextPage = () => {
 
 
             <div style={{position: 'absolute', right: '20px', marginTop: '20px' , height: '40px', width: '20px' }} onClick={() => setBackground((prev) => !prev)}>
-{background ? <h1 style={{color: 'gray', cursor: 'pointer', position: 'relative' , marginTop: '-15px', right: '5px'}} >🎃</h1> : <LightMode style={{color: 'gray', cursor: 'pointer'}} /> }
+{background ? 
+<Tooltip title='Tryb halloweenowy🎃' >
+<h1 style={{color: 'gray', cursor: 'pointer', position: 'relative' , marginTop: '-15px', right: '5px',}} >🎃</h1> 
+</Tooltip>
+  : 
+<LightMode style={{color: 'gray', cursor: 'pointer'}} /> 
+}
             </div>
 
             <Dashboard />
