@@ -5,6 +5,7 @@ import hexToRgba from 'hex-to-rgba';
 
 export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   padding: 1rem;
+  margin-bottom: 1rem;
 
   display: flex;
   flex-flow: column nowrap;

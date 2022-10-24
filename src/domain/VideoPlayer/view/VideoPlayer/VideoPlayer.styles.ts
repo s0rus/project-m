@@ -5,6 +5,7 @@ import { styled } from '@mui/material';
 export const VideoPlayerContainer = styled(Box)`
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-between;
 `;
 
 export const VideoPlayerBox = styled(Box)`

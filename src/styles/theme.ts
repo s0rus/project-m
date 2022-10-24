@@ -3,19 +3,7 @@ import hexToRgba from 'hex-to-rgba';
 
 const globalTheme = {
   typography: {
-    fontFamily: [
-      'Poppins',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
+    fontFamily: ['Poppins', 'sans-serif'].join(','),
     h1: {
       fontWeight: 700,
       fontSize: '2.5rem',

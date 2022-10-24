@@ -3,6 +3,7 @@ import React, { FC, PropsWithChildren } from 'react';
 
 const StyledPaper = styled(Paper)`
   padding: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const CardLayout: FC<PropsWithChildren> = ({ children }) => {

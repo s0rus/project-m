@@ -1,11 +1,14 @@
-import { Button, Grid, Paper, Typography } from '@mui/material';
+import { Button, Grid, Paper, Typography, useMediaQuery } from '@mui/material';
 import { DashboardContainer, DashboardWrapper } from './Dashboard.styles';
 
 import DashboardBar from '../../components/DashboardBar';
 import Playlist from '@/domain/Playlist/view/Playlist';
 import React from 'react';
 import Settings from '../../components/Settings';
+import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
+import { theme } from '@/styles/theme';
 import { toast } from 'react-toastify';
+import { useAddonsContext } from '@/contexts/AddonsContext';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
@@ -13,14 +16,17 @@ import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
+  const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
   const { leader } = useSocketContext();
   const { isAdmin } = useAuthContext();
+  const { isChatOn } = useAddonsContext();
   const { t } = useTranslation();
   const { handleOnVideoSkip } = usePlayerContext();
   const { togglePlaylistLocked } = usePlaylistContext();
 
   return (
     <DashboardWrapper>
+      {isChatOn && isMediumDown && <TwitchChat />}
       <DashboardContainer>
         <Grid container>
           <Grid item xs={12}>
