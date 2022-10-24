@@ -1,5 +1,5 @@
 import {  Hidden, Tooltip } from '@mui/material';
-import { PlaylistAddRounded } from '@mui/icons-material';
+import { PlaylistAddRounded} from '@mui/icons-material';
 import React, { useState } from 'react';
 import AddVideoModal from '../AddVideoModal';
 import { useAuthContext } from '@/contexts/AuthContext';
@@ -8,6 +8,9 @@ import { useTranslation } from 'react-i18next';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { StyledButton, StyledButtonMini } from '@/styles/style';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
+import { CircularProgress  } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+
 const BarButtons = () => {
   const { isAdmin } = useAuthContext();
   const { t } = useTranslation();
@@ -17,7 +20,15 @@ const BarButtons = () => {
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
   const { handleOnVideoSkip } = usePlayerContext();
+  const { loginWithTwitch } = useAuthContext();
 
+  const [logging, setIsLogging] = useState(false);
+
+  const handleLogging = async () => {
+  setIsLogging(true);
+  await loginWithTwitch();
+  setIsLogging(false);
+} 
 
   return (
     <>
@@ -67,11 +78,11 @@ const BarButtons = () => {
         <>
         <Tooltip title={t('options.twitchSubTitleLOGIN')}>
               <StyledButton
-              
-              disabled={playlistLocked && !isAdmin}
               style={{marginBottom: '2rem', marginRight: '1.5rem'}}
-            >
-              <PlaylistAddRounded style={{marginRight: '5px', color: 'gray'}} />
+              onClick={handleLogging}>
+                <IconButton disabled={logging} >
+                {logging ? <CircularProgress size={32} /> : <PlaylistAddRounded style={{marginRight: '5px', color: 'gray'}} />}
+                </IconButton>
             </StyledButton>
         </Tooltip>
         </>

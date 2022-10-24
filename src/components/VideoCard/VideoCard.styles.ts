@@ -10,8 +10,9 @@ export const VideoCardWrapper = styled(Card)`
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   background-color: rgba(255,255,255,0.1);
   transition: 0.3s ease-in-out;
+  transform: scale(0.95,0.95);
   &:hover{
-    transform: scale(0.95,0.95);
+    transform: scale(1,1);
     background: ${theme.palette.background.paper}
   }
 `;

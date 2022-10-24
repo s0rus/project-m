@@ -32,7 +32,7 @@ display: flex;
 position: relative;
 gap: 150px;
 justify-content: center;
-background: rgba(0, 0, 0, 0.20);
+background: rgba(0, 0, 0, 0.60);
 left: 50%;
 margin: 0;
 transition: background 0.2s;

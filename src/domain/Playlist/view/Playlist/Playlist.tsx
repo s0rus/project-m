@@ -20,7 +20,6 @@ import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import { useAuthContext } from '@/contexts/AuthContext';
 import Hidden from '@mui/material/Hidden';
 import Image from 'next/image';
-import { theme } from '@/styles/theme';
 
 const Playlist = () => {
   const { isAdmin } = useAuthContext();
@@ -88,13 +87,13 @@ const Playlist = () => {
           <Tooltip title={t('playlist.tooltip.videoCount')}>
             <PlaylistDetail>
               <AutoAwesomeMotionRounded  />
-              <Typography variant='h5' style={{textShadow: `0px 0px 10px black`}} >{properPlaylist.length || 0}</Typography>
+              <Typography variant='h5' style={{textShadow: `0px 0px 10px white`}} >{properPlaylist.length || 0}</Typography>
             </PlaylistDetail>
           </Tooltip>
           <Tooltip title={t('playlist.tooltip.timeSum')}>
             <PlaylistDetail>
               <AccessTimeFilledRounded />
-              <Typography variant='h5' style={{textShadow: '0px 0px 10px black'}} >{timeFormatter(timeSum)}</Typography>
+              <Typography variant='h5' style={{textShadow: '0px 0px 10px white'}} >{timeFormatter(timeSum)}</Typography>
             </PlaylistDetail>
           </Tooltip>
 </Hidden>
