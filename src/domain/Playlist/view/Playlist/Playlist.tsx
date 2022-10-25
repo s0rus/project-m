@@ -1,5 +1,5 @@
 import { AccessTimeFilledRounded, AutoAwesomeMotionRounded } from '@mui/icons-material';
-import { List, Tooltip, Typography } from '@mui/material';
+import { List, Tooltip, Typography} from '@mui/material';
 import {
   EmptyPlaylistBox,
   PlaylistContainer,
@@ -47,10 +47,12 @@ const Playlist = () => {
     setIsHovering(false);
   };
   
+
+
   return (
     <>
     <PlaylistWrapper locked={playlistLocked ? 1 : 0}>
-        <PlaylistHeader>
+        <PlaylistHeader>         
 {isAdmin ? (
           <div style={{marginTop: '8px'}} >
         {playlistLocked ? (
