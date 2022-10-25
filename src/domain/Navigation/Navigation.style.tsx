@@ -102,13 +102,3 @@ transition: color 0.2s;
     color: #5529da;
 }`
 
-export const Halloween1 = styled('div')`
-height: 100px;
-width: 100px;
-position: absolute;
-right: 50px;
-&:hover{
-    transform:rotate(0.25deg);
-    transition:.5s  cubic-bezier(0.5,120,0.5,-120);
-}
-`

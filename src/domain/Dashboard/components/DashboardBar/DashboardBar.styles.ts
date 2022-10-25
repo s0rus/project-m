@@ -21,3 +21,16 @@ export const DashboardBarButtons = styled(Stack)`
   justify-content: flex-end;
   gap: 0.5rem;
 `;
+
+export const Halloween1 = styled('div')`
+height: 100px;
+width: 100px;
+position: absolute;
+margin-top: -80px;
+right: 1px;
+margin-right: 90px;
+&:hover{
+    transform:rotate(.75deg);
+    transition:.75s  cubic-bezier(0.5,120,0.5,-120);
+}
+`
