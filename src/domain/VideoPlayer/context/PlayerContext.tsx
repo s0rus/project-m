@@ -45,6 +45,11 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const isPlayerPlaying = useMemo(() => playerState.isPlaying, [playerState.isPlaying]);
 
   useEffect(() => {
+    if (!socket) return;
+    socket.emit('REQUEST_PLAYER_STATE');
+  }, [socket]);
+
+  useEffect(() => {
     setPlayerState((prevPlayerState) => {
       return {
         ...prevPlayerState,
@@ -202,7 +207,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   const handleOnReady = useCallback(() => {
-    if (!playerState.isReady) {
+    if (!playerState.isReady && socket) {
       setPlayerState((prevPlayerState) => {
         return {
           ...prevPlayerState,
@@ -210,7 +215,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
         };
       });
     }
-  }, [playerState.isReady]);
+  }, [playerState.isReady, socket]);
 
   useEffect(() => {
     if (!socket) return;
@@ -233,7 +238,6 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     if (!socket) return;
 
-    socket.emit('REQUEST_PLAYER_STATE');
     socket.on('RECEIVE_TOGGLE_PLAYING', (newPlayingState) => togglePlaying(newPlayingState));
     socket.on('RECEIVE_SEEK_TO', (newSecondsPlayed) => seekTo(newSecondsPlayed));
     socket.on('RECEIVE_SKIP_VIDEO', (targetVideoId) => handleOnEnd(targetVideoId));

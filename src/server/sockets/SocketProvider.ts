@@ -48,6 +48,7 @@ export interface ClientToServerEvents {
   JOIN_USER: (userData: UserData) => void;
   UPDATE_USER: (userData: UserData) => void;
   SEND_TOAST: (message: string, type: ToastTypes) => void;
+  SET_LEADER: (userData: UserData) => void;
 }
 
 export interface InterServerEvents {

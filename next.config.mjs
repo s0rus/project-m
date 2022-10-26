@@ -13,7 +13,7 @@ function defineNextConfig(config) {
 }
 
 export default defineNextConfig({
-  reactStrictMode: process.env.NODE_ENV === 'production' ? true : false,
+  reactStrictMode: false,
   swcMinify: true,
   images: {
     domains: ['img.youtube.com'],

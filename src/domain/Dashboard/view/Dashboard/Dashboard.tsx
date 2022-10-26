@@ -1,9 +1,9 @@
 import { Button, Grid, Paper, Typography, useMediaQuery } from '@mui/material';
 import { DashboardContainer, DashboardWrapper } from './Dashboard.styles';
 
+import AdminPanel from '../../components/AdminPanel';
 import DashboardBar from '../../components/DashboardBar';
 import Playlist from '@/domain/Playlist/view/Playlist';
-import React from 'react';
 import Settings from '../../components/Settings';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import { theme } from '@/styles/theme';
@@ -39,6 +39,11 @@ const Dashboard = () => {
               </Grid>
               <Grid item sm={12} md={5} sx={{ pt: '0!important' }}>
                 <Grid container>
+                  {isAdmin && (
+                    <Grid item xs={12}>
+                      <AdminPanel />
+                    </Grid>
+                  )}
                   <Grid item xs={12}>
                     <Settings />
                   </Grid>

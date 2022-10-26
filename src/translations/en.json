@@ -28,6 +28,16 @@
       "subititle": "Choose language"
     }
   },
+  "adminPanel": {
+    "header": "Admin panel",
+    "leader": {
+      "header": "{{leaderIdentifier}}",
+      "subititle": "Current leader",
+      "noLeader": "There is no leader",
+      "becomeLeader": "Become leader",
+      "userIsLeader": "You are the leader"
+    }
+  },
   "playlist": {
     "header": "Playlist",
     "empty": "Playlist is empty.",

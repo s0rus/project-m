@@ -32,11 +32,10 @@ export class CustomToast {
   };
 
   static send = (message: string, type: ToastTypes) => {
-    toast.dismiss();
     toast.clearWaitingQueue();
     toast(message, {
       icon: CustomToast.determineIcon(type),
-      toastId: message,
+      toastId: type,
     });
   };
 }

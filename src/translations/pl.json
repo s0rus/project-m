@@ -28,6 +28,16 @@
       "subititle": "Wybierz język"
     }
   },
+  "adminPanel": {
+    "header": "Panel administratora",
+    "leader": {
+      "header": "{{leaderIdentifier}}",
+      "subititle": "Aktualny lider",
+      "noLeader": "Brak lidera",
+      "becomeLeader": "Zostań liderem",
+      "userIsLeader": "Jesteś liderem"
+    }
+  },
   "playlist": {
     "header": "Playlista",
     "empty": "Playlista jest pusta.",

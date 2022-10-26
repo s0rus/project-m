@@ -38,6 +38,18 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
       socket.to(socketId).emit('RECEIVE_PLAYER_STATE', playerState);
     });
 
+    socket.on('SET_LEADER', (userData: UserData) => {
+      LEADER = userData;
+      socket.emit('RECEIVE_NEW_LEADER', userData);
+      socket.broadcast.emit('RECEIVE_NEW_LEADER', userData);
+
+      console.log('------ON_NEW_LEADER-----');
+      console.log('LEADER: ', LEADER);
+      console.log('USERS ARRAY:', USERS);
+      console.log('ADMINS ARRAY:', ADMINS);
+      console.log('------------------------');
+    });
+
     socket.on('JOIN_USER', (userData) => {
       const { socketId, isAdmin, userId, username } = userData;
 
@@ -57,7 +69,7 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
         });
       }
 
-      if (!LEADER || !LEADER.isAdmin) {
+      if (!LEADER) {
         LEADER = userData;
         socket.emit('RECEIVE_NEW_LEADER', LEADER as UserData);
         socket.broadcast.emit('RECEIVE_NEW_LEADER', LEADER as UserData);
