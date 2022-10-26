@@ -30,6 +30,19 @@
     "chatSubTitle": "Chat visibility.",
     "languageSubTitle": "Choose language."
   },
+  
+
+    "adminPanel": {
+      "header": "Admin panel",
+      "leader": {
+        "header": "{{leaderIdentifier}}",
+        "subititle": "Current leader",
+        "noLeader": "There is no leader",
+        "becomeLeader": "Become leader",
+        "userIsLeader": "You are the leader"
+      }
+    },
+
   "playlist": {
     "header": "Playlist",
     "empty": "Playlist is empty.",
@@ -47,7 +60,7 @@
       "logged": "Logged",
       "guest": "Guest",
       "discord": "Uwusiownia",
-      "twitch": "Khamires",
+      "twitch": "Piotr Libera",
       "delete": "Delete video from queue",
       "requestcurrent": "Play video now"
     },
@@ -64,10 +77,6 @@
     "discord": "Discord",
     "twitch": "Twitch",
     "regulations": "Regulations"
-  },
-  "noResponsive": {
-    "title": "Murzyniarnia does not support phones at the moment.",
-    "subtitle": "We will try to fix it in the near future but promises nothing."
   },
   "toast": {
     "playlistLocked": "{{username}} has locked the playlist.",

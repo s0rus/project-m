@@ -30,6 +30,19 @@
     "chatSubTitle": "Widoczność czatu.",
     "languageSubTitle": "Wybierz język."
   },
+
+  
+  "adminPanel": {
+    "header": "Panel administratora",
+    "leader": {
+      "header": "{{leaderIdentifier}}",
+      "subititle": "Aktualny lider",
+      "noLeader": "Brak lidera",
+      "becomeLeader": "Zostań liderem",
+      "userIsLeader": "Jesteś liderem"
+    }
+  },
+  
   "playlist": {
     "header": "Playlista",
     "empty": "Playlista jest pusta.",
@@ -47,7 +60,7 @@
       "logged": "Zalogowany",
       "guest": "Gość",
       "discord": "Uwusiownia",
-      "twitch": "Khamires",
+      "twitch": "Piotr Libera",
       "delete": "Usuń film z kolejki",
       "requestcurrent": "Odtwórz film teraz"
       
@@ -65,10 +78,6 @@
     "discord": "Discord",
     "twitch": "Twitch",
     "regulations": "Regulamin"
-  },
-  "noResponsive": {
-    "title": "Murzyniarnia nie wspiera na ten moment telefonów.",
-    "subtitle": "Postaramy się to naprawić w niedalekiej przyszłości ale nic nie"
   },
   "toast": {
     "playlistLocked": "{{username}} zablokował playlistę.",

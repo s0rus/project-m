@@ -6,6 +6,7 @@ transition: all 0.2s;
 position: relative; all 0.3s;
 text-transform: capitalize;
 width: 90%;
+min-width: 250px;
 height: 56px;
 display: flex;
 position: relative;
@@ -13,6 +14,7 @@ gap: 40px;
 justify-content: center;
 background: rgba(0, 0, 0, 0.20);
 left: 50%;
+top: 20px;
 margin: 0;
 padding: 0;
 transform: translate(-50%, -50%);
@@ -26,14 +28,15 @@ export const NavHolderFull = styled('div')`
 transition: all 0.2s;
 position: relative; all 0.3s;
 text-transform: capitalize;
-width: 96%;
+width: 95%;
 height: 56px;
 display: flex;
 position: relative;
 gap: 150px;
 justify-content: center;
-background: rgba(0, 0, 0, 0.60);
+background: rgba(0, 0, 0, 0.35);
 left: 50%;
+top: 20px;
 margin: 0;
 transition: background 0.2s;
 padding: 0;
@@ -42,7 +45,7 @@ box-shadow: rgba(0, 0, 0, 0.75) 0px 25px 20px -20px;
 border-radius: 8px;
 transition: 1s;
 &:hover{
-    background: rgba(0, 0, 0, 0.35);
+    background-color: rgba(255,255,255,0.1);
 }`
 
 export const TwitchBox = styled('div')`
@@ -101,4 +104,3 @@ transition: color 0.2s;
     -webkit-text-stroke-color: black;
     color: #5529da;
 }`
-

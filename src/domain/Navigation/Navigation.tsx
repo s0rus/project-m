@@ -8,6 +8,7 @@ import { TwitchBox, DiscordBox, NavText, NavHolder, NavHolderFull } from './Navi
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import Image from 'next/image';
 
+
 const Navigation = () => {
   const { t } = useTranslation();
 
@@ -16,7 +17,7 @@ const Navigation = () => {
         <div>
         <Hidden lgDown>
         <NavHolderFull>
-<a href='https://www.twitch.tv/khamires' style={{}} >
+<a href='https://www.twitch.tv/piotrlibera' style={{}} >
 <Tooltip title={t('playlist.tooltip.twitch')}>
         <TwitchBox>
         <Image src={Twitch} alt='Twitch' />
@@ -39,7 +40,6 @@ const Navigation = () => {
         </a>
 
 <NavText>{t('Navigation.regulations')}</NavText>
-
 
 </NavHolderFull>
 </Hidden>

@@ -9,14 +9,12 @@ import VideoPlayer from '@/domain/VideoPlayer/view/VideoPlayer';
 import { HorizontalPageSplit } from 'react-page-split';
 import { Background } from '@/styles/style';
 import { useAddonsContext } from '@/contexts/AddonsContext';
-import { useState } from 'react';
-import { LightMode } from '@mui/icons-material';
-import Tooltip from '@mui/material/Tooltip';
+import { theme } from '@/styles/theme';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Home: NextPage = () => {
   const { isChatOn } = useAddonsContext();
-  const [background, setBackground] = useState(true)
-
+  const isMediumUp = useMediaQuery(theme.breakpoints.up('lg'));
 
   return (
     <>
@@ -31,27 +29,15 @@ const Home: NextPage = () => {
 <>
       <MainLayout>
         <HorizontalPageSplit>
-        <div style={{minWidth: isChatOn ? '65%' : '100%'}} >
+        <div style={{minWidth: isChatOn && isMediumUp ? '65%' : '100%'}} >
         <MainContent>
-          <Background style={background ? {background: 'radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 100%)'}:{}} >
+          <Background>
             <VideoPlayer/>
-
-
-            <div style={{position: 'absolute', right: '20px', marginTop: '20px' , height: '40px', width: '20px' }} onClick={() => setBackground((prev) => !prev)}>
-{background ? 
-<Tooltip title='Tryb halloweenowy🎃' >
-<h1 style={{color: 'gray', cursor: 'pointer', position: 'relative' , marginTop: '-15px', right: '5px',}} >🎃</h1> 
-</Tooltip>
-  : 
-<LightMode style={{color: 'gray', cursor: 'pointer'}} /> 
-}
-            </div>
-
             <Dashboard />
           </Background>
         </MainContent>
         </div>
-        {isChatOn &&
+        {isChatOn && isMediumUp &&
         <div style={{minWidth: '11%', width: '15%'}}>
             <TwitchChat />
         </div>

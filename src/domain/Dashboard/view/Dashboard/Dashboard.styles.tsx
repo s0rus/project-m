@@ -9,5 +9,5 @@ export const DashboardContainer = styled(Box)`
   width: 100%;
   height: 100%;
   margin-bottom: 2rem;
-  padding: 1rem 2vw;
+  padding: 0.25rem 1vw;
 `;

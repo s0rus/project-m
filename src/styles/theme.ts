@@ -81,7 +81,7 @@ export const gradients = {
   gradientPaper: '#18181b',
   playlistUnlocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.success.light, 0)} -20%,  ${hexToRgba(globalTheme.palette.success.dark,0.7)} 100%)`,
   playlistLocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.error.light, 0)} -20%,  ${hexToRgba(globalTheme.palette.error.dark,0.7)} 100%)`,
-  gradientMain: ` hsla(118, 100%, 0%, 0.66)`,
+  gradientMain: ` hsla(118, 100%, 0%, 0.40)`,
   currentVideo: `rgba(255,255,255,0.1);`,
 };
 

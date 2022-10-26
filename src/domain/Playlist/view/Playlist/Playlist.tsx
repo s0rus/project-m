@@ -1,5 +1,5 @@
 import { AccessTimeFilledRounded, AutoAwesomeMotionRounded } from '@mui/icons-material';
-import { List, Tooltip, Typography} from '@mui/material';
+import { List, Tooltip, Typography, IconButton, CircularProgress } from '@mui/material';
 import {
   EmptyPlaylistBox,
   PlaylistContainer,
@@ -27,6 +27,8 @@ const Playlist = () => {
   const { playlist, properPlaylist, playlistLocked } = usePlaylistContext();
   const [animatedList] = useAutoAnimate();
   const { togglePlaylistLocked } = usePlaylistContext();
+  const [locking, setIsLocking] = useState(false);
+
   const timeSum = useMemo(
     () =>
       (playlist as PlaylistWithUsers[]).reduce<number>(
@@ -36,17 +38,12 @@ const Playlist = () => {
     [playlist]
   );
 
-
-  const [isHovering, setIsHovering] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-  };
   
+const CircularLocking = async () => {
+  setIsLocking(true)
+  await togglePlaylistLocked();
+  setIsLocking(false)
+}
 
 
   return (
@@ -58,15 +55,15 @@ const Playlist = () => {
         {playlistLocked ? (
 
           <Tooltip title={t('playlist.tooltip.unlock')} >
-        <LockOutlinedIcon onClick={() => togglePlaylistLocked()} style={{color: isHovering ? 'white' : 'rgba(255, 0, 0, 0.49),', cursor: 'pointer'}}
-         onMouseEnter={handleMouseEnter}
-         onMouseLeave={handleMouseLeave} />
+        <IconButton disabled={locking}>
+{locking ? <CircularProgress size={30} style={{height: '30px', width: '30px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOutlinedIcon  onClick={CircularLocking} style={{height: '30px', width: '30px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} />}
+        </IconButton>
           </Tooltip>
         ) : (
           <Tooltip title={t('playlist.tooltip.lock')} >
-         <LockOpenOutlinedIcon  onClick={() => togglePlaylistLocked()} style={{color: isHovering ? 'white' : 'rgba(38, 255, 0, 0.49)', cursor: 'pointer'}}
-         onMouseEnter={handleMouseEnter}
-         onMouseLeave={handleMouseLeave} />
+      <IconButton disabled={locking}>
+{locking ? <CircularProgress size={30} style={{height: '30px', width: '30px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOpenOutlinedIcon  onClick={CircularLocking} style={{height: '30px', width: '30px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} />}
+      </IconButton>
          </Tooltip>
          )} 
           </div>

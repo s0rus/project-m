@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, styled } from '@mui/material';
+import { Box, Grid, keyframes, Stack, styled } from '@mui/material';
 
 export const DashboardBarWrapper = styled(Box)`
   width: 100%;
@@ -28,7 +28,8 @@ width: 100px;
 position: absolute;
 margin-top: -80px;
 right: 1px;
-margin-right: 90px;
+animation: spin infinite 20s linear;
+margin-right: 70px;
 &:hover{
     transform:rotate(.75deg);
     transition:.75s  cubic-bezier(0.5,120,0.5,-120);

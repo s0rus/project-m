@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { CustomToast } from '@/utils/sendToast';
 import { Routes } from '@/server/router/routes';
@@ -6,12 +6,6 @@ import { SocketProvider } from '@/server/sockets';
 import { UserData } from '@/server/sockets/SocketProvider';
 import { io } from 'socket.io-client';
 import { useAuthContext } from './AuthContext';
-
-interface SocketContextProps {
-  socket: SocketProvider.ClientIO;
-}
-
-type SocketValueProps = SocketContextProps | Record<string, never>;
 
 interface InitialContextProps {
   socket: SocketProvider.ClientIO | Record<string, never>;
@@ -28,16 +22,14 @@ export const useSocketContext = () => useContext<InitialContextProps>(SocketCont
 
 export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const { currentUser, isAuthLoading, authChange } = useAuthContext();
-  const [value, setValue] = useState<SocketValueProps>({});
+  const socketRef = useRef(socket);
   const [leader, setLeader] = useState<UserData | null>(null);
 
   const socketInitializer = useCallback(async () => {
     if (currentUser && !isAuthLoading) {
       await fetch(Routes.SOCKET).then(() => {
         socket = io();
-        setValue({
-          socket,
-        });
+        socketRef.current = socket;
       });
 
       socket.on('connect', () => {
@@ -51,7 +43,10 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
       });
 
       socket.on('RECEIVE_TOAST', (message, type) => CustomToast.send(message, type));
-      socket.on('RECEIVE_NEW_LEADER', (userData) => setLeader(userData));
+      socket.on('RECEIVE_NEW_LEADER', (userData) => {
+        console.log('RECEIVE_NEW_LEADER', userData);
+        setLeader(userData);
+      });
 
       socket.on('connect_error', (err: Error) => {
         console.error(`CONNECT_ERROR: ${err}`);
@@ -81,7 +76,7 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
     <SocketContext.Provider
       value={{
-        socket: value.socket,
+        socket: socketRef.current,
         leader,
       }}
     >

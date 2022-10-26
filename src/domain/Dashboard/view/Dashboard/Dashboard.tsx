@@ -1,52 +1,52 @@
-import { Grid, Hidden } from '@mui/material';
+import { Grid, useMediaQuery  } from '@mui/material';
 import { DashboardContainer, DashboardWrapper } from './Dashboard.styles';
 import DashboardBar from '../../components/DashboardBar';
 import Playlist from '@/domain/Playlist/view/Playlist';
 import React from 'react';
 import Navigation from '@/domain/Navigation';
 import Settings from '../../components/Settings';
+import { theme } from '@/styles/theme';
+import { useAddonsContext } from '@/contexts/AddonsContext';
+import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 
 const Dashboard = () => {
-  
+  const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
+  const { isChatOn } = useAddonsContext();
+
   return (
     <div>
-    <Hidden lgDown >
+
     <DashboardWrapper>
+    {isChatOn && isMediumDown && <TwitchChat />}
       <DashboardContainer>
         <Grid container>
+
+
           <Grid item xs={12}>
                     <DashboardBar />
           </Grid>
+
+
           <Grid item xs={12}>
+
+
             <Grid container sx={{ mt: '1rem', height: '100%' }} spacing={2}>
+
+
               <Grid item sm={12} md={8}>
                     <Playlist />
               </Grid>
-              <Grid item sm={12} md={4}>
+
+              <Grid item sm={12} md={3.8}>
                     <Settings />
               </Grid>
-              </Grid>
+
+            </Grid>
             </Grid>
           </Grid>
       </DashboardContainer>
       <Navigation/>
     </DashboardWrapper>
-    </Hidden>
-
-<Hidden lgUp >
-<DashboardWrapper>
-  <DashboardContainer>
-    <Grid container>
-      <Grid item xs={12}>
-                <DashboardBar />
-                <Playlist />
-                <Settings />
-      </Grid>
-    </Grid>
-  </DashboardContainer>
-  <Navigation/>
-</DashboardWrapper>
-</Hidden>
 </div>
   );
 };

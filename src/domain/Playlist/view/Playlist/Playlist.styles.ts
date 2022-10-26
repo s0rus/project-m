@@ -1,8 +1,10 @@
 import { Box, Stack, styled } from '@mui/material';
-import { gradients } from '@/styles/theme';
+import { gradients} from '@/styles/theme';
+
 
 export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   padding: 1rem;
+  margin-left: 1rem;
   margin-bottom: 1vh;
   display: flex;
   width: 100%;
@@ -10,7 +12,11 @@ export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   flex-flow: column nowrap;
   background: ${({ locked }) => (locked ? gradients.playlistLocked : gradients.playlistUnlocked)};
   border-radius: 8px;
+  transition: 0.3s;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  &:hover{
+    transform: scale(1.01,1.01);
+  }
 `;
 
 export const PlaylistHeader = styled(Stack)`

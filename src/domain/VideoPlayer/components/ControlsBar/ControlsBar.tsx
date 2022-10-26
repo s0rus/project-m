@@ -1,6 +1,6 @@
 import { ControlsBarWrapper, Seeker, Timer, BoxIcon } from './ControlsBar.styles';
 import { FullscreenExitRounded, FullscreenRounded } from '@mui/icons-material';
-import { IconButton, Typography } from '@mui/material';
+import { IconButton, Typography  } from '@mui/material';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import { ToastTypes } from '@/utils/ToastTypes';
@@ -61,6 +61,7 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(playedSeconds, duration >= 3600)}</Typography>
       </Timer>
+
       <Seeker
         aria-label='time-indicator'
         size='small'
@@ -71,8 +72,8 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
         onChange={handleOnChange}
         onMouseDown={() => setSeeking(true)}
         disabled={!activeVideo || !isAdmin}
-        loadedPercentage={loadedSeconds ? (loadedSeconds / duration) * 100 : 0}
-      />
+        loadedPercentage={loadedSeconds ? (loadedSeconds / duration) * 100 : 0}/>
+
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(duration)}</Typography>
       </Timer>

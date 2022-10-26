@@ -93,14 +93,14 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
               <Tooltip title={t('playlist.tooltip.delete')} >
               <IconButton onClick={handleRemoveVideo} disabled={isDeleting} style={{ position: 'absolute', right: '10px', top: '40px',}} >
               <Delete>
-                {isDeleting ? <CircularProgress size={32} /> : <ClearIcon  style={{width: '40px', height: '40px'}}  />}
+                {isDeleting ? <CircularProgress style={{marginTop: '5px'}} size={32} /> : <ClearIcon  style={{width: '40px', height: '40px'}}  />}
               </Delete>
               </IconButton>
               </Tooltip>
               <Tooltip title={t('playlist.tooltip.requestcurrent')} >
               <IconButton onClick={handleSkipToVideo} disabled={isSkipping} style={{ position: 'absolute', right: '60px', top: '40px',}} >
               <Current>
-                {isSkipping ? <CircularProgress size={32} /> : <ArrowUpwardIcon  style={{width: '40px', height: '40px'}}  />}
+                {isSkipping ? <CircularProgress style={{marginTop: '5px'}} size={32} /> : <ArrowUpwardIcon  style={{width: '40px', height: '40px'}}  />}
               </Current>
               </IconButton>
               </Tooltip>

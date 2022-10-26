@@ -11,27 +11,31 @@ export class CustomToast {
   private static determineIcon = (type: ToastTypes) => {
     switch (type) {
         case ToastTypes.PlaylistLocked:
-          return <Image alt='' src={Sad}/>
+          return <Image alt='' src={Sad}/>;
         case ToastTypes.PlaylistUnlocked:
-          return <Image alt='' src={Happy}/>
+          return <Image alt='' src={Happy}/>;
         case ToastTypes.VideoSeeked:
-          return <Image alt='' src={Ez}/>
+          return <Image alt='' src={Ez}/>;
         case ToastTypes.VideoSkipped:
-          return <Image alt='' src={Ez}/>
+          return <Image alt='' src={Ez}/>;
         case ToastTypes.Copy:
-          return <Image alt='' src={Ok}/>
+          return <Image alt='' src={Ok}/>;
         case ToastTypes.Sucess:
-          return <Image alt='' src={Ok}/>
+          return <Image alt='' src={Ok}/>;
         case ToastTypes.Error:
-          return <Image alt='' src={Mad}/>
+          return <Image alt='' src={Mad}/>;
+        default:
+          return undefined;
     }
 
 
   };
 
   static send = (message: string, type: ToastTypes) => {
+    toast.clearWaitingQueue();
     toast(message, {
       icon: CustomToast.determineIcon(type),
+      toastId: type,
     });
   };
 }
