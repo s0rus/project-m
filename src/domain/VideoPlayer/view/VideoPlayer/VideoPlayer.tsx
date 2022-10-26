@@ -33,14 +33,6 @@ const VideoPlayer = () => {
             width='100%'
             height='100%'
             config={{
-              file: {
-                forceHLS: true,
-                hlsOptions: {
-                  xhrSetup: function(xhr:any, url:any) {
-                    xhr.withCredentials = true
-                    xhr.setRequestHeader('auth', 'value');
-                  },
-                }},
               youtube: {
                 playerVars: {
                   modestbranding: 1,
