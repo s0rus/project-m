@@ -43,8 +43,8 @@ const globalTheme = {
 
   palette: {
     primary: {
-      main: '#c74906',
-      light: '#c74906',
+      main: '#6800ff',
+      light: '#6800ff',
       contrastText: '#EFEFF1',
     },
 
@@ -79,8 +79,8 @@ const globalTheme = {
 
 export const gradients = {
   gradientPaper: '#18181b',
-  playlistUnlocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.success.light, 0)} -20%,  ${hexToRgba(globalTheme.palette.success.dark,0.7)} 100%)`,
-  playlistLocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.error.light, 0)} -20%,  ${hexToRgba(globalTheme.palette.error.dark,0.7)} 100%)`,
+  playlistUnlocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.success.light, 0)} -20%,  ${hexToRgba(globalTheme.palette.success.dark,0.5)} 100%)`,
+  playlistLocked: `linear-gradient(0deg, ${hexToRgba(globalTheme.palette.error.light, 0)} -20%,  ${hexToRgba(globalTheme.palette.error.dark,0.5)} 100%)`,
   gradientMain: ` hsla(118, 100%, 0%, 0.40)`,
   currentVideo: `rgba(255,255,255,0.1);`,
 };
@@ -228,7 +228,8 @@ export const theme = createTheme({
         },
 
         '.react-page-split__divider--horizontal': {
-          backgroundColor: `#141529`,
+          background: `#18181b`,
+          maxWidth: `5px`,
           transition: `0.1s`,
           cursor: 'col-resize',
           touchAction: 'pan-x',
@@ -241,7 +242,7 @@ export const theme = createTheme({
           margin: '0',
           backgroundColor: `${hexToRgba(globalTheme.palette.background.paper, 0.90)}!important`,
           border: `2px solid ${globalTheme.palette.primary.main}`,
-          borderRadius: '20px',
+          borderRadius: '8px',
           zIndex: '999',
           boxShadow: 'rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px'
         },

@@ -27,7 +27,7 @@ const Settings = () => {
    </OptionsTitle>
    <CurrentAuth/>
       </div>
-    <OptionsBox>
+    <OptionsBox style={{cursor: 'pointer'}} >
     {session && status === 'authenticated' ? (
       <ChatBox onClick={logoutOfTwitch} style={{cursor: 'pointer'}} >
       <LogoutIcon style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }}/>

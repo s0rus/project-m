@@ -5,8 +5,8 @@ import { theme } from '@/styles/theme';
 
 
 export const BoxIcon = styled('div')`
-height: 50px;
-width: 50px;
+height: 40px;
+width: 40px;
 transition: 0.2s;
 border-radius: 8px;
 &:hover{
@@ -23,14 +23,13 @@ export const ControlsBarWrapper = styled(Box)<{ controls: boolean }>`
 
   transition: transform 0.2s ease-in-out;
   transform: ${({ controls }) => (controls ? 'translateY(0px)' : 'translateY(80px)')};
-
-  border-radius: 0.5rem;
-  background-color: ${hexToRgba(theme.palette.background.paper, 0.2)};
+  background: linear-gradient(0deg, rgba(0,0,0,0.5113620448179272) 0%, rgba(0,0,0,0) 100%);
 `;
 
 export const Seeker = styled(Slider)<{ loadedPercentage: number }>`
   color: ${theme.palette.primary.main};
   height: 4px;
+  margin-bottom: 10px;
 &:hover{
   height: 10px;
 }
@@ -72,7 +71,7 @@ export const Seeker = styled(Slider)<{ loadedPercentage: number }>`
 
       transition: width 0.1s ease-in-out;
       width: ${({ loadedPercentage }) => `${loadedPercentage || 0}%`};
-      background-color: rgba(97, 97, 97, 0.78);
+      background-color: rgba(255, 255, 255, 0.7);
       border-radius: 8px;
     }
   }

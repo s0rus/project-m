@@ -26,6 +26,7 @@ transition: all 0.5s;
 min-width: 150px;
 box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 max-width: 100%;
+background-color: rgba(255,255,255,0.09);
 border-radius: 8px;
 position: relative; all 0.3s;
 margin-bottom: 20px;
@@ -40,19 +41,18 @@ text-transform: capitalize;
   width: 100%;
   border-radius: 8px;
   height: 100%;
-  background-color: rgba(255,255,255,0.02);
+  background-color: rgba(0,0,0,0.25);
   transition: all 0.3s;
 }
 &:hover{
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.08,1.08);
+  transform: scale(1.03,1.03);
 }
 &:hover::after{
   opacity: 1;
   background: red;
   min-width: 150px;
   border-radius: 8px;
-  transform: scale(1.05,1.05);
+  transform: scale(1.03,1.03);
 }
 &:hover::before{
   opacity: 0 ;

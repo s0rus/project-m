@@ -37,7 +37,7 @@ const BarButtons = () => {
           <Hidden lgDown>
           {isAdmin &&
             <StyledButton onClick={() => handleOnVideoSkip()} >
-              <SkipNextIcon style={{marginRight: '5px'}} />
+              <SkipNextIcon style={{marginRight: '5px',}} />
               {t('video.skip')}
             </StyledButton>
           }

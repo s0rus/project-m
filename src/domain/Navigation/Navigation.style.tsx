@@ -1,5 +1,6 @@
 
 import { styled } from '@mui/material';
+import { gradients } from '@/styles/theme';
 
 export const NavHolder = styled('div')`
 transition: all 0.2s;
@@ -12,7 +13,7 @@ display: flex;
 position: relative;
 gap: 40px;
 justify-content: center;
-background: rgba(0, 0, 0, 0.20);
+background: ${gradients.gradientMain};
 left: 50%;
 top: 20px;
 margin: 0;
@@ -21,31 +22,30 @@ transform: translate(-50%, -50%);
 box-shadow: rgba(0, 0, 0, 0.75) 0px 25px 20px -20px;
 border-radius: 8px;
 &:hover{
-    background: rgba(0, 0, 0, 0.35);
+    background-color: rgba(0,0,0,0.25);
 }`
 
 export const NavHolderFull = styled('div')`
 transition: all 0.2s;
 position: relative; all 0.3s;
 text-transform: capitalize;
-width: 95%;
+width: 100%;
 height: 56px;
 display: flex;
 position: relative;
 gap: 150px;
 justify-content: center;
-background: rgba(0, 0, 0, 0.35);
+background: ${gradients.gradientMain};
 left: 50%;
-top: 20px;
+top: 28px;
 margin: 0;
 transition: background 0.2s;
 padding: 0;
 transform: translate(-50%, -50%);
 box-shadow: rgba(0, 0, 0, 0.75) 0px 25px 20px -20px;
-border-radius: 8px;
 transition: 1s;
 &:hover{
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(0,0,0,0.25);
 }`
 
 export const TwitchBox = styled('div')`

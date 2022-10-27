@@ -10,9 +10,11 @@ border-radius: 8px;
 padding-top: 1rem;
 transition: 0.3s;
 margin-left: 20px;
+box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+background: ${gradients.gradientMain};
 &:hover{
-  transform: scale(1.05,1.05);
-  background: ${gradients.gradientMain};
+  transform: scale(1.02,1.02);
+  background: rgba(0, 0, 0, 0.25);
   box-shadow: rgba(0, 0, 0, 1) 0px 25px 20px -20px;
 }
 `
@@ -40,8 +42,10 @@ export const ChatBox = styled('div')`
 color: #FFF;
 transition: all 0.5s;
 min-width: 150px;
+cursor: default;
 box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 max-width: 100%;
+background-color: rgba(255,255,255,0.09);
 border-radius: 8px;
 position: relative; all 0.3s;
 margin-bottom: 20px;
@@ -50,29 +54,31 @@ text-transform: capitalize;
 &:before{
   content: '';
   position: absolute;
+  cursor: default;
   top: 0;
   left: 0;
   min-width: 150px;
   width: 100%;
   border-radius: 8px;
   height: 100%;
-  background-color: rgba(255,255,255,0.02);
+  background-color: rgba(0,0,0,0.25);
   transition: all 0.3s;
 }
 &:hover{
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.08,1.08);
+  transform: scale(1.03,1.03);
+  cursor: default;
 }
 &:hover::after{
   opacity: 1;
   background: red;
+  cursor: default;
   min-width: 150px;
   border-radius: 8px;
-  transform: scale(1.05,1.05);
+  transform: scale(1.03,1.03);
 }
 &:hover::before{
   opacity: 0 ;
-  cursor: pointer;
+  cursor: default;
   min-width: 150px;
   border-radius: 8px;
   transform: scale(0.5,0.5);
@@ -95,7 +101,7 @@ font-weight: 500; `
 
 export const SubTitleOption = styled('h2')`
 line-height: 1.1;
-font-size: 12px;
+font-size: 13px;
 font-weight: 400;
 letter-spacing: 1px;
 width: 200px;
@@ -127,7 +133,7 @@ font-weight: 500; `
 
 export const TitleSubSelect = styled('h2')`
 line-height: 1.1;
-font-size: 12px;
+font-size: 13px;
 font-weight: 400;
 letter-spacing: 1px;
 display: flex;
@@ -150,8 +156,14 @@ min-width: 130px;
 height: 40px;
 box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 text-shadow: 0px 0px 4px white;
-position: relative; all 0.3s;
+position: relative;
+transition: all 0.3s;
+margin-left: 20px;
 text-transform: capitalize;
+&:hover{
+  transform: scale(1.1,1.1);
+  background: rgba(0, 0, 0, 0.55);
+}
 &:after {
   content: '';
   position: absolute;
@@ -162,9 +174,9 @@ text-transform: capitalize;
   height: 100%;
   z-index: 1;
   opacity: 0;
+  transform: scale(1.02,1.02);
   transition: all 0.2s;
   border: 1px solid ${theme.palette.primary.main};
-  transform: scale(1.2,1.2);
 }
 &:before{
   content: '';
@@ -175,7 +187,6 @@ text-transform: capitalize;
   border-radius: 20px;
   height: 100%;
   z-index: 1;
-  background-color: rgba(255,255,255,0.1);
   transition: all 0.3s;
 }
 &:hover::after{
@@ -288,6 +299,7 @@ border-radius: 8px;
 export const Background = styled(SimpleBar)`
 max-height: 100vh;
 z-index: 100;
-background-size: cover;
-color: white;
-background: radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 100%);`
+background: radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 100%);
+
+
+`

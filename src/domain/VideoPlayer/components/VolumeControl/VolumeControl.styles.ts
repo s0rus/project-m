@@ -10,7 +10,7 @@ export const VolumeSliderPopver = styled(HoverPopover)`
 export const VolumeSliderBox = styled(Box)`
   width: 100%;
   height: 100%;
-  background: rgba(71, 71, 71, 0.26) ;
+  background: rgba(0, 0, 0, 0.5);
   padding: 1.2rem 0.2rem 0.7rem 0.2rem;
 
   overflow: hidden;

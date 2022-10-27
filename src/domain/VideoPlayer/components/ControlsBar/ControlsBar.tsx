@@ -52,14 +52,14 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
   return (
 
     <ControlsBarWrapper controls={controlsVisible} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-      <BoxIcon>
+      <BoxIcon style={{height: '40px', width: '40px', marginBottom: '10px', marginRight: '10px'}} >
       <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
       </BoxIcon>
-      <BoxIcon>
+      <BoxIcon style={{ marginBottom: '10px'}} >
       <VolumeControl />
       </BoxIcon>
       <Timer islong={duration >= 3600 ? 1 : 0}>
-        <Typography variant='h5'>{timeFormatter(playedSeconds, duration >= 3600)}</Typography>
+        <Typography variant='h5' style={{marginBottom: '6px', fontSize: '14px'}} >{timeFormatter(playedSeconds, duration >= 3600)}</Typography>
       </Timer>
 
       <Seeker
@@ -75,11 +75,11 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
         loadedPercentage={loadedSeconds ? (loadedSeconds / duration) * 100 : 0}/>
 
       <Timer islong={duration >= 3600 ? 1 : 0}>
-        <Typography variant='h5'>{timeFormatter(duration)}</Typography>
+        <Typography variant='h5' style={{marginBottom: '10px', fontSize: '14px'}}  >{timeFormatter(duration)}</Typography>
       </Timer>
-      <BoxIcon>
+      <BoxIcon style={{marginBottom: '10px'}} >
       <IconButton onClick={() => toggleFullscreen()}>
-        {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}
+        {isFullscreen ? <FullscreenExitRounded style={{height: '25px', width: '25px'}} /> : <FullscreenRounded style={{height: '25px', width: '25px'}} />}
       </IconButton>
       </BoxIcon>
     </ControlsBarWrapper>

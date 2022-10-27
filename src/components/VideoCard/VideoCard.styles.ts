@@ -1,5 +1,5 @@
 import { Avatar, Box, Card, CardContent, Stack, styled } from '@mui/material';
-import { theme } from '@/styles/theme';
+import { theme, gradients } from '@/styles/theme';
 
 export const VideoCardWrapper = styled(Card)`
   width: 100%;
@@ -8,11 +8,11 @@ export const VideoCardWrapper = styled(Card)`
   min-height: 100px;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-  background-color: rgba(0,0,0,0.75);
+  background: ${gradients.gradientMain};
   transition: 0.3s ease-in-out;
   transform: scale(0.96,0.96);
   &:hover{
-    transform: scale(1,1);
+    transform: scale(0.98,0.98);
     background-color: rgba(255,255,255,0.1);
   }
 `;
