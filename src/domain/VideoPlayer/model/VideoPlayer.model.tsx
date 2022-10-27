@@ -81,13 +81,13 @@ export interface ProgressProps {
 }
 
 export const getVolumeIcon = (isMuted: boolean, volume: number) => {
-  if (isMuted || volume === 0) return <VolumeOff style={{height: '25px', width: '25px'}} />;
-  if (volume >= 0.5) return <VolumeUp style={{height: '25px', width: '25px'}} />;
-  return <VolumeDown style={{height: '25px', width: '25px'}}  />;
+  if (isMuted || volume === 0) return <VolumeOff/>;
+  if (volume >= 0.5) return <VolumeUp/>;
+  return <VolumeDown/>;
 };
 
 export const getPlayingStateIcon = (isPlaying: boolean, initialMute?: boolean) => {
-  if (initialMute) return <VolumeOff style={{height: '40px', width: '40px'}} />;
-  if (isPlaying) return <PauseRounded style={{height: '40px', width: '40px', marginLeft: '-8px', marginTop: '-8px'}} />;
-  return <PlayArrowRounded style={{height: '40px', width: '40px', marginLeft: '-8px', marginTop: '-8px'}} />;
+  if (initialMute) return <VolumeOff/>;
+  if (isPlaying) return <PauseRounded/>;
+  return <PlayArrowRounded/>;
 };

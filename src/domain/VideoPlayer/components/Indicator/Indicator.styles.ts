@@ -25,8 +25,8 @@ export const IndicatorContainer = styled(Box)`
 `;
 
 export const IndicatorElement = styled(Box)<{ playing: number; initialmute: number }>`
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
 
   display: flex;

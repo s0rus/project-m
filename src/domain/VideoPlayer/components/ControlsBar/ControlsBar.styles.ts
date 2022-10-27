@@ -9,6 +9,9 @@ height: 40px;
 width: 40px;
 transition: 0.2s;
 border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
 &:hover{
 background: rgba(255, 255, 255, 0.20);
 }
