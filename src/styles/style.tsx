@@ -10,13 +10,11 @@ border-radius: 8px;
 padding-top: 1rem;
 transition: 0.3s;
 margin-left: 20px;
-box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+box-shadow: rgba(0, 0, 0, 1) 0px 25px 20px -20px;
 background: ${gradients.gradientMain};
 &:hover{
   transform: scale(1.02,1.02);
-  background: rgba(0, 0, 0, 0.25);
-  box-shadow: rgba(0, 0, 0, 1) 0px 25px 20px -20px;
-}
+  background: rgba(0, 0, 0, 0.25);}
 `
 export const OptionsBox = styled('div')`
 min-width: 150px;

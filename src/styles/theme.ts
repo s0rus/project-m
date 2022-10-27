@@ -213,7 +213,6 @@ export const theme = createTheme({
             backgroundColor: `${globalTheme.palette.primary.main}!important`,
             transition: `0.1s`,
             height: '100vh',
-            backgroundImage: 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==)',
             cursor: 'col-resize',
             touchAction: 'pan-x',
             borderRadius: '20px',
