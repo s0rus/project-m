@@ -87,7 +87,7 @@ export const getVolumeIcon = (isMuted: boolean, volume: number) => {
 };
 
 export const getPlayingStateIcon = (isPlaying: boolean, initialMute?: boolean) => {
-  if (initialMute) return <VolumeOff style={{height: '20px', width: '20px'}} />;
+  if (initialMute) return <VolumeOff style={{height: '40px', width: '40px'}} />;
   if (isPlaying) return <PauseRounded style={{height: '40px', width: '40px', marginLeft: '-8px', marginTop: '-8px'}} />;
   return <PlayArrowRounded style={{height: '40px', width: '40px', marginLeft: '-8px', marginTop: '-8px'}} />;
 };
