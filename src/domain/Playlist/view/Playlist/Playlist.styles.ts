@@ -12,10 +12,10 @@ export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   flex-flow: column nowrap;
   background: ${({ locked }) => (locked ? gradients.playlistLocked : gradients.playlistUnlocked)};
   border-radius: 8px;
-  transition: 0.3s;
+  transition: all 0.3s;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   &:hover{
-    transform: scale(1.01,1.01);
+    transform: scale(0.990,0.990);
   }
 `;
 

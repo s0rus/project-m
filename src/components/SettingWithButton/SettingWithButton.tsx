@@ -1,6 +1,8 @@
 import { Box, Button, ButtonProps } from '@mui/material';
 import { InnerStack, SettingStack, TitleOption, SubTitleOption } from './SettingWithButton.styles';
 import React, { FC } from 'react';
+import Hidden from '@mui/material/Hidden';
+import ImportExportIcon from '@mui/icons-material/ImportExport';
 interface SettingWithButton extends ButtonProps {
   icon: JSX.Element;
   header: string;
@@ -24,10 +26,17 @@ const SettingWithButton: FC<SettingWithButton> = ({ icon, header, subtitle, butt
             </SubTitleOption>
           </Box>
         </InnerStack>
-      </Box>
-      <Button {...rest} onClick={buttonAction}>
+      <Hidden lgDown>
+        <Button style={{position: 'absolute', right: '20px', bottom: '15px'}} {...rest} onClick={buttonAction}>
         {buttonLabel}
-      </Button>
+        </Button>
+      </Hidden>
+      <Hidden lgUp>
+        <Button style={{position: 'absolute', right: '20px', bottom: '15px'}} {...rest} onClick={buttonAction}>
+<ImportExportIcon/>
+        </Button>
+      </Hidden>
+      </Box>
     </SettingStack>
   );
 };

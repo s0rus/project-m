@@ -1,7 +1,7 @@
 import { EmptyVideoCard, VideoBox, VideoCardWrapper, VideoContent, } from './VideoCard.styles';
 import { Link, Typography, Hidden } from '@mui/material';
 import React, { FC } from 'react';
-
+import { ItemTitle } from '@/domain/Playlist/components/PlaylistItem/PlaylistItem.styles';
 import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
 import VideoThumbnail from '@/components/VideoThumbnail';
 import { useTranslation } from 'react-i18next';
@@ -24,11 +24,11 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
     return (
       <VideoCardWrapper elevation={0}>
         <EmptyVideoCard>
-          <div style={{display: 'flex' ,position: 'relative', height: '60px', width: '60px', left: '-20px', marginTop: '10px',}}>
+        <div style={{position: 'absolute', height: '60px', width: '60px'}}>
           <Image src={Ok} alt='' style={{ borderRadius: '30%'}} />
           </div>
-          <Typography variant='h3' style={{textShadow: '0px 0px 10px white', position: 'absolute', marginLeft: '50px'}} >{t('playlist.noCurrentVideo.title')}</Typography>
-          <Typography variant='body2' style={{cursor: 'default', marginTop: '-20px',marginLeft: '50px'}} >{t('playlist.noCurrentVideo.subtitle')}</Typography>
+          <Typography variant='h3' style={{marginLeft: '80px', marginTop: '10px'}} >{t('playlist.noCurrentVideo.title')}</Typography>
+          <Typography variant='body2' style={{marginLeft: '80px'}} >{t('playlist.noCurrentVideo.subtitle')}</Typography>
         </EmptyVideoCard>
       </VideoCardWrapper>
     );
@@ -37,16 +37,14 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
   return (
     <Hidden lgDown >
     <VideoCardWrapper elevation={0}>
-      <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
         <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
-      </Link>
       <VideoBox>
         <VideoContent>
-          <Link href={videoUrl} target='_blank' rel='noopener norefferer' sx={{ width: '98%' }}>
-            <Typography variant='h2' style={{textShadow: '0px 0px 4px white', color: 'white'}} >
+          <ItemTitle>
+          <Link href={videoUrl} target='_blank' rel='noopener norefferer' style={{}}>
               {videoTitle}
-            </Typography>
           </Link>
+          </ItemTitle>
           <Seeker
         aria-label='time-indicator'
         size='small'

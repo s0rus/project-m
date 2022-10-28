@@ -69,7 +69,7 @@ const Settings = () => {
     </div>
     </OptionsBox>
       </Options>
-      <div style={{marginTop: '20px'}} >
+      <div style={{marginTop: '30px'}} >
       {isAdmin && (<AdminPanel />)}
       </div>
       </div>

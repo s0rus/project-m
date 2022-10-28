@@ -13,7 +13,7 @@ margin-left: 20px;
 box-shadow: rgba(0, 0, 0, 1) 0px 25px 20px -20px;
 background: ${gradients.gradientMain};
 &:hover{
-  transform: scale(1.02,1.02);
+  transform: scale(1.01,1.01);
   background: rgba(0, 0, 0, 0.25);}
 `
 export const OptionsBox = styled('div')`
@@ -43,43 +43,13 @@ min-width: 150px;
 cursor: default;
 box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 max-width: 100%;
-background-color: rgba(255,255,255,0.09);
+background-color: rgba(0,0,0,0.25);
 border-radius: 8px;
 position: relative; all 0.3s;
 margin-bottom: 20px;
 text-transform: capitalize;
-
-&:before{
-  content: '';
-  position: absolute;
-  cursor: default;
-  top: 0;
-  left: 0;
-  min-width: 150px;
-  width: 100%;
-  border-radius: 8px;
-  height: 100%;
-  background-color: rgba(0,0,0,0.25);
-  transition: all 0.3s;
-}
 &:hover{
-  transform: scale(1.03,1.03);
-  cursor: default;
-}
-&:hover::after{
-  opacity: 1;
-  background: red;
-  cursor: default;
-  min-width: 150px;
-  border-radius: 8px;
-  transform: scale(1.03,1.03);
-}
-&:hover::before{
-  opacity: 0 ;
-  cursor: default;
-  min-width: 150px;
-  border-radius: 8px;
-  transform: scale(0.5,0.5);
+  background-color: rgba(255,255,255,0.09);
 }`
 
 export const TitleOption = styled('h2')`
@@ -148,7 +118,7 @@ color: ${theme.palette.primary.main};`
 export const StyledButton = styled(Button)`
 color: #FFF;
 transition: all 0.5s;
-border-radius: 20px;
+border-radius: 14px;
 width: 130px;
 min-width: 130px;
 height: 40px;

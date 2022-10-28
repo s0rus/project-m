@@ -63,7 +63,7 @@ export const ControlsContainer = styled(Box)`
   width: inherit;
   height: inherit;
 
-  padding: 0rem 1rem;
+  padding: 0;
   margin: 0;
 
   display: flex;

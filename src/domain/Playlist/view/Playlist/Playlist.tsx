@@ -86,13 +86,13 @@ const CircularLocking = async () => {
           <Tooltip title={t('playlist.tooltip.videoCount')}>
             <PlaylistDetail>
               <AutoAwesomeMotionRounded  />
-              <Typography variant='h5' style={{textShadow: `0px 0px 10px white`}} >{properPlaylist.length || 0}</Typography>
+              <Typography variant='h5' style={{textShadow: `0px 0px 2px white`}} >{properPlaylist.length || 0}</Typography>
             </PlaylistDetail>
           </Tooltip>
           <Tooltip title={t('playlist.tooltip.timeSum')}>
             <PlaylistDetail>
               <AccessTimeFilledRounded />
-              <Typography variant='h5' style={{textShadow: '0px 0px 10px white'}} >{timeFormatter(timeSum)}</Typography>
+              <Typography variant='h5' style={{textShadow: '0px 0px 2px white'}} >{timeFormatter(timeSum)}</Typography>
             </PlaylistDetail>
           </Tooltip>
 </Hidden>

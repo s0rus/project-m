@@ -5,13 +5,13 @@ import hexToRgba from 'hex-to-rgba';
 import { theme } from '@/styles/theme';
 
 export const VideoThumbnailWrapper = styled(CardMedia)`
-  width: 280px;
+  width: 320px;
   height: 100%;
   transition: 0.2s ease-in-out;
   cursor: default;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   &:hover{
-    width: 360px;
+    transform: scale(1.10,1.10);
   }
 `;
 

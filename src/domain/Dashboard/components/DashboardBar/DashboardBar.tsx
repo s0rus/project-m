@@ -1,11 +1,10 @@
-import { DashboardBarButtons, DashboardBarContainer, DashboardBarWrapper, Halloween1 } from './DashboardBar.styles';
+import { DashboardBarButtons, DashboardBarContainer, DashboardBarWrapper } from './DashboardBar.styles';
 import { Grid, Hidden, Tooltip } from '@mui/material';
 import BarButtons from '../BarButtons';
 import React from 'react';
 import VideoCard from '@/components/VideoCard';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
-import Image from 'next/image';
-import Jan from '@/domain/Icons/Jan.svg'
+
 
 const DashboardBar = () => {
   const { currentVideo } = usePlaylistContext();
@@ -25,11 +24,6 @@ const DashboardBar = () => {
           </Grid>
         </DashboardBarContainer>
       </DashboardBarWrapper>
-<Tooltip title='Strasznego halloween!🎃'>
-<Halloween1>
-<Image src={Jan} alt=''/>
-</Halloween1>
-</Tooltip>
       </Hidden>
 
 

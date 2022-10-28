@@ -4,7 +4,7 @@ import { Tooltip, Hidden } from '@mui/material';
 import Twitch from '@/domain/Icons/Twitch.svg'
 import Discord from '@/domain/Icons/Discord.svg'
 import { useTranslation } from 'react-i18next';
-import { TwitchBox, DiscordBox, NavText, NavHolder, NavHolderFull } from './Navigation.style'
+import { SocialBox, NavText, NavHolder, NavHolderFull } from './Navigation.style'
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import Image from 'next/image';
 
@@ -17,30 +17,30 @@ const Navigation = () => {
         <div>
         <Hidden lgDown>
         <NavHolderFull>
-<a href='https://www.twitch.tv/piotrlibera' style={{}} >
+<a href='https://www.twitch.tv/piotrlibera' style={{cursor: 'pointer', color: 'white'}} >
 <Tooltip title={t('playlist.tooltip.twitch')}>
-        <TwitchBox>
+        <SocialBox style={{height: '45px', width: '45px'}} >
         <Image src={Twitch} alt='Twitch' />
-        </TwitchBox>
+        </SocialBox>
         </Tooltip>
-        </a>
-<NavText>{t('Navigation.twitch')}</NavText>
-<a href='https://discord.gg/Vu8VFS4wZ9'>
+
+<NavText style={{cursor: 'pointer'}}  >{t('Navigation.twitch')}</NavText>
+</a>
+<a href='https://discord.gg/Vu8VFS4wZ9' style={{cursor: 'pointer', color: 'white'}} >
 <Tooltip title={t('playlist.tooltip.discord')}>
-        <DiscordBox>
+        <SocialBox style={{height: '45px', width: '45px'}} >
         <Image src={Discord} alt='Discord' />
-        </DiscordBox>
-        </Tooltip></a>
-<NavText>{t('Navigation.discord')}</NavText>
-
-<a href = "/Regulamin.pdf" target = "_blank">
-        <TwitchBox style={{alignItems: 'center', justifyContent: 'center'}}>
+        </SocialBox>
+        </Tooltip>
+<NavText style={{cursor: 'pointer'}}  >{t('Navigation.discord')}</NavText>
+</a>
+<a href = "/Regulamin.pdf" target = "_blank" style={{cursor: 'pointer', color: 'white'}}>
+        <SocialBox style={{alignItems: 'center', justifyContent: 'center', background: '#4b2bff'}}>
         <ReceiptIcon style={{ color: 'white',}} />
-        </TwitchBox>
-        </a>
+        </SocialBox>
 
-<NavText>{t('Navigation.regulations')}</NavText>
-
+<NavText style={{cursor: 'pointer'}} >{t('Navigation.regulations')}</NavText>
+</a>
 </NavHolderFull>
 </Hidden>
 
@@ -50,23 +50,23 @@ const Navigation = () => {
 <NavHolder>
 <a href='https://www.twitch.tv/khamires' >
 <Tooltip title={t('playlist.tooltip.twitch')}>
-        <TwitchBox>
+        <SocialBox>
         <Image src={Twitch} alt='Twitch' />
-        </TwitchBox>
+        </SocialBox>
         </Tooltip>
         </a>
 <a href='https://discord.gg/Vu8VFS4wZ9'>
 <Tooltip title={t('playlist.tooltip.discord')}>
-        <DiscordBox>
+        <SocialBox>
         <Image src={Discord} alt='Discord' />
-        </DiscordBox>
+        </SocialBox>
         </Tooltip></a>
 
 
 <a href = "/Regulamin.pdf" target = "_blank">
-        <TwitchBox style={{alignItems: 'center', justifyContent: 'center'}}>
+        <SocialBox style={{alignItems: 'center', justifyContent: 'center'}}>
         <ReceiptIcon style={{ color: 'white',}} />
-        </TwitchBox>
+        </SocialBox>
         </a>
         </NavHolder>
 </Hidden>

@@ -43,8 +43,8 @@ const globalTheme = {
 
   palette: {
     primary: {
-      main: '#6800ff',
-      light: '#6800ff',
+      main: '#4b2bff',
+      light: '#4b2bff',
       contrastText: '#EFEFF1',
     },
 

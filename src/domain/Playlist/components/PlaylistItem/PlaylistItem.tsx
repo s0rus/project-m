@@ -1,5 +1,5 @@
 import { Link, Typography, CircularProgress  } from '@mui/material';
-import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper, Delete, Current } from './PlaylistItem.styles';
+import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper, Delete, Current, ItemTitle } from './PlaylistItem.styles';
 import React, { FC, useState } from 'react';
 import { ListItem, Tooltip} from '@mui/material';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
@@ -124,15 +124,15 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
 }
         <PlaylistItemBox>
           <PlaylistItemContent>
-          <Link href={videoUrl} style={{color: 'white'}} target='_blank' rel='noopener norefferer'>
-              <Typography style={{textShadow: '0px 0px 4px white'}} variant='h4'>
+          <ItemTitle>
+          <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
                 {videoTitle}
-              </Typography>
           </Link>
+          </ItemTitle>
             <Seeker aria-label='time-indicator'size='small'/>
             <AddedByWrapper>
           {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
-          <Typography component='span' style={{textShadow: '0px 0px 4px white'}} >{addedBy.name}</Typography>
+          <Typography component='span' style={{textShadow: '0px 0px 2px white'}} >{addedBy.name}</Typography>
         </AddedByWrapper>
           </PlaylistItemContent>
         </PlaylistItemBox>

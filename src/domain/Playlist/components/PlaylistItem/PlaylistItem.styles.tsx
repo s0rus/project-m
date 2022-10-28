@@ -11,9 +11,7 @@ export const PlaylistItemWrapper = styled(Card)`
   transform: scale(0.98,0.98);
   transition: 0.3s ease-in-out;
   &:hover{
-    transform: scale(1.02,1.02);
-    background-color: rgba(255,255,255,0.1);
-
+    background-color: rgba(0,0,0,0.55);
   }
 `;
 
@@ -151,3 +149,13 @@ text-transform: capitalize;
   border-radius: 8px;
   transform: scale(0.5,0.5);
 }`
+
+
+export const ItemTitle = styled('h4')`
+padding: 0;
+margin: 0;
+width: 20px;
+font-size: 20px;
+color: white;
+transition: 0.2s
+`

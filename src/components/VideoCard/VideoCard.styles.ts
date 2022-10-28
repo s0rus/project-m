@@ -9,19 +9,15 @@ export const VideoCardWrapper = styled(Card)`
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   background: ${gradients.gradientMain};
-  transition: 0.3s ease-in-out;
   transform: scale(0.96,0.96);
-  &:hover{
-    transform: scale(0.98,0.98);
-    background-color: rgba(255,255,255,0.1);
-  }
 `;
 
 export const VideoContent = styled(CardContent)`
   width: 100%;
   max-width: 100%;
   display: flex;
-
+  font-size: 20px;
+  font-family: B612;
   flex: 1;
   flex-direction: column;
   justify-content: center;
@@ -54,7 +50,7 @@ export const AddedByAvatar = styled(Avatar)`
 
 export const EmptyVideoCard = styled(Box)`
   width: 100%;
-  height: 90%;
+  height: 100%;
   padding-left: 2rem;
   display: flex;
   justify-content: center;

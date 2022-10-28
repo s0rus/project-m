@@ -1,6 +1,6 @@
 
 import { styled } from '@mui/material';
-import { gradients } from '@/styles/theme';
+import { gradients,theme } from '@/styles/theme';
 
 export const NavHolder = styled('div')`
 transition: all 0.2s;
@@ -8,7 +8,7 @@ position: relative; all 0.3s;
 text-transform: capitalize;
 width: 90%;
 min-width: 250px;
-height: 56px;
+height: 60px;
 display: flex;
 position: relative;
 gap: 40px;
@@ -27,66 +27,48 @@ border-radius: 8px;
 
 export const NavHolderFull = styled('div')`
 transition: all 0.2s;
-position: relative; all 0.3s;
+position: relative;
 text-transform: capitalize;
 width: 100%;
-height: 56px;
+height: 63px;
 display: flex;
 position: relative;
 gap: 150px;
 justify-content: center;
 background: ${gradients.gradientMain};
-left: 50%;
-top: 28px;
-margin: 0;
-transition: background 0.2s;
-padding: 0;
-transform: translate(-50%, -50%);
-box-shadow: rgba(0, 0, 0, 0.75) 0px 25px 20px -20px;
-transition: 1s;
 &:hover{
     background-color: rgba(0,0,0,0.25);
 }`
 
-export const TwitchBox = styled('div')`
+export const SocialBox = styled('div')`
 height: 40px;
 width: 40px;
 min-width: 40px;
 display: inline-flex;
-margin-top: 7.5px;
-background: #9146FF;
-border-radius: 12px;
+margin-top: 10px;
+border-radius: 8px;
 cursor: pointer;
 transition: border 0.2s, transform 0.2s, width 0.2s;
 &:hover{
-    width: 60px;
-    border: 3px solid #5A2C9E;
+    filter:blur(1px)
 }`
 
-
-export const DiscordBox = styled('div')`
-height: 40px;
-width: 40px;
-display: inline-flex;
-margin-top: 7.5px;
-background: #5764F0;
-border-radius: 12px;
-cursor: pointer;
-transition: border 0.2s, transform 0.2s, width 0.2s;
-&:hover{
-    width: 60px;
-    border: 3px solid #2F3682;
-}`
 
 export const NavText = styled('h5')`
 font-size: 15px;
 display: flex;
-position: relative;
-margin-left: -140px;
-margin-top: 20px;
-text-shadow: 0px 0px 10px white;
+position: absolute;
+top: 0px;
+margin-left: 60px;
+text-shadow: 0px 0px 4px white;
 font-weight: 600;
-cursor: default;`
+cursor: default;
+transition: 0.3s;
+margin-top: 20px;
+&:hover{
+    text-shadow: 0px 0px 0px ;
+    color: ${theme.palette.primary.main};
+}`
 
 
 export const NavTitle = styled('h5')`
