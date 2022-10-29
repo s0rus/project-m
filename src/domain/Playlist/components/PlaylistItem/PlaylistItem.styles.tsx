@@ -154,7 +154,7 @@ text-transform: capitalize;
 export const ItemTitle = styled('h4')`
 padding: 0;
 margin: 0;
-width: 20px;
+width: 100%;
 font-size: 20px;
 color: white;
 transition: 0.2s

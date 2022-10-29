@@ -41,7 +41,7 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
       <VideoBox>
         <VideoContent>
           <ItemTitle>
-          <Link href={videoUrl} target='_blank' rel='noopener norefferer' style={{}}>
+          <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
               {videoTitle}
           </Link>
           </ItemTitle>
