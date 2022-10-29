@@ -6,8 +6,10 @@ import SimpleBar from 'simplebar-react';
 position: relative;
 min-width: 150px;
 max-width: 100%;
+height: 100%;
 border-radius: 8px;
 padding-top: 1rem;
+padding-bottom: 1rem;
 transition: 0.3s;
 margin-left: 20px;
 box-shadow: rgba(0, 0, 0, 1) 0px 25px 20px -20px;
@@ -138,7 +140,7 @@ text-transform: capitalize;
   top: 0;
   left: 0;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 14px;
   height: 100%;
   z-index: 1;
   opacity: 0;
@@ -152,19 +154,19 @@ text-transform: capitalize;
   top: 0;
   left: 0;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 14px;
   height: 100%;
   z-index: 1;
   transition: all 0.3s;
 }
 &:hover::after{
   opacity: 1;
-  border-radius: 20px;
+  border-radius: 14px;
   transform: scale(1,1);
 }
 &:hover::before{
   opacity: 0 ;
-  border-radius: 20px;
+  border-radius: 14px;
   transform: scale(0.5,0.5);
 }
 ` 

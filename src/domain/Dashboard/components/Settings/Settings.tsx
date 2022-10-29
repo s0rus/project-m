@@ -11,6 +11,7 @@ import CurrentAuth from '../CurrentAuth';
 import SettingWithSelect from '@/components/SettingWithSelect';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import AdminPanel from '../../components/AdminPanel';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const Settings = () => {
   const { isChatOn, setIsChatOn, language, setLanguage  } = useAddonsContext();
   const { loginWithTwitch, logoutOfTwitch } = useAuthContext();
@@ -30,7 +31,7 @@ const Settings = () => {
     <OptionsBox style={{cursor: 'pointer'}} >
     {session && status === 'authenticated' ? (
       <ChatBox onClick={logoutOfTwitch} style={{cursor: 'pointer'}} >
-      <LogoutIcon style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }}/>
+      <AccountCircleIcon style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }}/>
       <TitleOption style={{cursor: 'pointer'}} >
       {t('options.twitchTitle')}
       </TitleOption>
@@ -40,7 +41,7 @@ const Settings = () => {
     </ChatBox>
     ):(
     <ChatBox onClick={loginWithTwitch} style={{cursor: 'pointer'}} >
-      <Twitch  style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }} />
+      <AccountCircleIcon style={{ marginLeft: '10px', height: '30px', width: '30px', position: 'relative', top: '20px' }}/>
       <TitleOption style={{cursor: 'pointer'}} >
       {t('options.twitchTitle')}
       </TitleOption>

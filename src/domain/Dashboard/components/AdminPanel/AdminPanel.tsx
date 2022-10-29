@@ -31,7 +31,7 @@ const AdminPanel = () => {
   };
 
   return (
-        <Options style={{height: '160px'}} >
+        <Options style={{height: '100%'}} >
         <OptionsTitle>{t('adminPanel.header')}</OptionsTitle>
         <SettingWithButton
           header={leaderIdentifier}

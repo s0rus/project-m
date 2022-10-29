@@ -48,26 +48,28 @@ const Navigation = () => {
 
 <Hidden lgUp>
 <NavHolder>
-<a href='https://www.twitch.tv/khamires' >
+<a href='https://www.twitch.tv/piotrlibera' style={{cursor: 'pointer', color: 'white'}} >
 <Tooltip title={t('playlist.tooltip.twitch')}>
-        <SocialBox>
+        <SocialBox style={{height: '45px', width: '45px'}} >
         <Image src={Twitch} alt='Twitch' />
         </SocialBox>
         </Tooltip>
-        </a>
-<a href='https://discord.gg/Vu8VFS4wZ9'>
+
+</a>
+<a href='https://discord.gg/Vu8VFS4wZ9' style={{cursor: 'pointer', color: 'white'}} >
 <Tooltip title={t('playlist.tooltip.discord')}>
-        <SocialBox>
+        <SocialBox style={{height: '45px', width: '45px'}} >
         <Image src={Discord} alt='Discord' />
         </SocialBox>
-        </Tooltip></a>
-
-
-<a href = "/Regulamin.pdf" target = "_blank">
-        <SocialBox style={{alignItems: 'center', justifyContent: 'center'}}>
+        </Tooltip>
+</a>
+<a href = "/Regulamin.pdf" target = "_blank" style={{cursor: 'pointer', color: 'white'}}>
+        <SocialBox style={{alignItems: 'center', justifyContent: 'center', background: '#4b2bff'}}>
         <ReceiptIcon style={{ color: 'white',}} />
         </SocialBox>
-        </a>
+
+
+</a>
         </NavHolder>
 </Hidden>
     </div>
