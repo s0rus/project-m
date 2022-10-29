@@ -18,6 +18,8 @@ import { IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { theme } from '@/styles/theme';
 interface PlaylistItemsProps {
   video: PlaylistWithUsers;
 }
@@ -33,7 +35,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSkipping, setIsSkipping] = useState(false);
   const { videoId, videoThumbnail, videoTitle, videoUrl, addedBy, videoDuration } = video;
-  
+  const isMediumUp = useMediaQuery(theme.breakpoints.up('lg'));
   const CopyThis = () => {
     navigator.clipboard.writeText(videoUrl);
     setCopied(true);
@@ -86,6 +88,8 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
 
   return (
     <ListItem dense>
+      <>
+      {isMediumUp ? (
       <PlaylistItemWrapper>
           <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
         {isAdmin &&
@@ -137,6 +141,27 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
           </PlaylistItemContent>
         </PlaylistItemBox>
       </PlaylistItemWrapper>
+      ) : (
+
+
+        <PlaylistItemWrapper>
+        <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
+      <PlaylistItemBox>
+        <PlaylistItemContent>
+        <ItemTitle>
+        <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
+              {videoTitle}
+        </Link>
+        </ItemTitle>
+          <AddedByWrapper>
+        {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
+        <Typography component='span' style={{textShadow: '0px 0px 2px white'}} >{addedBy.name}</Typography>
+      </AddedByWrapper>
+        </PlaylistItemContent>
+      </PlaylistItemBox>
+    </PlaylistItemWrapper>
+      ) }
+      </>
     </ListItem>
   );
 };

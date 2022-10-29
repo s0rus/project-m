@@ -1,14 +1,14 @@
 version: '3.9'
 services:
   app:
-    platform: 'linux/amd64'
+    #platform: 'linux/amd64'
     #build:
     #   context: .
     #   dockerfile: Dockerfile
-    #working_dir: /app
+    working_dir: /app
     ports:
       - '3000:3000'
-    image: kornik123/project-m:4.0
+    image: kornik123/project-m:4.1
     environment:
       - DATABASE_URL=mysql://znfmgpr55nginqry7u3i:pscale_pw_B2uJagsllnZiGfoEbxpD37d703X4EBNOzblZ7NhtZ01@eu-west.connect.psdb.cloud/murzyniarnia?sslaccept=strict
       - TWITCH_CLIENT_ID=u4j3e7fq3tufq8z6czxytxbqf0xrxv

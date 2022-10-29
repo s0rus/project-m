@@ -11,6 +11,7 @@ const DashboardBar = () => {
 
   return (
     <>
+    <div style={{background: 'rgba(0,0,0, 0.15)', width: '102%', marginLeft: '-1%', marginTop: '-5px', borderBottomLeftRadius: '20px', borderBottomRightRadius: '20px'}} >
     <Hidden lgDown>
       <DashboardBarWrapper>
         <DashboardBarContainer container>
@@ -38,7 +39,9 @@ const DashboardBar = () => {
         </DashboardBarContainer>
       </DashboardBarWrapper>
       </Hidden>
+      </div>
     </>
+
   );
 };
 

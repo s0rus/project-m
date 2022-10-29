@@ -46,7 +46,7 @@ width: 40px;
 min-width: 40px;
 display: inline-flex;
 margin-top: 10px;
-border-radius: 8px;
+border-radius: 4px;
 cursor: pointer;
 transition: border 0.2s, transform 0.2s, width 0.2s;
 &:hover{
@@ -59,7 +59,7 @@ font-size: 15px;
 display: flex;
 position: absolute;
 top: 0px;
-margin-left: 60px;
+margin-left: 50px;
 text-shadow: 0px 0px 4px white;
 font-weight: 600;
 cursor: default;

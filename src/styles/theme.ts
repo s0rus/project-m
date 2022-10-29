@@ -3,7 +3,7 @@ import hexToRgba from 'hex-to-rgba';
 
 const globalTheme = {
   typography: {
-    fontFamily: 'B612',
+    fontFamily: 'Josefin Sans',
     h1: {
       fontWeight: 700,
       fontSize: '2.5rem',
@@ -141,9 +141,10 @@ export const theme = createTheme({
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          backgroundColor: `${hexToRgba(globalTheme.palette.background.paper, 0.50)}`,
+          backgroundColor: `${hexToRgba(globalTheme.palette.background.paper, 0.80)}`,
           borderRadius: '0.5rem',
-          color: 'white',
+          fontSize: '14px',
+          color: `${hexToRgba(globalTheme.palette.primary.main, 1)}`,
           width: '100%',
           boxShadow: '0 2px 12px 0 rgba(0, 0, 0, 0.4)',
         },
@@ -159,6 +160,7 @@ export const theme = createTheme({
 
           '&:hover': {
             color: `${globalTheme.palette.primary.main}`,
+            textShadow: `0px 0px 10px ${globalTheme.palette.primary.main}`,
           },
         },
       },

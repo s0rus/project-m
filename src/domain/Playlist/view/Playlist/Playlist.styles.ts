@@ -35,6 +35,8 @@ export const PlaylistDetail = styled(Stack)`
 
 export const PlaylistContainer = styled(Box)`
   width: 100%;
+  background: rgba(0,0,0, 0.25);
+  border-radius: 8px;
   height: inherit;
   display: flex;
   flex-flow: column nowrap;

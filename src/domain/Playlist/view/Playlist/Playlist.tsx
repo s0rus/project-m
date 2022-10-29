@@ -20,6 +20,8 @@ import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import { useAuthContext } from '@/contexts/AuthContext';
 import Hidden from '@mui/material/Hidden';
 import Image from 'next/image';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { theme } from '@/styles/theme';
 
 const Playlist = () => {
   const { isAdmin } = useAuthContext();
@@ -28,7 +30,7 @@ const Playlist = () => {
   const [animatedList] = useAutoAnimate();
   const { togglePlaylistLocked } = usePlaylistContext();
   const [locking, setIsLocking] = useState(false);
-
+  const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
   const timeSum = useMemo(
     () =>
       (playlist as PlaylistWithUsers[]).reduce<number>(
@@ -48,7 +50,7 @@ const CircularLocking = async () => {
 
   return (
     <>
-    <PlaylistWrapper locked={playlistLocked ? 1 : 0}>
+    <PlaylistWrapper locked={playlistLocked ? 1 : 0} style={{minWidth: isMediumDown ? '30%' : '100%', width: isMediumDown ? '100%' : '100%',}} >
         <PlaylistHeader>         
 {isAdmin ? (
           <div style={{marginTop: '8px'}} >
@@ -81,7 +83,6 @@ const CircularLocking = async () => {
     </div>
 
 )}
-<Hidden lgDown >
           <Typography variant='h2' style={{textShadow: '0px 0px 10px white',}} >{t('playlist.header')}</Typography>
           <Tooltip title={t('playlist.tooltip.videoCount')}>
             <PlaylistDetail>
@@ -95,22 +96,6 @@ const CircularLocking = async () => {
               <Typography variant='h5' style={{textShadow: '0px 0px 2px white'}} >{timeFormatter(timeSum)}</Typography>
             </PlaylistDetail>
           </Tooltip>
-</Hidden>
-<Hidden lgUp >
-          <Typography variant='h2' style={{textShadow: '0px 0px 10px white', overflow: 'hidden'}} >{t('playlist.header')}</Typography>
-          <Tooltip title={t('playlist.tooltip.videoCount')}>
-            <PlaylistDetail>
-              <AutoAwesomeMotionRounded/>
-              <Typography variant='h5' style={{textShadow: '0px 0px 10px white', overflow: 'hidden'}} >{properPlaylist.length || 0}</Typography>
-            </PlaylistDetail>
-          </Tooltip>
-          <Tooltip title={t('playlist.tooltip.timeSum')}>
-            <PlaylistDetail>
-              <AccessTimeFilledRounded />
-              <Typography variant='h5' style={{textShadow: '0px 0px 10px white', overflow: 'hidden'}} >{timeFormatter(timeSum)}</Typography>
-            </PlaylistDetail>
-          </Tooltip>
-</Hidden>
         </PlaylistHeader>
         <PlaylistContainer component={List} ref={animatedList}>
           {properPlaylist.length ? (

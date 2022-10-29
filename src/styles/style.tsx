@@ -22,7 +22,7 @@ export const OptionsBox = styled('div')`
 min-width: 150px;
 max-width: 100%;
 box-sizing: border-box;
-padding: 0rem 1rem;
+padding: 0rem 1.5rem;
 -webkit-font-smoothing: antialiased;
 outline-color: rgb(117, 122, 255);
 transition: 0.3s ease-in-out;
@@ -66,7 +66,7 @@ text-align: left;
 margin: 0px;
 padding: 0px;
 bottom: 16px;
-left: 50px;
+left: 55px;
 font-weight: 500; `
 
 export const SubTitleOption = styled('h2')`
@@ -83,7 +83,7 @@ text-align: left;
 margin: 0px;
 padding: 0px;
 bottom: 16px;
-left: 50px;
+left: 55px;
 font-weight: 400;
 color: ${theme.palette.primary.main};
 `
@@ -269,7 +269,7 @@ border-radius: 8px;
 export const Background = styled(SimpleBar)`
 max-height: 100vh;
 z-index: 100;
-background: radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 100%);
+background: radial-gradient(circle, rgba(48,48,68,1) -50%, rgba(20,23,46,1) 60%);
 
 
 `

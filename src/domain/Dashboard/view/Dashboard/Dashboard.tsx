@@ -17,7 +17,7 @@ const Dashboard = () => {
     <div>
 
     <DashboardWrapper>
-    {isChatOn && isMediumDown && <TwitchChat />}
+
       <DashboardContainer>
         <Grid container>
 
@@ -26,7 +26,7 @@ const Dashboard = () => {
                     <DashboardBar />
           </Grid>
 
-
+          {isChatOn && isMediumDown && <TwitchChat />}
           <Grid item xs={12}>
 
 
