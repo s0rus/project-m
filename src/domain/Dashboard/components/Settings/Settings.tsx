@@ -3,7 +3,7 @@ import SettingWithCheckbox from '@/components/SettingWithCheckbox';
 import { useAddonsContext } from '@/contexts/AddonsContext';
 import { useTranslation } from 'react-i18next';
 import { useSession } from 'next-auth/react';
-import {  Options, OptionsBox, OptionsTitle, ChatBox, TitleOption, SubTitleOption } from '@/styles/style';
+import {  Options, OptionsBox, OptionsTitle } from '@/styles/style';
 import { useAuthContext } from '@/contexts/AuthContext';
 import CurrentAuth from '../CurrentAuth';
 import SettingWithSelect from '@/components/SettingWithSelect';
@@ -12,6 +12,8 @@ import AdminPanel from '../../components/AdminPanel';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { theme } from '@/styles/theme';
 import { useMediaQuery  } from '@mui/material';
+import SettingsOnClick from '@/components/SettingsOnClick';
+
 const Settings = () => {
   const { isChatOn, setIsChatOn, language, setLanguage  } = useAddonsContext();
   const { loginWithTwitch, logoutOfTwitch } = useAuthContext();
@@ -19,6 +21,9 @@ const Settings = () => {
   const { t } = useTranslation();
   const { isAdmin } = useAuthContext();
   const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
+
+
+
   return (
     <div style={{margin: '0', padding: '0', minWidth: '100px',}} >
     <Options style={{minWidth: isMediumDown ? '96%' : '100%', width: isMediumDown ? '96%' : '100%',}} > 
@@ -28,45 +33,47 @@ const Settings = () => {
    </OptionsTitle>
    <CurrentAuth/>
       </div>
+
+
     <OptionsBox style={{cursor: 'pointer'}} >
     {session && status === 'authenticated' ? (
-      <ChatBox onClick={logoutOfTwitch} style={{cursor: 'pointer'}} >
-      <AccountCircleIcon style={{ marginLeft: '15px', height: '30px', width: '30px', position: 'relative', top: '20px' }}/>
-      <TitleOption style={{cursor: 'pointer'}} >
-      {t('options.twitchTitle')}
-      </TitleOption>
-      <SubTitleOption style={{cursor: 'pointer'}} >
-      {t('options.twitchSubTitleLOGOUT')}
-      </SubTitleOption>
-    </ChatBox>
+      <div onClick={logoutOfTwitch}>
+        <SettingsOnClick
+        style={{cursor: 'pointer'}}
+        icon={<AccountCircleIcon/>}
+        header={t('options.twitchTitle')}
+        subtitle={t('options.twitchSubTitleLOGOUT')}/>
+      </div>
     ):(
-    <ChatBox onClick={loginWithTwitch} style={{cursor: 'pointer'}} >
-      <AccountCircleIcon style={{ marginLeft: '15px', height: '30px', width: '30px', position: 'relative', top: '20px' }}/>
-      <TitleOption style={{cursor: 'pointer'}} >
-      {t('options.twitchTitle')}
-      </TitleOption>
-      <SubTitleOption style={{cursor: 'pointer'}} >
-      {t('options.twitchSubTitleLOGIN')}
-      </SubTitleOption>
-    </ChatBox>
+      <div onClick={loginWithTwitch}>
+        <SettingsOnClick
+        style={{cursor: 'pointer'}}
+        icon={<AccountCircleIcon/>}
+        header={t('options.twitchTitle')}
+        subtitle={t('options.twitchSubTitleLOGIN')}/>
+      </div>
+
     )}
-     <ChatBox>
-    <ChatBubbleOutlineIcon style={{ marginLeft: '15px', height: '30px', width: '30px', position: 'relative', top: '20px' }} />
-      <TitleOption>
-      {t('options.chatTitle')}
-      </TitleOption>
-      <SubTitleOption>
-      {t('options.chatSubTitle')}
-      </SubTitleOption>
+    <div>
+    <SettingsOnClick 
+      style={{cursor: 'default'}}
+      icon={<ChatBubbleOutlineIcon/>}
+      header={t('options.chatTitle')}
+      subtitle={t('options.chatSubTitle')}>
+    </SettingsOnClick>
+    <div style={{position: 'absolute', bottom: '110px', right: '50px'}}>
       <SettingWithCheckbox checked={isChatOn} setter={setIsChatOn}/>
-    </ChatBox>
-    <div style={{marginTop: '-15px', height: '110px'}} >
+      </div>
+    </div>
+    <div style={{marginTop: '-1.5vh'}} >
     <SettingWithSelect
           value={language}
           setter={setLanguage as Dispatch<SetStateAction<string>>}
           header={t('options.languageTitle')}
           subtitle={t('options.languageSubTitle')}
         />
+
+
     </div>
     </OptionsBox>
       </Options>

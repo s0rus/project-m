@@ -36,6 +36,7 @@ margin-left: 20px;
 margin-top: 0px;
 cursor: default;
 text-shadow: 0px 0px 10px white;
+display: flex;
 `
 
 export const ChatBox = styled('div')`

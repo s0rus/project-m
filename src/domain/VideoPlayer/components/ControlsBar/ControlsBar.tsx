@@ -1,6 +1,6 @@
-import { ControlsBarWrapper, Seeker, Timer, BoxIcon } from './ControlsBar.styles';
+import { ControlsBarWrapper, Seeker, Timer } from './ControlsBar.styles';
 import { FullscreenExitRounded, FullscreenRounded } from '@mui/icons-material';
-import { IconButton, Typography  } from '@mui/material';
+import { IconButton, Typography } from '@mui/material';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import { ToastTypes } from '@/utils/ToastTypes';
@@ -27,7 +27,7 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
   const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo, loadedSeconds } = playerState;
   const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);
   const { toggleFullscreen, isFullscreen } = useFullscreen();
-  
+
   const handleSeekMouseUp = useCallback(() => {
     setSeeking(false);
     seekTo(newSecondsPlayed);
@@ -50,18 +50,12 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
   }, [seeking, handleSeekMouseUp]);
 
   return (
-
     <ControlsBarWrapper controls={controlsVisible} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-      <BoxIcon style={{height: '40px', width: '40px', marginBottom: '10px', marginRight: '10px'}} >
       <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
-      </BoxIcon>
-      <BoxIcon style={{ marginBottom: '10px'}} >
       <VolumeControl />
-      </BoxIcon>
       <Timer islong={duration >= 3600 ? 1 : 0}>
-        <Typography variant='h5' style={{marginBottom: '6px', fontSize: '14px'}} >{timeFormatter(playedSeconds, duration >= 3600)}</Typography>
+        <Typography variant='h5'>{timeFormatter(playedSeconds, duration >= 3600)}</Typography>
       </Timer>
-
       <Seeker
         aria-label='time-indicator'
         size='small'
@@ -72,16 +66,14 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
         onChange={handleOnChange}
         onMouseDown={() => setSeeking(true)}
         disabled={!activeVideo || !isAdmin}
-        loadedPercentage={loadedSeconds ? (loadedSeconds / duration) * 100 : 0}/>
-
+        loadedpercentage={loadedSeconds ? (loadedSeconds / duration) * 100 : 0}
+      />
       <Timer islong={duration >= 3600 ? 1 : 0}>
-        <Typography variant='h5' style={{marginBottom: '10px', fontSize: '14px'}}  >{timeFormatter(duration)}</Typography>
+        <Typography variant='h5'>{timeFormatter(duration)}</Typography>
       </Timer>
-      <BoxIcon style={{marginBottom: '10px'}} >
       <IconButton onClick={() => toggleFullscreen()}>
-        {isFullscreen ? <FullscreenExitRounded style={{height: '25px', width: '25px'}} /> : <FullscreenRounded style={{height: '25px', width: '25px'}} />}
+        {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}
       </IconButton>
-      </BoxIcon>
     </ControlsBarWrapper>
   );
 };

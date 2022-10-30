@@ -11,7 +11,7 @@ const SettingWithCheckbox: FC<SettingWithCheckbox> = ({ setter, checked }) => {
 
   return (
 
-      <Checkbox checked={checked} onChange={handleOnChange} style={{color: `white`, display: 'flex', position: 'absolute', right: '20px', bottom: '22px' , padding: '0px', transform: "scale(1.3)", zIndex:' 999'}} />
+      <Checkbox style={{transform: 'scale(1.35, 1.35)'}} checked={checked} onChange={handleOnChange}/>
 
   );
 };

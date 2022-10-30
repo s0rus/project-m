@@ -81,13 +81,13 @@ export interface ProgressProps {
 }
 
 export const getVolumeIcon = (isMuted: boolean, volume: number) => {
-  if (isMuted || volume === 0) return <VolumeOff/>;
-  if (volume >= 0.5) return <VolumeUp/>;
-  return <VolumeDown/>;
+  if (isMuted || volume === 0) return <VolumeOff />;
+  if (volume >= 0.5) return <VolumeUp />;
+  return <VolumeDown />;
 };
 
 export const getPlayingStateIcon = (isPlaying: boolean, initialMute?: boolean) => {
-  if (initialMute) return <VolumeOff/>;
-  if (isPlaying) return <PauseRounded/>;
-  return <PlayArrowRounded/>;
+  if (initialMute) return <VolumeOff />;
+  if (isPlaying) return <PauseRounded />;
+  return <PlayArrowRounded />;
 };

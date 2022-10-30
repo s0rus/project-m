@@ -1,6 +1,7 @@
 import { Typography, styled } from '@mui/material';
 
 import { Box } from '@mui/system';
+import hexToRgba from 'hex-to-rgba';
 import { theme } from '@/styles/theme';
 
 export const ControlsWrapper = styled(Box)<{ playing: number; initialmute: number; controls: number }>`
@@ -30,7 +31,8 @@ export const SeekerPreview = styled('span')<{ controls: number; playedPercentage
   top: calc(100% - 4px);
 
   z-index: 1;
-  background-color: rgba(51, 51, 51, 0.53);
+
+  background-color: ${hexToRgba(theme.palette.primary.main, 0.3)};
 
   transition: transform 0.2s ease-in-out;
   transform: ${({ controls }) => (!controls ? 'translateY(0px)' : 'translateY(8px)')};
@@ -50,7 +52,7 @@ export const SeekerPreview = styled('span')<{ controls: number; playedPercentage
 
   &::before {
     width: ${({ loadedPercentage }) => `${loadedPercentage || 0}%`};
-
+    background-color: ${hexToRgba(theme.palette.primary.light, 0.2)};
   }
 
   &::after {
@@ -63,7 +65,7 @@ export const ControlsContainer = styled(Box)`
   width: inherit;
   height: inherit;
 
-  padding: 0;
+  padding: 1rem;
   margin: 0;
 
   display: flex;

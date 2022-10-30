@@ -18,7 +18,6 @@ import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import { useAuthContext } from '@/contexts/AuthContext';
-import Hidden from '@mui/material/Hidden';
 import Image from 'next/image';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { theme } from '@/styles/theme';

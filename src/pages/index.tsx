@@ -38,7 +38,7 @@ const Home: NextPage = () => {
         </MainContent>
         </div>
         {isChatOn && isMediumUp &&
-        <div style={{minWidth: '11%', width: '13.3%'}}>
+        <div style={{minWidth: '12%', width: '13.3%'}}>
             <TwitchChat />
         </div>
         }

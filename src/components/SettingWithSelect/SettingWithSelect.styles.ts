@@ -7,6 +7,7 @@ export const SettingStack = styled(Stack)`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+
 `;
 
 export const InnerStack = styled(Stack)`
@@ -21,7 +22,7 @@ export const InnerStack = styled(Stack)`
 
 
 export const StyledSelect = styled(Select)`
-margin-top: 15px;
+
 color: #FFF;
 transition: all 0.5s;
 min-width: 150px;
