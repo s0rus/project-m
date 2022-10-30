@@ -6,11 +6,11 @@ import React, { FC, useState } from 'react';
 import { CustomToast } from '@/utils/sendToast';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import { ToastTypes } from '@/utils/ToastTypes';
-import VideoThumbnail from '@/components/VideoThumbnail';
-import { useAuthContext } from '@/contexts/AuthContext';
+import VideoThumbnail from '@/domain/App/components/VideoThumbnail';
+import { useAuthContext } from '@/domain/App/context/AuthContext';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { usePlaylistContext } from '../../context/PlaylistContext';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useSocketContext } from '@/domain/App/context/SocketContext';
 import { useTranslation } from 'react-i18next';
 
 interface PlaylistItemsProps {

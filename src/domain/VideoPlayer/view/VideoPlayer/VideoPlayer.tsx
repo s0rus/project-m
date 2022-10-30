@@ -1,16 +1,18 @@
-import React, { MutableRefObject, useEffect, useRef } from 'react';
+import React, { MutableRefObject, useEffect, useId, useRef } from 'react';
 import { StyledReactPlayer, VideoPlayerBox, VideoPlayerContainer } from './VideoPlayer.styles';
 
 import PlayerControls from '../../components/PlayerControls';
 import ReactPlayer from 'react-player';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import { theme } from '@/styles/theme';
-import { useAddonsContext } from '@/contexts/AddonsContext';
+import { useAddonsContext } from '@/domain/App/context/AddonsContext';
 import useHasWindow from '../../utils/hasWindow';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
+import { getPlayerConfig } from '../../model/VideoPlayer.model';
 
 const VideoPlayer = () => {
+  const playerId = useId();
   const isLargeDown = useMediaQuery(theme.breakpoints.between('md', 'lg'));
   const { isChatOn } = useAddonsContext();
   const { setPlayerRef, handleProgress, handleOnEnd, playerState, handleOnError, handleOnReady } = usePlayerContext();
@@ -39,13 +41,7 @@ const VideoPlayer = () => {
               url={activeVideo?.videoUrl}
               width='100%'
               height='100%'
-              config={{
-                youtube: {
-                  playerVars: {
-                    modestbranding: 1,
-                  },
-                },
-              }}
+              config={getPlayerConfig(playerId)}
             />
             <PlayerControls />
           </>

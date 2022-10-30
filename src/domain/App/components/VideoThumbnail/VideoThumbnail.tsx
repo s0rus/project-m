@@ -34,7 +34,7 @@ const VideoThumbnail: FC<VideoThumbnailProps> = ({ thumbnailUrl, videoTitle, vid
             videoTitle,
           })}
         />
-        <VideoDurationSpan variant='body1'>{timeFormatter(videoDuration)}</VideoDurationSpan>
+        {videoDuration > 0 && <VideoDurationSpan>{timeFormatter(videoDuration)}</VideoDurationSpan>}
       </VideoThumbnailContainer>
     </VideoThumbnailWrapper>
   );

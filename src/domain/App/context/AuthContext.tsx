@@ -11,7 +11,7 @@ import {
 } from 'react';
 import { useSession } from 'next-auth/react';
 import { type Session } from 'next-auth';
-import { useNewWindow } from '@/hooks/useNewWindow';
+import { useNewWindow } from '@/domain/App/hooks/useNewWindow';
 import { Routes } from '@/server/router/routes';
 
 interface InitialContextProps {

@@ -15,6 +15,7 @@
     "titleRequired": "Tytuł jest wymagany.",
     "titleTooLong": "Tytuł może mieć maksymalnie 30 znaków.",
     "wrongUrl": "URL jest nieprawidłowy.",
+    "couldNotProcessUrl": "URL nie mógł być przetworzony.",
     "videoAdded": "Film został dodany do kolejki."
   },
   "settings": {

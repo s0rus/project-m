@@ -3,7 +3,7 @@ import { Link, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
 import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
-import VideoThumbnail from '@/components/VideoThumbnail';
+import VideoThumbnail from '../VideoThumbnail';
 import { useTranslation } from 'react-i18next';
 
 interface VideoCardProps {

@@ -1,6 +1,6 @@
 export const youTubeIdFromLink = (url: string) => {
   const youtubeIdRegex =
-    /(?:https?:\/\/)?(?:www\.|m\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\/?\?v=|\/embed\/|\/)([^\s&\?\/\#]+)/;
+    /(?:https?:\/\/)?(?:www\.|m\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\/?\?v=|\/embed\/|\/shorts\/)([^\s&\?\/\#]+)/;
   const match = url.match(youtubeIdRegex);
   return match ? match[1] : null;
 };

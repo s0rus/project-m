@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 
 import { signOut } from 'next-auth/react';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useSocketContext } from '@/domain/App/context/SocketContext';
 
 const SignInPage = () => {
   const { socket } = useSocketContext();

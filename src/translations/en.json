@@ -15,6 +15,7 @@
     "titleRequired": "Title is required",
     "titleTooLong": "The title can have up to 30 characters.",
     "wrongUrl": "URL is invalid.",
+    "couldNotProcessUrl": "URL could not be processed.",
     "videoAdded": "Video has been added to playlist."
   },
   "settings": {

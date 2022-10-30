@@ -91,3 +91,59 @@ export const getPlayingStateIcon = (isPlaying: boolean, initialMute?: boolean) =
   if (isPlaying) return <PauseRounded />;
   return <PlayArrowRounded />;
 };
+
+export const getPlayerConfig = (playerId: string) => ({
+  youtube: {
+    playerVars: {
+      modestbranding: 1,
+    },
+  },
+  vimeo: {
+    playerOptions: {
+      controls: false,
+      loop: false,
+    },
+  },
+  soundcloud: {
+    options: {
+      auto_play: false,
+    },
+  },
+  wistia: {
+    options: {
+      controlsVisibleOnLoad: false,
+      copyLinkAndThumbnailEnabled: false,
+      doNotTrack: true,
+      fullscreenButton: false,
+      googleAnalytics: false,
+    },
+  },
+  facebook: {
+    playerId: playerId,
+  },
+  mixcloud: {
+    options: {
+      disablePushstate: true,
+      disableHotkeys: true,
+      disableUnloadWarning: true,
+      hide_artwork: true,
+    },
+  },
+  dailymotion: {
+    params: {
+      controls: false,
+    },
+  },
+  twitch: {
+    playerId: playerId,
+    options: {
+      muted: false,
+    },
+  },
+  file: {
+    forceVideo: true,
+    attributes: {
+      controls: false,
+    },
+  },
+});

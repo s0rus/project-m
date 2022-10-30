@@ -8,11 +8,11 @@ import Settings from '../../components/Settings';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import { theme } from '@/styles/theme';
 import { toast } from 'react-toastify';
-import { useAddonsContext } from '@/contexts/AddonsContext';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useAddonsContext } from '@/domain/App/context/AddonsContext';
+import { useAuthContext } from '@/domain/App/context/AuthContext';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useSocketContext } from '@/domain/App/context/SocketContext';
 import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {

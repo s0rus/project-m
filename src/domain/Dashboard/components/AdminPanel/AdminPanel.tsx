@@ -2,10 +2,10 @@ import { Stack, Typography } from '@mui/material';
 
 import CardLayout from '@/layouts/CardLayout';
 import { EmojiEventsRounded } from '@mui/icons-material';
-import SettingWithButton from '@/components/SettingWithButton';
-import { useAuthContext } from '@/contexts/AuthContext';
+import SettingWithButton from '@/domain/App/components/SettingWithButton';
+import { useAuthContext } from '@/domain/App/context/AuthContext';
 import { useMemo } from 'react';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useSocketContext } from '@/domain/App/context/SocketContext';
 import { useTranslation } from 'react-i18next';
 
 const AdminPanel = () => {

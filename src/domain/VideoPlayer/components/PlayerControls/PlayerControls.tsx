@@ -4,9 +4,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import ControlsBar from '../ControlsBar';
 import { HIDE_CONTROLS_TIMEOUT } from '../../model/VideoPlayer.model';
 import Indicator from '../Indicator';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useAuthContext } from '@/domain/App/context/AuthContext';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useSocketContext } from '@/domain/App/context/SocketContext';
 
 const PlayerControls = () => {
   const { socket } = useSocketContext();

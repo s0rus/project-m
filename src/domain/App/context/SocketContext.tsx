@@ -33,7 +33,6 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
       });
 
       socket.on('connect', () => {
-        console.log('CONNECTED', socket.id);
         socket.emit('JOIN_USER', {
           socketId: socket.id,
           isAdmin: currentUser.isAdmin,
@@ -43,10 +42,7 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
       });
 
       socket.on('RECEIVE_TOAST', (message, type) => CustomToast.send(message, type));
-      socket.on('RECEIVE_NEW_LEADER', (userData) => {
-        console.log('RECEIVE_NEW_LEADER', userData);
-        setLeader(userData);
-      });
+      socket.on('RECEIVE_NEW_LEADER', (userData) => setLeader(userData));
 
       socket.on('connect_error', (err: Error) => {
         console.error(`CONNECT_ERROR: ${err}`);

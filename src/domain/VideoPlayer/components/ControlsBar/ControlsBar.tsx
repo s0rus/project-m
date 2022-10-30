@@ -7,10 +7,10 @@ import { ToastTypes } from '@/utils/ToastTypes';
 import VolumeControl from '../VolumeControl';
 import { getPlayingStateIcon } from '../../model/VideoPlayer.model';
 import timeFormatter from '@/utils/timeFormatter';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useAuthContext } from '@/domain/App/context/AuthContext';
 import useFullscreen from '@/domain/VideoPlayer/hooks/useFullscreen';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useSocketContext } from '@/domain/App/context/SocketContext';
 import { useTranslation } from 'react-i18next';
 
 interface ControlsBarProps {

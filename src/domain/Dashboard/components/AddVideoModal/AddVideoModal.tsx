@@ -4,17 +4,17 @@ import { Modal, Typography } from '@mui/material';
 import { NewVideoForm, newVideoSchema } from '../../model/NewVideo.model';
 import React, { FC, useRef, useState } from 'react';
 
-import ButtonWithLoader from '@/components/ButtonWithLoader';
+import ButtonWithLoader from '@/domain/App/components/ButtonWithLoader';
 import { CustomToast } from '@/utils/sendToast';
-import FormInput from '@/components/FormInput';
+import FormInput from '@/domain/App/components/FormInput';
 import { PlaylistAddCheck } from '@mui/icons-material';
 import ReactPlayer from 'react-player';
 import { ToastTypes } from '@/utils/ToastTypes';
 import { getYoutubeThumbnail } from '@/domain/Dashboard/utils/youtubeUtils';
 import { trpc } from '@/utils/trpc';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useAuthContext } from '@/domain/App/context/AuthContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useSocketContext } from '@/domain/App/context/SocketContext';
 import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -47,6 +47,7 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
     reset,
     getValues,
     formState: { isValid },
+    setError,
   } = methods;
 
   const handleReset = () => {
@@ -62,6 +63,8 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
 
       if (sampleVideoRef.current) {
         possibleDuration = Math.floor(sampleVideoRef.current.getDuration());
+      } else {
+        throw new Error();
       }
 
       const newVideo = await mutateAsync({
@@ -80,6 +83,8 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
       handleReset();
     }
   };
+
+  const handleOnError = () => setError('videoUrl', { message: t('addVideoModal.couldNotProcessUrl') });
 
   if (playlistLocked && !isAdmin) handleClose();
 
@@ -109,12 +114,14 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
               <SamplePlayer
                 ref={sampleVideoRef}
                 onReady={() => setPlayerReady(true)}
+                onError={handleOnError}
                 url={getValues('videoUrl')}
                 muted
                 autoPlay
                 playing={true}
                 width={0}
                 height={0}
+                volume={0}
               />
             ) : null}
           </form>

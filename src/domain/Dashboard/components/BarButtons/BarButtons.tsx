@@ -3,10 +3,10 @@ import { LogoutRounded, PlaylistAddRounded } from '@mui/icons-material';
 import React, { useState } from 'react';
 
 import AddVideoModal from '../AddVideoModal';
-import ButtonWithLoader from '@/components/ButtonWithLoader';
+import ButtonWithLoader from '@/domain/App/components/ButtonWithLoader';
 import ButtonsSkeleton from '../../skeletons/ButtonsSkeleton';
 import { Twitch } from '@/assets/logos/Twitch';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useAuthContext } from '@/domain/App/context/AuthContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
 

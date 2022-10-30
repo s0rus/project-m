@@ -5,8 +5,8 @@ import { CustomToast } from '@/utils/sendToast';
 import { ToastTypes } from '@/utils/ToastTypes';
 import { queryParams } from '../utils/queryParams';
 import { trpc } from '@/utils/trpc';
-import { useAuthContext } from '@/contexts/AuthContext';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useAuthContext } from '@/domain/App/context/AuthContext';
+import { useSocketContext } from '@/domain/App/context/SocketContext';
 import { useTranslation } from 'react-i18next';
 
 const PlaylistContext = createContext<InitialContextProps>(initialContextProps);

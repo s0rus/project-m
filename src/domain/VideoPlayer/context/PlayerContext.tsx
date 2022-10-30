@@ -21,9 +21,9 @@ import { CustomToast } from '@/utils/sendToast';
 import { LocalStorageKeys } from '@/utils/localStorageKeys';
 import ReactPlayer from 'react-player';
 import { ToastTypes } from '@/utils/ToastTypes';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useAuthContext } from '@/domain/App/context/AuthContext';
 import { usePlaylistContext } from '../../Playlist/context/PlaylistContext';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useSocketContext } from '@/domain/App/context/SocketContext';
 import { useTranslation } from 'react-i18next';
 
 const PlayerContext = createContext<InitialContextProps>(initialContextProps);
@@ -151,6 +151,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const handleOnEnd = useCallback(
     (targetVideoId?: string) => {
+      console.log(targetVideoId);
       setPlayerState((prevPlayerState) => {
         return {
           ...prevPlayerState,

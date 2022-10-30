@@ -9,7 +9,7 @@ import SimpleBar from 'simplebar-react';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import VideoPlayer from '@/domain/VideoPlayer/view/VideoPlayer';
 import { theme } from '@/styles/theme';
-import { useAddonsContext } from '@/contexts/AddonsContext';
+import { useAddonsContext } from '@/domain/App/context/AddonsContext';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Home: NextPage = () => {
