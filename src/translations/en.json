@@ -6,7 +6,8 @@
     "thumbnailAlt": "Thumbnail of the video titled {{videoTitle}}",
     "add": "Add video",
     "addedBy": "Added by",
-    "skip": "Skip video"
+    "skip": "Skip video",
+    "time": "Sync request"
   },
   "addVideoModal": {
     "header": "Add video to the queue",

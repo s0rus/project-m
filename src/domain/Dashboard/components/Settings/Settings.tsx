@@ -72,8 +72,6 @@ const Settings = () => {
           header={t('options.languageTitle')}
           subtitle={t('options.languageSubTitle')}
         />
-
-
     </div>
     </OptionsBox>
       </Options>

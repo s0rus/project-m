@@ -39,13 +39,12 @@ const Playlist = () => {
     [playlist]
   );
 
-  
+
 const CircularLocking = async () => {
   setIsLocking(true)
   await togglePlaylistLocked();
   setIsLocking(false)
 }
-
 
   return (
     <>
@@ -105,6 +104,7 @@ const CircularLocking = async () => {
             ))
           ) : (
             <EmptyPlaylistBox>
+              
               <Typography style={{textShadow: '0px 0px 10px white'}} variant='h4'>{t('playlist.empty')} <div style={{marginTop: '10px', marginLeft: '40%'}} > <Image src={MadgeIcon} alt='Madge' height={48} width={48} /></div>  </Typography>
             </EmptyPlaylistBox>
           )}

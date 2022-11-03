@@ -1,4 +1,4 @@
-import { Box, Grid, keyframes, Stack, styled } from '@mui/material';
+import { Box, Grid, Stack, styled } from '@mui/material';
 
 export const DashboardBarWrapper = styled(Box)`
   width: 100%;

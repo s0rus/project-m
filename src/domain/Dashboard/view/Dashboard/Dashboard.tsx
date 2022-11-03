@@ -15,32 +15,21 @@ const Dashboard = () => {
 
   return (
     <div>
-
     <DashboardWrapper>
-
       <DashboardContainer>
         <Grid container>
-
-
           <Grid item xs={12}>
                     <DashboardBar />
           </Grid>
-
           {isChatOn && isMediumDown && <TwitchChat />}
           <Grid item xs={12}>
-
-
-            <Grid container sx={{ mt: '1rem', height: '100%' }} spacing={2}>
-
-
+            <Grid container spacing={2}>
               <Grid item sm={12} md={8}>
                     <Playlist />
               </Grid>
-
               <Grid item sm={12} md={3.8}>
                     <Settings />
               </Grid>
-
             </Grid>
             </Grid>
           </Grid>

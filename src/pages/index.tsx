@@ -19,7 +19,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Murzyniarnia</title>
+        <title>MProject</title>
         <meta name='description' content='Strona do oglądania filmów 👨🏾‍🦱' />
         <link rel='icon' href='/favicon.ico' />
         <link rel="preconnect" href="https://fonts.googleapis.com"/>

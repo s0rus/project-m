@@ -11,30 +11,29 @@ export const SettingStack = styled(Stack)`
   cursor: pointer;
   transform: scale(1,1);
   color: #FFF;
-transition: all 0.5s;
-min-width: 150px;
-cursor: default;
-box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-max-width: 100%;
-background-color: rgba(0,0,0,0.25);
-border-radius: 8px;
-position: relative; all 0.3s;
-text-transform: capitalize;
-&:hover{
+  transition: all 0.5s;
+  min-width: 150px;
+  cursor: default;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  max-width: 100%;
+  background-color: rgba(0,0,0,0.25);
+  border-radius: 8px;
+  position: relative; all 0.3s;
+  text-transform: capitalize;
+  &:hover{
   cursor: pointer;
   background-color: rgba(255,255,255,0.09);
 }
 `;
 
 export const InnerStack = styled(Stack)`
-  flex-direction: row;
-  align-items: center;
-  cursor: pointer;
-  gap: 1.5rem;
-
-  & svg {
-    width: 2rem;
-    height: 2rem;
+flex-direction: row;
+align-items: center;
+cursor: pointer;
+gap: 1.5rem;
+& svg {
+  width: 2rem;
+  height: 2rem;
   }
 `;
 
