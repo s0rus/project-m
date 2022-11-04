@@ -8,9 +8,9 @@ services:
     #working_dir: /app
     ports:
       - '3000:3000'
-    image: kornik123/project-m:5.0
+    image: kornik123/project-m:5.1
     environment:
-      - DATABASE_URL=mysql://ezvuq64clw15fqa9x1nx:pscale_pw_tIdfWatY72uSzEUxuz4g1KW5L0fu5ElsZqblAxDtVlA@eu-west.connect.psdb.cloud/murzyniarnia?sslaccept=strict
+      - DATABASE_URL=mysql://0hj51ruy0b73n0gibl63:pscale_pw_xLwH2a0KWhPbZTJsXAYyoGrkwR5j5rzEFuB6JzGvDXr@eu-west.connect.psdb.cloud/murzyniarnia?sslaccept=strict
       - TWITCH_CLIENT_ID=u4j3e7fq3tufq8z6czxytxbqf0xrxv
       - TWITCH_CLIENT_SECRET=pyl9rpndc3qvvrh1jooi67jpq8ba60
       - NEXTAUTH_URL=https://murzyniarnia.com/
