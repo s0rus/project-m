@@ -252,18 +252,7 @@ z-index: 100;
 background: radial-gradient(circle, rgba(48,48,68,1) -50%, rgba(20,23,46,1) 60%);
 `
 export const Background = styled(SimpleBar)({
-  "@keyframes AnimateBG": {
-  "0%": {
-      background: `${gradients.gradientMain}`,
-    },
-  "50%": {
-      background: `${gradients.gradientBackground}`,
-    },
-  "100%": {
-      background: `${gradients.gradientMain}`,
-  }
-  },
-  animation: 'AnimateBG 10s ease infinite',
   maxHeight: '100vh',
   zIndex: '100',
+  background: 'radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 100%)'
 });
