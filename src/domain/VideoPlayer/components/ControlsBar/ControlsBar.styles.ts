@@ -19,7 +19,7 @@ export const ControlsBarWrapper = styled(Box)<{ controls: boolean }>`
 
 export const Seeker = styled(Slider)<{ loadedpercentage: number }>`
   color: ${theme.palette.primary.main};
-  height: 4px;
+  height: 8px;
 
   & .MuiSlider-thumb {
     width: 1rem;

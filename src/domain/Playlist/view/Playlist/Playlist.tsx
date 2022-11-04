@@ -49,21 +49,25 @@ const CircularLocking = async () => {
   return (
     <>
     <PlaylistWrapper locked={playlistLocked ? 1 : 0} style={{minWidth: isMediumDown ? '30%' : '100%', width: isMediumDown ? '100%' : '100%',}} >
-        <PlaylistHeader>         
-{isAdmin ? (
+        <PlaylistHeader>
+        {isAdmin ? (
           <div style={{marginTop: '8px'}} >
         {playlistLocked ? (
 
           <Tooltip title={t('playlist.tooltip.unlock')} >
+            <PlaylistDetail>
         <IconButton disabled={locking}>
-{locking ? <CircularProgress size={30} style={{height: '30px', width: '30px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOutlinedIcon  onClick={CircularLocking} style={{height: '30px', width: '30px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} />}
+{locking ? <CircularProgress size={20} style={{height: '20px', width: '20px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOutlinedIcon  onClick={CircularLocking} style={{height: '25px', width: '25px', marginTop: '-12px', marginRight: '-15px', marginLeft: '-10px'}} />}
         </IconButton>
+            </PlaylistDetail>
           </Tooltip>
         ) : (
           <Tooltip title={t('playlist.tooltip.lock')} >
+            <PlaylistDetail>
       <IconButton disabled={locking}>
-{locking ? <CircularProgress size={30} style={{height: '30px', width: '30px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOpenOutlinedIcon  onClick={CircularLocking} style={{height: '30px', width: '30px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} />}
+{locking ? <CircularProgress size={20} style={{height: '20px', width: '20px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOpenOutlinedIcon  onClick={CircularLocking} style={{height: '25px', width: '25px', marginTop: '-12px', marginRight: '-15px', marginLeft: '-10px'}} />}
       </IconButton>
+            </PlaylistDetail>
          </Tooltip>
          )} 
           </div>
@@ -71,11 +75,11 @@ const CircularLocking = async () => {
   <div style={{marginTop: '8px'}} >
   {playlistLocked ? (
               <Tooltip title={t('playlist.tooltip.locked')} >
-  <LockOutlinedIcon style={{color: 'rgba(255, 0, 0, 0.49)'}} />
+  <LockOutlinedIcon style={{height: '25px', width: '25px', marginTop: '-5px', marginRight: '-8px'}} />
               </Tooltip>
   ) : (
               <Tooltip title={t('playlist.tooltip.unlocked')} >
-   <LockOpenOutlinedIcon style={{color: 'rgba(38, 255, 0, 0.49)'}} />
+   <LockOpenOutlinedIcon style={{height: '25px', width: '25px', marginTop: '-5px', marginRight: '-8px'}} />
               </Tooltip>
    )} 
     </div>
