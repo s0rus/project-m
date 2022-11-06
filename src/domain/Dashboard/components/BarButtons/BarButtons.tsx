@@ -75,8 +75,9 @@ const isCurrentUserLeader = useMemo(() => {
               style={{marginRight: '1.5rem'}}
               onClick={handleLogging}>
                 <IconButton disabled={logging} >
-                {logging ? <CircularProgress size={32} /> : <PlaylistAddRounded style={{marginRight: '5px', color: 'gray'}} />}
+                {logging ? <CircularProgress size={32} /> : <PlaylistAddRounded style={{color: 'gray', height: '30px', width: '30px', marginRight: '-5px'}} />}
                 </IconButton>
+                {t('video.add')}
             </StyledButton>
         </Tooltip>
         </>

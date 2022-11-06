@@ -10,7 +10,6 @@ import { useTranslation } from 'react-i18next';
 import CheckIcon from '@mui/icons-material/Check';
 import { ToastTypes } from '@/utils/ToastTypes';
 import { CustomToast } from '@/utils/sendToast';
-import { Seeker }  from '@/styles/style'
 import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '../../context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
@@ -91,7 +90,9 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
       <>
       {isMediumUp ? (
       <PlaylistItemWrapper>
+        <Link href={videoUrl} target='_blank' rel='noopener norefferer' >
           <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
+          </Link>
         {isAdmin &&
         <div>
               <Tooltip title={t('playlist.tooltip.delete')} >
@@ -133,7 +134,6 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
                 {videoTitle}
           </Link>
           </ItemTitle>
-            <Seeker aria-label='time-indicator'size='small'/>
             <AddedByWrapper>
           {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
           <Typography component='span' style={{textShadow: '0px 0px 2px white'}} >{addedBy.name}</Typography>

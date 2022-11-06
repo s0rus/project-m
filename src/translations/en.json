@@ -4,10 +4,10 @@
   "cancelMute": "Disable mute",
   "video": {
     "thumbnailAlt": "Thumbnail of the video titled {{videoTitle}}",
-    "add": "Add video",
+    "add": "Add",
     "addedBy": "Added by",
-    "skip": "Skip video",
-    "time": "Sync request"
+    "skip": "Skip",
+    "time": "Sync"
   },
   "addVideoModal": {
     "header": "Add video to the queue",

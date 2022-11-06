@@ -4,14 +4,12 @@ import SimpleBar from 'simplebar-react';
 
  export const Options = styled('div')`
 position: relative;
-min-width: 150px;
-max-width: 100%;
 height: 100%;
+width: 100%;
 border-radius: 8px;
 padding-top: 1rem;
 padding-bottom: 1rem;
 transition: 0.3s;
-margin-left: 20px;
 box-shadow: rgba(0, 0, 0, 1) 0px 25px 20px -20px;
 background: ${gradients.gradientMain};
 &:hover{
@@ -45,7 +43,7 @@ export const OptionsTitle = styled('h1')({
   fontSize: '1.5rem',
   fontWeight: '600',
   textAlign: 'left',
-  marginLeft: '20px',
+  marginLeft: '30px',
   marginTop: '0px',
   cursor: 'default',
   display: 'flex'

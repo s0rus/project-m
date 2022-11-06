@@ -8,9 +8,9 @@ export const SettingStack = styled(Stack)`
   justify-content: space-between;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-
-  transform: scale(0.93,0.93);
   color: #FFF;
+  margin-top: -10px;
+  margin-bottom: 20px;
 transition: all 0.5s;
 min-width: 150px;
 cursor: default;

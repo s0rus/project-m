@@ -5,13 +5,10 @@ import { useMemo } from 'react';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
 import {  Options, OptionsTitle} from '@/styles/style';
-import { theme } from '@/styles/theme';
-import { useMediaQuery  } from '@mui/material';
 const AdminPanel = () => {
   const { t } = useTranslation();
   const { leader, socket } = useSocketContext();
   const { currentUser } = useAuthContext();
-  const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
 
   const leaderIdentifier = useMemo(() => {
     if (!leader) return t('adminPanel.leader.noLeader');
@@ -34,8 +31,8 @@ const AdminPanel = () => {
   };
 
   return (
-        <Options style={{minWidth: isMediumDown ? '96%' : '100%', width: isMediumDown ? '96%' : '100%',}} >
-        <OptionsTitle>{t('adminPanel.header')}</OptionsTitle>
+        <Options>
+        <OptionsTitle style={{marginLeft: '30px'}} >{t('adminPanel.header')}</OptionsTitle>
         <SettingWithButton
           header={leaderIdentifier}
           subtitle={t('adminPanel.leader.subititle')}

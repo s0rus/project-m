@@ -8,7 +8,6 @@ export const SettingStack = styled(Stack)`
   justify-content: space-between;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-  cursor: pointer;
   transform: scale(1,1);
   color: #FFF;
   transition: all 0.5s;
@@ -29,7 +28,6 @@ export const SettingStack = styled(Stack)`
 export const InnerStack = styled(Stack)`
 flex-direction: row;
 align-items: center;
-cursor: pointer;
 gap: 1.5rem;
 & svg {
   width: 2rem;
@@ -41,9 +39,7 @@ export const TitleOption = styled('h2')`
 line-height: 1.1;
 font-size: 16px;
 width: 100px;
-cursor: pointer;
 letter-spacing: 1px;
-cursor: default;
 position: relative;
 text-shadow: 0px 0px 10px white;
 text-align: left;
@@ -58,9 +54,7 @@ font-size: 13px;
 font-weight: 400;
 letter-spacing: 1px;
 width: 200px;
-cursor: pointer;
 right: 15px;
-cursor: default;
 display: flex;
 transition: all 0.3s ease 0s;
 position: relative;

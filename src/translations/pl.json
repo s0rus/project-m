@@ -4,10 +4,10 @@
   "cancelMute": "Anuluj wyciszenie",
   "video": {
     "thumbnailAlt": "Miniaturka filmu {{videoTitle}}",
-    "add": "Dodaj film",
+    "add": "Dodaj",
     "addedBy": "Dodane przez",
-    "skip": "Pomiń film",
-    "time": "Ustaw czas"
+    "skip": "Pomiń",
+    "time": "Synchro"
   },
   "addVideoModal": {
     "header": "Dodaj film do kolejki",
