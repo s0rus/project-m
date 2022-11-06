@@ -33,6 +33,7 @@ const AdminPanel = () => {
   return (
         <Options>
         <OptionsTitle style={{marginLeft: '30px'}} >{t('adminPanel.header')}</OptionsTitle>
+        <div style={{padding: '0rem 1.6rem'}}>
         <SettingWithButton
           header={leaderIdentifier}
           subtitle={t('adminPanel.leader.subititle')}
@@ -41,8 +42,8 @@ const AdminPanel = () => {
           icon={<EmojiEventsRounded />}
           variant='contained'
           disabled={isCurrentUserLeader}
-          style={{margin: '0.5rem 1.8rem'}}
         />
+        </div>
         </Options>
   );
 };
