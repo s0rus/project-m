@@ -41,6 +41,7 @@ const AdminPanel = () => {
           icon={<EmojiEventsRounded />}
           variant='contained'
           disabled={isCurrentUserLeader}
+          style={{margin: '0.5rem 1.8rem'}}
         />
         </Options>
   );
