@@ -3,25 +3,20 @@ import { Stack, Typography } from '@mui/material';
 import CardLayout from '@/layouts/CardLayout';
 import { EmojiEventsRounded } from '@mui/icons-material';
 import SettingWithButton from '@/domain/App/components/SettingWithButton';
-import { useAuthContext } from '@/domain/App/context/AuthContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
 import { useMemo } from 'react';
-import { useSocketContext } from '@/domain/App/context/SocketContext';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
 
 const AdminPanel = () => {
   const { t } = useTranslation();
-  const { leader, socket } = useSocketContext();
+  const { leader, socket, isCurrentUserLeader } = useSocketContext();
   const { currentUser } = useAuthContext();
 
   const leaderIdentifier = useMemo(() => {
     if (!leader) return t('adminPanel.leader.noLeader');
     return t('adminPanel.leader.header', { leaderIdentifier: leader.username || leader.socketId });
   }, [leader, t]);
-
-  const isCurrentUserLeader = useMemo(() => {
-    if (!leader || !currentUser) return false;
-    return leader.userId === currentUser.id;
-  }, [leader, currentUser]);
 
   const handleSetLeader = () => {
     if (!socket) return;

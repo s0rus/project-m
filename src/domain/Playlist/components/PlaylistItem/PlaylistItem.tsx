@@ -7,10 +7,10 @@ import { CustomToast } from '@/utils/sendToast';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import { ToastTypes } from '@/utils/ToastTypes';
 import VideoThumbnail from '@/domain/App/components/VideoThumbnail';
-import { useAuthContext } from '@/domain/App/context/AuthContext';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
-import { usePlaylistContext } from '../../context/PlaylistContext';
-import { useSocketContext } from '@/domain/App/context/SocketContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
+import { usePlayerContext } from '@/domain/VideoPlayer/context/VideoPlayer.context';
+import { usePlaylistContext } from '../../context/Playlist.context';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
 
 interface PlaylistItemsProps {

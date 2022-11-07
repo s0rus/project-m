@@ -6,8 +6,8 @@ import AddVideoModal from '../AddVideoModal';
 import ButtonWithLoader from '@/domain/App/components/ButtonWithLoader';
 import ButtonsSkeleton from '../../skeletons/ButtonsSkeleton';
 import { Twitch } from '@/assets/logos/Twitch';
-import { useAuthContext } from '@/domain/App/context/AuthContext';
-import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
+import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
 import { useTranslation } from 'react-i18next';
 
 const BarButtons = () => {

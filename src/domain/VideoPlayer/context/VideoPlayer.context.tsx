@@ -21,9 +21,9 @@ import { CustomToast } from '@/utils/sendToast';
 import { LocalStorageKeys } from '@/utils/localStorageKeys';
 import ReactPlayer from 'react-player';
 import { ToastTypes } from '@/utils/ToastTypes';
-import { useAuthContext } from '@/domain/App/context/AuthContext';
-import { usePlaylistContext } from '../../Playlist/context/PlaylistContext';
-import { useSocketContext } from '@/domain/App/context/SocketContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
+import { usePlaylistContext } from '../../Playlist/context/Playlist.context';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
 
 const PlayerContext = createContext<InitialContextProps>(initialContextProps);
@@ -43,11 +43,14 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const getDuration = useCallback(() => playerRef?.current?.getDuration() || 0, [playerRef]);
   const getPlayedSeconds = useCallback(() => playerRef?.current?.getCurrentTime() || 0, [playerRef]);
   const isPlayerPlaying = useMemo(() => playerState.isPlaying, [playerState.isPlaying]);
+  const requestPlayerState = useCallback(() => {
+    if (!socket || !playerState.isReady) return;
+    socket.emit('REQUEST_PLAYER_STATE');
+  }, [socket, playerState.isReady]);
 
   useEffect(() => {
-    if (!socket) return;
-    socket.emit('REQUEST_PLAYER_STATE');
-  }, [socket]);
+    requestPlayerState();
+  }, [requestPlayerState]);
 
   useEffect(() => {
     setPlayerState((prevPlayerState) => {
@@ -244,6 +247,8 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
     socket.on('RECEIVE_SKIP_VIDEO', (targetVideoId) => handleOnEnd(targetVideoId));
     socket.on('RECEIVE_PLAYER_STATE', (receivedPlayerState) => {
       if (receivedPlayerState) {
+        console.log(receivedPlayerState);
+
         setPlayerState((prevPlayerState) => {
           return {
             ...prevPlayerState,
@@ -283,6 +288,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
       setVolume,
       toggleControls,
       disableInitialMute,
+      requestPlayerState,
     }),
     [
       playerState,
@@ -303,6 +309,7 @@ export const PlayerContextProvider: FC<PropsWithChildren> = ({ children }) => {
       setVolume,
       toggleControls,
       disableInitialMute,
+      requestPlayerState,
     ]
   );
 

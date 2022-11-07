@@ -3,17 +3,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import React, { FC, PropsWithChildren } from 'react';
 
-import { AuthContextProvider } from '@/domain/App/context/AuthContext';
-import { PlayerContextProvider } from '@/domain/VideoPlayer/context/PlayerContext';
-import { PlaylistContextProvider } from '@/domain/Playlist/context/PlaylistContext';
+import { AuthContextProvider } from '@/domain/App/context/Auth.context';
+import { PlayerContextProvider } from '@/domain/VideoPlayer/context/VideoPlayer.context';
+import { PlaylistContextProvider } from '@/domain/Playlist/context/Playlist.context';
 import { type Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
-import { SocketContextProvider } from '@/domain/App/context/SocketContext';
+import { SocketContextProvider } from '@/domain/App/context/Socket.context';
 import { ToastContainer, Slide } from 'react-toastify';
 import { theme } from '@/styles/theme';
-import { AddonsContextProvider } from '@/domain/App/context/AddonsContext';
+import { AddonsContextProvider } from '@/domain/App/context/Addons.context';
 
-const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ children, session }) => {
+const AppProviders: FC<PropsWithChildren & { session: Session | null }> = ({ children, session }) => {
   return (
     <SessionProvider session={session} refetchOnWindowFocus={false}>
       <AuthContextProvider>
@@ -44,4 +44,4 @@ const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ chi
   );
 };
 
-export default AllProviders;
+export default AppProviders;

@@ -12,7 +12,7 @@ import PlaylistItem from '../../components/PlaylistItem';
 import React from 'react';
 import timeFormatter from '@/utils/timeFormatter';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
+import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
 import { useTranslation } from 'react-i18next';
 
 const Playlist = () => {

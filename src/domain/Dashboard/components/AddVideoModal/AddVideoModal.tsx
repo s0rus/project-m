@@ -12,9 +12,9 @@ import ReactPlayer from 'react-player';
 import { ToastTypes } from '@/utils/ToastTypes';
 import { getYoutubeThumbnail } from '@/domain/Dashboard/utils/youtubeUtils';
 import { trpc } from '@/utils/trpc';
-import { useAuthContext } from '@/domain/App/context/AuthContext';
-import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
-import { useSocketContext } from '@/domain/App/context/SocketContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
+import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 

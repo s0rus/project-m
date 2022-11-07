@@ -8,12 +8,13 @@ import Settings from '../../components/Settings';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import { theme } from '@/styles/theme';
 import { toast } from 'react-toastify';
-import { useAddonsContext } from '@/domain/App/context/AddonsContext';
-import { useAuthContext } from '@/domain/App/context/AuthContext';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
-import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
-import { useSocketContext } from '@/domain/App/context/SocketContext';
+import { useAddonsContext } from '@/domain/App/context/Addons.context';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
+import { usePlayerContext } from '@/domain/VideoPlayer/context/VideoPlayer.context';
+import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
+import Repertoire from '@/domain/Repertoire/view/Repertoire';
 
 const Dashboard = () => {
   const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
@@ -39,6 +40,9 @@ const Dashboard = () => {
               </Grid>
               <Grid item sm={12} md={5} sx={{ pt: '0!important' }}>
                 <Grid container>
+                  <Grid item xs={12}>
+                    <Repertoire />
+                  </Grid>
                   {isAdmin && (
                     <Grid item xs={12}>
                       <AdminPanel />

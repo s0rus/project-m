@@ -18,11 +18,8 @@
     "baseUrl": "src/",
     "paths": {
       "@/assets/*": ["assets/*"],
-      "@/components/*": ["components/*"],
-      "@/contexts/*": ["contexts/*"],
       "@/domain/*": ["domain/*"],
       "@/env/*": ["env/*"],
-      "@/hooks/*": ["hooks/*"],
       "@/layouts/*": ["layouts/*"],
       "@/pages/*": ["pages/*"],
       "@/server/*": ["server/*"],

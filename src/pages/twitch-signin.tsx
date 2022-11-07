@@ -1,7 +1,7 @@
 import { signIn } from 'next-auth/react';
-import { useAuthContext } from '@/domain/App/context/AuthContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
 import { useEffect } from 'react';
-import { useSocketContext } from '@/domain/App/context/SocketContext';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 
 const SignInPage = () => {
   const { socket } = useSocketContext();

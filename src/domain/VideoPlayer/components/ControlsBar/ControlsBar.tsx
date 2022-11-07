@@ -1,16 +1,16 @@
 import { ControlsBarWrapper, Seeker, Timer } from './ControlsBar.styles';
-import { FullscreenExitRounded, FullscreenRounded } from '@mui/icons-material';
-import { IconButton, Typography } from '@mui/material';
+import { FullscreenExitRounded, FullscreenRounded, SyncRounded } from '@mui/icons-material';
+import { IconButton, Tooltip, Typography } from '@mui/material';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import { ToastTypes } from '@/utils/ToastTypes';
 import VolumeControl from '../VolumeControl';
 import { getPlayingStateIcon } from '../../model/VideoPlayer.model';
 import timeFormatter from '@/utils/timeFormatter';
-import { useAuthContext } from '@/domain/App/context/AuthContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
 import useFullscreen from '@/domain/VideoPlayer/hooks/useFullscreen';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
-import { useSocketContext } from '@/domain/App/context/SocketContext';
+import { usePlayerContext } from '../../context/VideoPlayer.context';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
 
 interface ControlsBarProps {
@@ -20,13 +20,20 @@ interface ControlsBarProps {
 }
 
 const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouseLeave }) => {
-  const { socket } = useSocketContext();
+  const { socket, isCurrentUserLeader } = useSocketContext();
   const { t } = useTranslation();
   const { isAdmin, currentUser } = useAuthContext();
-  const { handleSeek, seeking, setSeeking, seekTo, playerState } = usePlayerContext();
+  const { handleSeek, seeking, setSeeking, seekTo, playerState, requestPlayerState } = usePlayerContext();
   const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo, loadedSeconds } = playerState;
   const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);
   const { toggleFullscreen, isFullscreen } = useFullscreen();
+
+  const handleSyncWithLeader = useCallback(() => {
+    if (isCurrentUserLeader || !activeVideo) {
+      return;
+    }
+    requestPlayerState();
+  }, [requestPlayerState, isCurrentUserLeader, activeVideo]);
 
   const handleSeekMouseUp = useCallback(() => {
     setSeeking(false);
@@ -51,7 +58,9 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
 
   return (
     <ControlsBarWrapper controls={controlsVisible} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-      <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
+      <Tooltip title={isPlaying ? t('playerControls.tooltip.pause') : t('playerControls.tooltip.play')} placement='top'>
+        <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
+      </Tooltip>
       <VolumeControl />
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(playedSeconds, duration >= 3600)}</Typography>
@@ -71,9 +80,16 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(duration)}</Typography>
       </Timer>
-      <IconButton onClick={() => toggleFullscreen()}>
-        {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}
-      </IconButton>
+      <Tooltip title={t('playerControls.tooltip.sync')} placement='top'>
+        <IconButton onDoubleClick={handleSyncWithLeader} disabled={isCurrentUserLeader || !activeVideo}>
+          <SyncRounded />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title={t('playerControls.tooltip.fullscreen')} placement='top'>
+        <IconButton onClick={() => toggleFullscreen()}>
+          {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}
+        </IconButton>
+      </Tooltip>
     </ControlsBarWrapper>
   );
 };

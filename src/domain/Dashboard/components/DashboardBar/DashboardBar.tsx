@@ -4,7 +4,7 @@ import { Divider, Grid } from '@mui/material';
 import BarButtons from '../BarButtons';
 import React from 'react';
 import VideoCard from '@/domain/App/components/VideoCard';
-import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
+import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
 
 const DashboardBar = () => {
   const { currentVideo } = usePlaylistContext();
