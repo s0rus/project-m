@@ -11,7 +11,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsOnClick from '@/domain/App/components/SettingsOnClick';
 import SettingWithButton from '@/domain/App/components/SettingWithButton';
 import LogoutIcon from '@mui/icons-material/Logout';
-import Image from 'next/image';
 const Settings = () => {
   const { language, setLanguage  } = useAddonsContext();
   const { loginWithTwitch, logoutOfTwitch } = useAuthContext();
@@ -34,7 +33,7 @@ const Settings = () => {
           subtitle={currentUser.name!}
           buttonLabel={t('logOut')}
           buttonAction={logoutOfTwitch}
-          icon={<Image style={{height: '35px', width: '35px', borderRadius: '12px'}}  src={currentUser.image!} alt='avatar' />}
+          icon={<img style={{height: '35px', width: '35px', borderRadius: '12px'}}  src={currentUser.image!} alt='avatar' />}
           hiddenicon={<LogoutIcon />}
           variant='contained'
         />
