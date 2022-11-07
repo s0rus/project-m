@@ -1,6 +1,8 @@
 import { Box, BoxProps } from '@mui/material';
 import { InnerStack, SettingStack, TitleOption, SubTitleOption } from './SettingsOnClick.styles';
 import React, { FC } from 'react';
+import { useAddonsContext } from '@/contexts/AddonsContext';
+import SettingWithCheckbox from '@/components/SettingWithCheckbox';
 interface SettingsOnClick extends BoxProps {
   icon: JSX.Element;
   header: string;
@@ -8,6 +10,7 @@ interface SettingsOnClick extends BoxProps {
 }
 
 const SettingsOnClick: FC<SettingsOnClick> = ({ icon, header, subtitle }) => {
+  const { isChatOn, setIsChatOn,  } = useAddonsContext();
   return (
     <SettingStack  style={{cursor: 'default'}}>
       <Box>
@@ -17,6 +20,7 @@ const SettingsOnClick: FC<SettingsOnClick> = ({ icon, header, subtitle }) => {
             <TitleOption>{header}</TitleOption>
             <SubTitleOption>{subtitle}</SubTitleOption>
           </Box>
+          <SettingWithCheckbox checked={isChatOn} setter={setIsChatOn}/>
         </InnerStack>
       </Box>
     </SettingStack>

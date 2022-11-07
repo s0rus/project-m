@@ -222,7 +222,7 @@ export const theme = createTheme({
           },
           '&:hover': {
             backgroundColor: `#3a3740`,
-            transition: `0.5s`,
+            transition: `0.3s`,
             cursor: 'col-resize',
             height: '100vh',
             borderRadius: '20px',
@@ -231,7 +231,7 @@ export const theme = createTheme({
 
         '.react-page-split__divider--horizontal': {
           background: `#18181b`,
-          maxWidth: `5px`,
+          maxWidth: `6px`,
           transition: `0.1s`,
           cursor: 'col-resize',
           touchAction: 'pan-x',

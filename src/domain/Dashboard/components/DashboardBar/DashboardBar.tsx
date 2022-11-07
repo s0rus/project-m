@@ -18,7 +18,7 @@ const DashboardBar = () => {
           <Grid item sm={12} md={7}>
             <VideoCard video={currentVideo} />
           </Grid>
-          <Grid item sm={12} md={5}>
+          <Grid item sm={12} md={4}>
             <DashboardBarButtons>
               <BarButtons />
             </DashboardBarButtons>

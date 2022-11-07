@@ -60,7 +60,7 @@ const isCurrentUserLeader = useMemo(() => {
             <StyledButton
               onClick={handleOpen}
               disabled={playlistLocked && !isAdmin}
-              style={{marginRight: '2rem'}}
+              style={{marginRight: '1rem'}}
             >
               <PlaylistAddRounded style={{marginRight: '5px'}} />
               {t('video.add')}
@@ -74,8 +74,8 @@ const isCurrentUserLeader = useMemo(() => {
               <StyledButton
               style={{marginRight: '1.5rem'}}
               onClick={handleLogging}>
-                <IconButton disabled={logging} >
-                {logging ? <CircularProgress size={32} /> : <PlaylistAddRounded style={{color: 'gray', height: '30px', width: '30px', marginRight: '-5px'}} />}
+                <IconButton disabled={logging}>
+                {logging ? <CircularProgress size={32} /> : <PlaylistAddRounded style={{color: 'gray', height: '30px', width: '30px', marginRight: '-5px'}}/>}
                 </IconButton>
                 {t('video.add')}
             </StyledButton>

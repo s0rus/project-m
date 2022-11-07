@@ -4,11 +4,9 @@ import SimpleBar from 'simplebar-react';
 
  export const Options = styled('div')`
 position: relative;
-height: 100%;
 width: 100%;
 border-radius: 8px;
-padding-top: 1rem;
-padding-bottom: 1rem;
+padding-top: 0.5rem;
 transition: 0.3s;
 box-shadow: rgba(0, 0, 0, 1) 0px 25px 20px -20px;
 background: ${gradients.gradientMain};
@@ -20,7 +18,7 @@ export const OptionsBox = styled('div')`
 min-width: 150px;
 max-width: 100%;
 box-sizing: border-box;
-padding: 0rem 1.5rem;
+padding: 0rem 1.6rem;
 -webkit-font-smoothing: antialiased;
 outline-color: rgb(117, 122, 255);
 transition: 0.3s ease-in-out;
@@ -44,7 +42,7 @@ export const OptionsTitle = styled('h1')({
   fontWeight: '600',
   textAlign: 'left',
   marginLeft: '30px',
-  marginTop: '0px',
+  marginTop: '10px',
   cursor: 'default',
   display: 'flex'
 });
@@ -144,7 +142,7 @@ export const StyledButton = styled(Button)({
       color: `${theme.palette.primary.main}`,
   }
   },
-  animation: 'AnimText 5s ease infinite',
+  animation: 'AnimText 4s ease infinite',
   transition: 'all 0.5s',
   borderRadius: '14px',
   width: '130px',
@@ -201,7 +199,7 @@ export const AddedByWrapper = styled(Stack)`
   align-items: center;
   align-self: flex-start;
   gap: 0.8rem;
-  background-color: #18181b;
+  background-color: rgba(255,255,255,0.10);
   border-radius: 4px;
   padding-right: 0.8rem;
   border-radius: 8px;

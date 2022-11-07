@@ -31,7 +31,7 @@ const AdminPanel = () => {
   };
 
   return (
-        <Options>
+        <Options style={{height: '150px'}} >
         <OptionsTitle style={{marginLeft: '30px'}} >{t('adminPanel.header')}</OptionsTitle>
         <div style={{padding: '0rem 1.6rem'}}>
         <SettingWithButton
@@ -40,6 +40,7 @@ const AdminPanel = () => {
           buttonLabel={!isCurrentUserLeader ? t('adminPanel.leader.becomeLeader') : t('adminPanel.leader.userIsLeader')}
           buttonAction={handleSetLeader}
           icon={<EmojiEventsRounded />}
+          hiddenicon={<EmojiEventsRounded />}
           variant='contained'
           disabled={isCurrentUserLeader}
         />

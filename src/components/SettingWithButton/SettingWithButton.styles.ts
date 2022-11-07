@@ -39,7 +39,7 @@ export const InnerStack = styled(Stack)`
 export const TitleOption = styled('h2')`
 line-height: 1.1;
 font-size: 16px;
-width: 100px;
+width: 100%;
 letter-spacing: 1px;
 cursor: default;
 position: relative;
@@ -55,7 +55,7 @@ line-height: 1.1;
 font-size: 13px;
 font-weight: 400;
 letter-spacing: 1px;
-width: 200px;
+width: 100%;
 right: 15px;
 cursor: default;
 display: flex;
