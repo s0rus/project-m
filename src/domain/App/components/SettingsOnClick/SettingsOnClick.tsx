@@ -1,8 +1,8 @@
 import { Box, BoxProps } from '@mui/material';
 import { InnerStack, SettingStack, TitleOption, SubTitleOption } from './SettingsOnClick.styles';
 import React, { FC } from 'react';
-import { useAddonsContext } from '@/contexts/AddonsContext';
-import SettingWithCheckbox from '@/components/SettingWithCheckbox';
+import { useAddonsContext } from '@/domain/App/context/Addons.context';
+import SettingWithCheckbox from '@/domain/App/components/SettingWithCheckbox';
 interface SettingsOnClick extends BoxProps {
   icon: JSX.Element;
   header: string;

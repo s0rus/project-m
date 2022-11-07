@@ -1,7 +1,7 @@
 import { signIn } from 'next-auth/react';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
 import { useEffect } from 'react';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 
 const SignInPage = () => {
   const { socket } = useSocketContext();
@@ -22,7 +22,7 @@ const SignInPage = () => {
         position: 'absolute',
         left: 0,
         top: 0,
-        background: '#18181b',
+        background: 'white',
       }}
     ></div>
   );

@@ -1,4 +1,5 @@
 import { Box, Button, ButtonProps } from '@mui/material';
+import { Typography } from '@mui/material';
 import { InnerStack, SettingStack, TitleOption, SubTitleOption } from './SettingWithButton.styles';
 import React, { FC } from 'react';
 import Hidden from '@mui/material/Hidden';
@@ -29,7 +30,9 @@ const SettingWithButton: FC<SettingWithButton> = ({ icon, hiddenicon, header, su
         </InnerStack>
         <Hidden lgDown>
         <Button style={{position: 'absolute', right: '20px', bottom: '18px', height: '35px', minWidth: '60px', width: '120px' , fontSize: '12px', textTransform: 'capitalize'}} {...rest} onClick={buttonAction}>
+        <Typography style={{fontSize: '13px'}} >
           {buttonLabel}
+        </Typography>
         </Button>
         </Hidden>
         <Hidden lgUp>

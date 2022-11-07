@@ -9,11 +9,11 @@ import { PlaylistContextProvider } from '@/domain/Playlist/context/PlaylistConte
 import { type Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import { SocketContextProvider } from '@/domain/App/context/Socket.context';
-import { ToastContainer, Zoom } from 'react-toastify';
+import { ToastContainer, Slide } from 'react-toastify';
 import { theme } from '@/styles/theme';
 import { AddonsContextProvider } from '@/domain/App/context/Addons.context';
 
-const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ children, session }) => {
+const AppProviders: FC<PropsWithChildren & { session: Session | null }> = ({ children, session }) => {
   return (
     <SessionProvider session={session} refetchOnWindowFocus={false}>
       <AuthContextProvider>
@@ -25,14 +25,14 @@ const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ chi
                   <CssBaseline />
                   {children}
                   <ToastContainer
-                    transition={Zoom}
-                    position='bottom-center'
-                    autoClose={2500}
+                    transition={Slide}
+                    position='bottom-left'
+                    autoClose={5000}
                     closeButton={false}
                     hideProgressBar={true}
                     draggable={false}
-                    limit={2}
-                    style={{ width: 'auto', textShadow: '0px 0px 10px white',}}
+                    limit={1}
+                    style={{ width: 'auto' }}
                   />
                 </ThemeProvider>
               </AddonsContextProvider>
@@ -44,4 +44,4 @@ const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ chi
   );
 };
 
-export default AllProviders;
+export default AppProviders;

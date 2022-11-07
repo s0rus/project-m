@@ -10,9 +10,7 @@ padding-top: 0.5rem;
 transition: 0.3s;
 box-shadow: rgba(0, 0, 0, 1) 0px 25px 20px -20px;
 background: ${gradients.gradientMain};
-&:hover{
-  transform: scale(1.01,1.01);
-  background: rgba(0, 0, 0, 0.25);}
+
 `
 export const OptionsBox = styled('div')`
 min-width: 150px;
@@ -57,7 +55,7 @@ box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 max-width: 100%;
 background-color: rgba(0,0,0,0.25);
 border-radius: 8px;
-position: relative; all 0.3s;
+position: relative; all 0.1s;
 margin-bottom: 20px;
 text-transform: capitalize;
 &:hover{
@@ -89,7 +87,7 @@ letter-spacing: 1px;
 width: 200px;
 cursor: default;
 display: flex;
-transition: all 0.3s ease 0s;
+transition: all 0.1s ease 0s;
 position: relative;
 text-align: left;
 margin: 0px;
@@ -119,7 +117,7 @@ font-size: 13px;
 font-weight: 400;
 letter-spacing: 1px;
 display: flex;
-transition: all 0.3s ease 0s;
+transition: all 0.1s ease 0s;
 position: relative;
 text-align: left;
 margin: 0px;
@@ -129,58 +127,59 @@ font-weight: 400;
 color: ${theme.palette.primary.main};`
 
 
-export const StyledButton = styled(Button)({
-  "@keyframes AnimText": {
-  "0%": {
-      color: `${theme.palette.primary.main}`,
-    },
-  "50%": {
-      color: 'white',
-      textShadow: '0px 0px 4px white',
-    },
-  "100%": {
-      color: `${theme.palette.primary.main}`,
-  }
-  },
-  animation: 'AnimText 4s ease infinite',
-  transition: 'all 0.5s',
-  borderRadius: '14px',
-  width: '130px',
-  height: '40px',
-  boxShadow: 'rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px',
-  position: 'relative',
-  marginLeft: '20px',
-  textTransform: 'capitalize',
-  ":hover": {
-    transform: 'scale(1.1,1.1)',
-    background: 'rgba(0,0,0, 0.55)',
-    border: `1px solid ${theme.palette.primary.main}`
-  }  
-});
-
-
-export const StyledButtonSkeleton = styled(Button)`
-color: #FFF;
-transition: all 0.5s;
-border-radius: 8px;
-width: 130px;
-height: 40px;
-position: relative; all 0.3s;
-text-transform: capitalize;
-cursor: default;
-&:before{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  border-radius: 8px;
-  height: 100%;
-  z-index: 1;
-  background-color: rgba(255,255,255,0.1);
-  transition: all 0.3s;
+export const StyledButton = styled(Button)`
+	width: 250px;
+	height: 52px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	border: none;
+	border-radius: 28px;
+	background: rgba(0,0,0,0.35);
+  overflow: hidden;
+  text-transform: capitalize;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  margin-left: 2rem;
+span {
+	transition: 200ms;
 }
-` 
+
+.text {
+	color: white;
+	font-weight: bold;
+  text-shadow: 0px 0px 10px white;
+}
+
+.icon {
+	position: absolute;
+	height: 40px;
+  opacity: 0;
+	width: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+&:hover {
+	background: rgba(0,0,0,0.55);
+}
+
+&:hover .text {
+  opacity: 0;
+}
+
+&:hover .icon {
+	width: 150px;
+	border-left: none;
+  opacity: 1;
+	transform: translateX(0);
+}
+
+&:focus {
+	outline: none;
+}`
+
+
 
 export const CurrentVideoWrapper = styled(Box)`
   display: flex;

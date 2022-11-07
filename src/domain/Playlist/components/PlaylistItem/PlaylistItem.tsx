@@ -3,19 +3,19 @@ import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper, Delete, Curr
 import React, { FC, useState } from 'react';
 import { ListItem, Tooltip} from '@mui/material';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
-import VideoThumbnail from '@/components/VideoThumbnail/';
+import VideoThumbnail from '@/domain/App/components/VideoThumbnail/';
 import { AddedByAvatar, AddedByWrapper } from '@/styles/style'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useTranslation } from 'react-i18next';
 import CheckIcon from '@mui/icons-material/Check';
 import { ToastTypes } from '@/utils/ToastTypes';
 import { CustomToast } from '@/utils/sendToast';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
 import { usePlaylistContext } from '../../context/PlaylistContext';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext'
+import { usePlayerContext } from '@/domain/VideoPlayer/context/VideoPlayer.context'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { theme } from '@/styles/theme';
@@ -131,7 +131,9 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
           <PlaylistItemContent>
           <ItemTitle>
           <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
+          <Typography variant='h4'>
                 {videoTitle}
+          </Typography>
           </Link>
           </ItemTitle>
             <AddedByWrapper>
@@ -148,11 +150,11 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
         <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
       <PlaylistItemBox>
         <PlaylistItemContent>
-        <ItemTitle>
         <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
+        <Typography variant='h4'>
               {videoTitle}
+        </Typography>
         </Link>
-        </ItemTitle>
           <AddedByWrapper>
         {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
         <Typography component='span' style={{textShadow: '0px 0px 2px white'}} >{addedBy.name}</Typography>

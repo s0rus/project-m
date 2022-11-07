@@ -18,11 +18,8 @@
     "baseUrl": "src/",
     "paths": {
       "@/assets/*": ["assets/*"],
-      "@/components/*": ["components/*"],
-      "@/contexts/*": ["contexts/*"],
       "@/domain/*": ["domain/*"],
       "@/env/*": ["env/*"],
-      "@/hooks/*": ["hooks/*"],
       "@/layouts/*": ["layouts/*"],
       "@/pages/*": ["pages/*"],
       "@/server/*": ["server/*"],
@@ -33,6 +30,6 @@
     }
   },
 
-  "include": ["src/types/next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.pdf"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.styles.ts"],
   "exclude": ["node_modules"]
 }

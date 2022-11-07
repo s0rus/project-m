@@ -1,8 +1,8 @@
 import { EmojiEventsRounded } from '@mui/icons-material';
-import SettingWithButton from '@/components/SettingWithButton';
-import { useAuthContext } from '@/contexts/AuthContext';
+import SettingWithButton from '@/domain/App/components/SettingWithButton';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
 import { useMemo } from 'react';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
 import {  Options, OptionsTitle} from '@/styles/style';
 const AdminPanel = () => {
@@ -31,9 +31,9 @@ const AdminPanel = () => {
   };
 
   return (
-        <Options style={{height: '150px'}} >
+        <Options style={{minHeight: '150px', marginBottom: '1rem'}} >
         <OptionsTitle style={{marginLeft: '30px'}} >{t('adminPanel.header')}</OptionsTitle>
-        <div style={{padding: '0rem 1.6rem'}}>
+        <div style={{padding: '0.2rem 1.6rem'}}>
         <SettingWithButton
           header={leaderIdentifier}
           subtitle={t('adminPanel.leader.subititle')}

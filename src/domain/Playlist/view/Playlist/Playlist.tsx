@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
 import Image from 'next/image';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { theme } from '@/styles/theme';
@@ -57,7 +57,7 @@ const CircularLocking = async () => {
           <Tooltip title={t('playlist.tooltip.unlock')} >
             <PlaylistDetail>
         <IconButton disabled={locking}>
-{locking ? <CircularProgress size={20} style={{height: '20px', width: '20px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOutlinedIcon  onClick={CircularLocking} style={{height: '25px', width: '25px', marginTop: '-12px', marginRight: '-15px', marginLeft: '-10px'}} />}
+{locking ? <CircularProgress size={20} style={{height: '20px', width: '20px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOutlinedIcon  onClick={CircularLocking} style={{height: '25px', width: '25px', marginTop: '-5px', marginRight: '-15px', marginLeft: '-10px'}} />}
         </IconButton>
             </PlaylistDetail>
           </Tooltip>
@@ -65,7 +65,7 @@ const CircularLocking = async () => {
           <Tooltip title={t('playlist.tooltip.lock')} >
             <PlaylistDetail>
       <IconButton disabled={locking}>
-{locking ? <CircularProgress size={20} style={{height: '20px', width: '20px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOpenOutlinedIcon  onClick={CircularLocking} style={{height: '25px', width: '25px', marginTop: '-12px', marginRight: '-15px', marginLeft: '-10px'}} />}
+{locking ? <CircularProgress size={20} style={{height: '20px', width: '20px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOpenOutlinedIcon  onClick={CircularLocking} style={{height: '25px', width: '25px', marginTop: '-5px', marginRight: '-15px', marginLeft: '-10px'}} />}
       </IconButton>
             </PlaylistDetail>
          </Tooltip>
@@ -75,11 +75,11 @@ const CircularLocking = async () => {
   <div style={{marginTop: '8px'}} >
   {playlistLocked ? (
               <Tooltip title={t('playlist.tooltip.locked')} >
-  <LockOutlinedIcon style={{height: '25px', width: '25px', marginTop: '-5px', marginRight: '-8px'}} />
+  <LockOutlinedIcon style={{height: '25px', width: '25px', marginTop: '0px', marginRight: '-8px'}} />
               </Tooltip>
   ) : (
               <Tooltip title={t('playlist.tooltip.unlocked')} >
-   <LockOpenOutlinedIcon style={{height: '25px', width: '25px', marginTop: '-5px', marginRight: '-8px'}} />
+   <LockOpenOutlinedIcon style={{height: '25px', width: '25px', marginTop: '0', marginRight: '-8px'}} />
               </Tooltip>
    )} 
     </div>

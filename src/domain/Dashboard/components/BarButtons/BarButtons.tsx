@@ -1,21 +1,18 @@
-import {  Tooltip } from '@mui/material';
-import { PlaylistAddRounded } from '@mui/icons-material';
-import React, { useState, useMemo } from 'react';
+import {  Tooltip, Typography } from '@mui/material';
+import React, { useState } from 'react';
 import AddVideoModal from '../AddVideoModal';
-import { useAuthContext } from '@/contexts/AuthContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { StyledButton } from '@/styles/style';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
+import { usePlayerContext } from '@/domain/VideoPlayer/context/VideoPlayer.context';
 import { CircularProgress  } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
-import { useSocketContext } from '@/contexts/SocketContext';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AddIcon from '@mui/icons-material/Add';
 
 const BarButtons = () => {
   const { isAdmin } = useAuthContext();
-  const { socket, leader } = useSocketContext();
   const { t } = useTranslation();
   const { isLoggedIn } = useAuthContext();
   const { playlistLocked } = usePlaylistContext();
@@ -25,45 +22,28 @@ const BarButtons = () => {
   const { handleOnVideoSkip } = usePlayerContext();
   const { loginWithTwitch } = useAuthContext();
   const [logging, setIsLogging] = useState(false);
-  const { currentUser } = useAuthContext();
   const handleLogging = async () => {
   setIsLogging(true);
   await loginWithTwitch();
   setIsLogging(false);
 } 
 
-const requestTime = () => socket.emit('REQUEST_PLAYER_STATE');
-
-
-const isCurrentUserLeader = useMemo(() => {
-  if (!leader || !currentUser) return false;
-  return leader.userId === currentUser.id;
-}, [leader, currentUser]);
-
-
   return (
     <>
-
-<StyledButton disabled={isCurrentUserLeader} onClick={requestTime}>
-  <AccessTimeIcon style={{marginRight: '5px'}} />
-  {t('video.time')}
-</StyledButton>
-
       {isLoggedIn ? (
         <>
           {isAdmin &&
             <StyledButton onClick={() => handleOnVideoSkip()} >
-              <SkipNextIcon style={{marginRight: '5px',}} />
-              {t('video.skip')}
+              <span className='icon'><SkipNextIcon style={{height: '40px', width: '40px'}} /></span>
+              <span className='text'> <Typography variant='h5' >{t('video.skip')}</Typography></span>
             </StyledButton>
           }
             <StyledButton
               onClick={handleOpen}
               disabled={playlistLocked && !isAdmin}
-              style={{marginRight: '1rem'}}
             >
-              <PlaylistAddRounded style={{marginRight: '5px'}} />
-              {t('video.add')}
+              <span className='icon'><AddIcon style={{height: '40px', width: '40px'}} /></span>
+              <span className='text'> <Typography variant='h5' >{t('video.add')}</Typography></span>
             </StyledButton>
           <AddVideoModal handleClose={handleClose} open={modalOpen} />
         </>
@@ -75,9 +55,8 @@ const isCurrentUserLeader = useMemo(() => {
               style={{marginRight: '1.5rem'}}
               onClick={handleLogging}>
                 <IconButton disabled={logging}>
-                {logging ? <CircularProgress size={32} /> : <PlaylistAddRounded style={{color: 'gray', height: '30px', width: '30px', marginRight: '-5px'}}/>}
+                {logging ? <CircularProgress size={32} /> : <h6>{t('video.add')}</h6>}
                 </IconButton>
-                {t('video.add')}
             </StyledButton>
         </Tooltip>
         </>

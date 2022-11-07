@@ -2,6 +2,14 @@
   "logIn": "Sign in",
   "logOut": "Sign out",
   "cancelMute": "Disable mute",
+  "playerControls": {
+    "tooltip": {
+      "play": "Play",
+      "pause": "Pause",
+      "sync": "Synchronize (double click)",
+      "fullscreen": "Fullscreen"
+    }
+  },
   "video": {
     "thumbnailAlt": "Thumbnail of the video titled {{videoTitle}}",
     "add": "Add",

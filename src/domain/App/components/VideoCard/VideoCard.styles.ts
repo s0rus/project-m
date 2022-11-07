@@ -3,13 +3,13 @@ import { theme, gradients } from '@/styles/theme';
 
 export const VideoCardWrapper = styled(Card)`
   width: 100%;
+  max-height: 125px;
   height: 100%;
   margin-top: 10px;
   min-height: 100px;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   background: ${gradients.gradientMain};
-  transform: scale(0.96,0.96);
 `;
 
 export const VideoContent = styled(CardContent)`

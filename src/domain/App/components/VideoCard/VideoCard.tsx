@@ -1,9 +1,8 @@
 import { EmptyVideoCard, VideoBox, VideoCardWrapper, VideoContent, } from './VideoCard.styles';
 import { Link, Typography, Hidden } from '@mui/material';
 import React, { FC } from 'react';
-import { ItemTitle } from '@/domain/Playlist/components/PlaylistItem/PlaylistItem.styles';
 import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
-import VideoThumbnail from '@/components/VideoThumbnail';
+import VideoThumbnail from '@/domain/App/components/VideoThumbnail';
 import { useTranslation } from 'react-i18next';
 import { AddedByAvatar, AddedByWrapper } from '@/styles/style'
 import Image from 'next/image';
@@ -39,11 +38,11 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
         </Link>
       <VideoBox>
         <VideoContent>
-          <ItemTitle>
           <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
-              {videoTitle}
+          <Typography variant='h3'>
+          {videoTitle}
+          </Typography>
           </Link>
-          </ItemTitle>
           <AddedByWrapper>
           {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
           <Typography component='span' style={{cursor: 'default'}} >{addedBy.name}</Typography>

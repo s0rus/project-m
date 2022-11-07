@@ -2,6 +2,14 @@
   "logIn": "Zaloguj się",
   "logOut": "Wyloguj się",
   "cancelMute": "Anuluj wyciszenie",
+  "playerControls": {
+    "tooltip": {
+      "play": "Odtwórz",
+      "pause": "Pauza",
+      "sync": "Synchronizuj (podwójne kliknięcie)",
+      "fullscreen": "Pełny ekran"
+    }
+  },
   "video": {
     "thumbnailAlt": "Miniaturka filmu {{videoTitle}}",
     "add": "Dodaj",

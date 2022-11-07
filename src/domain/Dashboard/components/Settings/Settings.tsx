@@ -1,16 +1,17 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { useAddonsContext } from '@/contexts/AddonsContext';
+import { useAddonsContext } from '@/domain/App/context/Addons.context';
 import { useTranslation } from 'react-i18next';
 import { useSession } from 'next-auth/react';
 import {  Options, OptionsBox, OptionsTitle } from '@/styles/style';
-import { useAuthContext } from '@/contexts/AuthContext';
-import SettingWithSelect from '@/components/SettingWithSelect';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
+import SettingWithSelect from '@/domain/App/components/SettingWithSelect';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import AdminPanel from '../../components/AdminPanel';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import SettingsOnClick from '@/components/SettingsOnClick';
-import SettingWithButton from '@/components/SettingWithButton';
+import SettingsOnClick from '@/domain/App/components/SettingsOnClick';
+import SettingWithButton from '@/domain/App/components/SettingWithButton';
 import LogoutIcon from '@mui/icons-material/Logout';
+import Image from 'next/image';
 const Settings = () => {
   const { language, setLanguage  } = useAddonsContext();
   const { loginWithTwitch, logoutOfTwitch } = useAuthContext();
@@ -21,9 +22,7 @@ const Settings = () => {
 
   return (
     <>
-    <div style={{marginBottom: '20px'}} >
     {isAdmin && (<AdminPanel />)}
-    </div>
     <Options>
    <OptionsTitle>
    {t('options.optionsTitle')}
@@ -35,7 +34,7 @@ const Settings = () => {
           subtitle={currentUser.name!}
           buttonLabel={t('logOut')}
           buttonAction={logoutOfTwitch}
-          icon={<img style={{height: '35px', width: '35px', borderRadius: '12px'}}  src={currentUser.image!}/>}
+          icon={<Image style={{height: '35px', width: '35px', borderRadius: '12px'}}  src={currentUser.image!} alt='avatar' />}
           hiddenicon={<LogoutIcon />}
           variant='contained'
         />
