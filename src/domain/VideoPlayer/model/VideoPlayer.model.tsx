@@ -4,7 +4,7 @@ import { PauseRounded, PlayArrowRounded, VolumeDown, VolumeOff, VolumeUp } from 
 import { Playlist } from '@prisma/client';
 import ReactPlayer from 'react-player';
 
-export const HIDE_CONTROLS_TIMEOUT = 4000;
+export const HIDE_CONTROLS_TIMEOUT = 2000;
 export interface PlayerState {
   isPlaying: boolean;
   playedSeconds: number;
@@ -50,6 +50,7 @@ export interface InitialContextProps {
   toggleMuted: () => void;
   toggleControls: (newControlsVisibility: boolean) => void;
   disableInitialMute: () => void;
+  requestPlayerState: () => void;
 }
 
 export const initialContextProps = {
@@ -71,6 +72,7 @@ export const initialContextProps = {
   toggleMuted: () => null,
   toggleControls: () => null,
   disableInitialMute: () => null,
+  requestPlayerState: () => null,
 };
 
 export interface ProgressProps {
