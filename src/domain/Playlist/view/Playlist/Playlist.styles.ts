@@ -13,8 +13,7 @@ export const PlaylistWrapper = styled(Box)<{ locked: number }>`
 `;
 
 export const PlaylistHeader = styled(Stack)`
-  margin-top: -0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   flex-flow: row nowrap;
   align-items: center;
   gap: 1rem;

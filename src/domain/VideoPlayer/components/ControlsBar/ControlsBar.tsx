@@ -7,10 +7,10 @@ import { ToastTypes } from '@/utils/ToastTypes';
 import VolumeControl from '../VolumeControl';
 import { getPlayingStateIcon } from '../../model/VideoPlayer.model';
 import timeFormatter from '@/utils/timeFormatter';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
+import { useAuthContext } from '@/contexts/AuthContext';
 import useFullscreen from '@/domain/VideoPlayer/hooks/useFullscreen';
-import { usePlayerContext } from '../../context/VideoPlayer.context';
-import { useSocketContext } from '@/domain/App/context/Socket.context';
+import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
+import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
 
 interface ControlsBarProps {
@@ -81,7 +81,7 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
         <Typography variant='h5'>{timeFormatter(duration)}</Typography>
       </Timer>
       <Tooltip title={t('playerControls.tooltip.sync')} placement='top'>
-        <IconButton onDoubleClick={handleSyncWithLeader} disabled={isCurrentUserLeader || !activeVideo}>
+        <IconButton onClick={handleSyncWithLeader} disabled={isCurrentUserLeader || !activeVideo}>
           <SyncRounded />
         </IconButton>
       </Tooltip>

@@ -50,7 +50,6 @@ export interface InitialContextProps {
   toggleMuted: () => void;
   toggleControls: (newControlsVisibility: boolean) => void;
   disableInitialMute: () => void;
-  requestPlayerState: () => void;
 }
 
 export const initialContextProps = {
@@ -72,7 +71,6 @@ export const initialContextProps = {
   toggleMuted: () => null,
   toggleControls: () => null,
   disableInitialMute: () => null,
-  requestPlayerState: () => null,
 };
 
 export interface ProgressProps {

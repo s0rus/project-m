@@ -10,7 +10,6 @@ padding-top: 0.5rem;
 transition: 0.3s;
 box-shadow: rgba(0, 0, 0, 1) 0px 25px 20px -20px;
 background: ${gradients.gradientMain};
-
 `
 export const OptionsBox = styled('div')`
 min-width: 150px;
@@ -63,7 +62,6 @@ text-transform: capitalize;
 }`
 
 export const TitleOption = styled('h2')`
-
 line-height: 1.1;
 font-size: 16px;
 width: 100px;
@@ -130,7 +128,6 @@ color: ${theme.palette.primary.main};`
 export const StyledButton = styled(Button)`
 	width: 250px;
 	height: 52px;
-	cursor: pointer;
 	display: flex;
 	align-items: center;
 	border: none;
@@ -140,19 +137,21 @@ export const StyledButton = styled(Button)`
   text-transform: capitalize;
   box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
   margin-left: 2rem;
+  cursor: pointer;
 span {
+  cursor: pointer;
 	transition: 200ms;
 }
-
 .text {
 	color: white;
+  cursor: pointer;
 	font-weight: bold;
   text-shadow: 0px 0px 10px white;
 }
-
 .icon {
 	position: absolute;
 	height: 40px;
+  cursor: pointer;
   opacity: 0;
 	width: 40px;
 	display: flex;
@@ -160,22 +159,26 @@ span {
 	justify-content: center;
 }
 
+.path {
+  cursor: pointer;
+}
 &:hover {
+  cursor: pointer;
 	background: rgba(0,0,0,0.55);
 }
-
 &:hover .text {
+  cursor: pointer;
   opacity: 0;
 }
-
 &:hover .icon {
+  cursor: pointer;
 	width: 150px;
 	border-left: none;
   opacity: 1;
 	transform: translateX(0);
 }
-
 &:focus {
+  cursor: pointer;
 	outline: none;
 }`
 

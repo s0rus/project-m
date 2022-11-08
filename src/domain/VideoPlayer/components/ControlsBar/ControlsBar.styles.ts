@@ -19,7 +19,7 @@ export const ControlsBarWrapper = styled(Box)<{ controls: boolean }>`
 
 export const Seeker = styled(Slider)<{ loadedpercentage: number }>`
   color: ${theme.palette.primary.main};
-  height: 4px;
+  height: 8px;
 
   & .MuiSlider-thumb {
     width: 1rem;
@@ -41,8 +41,8 @@ export const Seeker = styled(Slider)<{ loadedpercentage: number }>`
   }
 
   & .MuiSlider-rail {
-    opacity: 0.75;
-    background-color: #18181b;
+    opacity: 0.5;
+    background-color: ${theme.palette.primary.dark};
 
     &::before {
       content: '';
@@ -50,9 +50,10 @@ export const Seeker = styled(Slider)<{ loadedpercentage: number }>`
       display: block;
       position: absolute;
       top: 0;
+
       transition: width 0.1s ease-in-out;
       width: ${({ loadedpercentage }) => `${loadedpercentage || 0}%`};
-      background-color: #4d4d4d;
+      background-color: ${theme.palette.primary.light};
     }
   }
 `;

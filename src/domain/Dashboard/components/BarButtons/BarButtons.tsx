@@ -1,12 +1,12 @@
 import {  Tooltip, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import AddVideoModal from '../AddVideoModal';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { StyledButton } from '@/styles/style';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/VideoPlayer.context';
+import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { CircularProgress  } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
@@ -34,7 +34,7 @@ const BarButtons = () => {
         <>
           {isAdmin &&
             <StyledButton onClick={() => handleOnVideoSkip()} >
-              <span className='icon'><SkipNextIcon style={{height: '40px', width: '40px'}} /></span>
+              <span className='icon'><SkipNextIcon style={{height: '40px', width: '40px', cursor: 'pointer'}} /></span>
               <span className='text'> <Typography variant='h5' >{t('video.skip')}</Typography></span>
             </StyledButton>
           }
@@ -42,7 +42,7 @@ const BarButtons = () => {
               onClick={handleOpen}
               disabled={playlistLocked && !isAdmin}
             >
-              <span className='icon'><AddIcon style={{height: '40px', width: '40px'}} /></span>
+              <span className='icon'><AddIcon style={{height: '40px', width: '40px', cursor: 'pointer'}} /></span>
               <span className='text'> <Typography variant='h5' >{t('video.add')}</Typography></span>
             </StyledButton>
           <AddVideoModal handleClose={handleClose} open={modalOpen} />

@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 
 import { Typography } from '@mui/material';
 import { getPlayingStateIcon } from '../../model/VideoPlayer.model';
-import { usePlayerContext } from '../../context/VideoPlayer.context';
+import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { useTranslation } from 'react-i18next';
 
 interface IndicatorProps {

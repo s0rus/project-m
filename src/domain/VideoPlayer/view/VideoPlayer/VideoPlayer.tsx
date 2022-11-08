@@ -5,10 +5,10 @@ import PlayerControls from '../../components/PlayerControls';
 import ReactPlayer from 'react-player';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import { theme } from '@/styles/theme';
-import { useAddonsContext } from '@/domain/App/context/Addons.context';
+import { useAddonsContext } from '@/contexts/AddonsContext';
 import useHasWindow from '../../utils/hasWindow';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { usePlayerContext } from '../../context/VideoPlayer.context';
+import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import { getPlayerConfig } from '../../model/VideoPlayer.model';
 
 const VideoPlayer = () => {

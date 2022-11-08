@@ -6,7 +6,7 @@ import React from 'react';
 import Navigation from '@/domain/Navigation';
 import Settings from '../../components/Settings';
 import { theme } from '@/styles/theme';
-import { useAddonsContext } from '@/domain/App/context/Addons.context';
+import { useAddonsContext } from '@/contexts/AddonsContext';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 
 const Dashboard = () => {
@@ -14,20 +14,21 @@ const Dashboard = () => {
   const { isChatOn } = useAddonsContext();
 
   return (
+    <div>
     <DashboardWrapper>
-                {isChatOn && isMediumDown && <TwitchChat/>}
       <DashboardContainer>
         <Grid container>
           <Grid item xs={12}>
                     <DashboardBar />
           </Grid>
+          {isChatOn && isMediumDown && <TwitchChat />}
           <Grid item xs={12}>
             <Grid container spacing={2}>
-              <Grid item sm={12} md={8} style={{minWidth: isMediumDown ? '100%' : '20%', paddingLeft: '1rem'}} >
+              <Grid item sm={12} md={8} style={{minWidth: isMediumDown ? '100%' : '20%'}} >
                     <Playlist />
               </Grid>
-              <Grid item sm={12} md={4} style={{minWidth: isMediumDown ? '100%' : '20%', paddingRight: '0rem'}} >
-                    <Settings/>
+              <Grid item sm={12} md={4} style={{minWidth: isMediumDown ? '100%' : '20%'}} >
+                    <Settings />
               </Grid>
             </Grid>
             </Grid>
@@ -35,6 +36,7 @@ const Dashboard = () => {
       </DashboardContainer>
       <Navigation/>
     </DashboardWrapper>
+</div>
   );
 };
 

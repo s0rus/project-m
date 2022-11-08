@@ -12,14 +12,12 @@ export const VolumeSliderBox = styled(Box)`
   height: 100%;
 
   padding: 1.2rem 0.2rem 0.7rem 0.2rem;
-
   overflow: hidden;
 `;
 
 export const VolumeSlider = styled(Slider)`
   color: ${theme.palette.primary.main};
   height: 100px !important;
-
   & .MuiSlider-thumb {
     width: 18px;
     height: 18px;

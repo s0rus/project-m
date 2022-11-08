@@ -3,17 +3,18 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { Modal, Typography } from '@mui/material';
 import { NewVideoForm, newVideoSchema } from '../../model/NewVideo.model';
 import React, { FC, useRef, useState } from 'react';
-import ButtonWithLoader from '@/domain/App/components/ButtonWithLoader';
+
+import ButtonWithLoader from '@/components/ButtonWithLoader';
 import { CustomToast } from '@/utils/sendToast';
-import FormInput from '@/domain/App/components/FormInput';
+import FormInput from '@/components/FormInput';
 import { PlaylistAddCheck } from '@mui/icons-material';
 import ReactPlayer from 'react-player';
 import { ToastTypes } from '@/utils/ToastTypes';
 import { getYoutubeThumbnail } from '@/domain/Dashboard/utils/youtubeUtils';
 import { trpc } from '@/utils/trpc';
-import { useAuthContext } from '@/domain/App/context/Auth.context'
+import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
-import { useSocketContext } from '@/domain/App/context/Socket.context';
+import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 import CloseIcon from '@mui/icons-material/Close';

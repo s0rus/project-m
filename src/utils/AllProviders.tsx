@@ -1,15 +1,17 @@
 import 'react-toastify/dist/ReactToastify.css';
+
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import React, { FC, PropsWithChildren } from 'react';
-import { AuthContextProvider } from '@/domain/App/context/Auth.context';
-import { PlayerContextProvider } from '@/domain/VideoPlayer/context/VideoPlayer.context';
+
+import { AuthContextProvider } from '@/contexts/AuthContext';
+import { PlayerContextProvider } from '@/domain/VideoPlayer/context/PlayerContext';
 import { PlaylistContextProvider } from '@/domain/Playlist/context/PlaylistContext';
 import { type Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
-import { SocketContextProvider } from '@/domain/App/context/Socket.context';
+import { SocketContextProvider } from '@/contexts/SocketContext';
 import { ToastContainer, Zoom } from 'react-toastify';
 import { theme } from '@/styles/theme';
-import { AddonsContextProvider } from '@/domain/App/context/Addons.context';
+import { AddonsContextProvider } from '@/contexts/AddonsContext';
 
 const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ children, session }) => {
   return (

@@ -2,7 +2,7 @@ import { DashboardBarButtons, DashboardBarContainer, DashboardBarWrapper } from 
 import { Grid, Hidden } from '@mui/material';
 import BarButtons from '../BarButtons';
 import React from 'react';
-import VideoCard from '@/domain/App/components/VideoCard';
+import VideoCard from '@/components/VideoCard';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 
 
@@ -25,8 +25,6 @@ const DashboardBar = () => {
           </Grid>
         </DashboardBarContainer>
       </DashboardBarWrapper>
-
-      
       </Hidden>
       <Hidden lgUp >
       <DashboardBarWrapper>
