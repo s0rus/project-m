@@ -6,7 +6,7 @@
     "tooltip": {
       "play": "Play",
       "pause": "Pause",
-      "sync": "Synchronize (double click)",
+      "sync": "Synchronize",
       "fullscreen": "Fullscreen"
     }
   },
