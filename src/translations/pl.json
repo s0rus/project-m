@@ -2,20 +2,12 @@
   "logIn": "Zaloguj się",
   "logOut": "Wyloguj się",
   "cancelMute": "Anuluj wyciszenie",
-  "playerControls": {
-    "tooltip": {
-      "play": "Odtwórz",
-      "pause": "Pauza",
-      "sync": "Synchronizuj",
-      "fullscreen": "Pełny ekran"
-    }
-  },
   "video": {
     "thumbnailAlt": "Miniaturka filmu {{videoTitle}}",
-    "add": "Dodaj",
+    "add": "Dodaj film",
     "addedBy": "Dodane przez",
-    "skip": "Pomiń",
-    "time": "Synchro"
+    "skip": "Pomiń film",
+    "time": "Ustaw czas"
   },
   "addVideoModal": {
     "header": "Dodaj film do kolejki",

@@ -24,10 +24,10 @@ const Dashboard = () => {
           {isChatOn && isMediumDown && <TwitchChat />}
           <Grid item xs={12}>
             <Grid container spacing={2}>
-              <Grid item sm={12} md={8} style={{minWidth: isMediumDown ? '100%' : '20%'}} >
+              <Grid item sm={12} md={8}>
                     <Playlist />
               </Grid>
-              <Grid item sm={12} md={4} style={{minWidth: isMediumDown ? '100%' : '20%'}} >
+              <Grid item sm={12} md={4}>
                     <Settings />
               </Grid>
             </Grid>

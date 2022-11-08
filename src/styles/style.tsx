@@ -4,9 +4,10 @@ import SimpleBar from 'simplebar-react';
 
  export const Options = styled('div')`
 position: relative;
-width: 100%;
+min-width: 150px;
+max-width: 100%;
 border-radius: 8px;
-padding-top: 0.5rem;
+padding-top: 1rem;
 transition: 0.3s;
 box-shadow: rgba(0, 0, 0, 1) 0px 25px 20px -20px;
 background: ${gradients.gradientMain};
@@ -15,7 +16,7 @@ export const OptionsBox = styled('div')`
 min-width: 150px;
 max-width: 100%;
 box-sizing: border-box;
-padding: 0rem 1.6rem;
+padding: 0rem 1.5rem;
 -webkit-font-smoothing: antialiased;
 outline-color: rgb(117, 122, 255);
 transition: 0.3s ease-in-out;
@@ -38,8 +39,8 @@ export const OptionsTitle = styled('h1')({
   fontSize: '1.5rem',
   fontWeight: '600',
   textAlign: 'left',
-  marginLeft: '30px',
-  marginTop: '10px',
+  marginLeft: '20px',
+  marginTop: '0px',
   cursor: 'default',
   display: 'flex'
 });
@@ -54,7 +55,7 @@ box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 max-width: 100%;
 background-color: rgba(0,0,0,0.25);
 border-radius: 8px;
-position: relative; all 0.1s;
+position: relative; all 0.3s;
 margin-bottom: 20px;
 text-transform: capitalize;
 &:hover{
@@ -62,6 +63,7 @@ text-transform: capitalize;
 }`
 
 export const TitleOption = styled('h2')`
+
 line-height: 1.1;
 font-size: 16px;
 width: 100px;
@@ -85,7 +87,7 @@ letter-spacing: 1px;
 width: 200px;
 cursor: default;
 display: flex;
-transition: all 0.1s ease 0s;
+transition: all 0.3s ease 0s;
 position: relative;
 text-align: left;
 margin: 0px;
@@ -115,7 +117,7 @@ font-size: 13px;
 font-weight: 400;
 letter-spacing: 1px;
 display: flex;
-transition: all 0.1s ease 0s;
+transition: all 0.3s ease 0s;
 position: relative;
 text-align: left;
 margin: 0px;
@@ -125,63 +127,19 @@ font-weight: 400;
 color: ${theme.palette.primary.main};`
 
 
-export const StyledButton = styled(Button)`
-	width: 250px;
-	height: 52px;
-	display: flex;
-	align-items: center;
-	border: none;
-	border-radius: 28px;
-	background: rgba(0,0,0,0.35);
-  overflow: hidden;
-  text-transform: capitalize;
-  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-  margin-left: 2rem;
-  cursor: pointer;
-span {
-  cursor: pointer;
-	transition: 200ms;
-}
-.text {
-	color: white;
-  cursor: pointer;
-	font-weight: bold;
-  text-shadow: 0px 0px 10px white;
-}
-.icon {
-	position: absolute;
-	height: 40px;
-  cursor: pointer;
-  opacity: 0;
-	width: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.path {
-  cursor: pointer;
-}
-&:hover {
-  cursor: pointer;
-	background: rgba(0,0,0,0.55);
-}
-&:hover .text {
-  cursor: pointer;
-  opacity: 0;
-}
-&:hover .icon {
-  cursor: pointer;
-	width: 150px;
-	border-left: none;
-  opacity: 1;
-	transform: translateX(0);
-}
-&:focus {
-  cursor: pointer;
-	outline: none;
-}`
-
+export const StyledButton = styled(Button)({
+  transition: 'all 0.5s',
+  width: '120px',
+  borderRadius: '14px',
+  boxShadow: 'rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px',
+  textTransform: 'capitalize',
+  ":hover": {
+    color: 'white',
+    transform: 'scale(1.1,1.1)',
+    background: 'rgba(0,0,0, 0.55)',
+    border: `1px solid ${theme.palette.primary.main}`
+  }  
+});
 
 
 export const CurrentVideoWrapper = styled(Box)`
@@ -201,7 +159,7 @@ export const AddedByWrapper = styled(Stack)`
   align-items: center;
   align-self: flex-start;
   gap: 0.8rem;
-  background-color: rgba(255,255,255,0.10);
+  background-color: #18181b;
   border-radius: 4px;
   padding-right: 0.8rem;
   border-radius: 8px;

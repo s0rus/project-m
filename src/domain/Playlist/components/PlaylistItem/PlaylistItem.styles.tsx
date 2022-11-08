@@ -155,7 +155,7 @@ export const ItemTitle = styled('h4')`
 padding: 0;
 margin: 0;
 width: 100%;
-font-size: 30px;
+font-size: 20px;
 color: white;
 transition: 0.2s
 `

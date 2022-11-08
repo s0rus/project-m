@@ -2,10 +2,9 @@ import { Avatar, Box, Card, CardContent, Stack, styled } from '@mui/material';
 import { theme, gradients } from '@/styles/theme';
 
 export const VideoCardWrapper = styled(Card)`
-  width: 100%;
+  width: 99.5%;
   max-height: 125px;
   height: 100%;
-  margin-top: 10px;
   min-height: 100px;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
@@ -17,7 +16,6 @@ export const VideoContent = styled(CardContent)`
   max-width: 100%;
   display: flex;
   font-size: 20px;
-  font-family: B612;
   flex: 1;
   flex-direction: column;
   justify-content: center;

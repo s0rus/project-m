@@ -18,7 +18,7 @@ const SettingWithButton: FC<SettingWithButton> = ({ icon, hiddenicon, header, su
       <Box>
         <InnerStack>
           {icon}
-          <Box sx={{ lineHeight: 1 }}>
+          <Box style={{width: '100px'}}>
             <TitleOption>
               {header}
             </TitleOption>

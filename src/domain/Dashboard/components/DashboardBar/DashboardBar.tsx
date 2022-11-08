@@ -15,7 +15,7 @@ const DashboardBar = () => {
     <Hidden lgDown>
       <DashboardBarWrapper>
         <DashboardBarContainer container>
-          <Grid item sm={12} md={7.95}>
+          <Grid item sm={12} md={8}>
             <VideoCard video={currentVideo} />
           </Grid>
           <Grid item sm={12} md={4}>

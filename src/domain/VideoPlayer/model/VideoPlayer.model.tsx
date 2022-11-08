@@ -4,7 +4,7 @@ import { PauseRounded, PlayArrowRounded, VolumeDown, VolumeOff, VolumeUp } from 
 import { Playlist } from '@prisma/client';
 import ReactPlayer from 'react-player';
 
-export const HIDE_CONTROLS_TIMEOUT = 2000;
+export const HIDE_CONTROLS_TIMEOUT = 4000;
 export interface PlayerState {
   isPlaying: boolean;
   playedSeconds: number;
@@ -22,7 +22,7 @@ export const initialPlayerState: PlayerState = {
   playedSeconds: 0,
   loadedSeconds: 0,
   duration: 0,
-  isPlaying: false,
+  isPlaying: true,
   isMuted: true,
   volume: 0,
   controlsVisible: true,
@@ -50,7 +50,6 @@ export interface InitialContextProps {
   toggleMuted: () => void;
   toggleControls: (newControlsVisibility: boolean) => void;
   disableInitialMute: () => void;
-  requestPlayerState: () => void;
 }
 
 export const initialContextProps = {
@@ -72,7 +71,6 @@ export const initialContextProps = {
   toggleMuted: () => null,
   toggleControls: () => null,
   disableInitialMute: () => null,
-  requestPlayerState: () => null,
 };
 
 export interface ProgressProps {
@@ -93,59 +91,3 @@ export const getPlayingStateIcon = (isPlaying: boolean, initialMute?: boolean) =
   if (isPlaying) return <PauseRounded />;
   return <PlayArrowRounded />;
 };
-
-export const getPlayerConfig = (playerId: string) => ({
-  youtube: {
-    playerVars: {
-      modestbranding: 1,
-    },
-  },
-  vimeo: {
-    playerOptions: {
-      controls: false,
-      loop: false,
-    },
-  },
-  soundcloud: {
-    options: {
-      auto_play: false,
-    },
-  },
-  wistia: {
-    options: {
-      controlsVisibleOnLoad: false,
-      copyLinkAndThumbnailEnabled: false,
-      doNotTrack: true,
-      fullscreenButton: false,
-      googleAnalytics: false,
-    },
-  },
-  facebook: {
-    playerId: playerId,
-  },
-  mixcloud: {
-    options: {
-      disablePushstate: true,
-      disableHotkeys: true,
-      disableUnloadWarning: true,
-      hide_artwork: true,
-    },
-  },
-  dailymotion: {
-    params: {
-      controls: false,
-    },
-  },
-  twitch: {
-    playerId: playerId,
-    options: {
-      muted: false,
-    },
-  },
-  file: {
-    forceVideo: true,
-    attributes: {
-      controls: false,
-    },
-  },
-});

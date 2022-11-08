@@ -1,7 +1,7 @@
 import { ControlsBarWrapper, Seeker, Timer } from './ControlsBar.styles';
 import { FullscreenExitRounded, FullscreenRounded, SyncRounded } from '@mui/icons-material';
-import { IconButton, Tooltip, Typography } from '@mui/material';
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import { IconButton, Typography } from '@mui/material';
+import React, { FC, useCallback, useEffect, useState, useMemo } from 'react';
 
 import { ToastTypes } from '@/utils/ToastTypes';
 import VolumeControl from '../VolumeControl';
@@ -20,20 +20,20 @@ interface ControlsBarProps {
 }
 
 const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouseLeave }) => {
-  const { socket, isCurrentUserLeader } = useSocketContext();
+  const { socket, leader } = useSocketContext();
   const { t } = useTranslation();
   const { isAdmin, currentUser } = useAuthContext();
-  const { handleSeek, seeking, setSeeking, seekTo, playerState, requestPlayerState } = usePlayerContext();
+  const { handleSeek, seeking, setSeeking, seekTo, playerState } = usePlayerContext();
   const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo, loadedSeconds } = playerState;
   const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);
   const { toggleFullscreen, isFullscreen } = useFullscreen();
+  const requestTime = () => socket.emit('REQUEST_PLAYER_STATE');
 
-  const handleSyncWithLeader = useCallback(() => {
-    if (isCurrentUserLeader || !activeVideo) {
-      return;
-    }
-    requestPlayerState();
-  }, [requestPlayerState, isCurrentUserLeader, activeVideo]);
+
+  const isCurrentUserLeader = useMemo(() => {
+    if (!leader || !currentUser) return false;
+    return leader.userId === currentUser.id;
+  }, [leader, currentUser]);
 
   const handleSeekMouseUp = useCallback(() => {
     setSeeking(false);
@@ -58,9 +58,7 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
 
   return (
     <ControlsBarWrapper controls={controlsVisible} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-      <Tooltip title={isPlaying ? t('playerControls.tooltip.pause') : t('playerControls.tooltip.play')} placement='top'>
-        <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
-      </Tooltip>
+      <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
       <VolumeControl />
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(playedSeconds, duration >= 3600)}</Typography>
@@ -80,16 +78,14 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(duration)}</Typography>
       </Timer>
-      <Tooltip title={t('playerControls.tooltip.sync')} placement='top'>
-        <IconButton onClick={handleSyncWithLeader} disabled={isCurrentUserLeader || !activeVideo}>
-          <SyncRounded />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title={t('playerControls.tooltip.fullscreen')} placement='top'>
-        <IconButton onClick={() => toggleFullscreen()}>
-          {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}
-        </IconButton>
-      </Tooltip>
+
+<IconButton disabled={isCurrentUserLeader} onDoubleClick={requestTime}>
+<SyncRounded/>
+</IconButton>
+
+      <IconButton onClick={() => toggleFullscreen()}>
+        {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}
+      </IconButton>
     </ControlsBarWrapper>
   );
 };

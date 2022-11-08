@@ -8,8 +8,10 @@ import { useAuthContext } from '@/contexts/AuthContext';
 import SettingWithSelect from '@/components/SettingWithSelect';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import AdminPanel from '../../components/AdminPanel';
-import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { theme } from '@/styles/theme';
+import { useMediaQuery  } from '@mui/material';
 import SettingsOnClick from '@/components/SettingsOnClick';
 import SettingWithButton from '@/components/SettingWithButton';
 const Settings = () => {
@@ -18,18 +20,20 @@ const Settings = () => {
   const { data: session, status } = useSession();
   const { t } = useTranslation();
   const { isAdmin, currentUser } = useAuthContext();
+  const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
+
 
 
   return (
     <>
       {isAdmin && (<AdminPanel />)}
-    <Options style={{paddingBottom: '1rem'}} >
+    <Options style={{paddingBottom: '1.4rem'}} >
    <OptionsTitle>
    {t('options.optionsTitle')}
    </OptionsTitle>
     <OptionsBox style={{cursor: 'pointer'}} >
     {session && status === 'authenticated' ? (
-<SettingWithButton
+      <SettingWithButton
           header={t('options.twitchTitle')}
           subtitle={currentUser.name!}
           buttonLabel={t('logOut')}
@@ -51,7 +55,7 @@ const Settings = () => {
         />
     )}
     <div style={{cursor: 'default'}} >
-    <SettingsOnClick 
+      <SettingsOnClick 
       style={{cursor: 'default'}}
       icon={<ChatBubbleOutlineIcon/>}
       header={t('options.chatTitle')}

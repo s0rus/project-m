@@ -90,9 +90,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
       <>
       {isMediumUp ? (
       <PlaylistItemWrapper>
-        <Link href={videoUrl} target='_blank' rel='noopener norefferer' >
           <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
-          </Link>
         {isAdmin &&
         <div>
               <Tooltip title={t('playlist.tooltip.delete')} >
@@ -129,7 +127,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
 }
         <PlaylistItemBox>
           <PlaylistItemContent>
-          <ItemTitle style={{fontSize: '22px'}} >
+          <ItemTitle>
           <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
                 {videoTitle}
           </Link>

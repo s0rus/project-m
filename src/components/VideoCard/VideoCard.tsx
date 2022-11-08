@@ -6,6 +6,7 @@ import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
 import VideoThumbnail from '@/components/VideoThumbnail';
 import { useTranslation } from 'react-i18next';
 import { AddedByAvatar, AddedByWrapper } from '@/styles/style'
+import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import Image from 'next/image';
 import Ok from '@/domain/Icons/Ok.svg'
 interface VideoCardProps {
@@ -14,7 +15,6 @@ interface VideoCardProps {
 
 const VideoCard: FC<VideoCardProps> = ({ video }) => {
   const { t } = useTranslation();
-
 
 
   if (!video)
@@ -34,13 +34,11 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
   return (
     <Hidden lgDown >
     <VideoCardWrapper elevation={0}>
-        <Link href={videoUrl} target='_blank' rel='noopener norefferer' >
         <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
-        </Link>
       <VideoBox>
         <VideoContent>
           <ItemTitle>
-          <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
+          <Link href={videoUrl} target='_blank' rel='noopener norefferer' >
               {videoTitle}
           </Link>
           </ItemTitle>

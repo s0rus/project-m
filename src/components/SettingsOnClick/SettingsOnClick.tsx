@@ -9,13 +9,13 @@ interface SettingsOnClick extends BoxProps {
 
 const SettingsOnClick: FC<SettingsOnClick> = ({ icon, header, subtitle }) => {
   return (
-    <SettingStack  style={{cursor: 'default'}}>
+    <SettingStack>
       <Box>
         <InnerStack>
           {icon}
-          <Box sx={{ lineHeight: 1, width: '20px', cursor: 'default' }}>
-            <TitleOption>{header}</TitleOption>
-            <SubTitleOption>{subtitle}</SubTitleOption>
+          <Box sx={{ lineHeight: 1, cursor: 'default' }}>
+            <TitleOption style={{cursor: 'default'}} >{header}</TitleOption>
+            <SubTitleOption style={{cursor: 'default'}} >{subtitle}</SubTitleOption>
           </Box>
         </InnerStack>
       </Box>
