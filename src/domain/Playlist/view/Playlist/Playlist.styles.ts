@@ -9,6 +9,7 @@ export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   background: ${({ locked }) => (locked ? gradients.playlistLocked : gradients.playlistUnlocked)};
   border-radius: 8px;
   transition: all 0.3s;
+  margin-bottom: 1.5vh;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 `;
 
@@ -28,7 +29,7 @@ export const PlaylistDetail = styled(Stack)`
 
 export const PlaylistContainer = styled(Box)`
   width: 100%;
-  background: rgba(0,0,0, 0.25);
+  background: ${gradients.gradientPaper}
   border-radius: 8px;
   height: inherit;
   display: flex;

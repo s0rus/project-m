@@ -13,14 +13,15 @@ interface SettingsOnClick extends BoxProps {
 const SettingsOnClick: FC<SettingsOnClick> = ({ icon, header, subtitle, setter, checked }) => {
   const handleOnChange = () => setter(!checked);
   return (
-    <SettingStack>
+    <SettingStack onClick={handleOnChange}>
       <Box>
-      <Checkbox style={{transform: 'scale(1.5, 1.5)', position: 'absolute', marginTop: '-6px', right: '10px'}} checked={checked} onChange={handleOnChange}/>
+      <Checkbox style={{transform: 'scale(1.5, 1.5)', position: 'absolute', marginTop: '-6px', right: '10px'}} 
+      checked={checked} onChange={handleOnChange}/>
         <InnerStack>
           {icon}
-          <Box sx={{ lineHeight: 1, cursor: 'default' }}>
-            <TitleOption style={{cursor: 'default'}} >{header}</TitleOption>
-            <SubTitleOption style={{cursor: 'default'}} >{subtitle}</SubTitleOption>
+          <Box sx={{ lineHeight: 1, cursor: 'pointer' }}>
+            <TitleOption style={{cursor: 'pointer'}} >{header}</TitleOption>
+            <SubTitleOption style={{cursor: 'pointer'}} >{subtitle}</SubTitleOption>
           </Box>
         </InnerStack>
       </Box>

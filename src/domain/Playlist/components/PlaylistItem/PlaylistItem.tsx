@@ -19,6 +19,7 @@ import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { theme } from '@/styles/theme';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 interface PlaylistItemsProps {
   video: PlaylistWithUsers;
 }
@@ -103,7 +104,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
               <Tooltip title={t('playlist.tooltip.requestcurrent')} >
               <IconButton onClick={handleSkipToVideo} disabled={isSkipping} style={{ position: 'absolute', right: '60px', top: '40px',}} >
               <Current>
-                {isSkipping ? <CircularProgress style={{marginTop: '5px'}} size={32} /> : <ArrowUpwardIcon  style={{width: '40px', height: '40px'}}  />}
+                {isSkipping ? <CircularProgress style={{marginTop: '5px'}} size={32} /> : <PlayArrowIcon  style={{width: '40px', height: '40px'}}  />}
               </Current>
               </IconButton>
               </Tooltip>

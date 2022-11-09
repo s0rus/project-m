@@ -8,11 +8,12 @@ import Settings from '../../components/Settings';
 import { theme } from '@/styles/theme';
 import { useAddonsContext } from '@/contexts/AddonsContext';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
-
+import { useAuthContext } from '@/contexts/AuthContext';
+import AdminPanel from '../../components/AdminPanel';
 const Dashboard = () => {
   const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
   const { isChatOn } = useAddonsContext();
-
+  const { isAdmin } = useAuthContext();
   return (
     <>
             {isChatOn && isMediumDown && <TwitchChat />}
@@ -28,6 +29,7 @@ const Dashboard = () => {
                     <Playlist />
               </Grid>
               <Grid item sm={12} md={4} style={{minWidth: isMediumDown ? '100%' : '20%'}} >
+       {isAdmin && (<AdminPanel />)}
                     <Settings />
               </Grid>
             </Grid>

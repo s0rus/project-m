@@ -116,13 +116,15 @@ export const StyledButton = styled(Button)({
   transition: 'all 0.2s',
   width: '100%',
   marginBottom: '10px',
-  background: `${gradients.gradientMain}`,
+  background: 'rgba(0,0,0, 0.55)',
   height: '45px',
+  fontSize: '15px',
+  color: 'white',
   borderRadius: '14px',
   boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
   textTransform: 'capitalize',
   ":hover": {
-    color: 'white',
+    color: `${theme.palette.primary.main}`,
     transform: 'scale(1.05,1.05)',
     background: 'rgba(0,0,0, 0.55)',
     border: `1px solid ${theme.palette.primary.main}`

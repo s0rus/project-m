@@ -71,14 +71,14 @@ const globalTheme = {
 };
 
 export const gradients = {
-  gradientPaper: `linear-gradient(82deg, rgba(0,0,0,0.35) 60%, ${hexToRgba(globalTheme.palette.primary.main, 0.45)} 120%);`,
-  playlistUnlocked: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.success.light, 0)} 0%,  ${hexToRgba(
+  gradientPaper: `linear-gradient(82deg, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.55) 120%);`,
+  playlistUnlocked: `linear-gradient(-90deg, ${hexToRgba(globalTheme.palette.success.light, 0)} -20%,  ${hexToRgba(
     globalTheme.palette.success.dark,
-    0.4
+    0.45
   )} 100%)`,
-  playlistLocked: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.error.light, 0)} 0%,  ${hexToRgba(
+  playlistLocked: `linear-gradient(-90deg, ${hexToRgba(globalTheme.palette.error.light, 0)} -20%,  ${hexToRgba(
     globalTheme.palette.error.dark,
-    0.4
+    0.45
   )} 100%)`,
   currentVideo: `linear-gradient(90deg, ${hexToRgba(globalTheme.palette.background.paper, 1)} 50%,  ${hexToRgba(
     globalTheme.palette.background.paper,

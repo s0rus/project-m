@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import SettingWithCheckbox from '@/components/SettingWithCheckbox';
 import { useAddonsContext } from '@/contexts/AddonsContext';
 import { useTranslation } from 'react-i18next';
 import { useSession } from 'next-auth/react';
@@ -7,7 +6,6 @@ import {  Options, OptionsBox, OptionsTitle } from '@/styles/style';
 import { useAuthContext } from '@/contexts/AuthContext';
 import SettingWithSelect from '@/components/SettingWithSelect';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import AdminPanel from '../../components/AdminPanel';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsOnClick from '@/components/SettingsOnClick';
@@ -17,13 +15,12 @@ const Settings = () => {
   const { loginWithTwitch, logoutOfTwitch } = useAuthContext();
   const { data: session, status } = useSession();
   const { t } = useTranslation();
-  const { isAdmin, currentUser } = useAuthContext();
+  const { currentUser } = useAuthContext();
 
 
 
   return (
-    <>
-      {isAdmin && (<AdminPanel />)}
+
     <Options style={{paddingBottom: '1.4rem'}}>
    <OptionsTitle>
    {t('options.optionsTitle')}
@@ -64,7 +61,7 @@ const Settings = () => {
       subtitle={t('options.languageSubTitle')}/>
     </OptionsBox>
       </Options>
-      </>
+
   );
 };
 

@@ -1,12 +1,12 @@
 import { Avatar, Box, Card, CardContent, Stack, styled } from '@mui/material';
-import { theme } from '@/styles/theme';
+import { theme,gradients } from '@/styles/theme';
 
 export const PlaylistItemWrapper = styled(Card)`
   width: 100%;
   height: 120px;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-  background-color: rgba(0,0,0,0.75);
+  background: ${gradients.gradientMain};
   border-radius: 8px;
   transform: scale(0.98,0.98);
   transition: 0.3s ease-in-out;
