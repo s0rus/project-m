@@ -10,8 +10,6 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import AdminPanel from '../../components/AdminPanel';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { theme } from '@/styles/theme';
-import { useMediaQuery  } from '@mui/material';
 import SettingsOnClick from '@/components/SettingsOnClick';
 import SettingWithButton from '@/components/SettingWithButton';
 const Settings = () => {
@@ -20,18 +18,17 @@ const Settings = () => {
   const { data: session, status } = useSession();
   const { t } = useTranslation();
   const { isAdmin, currentUser } = useAuthContext();
-  const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
 
 
 
   return (
     <>
       {isAdmin && (<AdminPanel />)}
-    <Options style={{paddingBottom: '1.4rem'}} >
+    <Options style={{paddingBottom: '1.4rem'}}>
    <OptionsTitle>
    {t('options.optionsTitle')}
    </OptionsTitle>
-    <OptionsBox style={{cursor: 'pointer'}} >
+    <OptionsBox>
     {session && status === 'authenticated' ? (
       <SettingWithButton
           header={t('options.twitchTitle')}
@@ -54,24 +51,17 @@ const Settings = () => {
           variant='contained'
         />
     )}
-    <div style={{cursor: 'default'}} >
       <SettingsOnClick 
-      style={{cursor: 'default'}}
       icon={<ChatBubbleOutlineIcon/>}
       header={t('options.chatTitle')}
-      subtitle={t('options.chatSubTitle')}/>
-    <div style={{position: 'absolute', bottom: '110px', right: '50px'}}>
-      <SettingWithCheckbox checked={isChatOn} setter={setIsChatOn}/>
-      </div>
-    </div>
-    <div style={{marginTop: '-1.5vh'}} >
+      subtitle={t('options.chatSubTitle')}
+      checked={isChatOn}
+      setter={setIsChatOn}/>
     <SettingWithSelect
-          value={language}
-          setter={setLanguage as Dispatch<SetStateAction<string>>}
-          header={t('options.languageTitle')}
-          subtitle={t('options.languageSubTitle')}
-        />
-    </div>
+      value={language}
+      setter={setLanguage as Dispatch<SetStateAction<string>>}
+      header={t('options.languageTitle')}
+      subtitle={t('options.languageSubTitle')}/>
     </OptionsBox>
       </Options>
       </>

@@ -35,7 +35,7 @@ const AdminPanel = () => {
   };
 
   return (
-        <Options style={{marginBottom: '1rem'}}>
+        <Options style={{}}>
         <OptionsTitle>{t('adminPanel.header')}</OptionsTitle>
 <div style={{padding: '0.01rem 1.5rem'}} >
         <SettingWithButton

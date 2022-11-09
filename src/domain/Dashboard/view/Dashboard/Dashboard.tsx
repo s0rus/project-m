@@ -14,29 +14,29 @@ const Dashboard = () => {
   const { isChatOn } = useAddonsContext();
 
   return (
-    <div>
+    <>
+            {isChatOn && isMediumDown && <TwitchChat />}
     <DashboardWrapper>
       <DashboardContainer>
         <Grid container>
           <Grid item xs={12}>
                     <DashboardBar />
           </Grid>
-          {isChatOn && isMediumDown && <TwitchChat />}
           <Grid item xs={12}>
             <Grid container spacing={2}>
-              <Grid item sm={12} md={8}>
+            <Grid item sm={12} md={8} style={{minWidth: isMediumDown ? '100%' : '20%'}} >
                     <Playlist />
               </Grid>
-              <Grid item sm={12} md={4}>
+              <Grid item sm={12} md={4} style={{minWidth: isMediumDown ? '100%' : '20%'}} >
                     <Settings />
               </Grid>
             </Grid>
             </Grid>
           </Grid>
       </DashboardContainer>
-      <Navigation/>
     </DashboardWrapper>
-</div>
+    <Navigation/>
+    </>
   );
 };
 

@@ -2,7 +2,7 @@ import { Box, Grid, Stack, styled } from '@mui/material';
 
 export const DashboardBarWrapper = styled(Box)`
   width: 100%;
-  min-height: 150px;
+  padding: 1rem 0rem;
 `;
 
 export const DashboardBarContainer = styled(Grid)`
@@ -19,6 +19,7 @@ export const DashboardBarButtons = styled(Stack)`
   align-items: center;
   justify-content: flex-end;
   gap: 2rem;
+  padding: 1rem 1rem;
 `;
 
 

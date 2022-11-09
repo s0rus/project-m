@@ -5,8 +5,6 @@ import { gradients} from '@/styles/theme';
 export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   padding: 1rem;
   display: flex;
-  width: 100%;
-  min-width: 100%;
   flex-flow: column nowrap;
   background: ${({ locked }) => (locked ? gradients.playlistLocked : gradients.playlistUnlocked)};
   border-radius: 8px;
@@ -15,9 +13,9 @@ export const PlaylistWrapper = styled(Box)<{ locked: number }>`
 `;
 
 export const PlaylistHeader = styled(Stack)`
-  margin-bottom: 0.4rem;
   flex-flow: row nowrap;
   align-items: center;
+  margin-top: -12px;
   gap: 1rem;
 `;
 

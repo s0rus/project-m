@@ -1,20 +1,17 @@
-import { styled, Button, Box, Stack, Avatar, Slider } from '@mui/material';
+import { styled, Button, Box, Stack, Avatar, } from '@mui/material';
 import { theme, gradients } from '@/styles/theme';
 import SimpleBar from 'simplebar-react';
 
  export const Options = styled('div')`
 position: relative;
-min-width: 150px;
-max-width: 100%;
-border-radius: 8px;
 padding-top: 1rem;
 transition: 0.3s;
-box-shadow: rgba(0, 0, 0, 1) 0px 25px 20px -20px;
-background: ${gradients.gradientMain};
+border-radius: 8px;
+margin-bottom: 1rem;
+background: ${gradients.gradientPaper};
+box-shadow: rgb(0, 0, 0, 0.55) 0px 20px 30px -10px;
 `
 export const OptionsBox = styled('div')`
-min-width: 150px;
-max-width: 100%;
 box-sizing: border-box;
 padding: 0rem 1.5rem;
 -webkit-font-smoothing: antialiased;
@@ -24,18 +21,6 @@ transition: 0.3s ease-in-out;
 
 
 export const OptionsTitle = styled('h1')({
-  "@keyframes AnimateH1": {
-  "0%": {
-    textShadow: '0px 0px 10px white',
-    },
-  "50%": {
-    textShadow: `0px 0px 0px white`,
-    },
-  "100%": {
-    textShadow: '0px 0px 10px white',
-  }
-  },
-  animation: 'AnimateH1 2s ease infinite',
   fontSize: '1.5rem',
   fontWeight: '600',
   textAlign: 'left',
@@ -53,7 +38,7 @@ min-width: 150px;
 cursor: default;
 box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 max-width: 100%;
-background-color: rgba(0,0,0,0.25);
+background: ${gradients.gradientMain};
 border-radius: 8px;
 position: relative; all 0.3s;
 margin-bottom: 20px;
@@ -128,14 +113,17 @@ color: ${theme.palette.primary.main};`
 
 
 export const StyledButton = styled(Button)({
-  transition: 'all 0.5s',
-  width: '120px',
+  transition: 'all 0.2s',
+  width: '100%',
+  marginBottom: '10px',
+  background: `${gradients.gradientMain}`,
+  height: '45px',
   borderRadius: '14px',
-  boxShadow: 'rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px',
+  boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
   textTransform: 'capitalize',
   ":hover": {
     color: 'white',
-    transform: 'scale(1.1,1.1)',
+    transform: 'scale(1.05,1.05)',
     background: 'rgba(0,0,0, 0.55)',
     border: `1px solid ${theme.palette.primary.main}`
   }  
@@ -169,44 +157,6 @@ export const AddedByAvatar = styled(Avatar)`
   border-radius: 4px;
 `;
 
-export const Seeker = styled(Slider)`
-color: ${theme.palette.primary.main};
-height: 4px;
-pointer-events: none;
-padding: 0;
-margin: 0;
-background-color: rgba(51, 51, 51, 0.53);
-margin-bottom: 5px;
-border-radius: 8px;
-& .MuiSlider-thumb {
-  width: 0px;
-  height: 0px;
-  color: white;
-}
-&::before {
-  display: none;
-  opacity: 0;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
-}
-&:hover,
-&.Mui-focusVisible {
-  box-shadow: ${theme.palette.primary.main};
-}
-&.Mui-active {
-  width: 0px;
-  height: 0px;
-}
-& .MuiSlider-rail {
-  color: gray;
-  opacity: 0.50;
-}
-`;
-
-export const sd = styled(SimpleBar)`
-max-height: 100vh;
-z-index: 100;
-background: radial-gradient(circle, rgba(48,48,68,1) -50%, rgba(20,23,46,1) 60%);
-`
 export const Background = styled(SimpleBar)({
   maxHeight: '100vh',
   zIndex: '100',

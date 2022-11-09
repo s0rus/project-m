@@ -22,9 +22,6 @@ const Home: NextPage = () => {
         <title>Murzyniarnia</title>
         <meta name='description' content='Strona do oglądania filmów 👨🏾‍🦱' />
         <link rel='icon' href='/favicon.ico' />
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet"/>
       </Head>
 <>
       <MainLayout>
@@ -38,7 +35,7 @@ const Home: NextPage = () => {
         </MainContent>
         </div>
         {isChatOn && isMediumUp &&
-        <div style={{minWidth: '12%', width: '13.3%'}}>
+        <div style={{minWidth: '12%', width: '20%'}}>
             <TwitchChat />
         </div>
         }

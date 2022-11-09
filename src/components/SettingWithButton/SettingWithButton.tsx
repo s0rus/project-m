@@ -27,20 +27,19 @@ const SettingWithButton: FC<SettingWithButton> = ({ icon, hiddenicon, header, su
             </SubTitleOption>
           </Box>
         </InnerStack>
-        <Hidden lgDown>
-        <Button style={{position: 'absolute', right: '20px', bottom: '18px', height: '35px', minWidth: '60px', width: '120px' , fontSize: '12px', textTransform: 'capitalize'}} {...rest} onClick={buttonAction}>
+      </Box>
+      <Hidden lgDown>
+        <Button style={{position: 'absolute', fontSize: '12px', textTransform: 'capitalize', right: '10px'}} {...rest} onClick={buttonAction}>
         <Typography style={{fontSize: '12px'}} >
           {buttonLabel}
         </Typography>
         </Button>
         </Hidden>
         <Hidden lgUp>
-        <Button style={{position: 'absolute', right: '20px', bottom: '18px', height: '35px', fontSize: '12px', textTransform: 'capitalize'}} {...rest} onClick={buttonAction}>
+        <Button style={{position: 'absolute', fontSize: '12px', textTransform: 'capitalize', right: '10px'}} {...rest} onClick={buttonAction}>
             {hiddenicon}
           </Button>
         </Hidden>
-
-      </Box>
     </SettingStack>
   );
 };

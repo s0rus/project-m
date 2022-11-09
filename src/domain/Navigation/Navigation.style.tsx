@@ -6,24 +6,21 @@ export const NavHolder = styled('div')`
 transition: all 0.2s;
 position: relative; all 0.3s;
 text-transform: capitalize;
-width: 90%;
+width: 100%
 min-width: 250px;
 height: 60px;
 display: flex;
 position: relative;
 gap: 40px;
 justify-content: center;
-background: ${gradients.gradientMain};
+background: ${gradients.gradientPaper};
 left: 50%;
-top: 20px;
+top: 40px;
 margin: 0;
 padding: 0;
 transform: translate(-50%, -50%);
 box-shadow: rgba(0, 0, 0, 0.75) 0px 25px 20px -20px;
-border-radius: 8px;
-&:hover{
-    background-color: rgba(0,0,0,0.25);
-}`
+`
 
 export const NavHolderFull = styled('div')`
 transition: all 0.2s;
@@ -35,10 +32,7 @@ display: flex;
 position: relative;
 gap: 150px;
 justify-content: center;
-background: ${gradients.gradientMain};
-&:hover{
-    background-color: rgba(0,0,0,0.25);
-}`
+background: ${gradients.gradientPaper};`
 
 export const SocialBox = styled('div')`
 height: 40px;

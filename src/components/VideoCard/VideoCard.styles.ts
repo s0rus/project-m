@@ -2,18 +2,15 @@ import { Avatar, Box, Card, CardContent, Stack, styled } from '@mui/material';
 import { theme, gradients } from '@/styles/theme';
 
 export const VideoCardWrapper = styled(Card)`
-  width: 99.5%;
-  max-height: 125px;
   height: 100%;
   min-height: 100px;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-  background: ${gradients.gradientMain};
+  background: ${gradients.gradientPaper};
 `;
 
 export const VideoContent = styled(CardContent)`
   width: 100%;
-  max-width: 100%;
   display: flex;
   font-size: 20px;
   flex: 1;

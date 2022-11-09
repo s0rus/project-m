@@ -46,76 +46,76 @@ const CircularLocking = async () => {
   setIsLocking(false)
 }
 
-  return (
-    <>
-    <PlaylistWrapper locked={playlistLocked ? 1 : 0} style={{minWidth: isMediumDown ? '30%' : '100%', width: isMediumDown ? '100%' : '100%',}} >
-        <PlaylistHeader>
-        {isAdmin ? (
-          <div style={{marginTop: '8px'}} >
-        {playlistLocked ? (
+return (
+  <>
+  <PlaylistWrapper locked={playlistLocked ? 1 : 0} style={{minWidth: isMediumDown ? '30%' : '100%', width: isMediumDown ? '100%' : '100%',}} >
+      <PlaylistHeader>
+      {isAdmin ? (
+        <div style={{marginTop: '8px'}} >
+      {playlistLocked ? (
 
-          <Tooltip title={t('playlist.tooltip.unlock')} >
-            <PlaylistDetail>
-        <IconButton disabled={locking}>
-{locking ? <CircularProgress size={20} style={{height: '20px', width: '20px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOutlinedIcon  onClick={CircularLocking} style={{height: '25px', width: '25px', marginTop: '-12px', marginRight: '-15px', marginLeft: '-10px'}} />}
-        </IconButton>
-            </PlaylistDetail>
-          </Tooltip>
-        ) : (
-          <Tooltip title={t('playlist.tooltip.lock')} >
-            <PlaylistDetail>
+        <Tooltip title={t('playlist.tooltip.unlock')} >
+          <PlaylistDetail>
       <IconButton disabled={locking}>
-{locking ? <CircularProgress size={20} style={{height: '20px', width: '20px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOpenOutlinedIcon  onClick={CircularLocking} style={{height: '25px', width: '25px', marginTop: '-12px', marginRight: '-15px', marginLeft: '-10px'}} />}
+{locking ? <CircularProgress size={20} style={{height: '20px', width: '20px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOutlinedIcon  onClick={CircularLocking} style={{height: '25px', width: '25px', marginTop: '-5px', marginRight: '-15px', marginLeft: '-10px'}} />}
       </IconButton>
-            </PlaylistDetail>
-         </Tooltip>
-         )} 
-          </div>
+          </PlaylistDetail>
+        </Tooltip>
+      ) : (
+        <Tooltip title={t('playlist.tooltip.lock')} >
+          <PlaylistDetail>
+    <IconButton disabled={locking}>
+{locking ? <CircularProgress size={20} style={{height: '20px', width: '20px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOpenOutlinedIcon  onClick={CircularLocking} style={{height: '25px', width: '25px', marginTop: '-5px', marginRight: '-15px', marginLeft: '-10px'}} />}
+    </IconButton>
+          </PlaylistDetail>
+       </Tooltip>
+       )} 
+        </div>
 ) : (
-  <div style={{marginTop: '8px'}} >
-  {playlistLocked ? (
-              <Tooltip title={t('playlist.tooltip.locked')} >
-  <LockOutlinedIcon style={{height: '25px', width: '25px', marginTop: '-5px', marginRight: '-8px'}} />
-              </Tooltip>
-  ) : (
-              <Tooltip title={t('playlist.tooltip.unlocked')} >
-   <LockOpenOutlinedIcon style={{height: '25px', width: '25px', marginTop: '-5px', marginRight: '-8px'}} />
-              </Tooltip>
-   )} 
-    </div>
+<div style={{marginTop: '8px'}} >
+{playlistLocked ? (
+            <Tooltip title={t('playlist.tooltip.locked')} >
+<LockOutlinedIcon style={{height: '25px', width: '25px', marginTop: '0px', marginRight: '-8px'}} />
+            </Tooltip>
+) : (
+            <Tooltip title={t('playlist.tooltip.unlocked')} >
+ <LockOpenOutlinedIcon style={{height: '25px', width: '25px', marginTop: '0', marginRight: '-8px'}} />
+            </Tooltip>
+ )} 
+  </div>
 
 )}
-          <Typography variant='h2' style={{textShadow: '0px 0px 10px white',}} >{t('playlist.header')}</Typography>
-          <Tooltip title={t('playlist.tooltip.videoCount')}>
-            <PlaylistDetail>
-              <AutoAwesomeMotionRounded  />
-              <Typography variant='h5' style={{textShadow: `0px 0px 2px white`}} >{properPlaylist.length || 0}</Typography>
-            </PlaylistDetail>
-          </Tooltip>
-          <Tooltip title={t('playlist.tooltip.timeSum')}>
-            <PlaylistDetail>
-              <AccessTimeFilledRounded />
-              <Typography variant='h5' style={{textShadow: '0px 0px 2px white'}} >{timeFormatter(timeSum)}</Typography>
-            </PlaylistDetail>
-          </Tooltip>
-        </PlaylistHeader>
-        <PlaylistContainer component={List} ref={animatedList}>
-          {properPlaylist.length ? (
-            properPlaylist.map((video) => (
-              <React.Fragment key={video.videoId}>
-                <PlaylistItem video={video} />
-              </React.Fragment>
-            ))
-          ) : (
-            <EmptyPlaylistBox>
-              
-              <Typography style={{textShadow: '0px 0px 10px white'}} variant='h4'>{t('playlist.empty')} <div style={{marginTop: '10px', marginLeft: '40%'}} > <Image src={MadgeIcon} alt='Madge' height={48} width={48} /></div>  </Typography>
-            </EmptyPlaylistBox>
-          )}
-        </PlaylistContainer>
-      </PlaylistWrapper>
-    </>
-  );
+        <Typography variant='h2' >{t('playlist.header')}</Typography>
+        <Tooltip title={t('playlist.tooltip.videoCount')}>
+          <PlaylistDetail>
+            <AutoAwesomeMotionRounded  />
+            <Typography variant='h5'>{properPlaylist.length || 0}</Typography>
+          </PlaylistDetail>
+        </Tooltip>
+        <Tooltip title={t('playlist.tooltip.timeSum')}>
+          <PlaylistDetail>
+            <AccessTimeFilledRounded />
+            <Typography variant='h5'>{timeFormatter(timeSum)}</Typography>
+          </PlaylistDetail>
+        </Tooltip>
+      </PlaylistHeader>
+      <PlaylistContainer component={List} ref={animatedList}>
+        {properPlaylist.length ? (
+          properPlaylist.map((video) => (
+            <React.Fragment key={video.videoId}>
+              <PlaylistItem video={video} />
+            </React.Fragment>
+          ))
+        ) : (
+          <EmptyPlaylistBox>
+            
+            <Typography style={{textShadow: '0px 0px 10px white'}} variant='h4'>{t('playlist.empty')} <div style={{marginTop: '10px', marginLeft: '40%'}} > <Image src={MadgeIcon} alt='Madge' height={48} width={48} /></div>  </Typography>
+          </EmptyPlaylistBox>
+        )}
+      </PlaylistContainer>
+    </PlaylistWrapper>
+  </>
+);
 };
 
 export default Playlist;

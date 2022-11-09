@@ -8,9 +8,6 @@ import { useTranslation } from 'react-i18next';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { StyledButton } from '@/styles/style';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
-import { CircularProgress  } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-
 const BarButtons = () => {
   const { isAdmin } = useAuthContext();
   const { t } = useTranslation();
@@ -21,13 +18,6 @@ const BarButtons = () => {
   const handleClose = () => setModalOpen(false);
   const { handleOnVideoSkip } = usePlayerContext();
   const { loginWithTwitch } = useAuthContext();
-  const [logging, setIsLogging] = useState(false);
-  const handleLogging = async () => {
-  setIsLogging(true);
-  await loginWithTwitch();
-  setIsLogging(false);
-} 
-
 
 
   return (
@@ -55,10 +45,8 @@ const BarButtons = () => {
         <Tooltip title={t('options.twitchSubTitleLOGIN')}>
               <StyledButton
               style={{marginRight: '1.5rem'}}
-              onClick={handleLogging}>
-                <IconButton disabled={logging} >
-                {logging ? <CircularProgress size={32} /> : <PlaylistAddRounded style={{marginRight: '5px', color: 'gray'}} />}
-                </IconButton>
+              onClick={loginWithTwitch}>
+                {t('logIn')}
             </StyledButton>
         </Tooltip>
         </>

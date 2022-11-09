@@ -22,13 +22,14 @@ const SettingWithSelect: FC<SettingWithSelect> = ({ setter, value, header, subti
       id='language-selector'
       value={value}
       onChange={(e) => setter(e.target.value as string)}
-      sx={{ mt: '1rem', cursor: 'pointer' }}
-      style={{width: '100%', minWidth: '150px',}}
+      sx={{ mt: '1rem', cursor: 'pointer', marginTop: '5px', border: 'none'}}
+      style={{width: '100%', minWidth: '150px', height: '65px'}}
       IconComponent={ExpandMoreRounded}
       renderValue={(value) => {
         const language = value === 'pl' ? t('language.pl') : t('language.en');
 
         return (
+
           <SettingStack>
             <InnerStack>
               <LanguageRounded />
@@ -39,6 +40,7 @@ const SettingWithSelect: FC<SettingWithSelect> = ({ setter, value, header, subti
             </InnerStack>
             <Typography variant='h5' style={{ textShadow: '0px 0px 10px white' }} >{language}</Typography>
           </SettingStack>
+
         );
       }}
     >

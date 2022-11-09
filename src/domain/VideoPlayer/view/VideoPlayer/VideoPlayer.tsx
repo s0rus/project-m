@@ -1,26 +1,33 @@
 import React, { MutableRefObject, useEffect, useRef } from 'react';
-import { StyledReactPlayer, VideoPlayerBox } from './VideoPlayer.styles';
+import { StyledReactPlayer, VideoPlayerBox, VideoPlayerContainer } from './VideoPlayer.styles';
 
 import PlayerControls from '../../components/PlayerControls';
 import ReactPlayer from 'react-player';
 import useHasWindow from '../../utils/hasWindow';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
-
+import { useMediaQuery  } from '@mui/material';
+import { theme } from '@/styles/theme';
+import { useAddonsContext } from '@/contexts/AddonsContext';
+import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 const VideoPlayer = () => {
   const { setPlayerRef, handleProgress, handleOnEnd, playerState, handleOnError, handleOnReady } = usePlayerContext();
   const { isPlaying, volume, isMuted, activeVideo } = playerState;
   const playerRef = useRef<ReactPlayer | null>(null);
   const hasWindow = useHasWindow();
-
+  const { isChatOn } = useAddonsContext();
+  const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
+  const isLargeDown = useMediaQuery(theme.breakpoints.between('md', 'lg'));
   useEffect(() => {
     setPlayerRef(playerRef as MutableRefObject<ReactPlayer>);
   }, [setPlayerRef]);
 
   return (
-    <VideoPlayerBox>
+    <VideoPlayerContainer>
+    <VideoPlayerBox
+    style={{ height: isMediumDown ? '65vh' : '100vh'}}>
       {hasWindow && (
         <>
-          <StyledReactPlayer
+          <StyledReactPlayer 
             onReady={handleOnReady}
             onError={handleOnError}
             onProgress={handleProgress}
@@ -44,6 +51,8 @@ const VideoPlayer = () => {
         </>
       )}
     </VideoPlayerBox>
+    {isChatOn && isLargeDown && <TwitchChat />}
+    </VideoPlayerContainer>
   );
 };
 

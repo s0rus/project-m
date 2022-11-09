@@ -16,7 +16,6 @@ export const TwitchChatContainer = styled(Box)`
 `;
 
 export const TwitchChatHolder = styled('iframe')`
-  min-height: 100vh;
   width: 100%;
   border: none;
   overflow: hidden;
