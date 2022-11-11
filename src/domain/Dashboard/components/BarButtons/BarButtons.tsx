@@ -1,13 +1,12 @@
-import {  Tooltip } from '@mui/material';
-import { PlaylistAddRounded } from '@mui/icons-material';
+import {  Tooltip, Button } from '@mui/material';
 import React, { useState } from 'react';
 import AddVideoModal from '../AddVideoModal';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import { StyledButton } from '@/styles/style';
+import MovieIcon from '@mui/icons-material/Movie';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
+import NextPlanIcon from '@mui/icons-material/NextPlan';
 const BarButtons = () => {
   const { isAdmin } = useAuthContext();
   const { t } = useTranslation();
@@ -25,29 +24,30 @@ const BarButtons = () => {
       {isLoggedIn ? (
         <>
           {isAdmin &&
-            <StyledButton onClick={() => handleOnVideoSkip()} >
-              <SkipNextIcon style={{marginRight: '5px',}} />
+            <Button style={{width: '100%', height: '45px'}}
+            onClick={() => handleOnVideoSkip()} >
+              <NextPlanIcon style={{marginRight: '5px',}} />
               {t('video.skip')}
-            </StyledButton>
+            </Button>
           }
-            <StyledButton
+            <Button style={{width: '100%', height: '45px'}}
               onClick={handleOpen}
               disabled={playlistLocked && !isAdmin}
             >
-              <PlaylistAddRounded style={{marginRight: '5px'}} />
+              <MovieIcon style={{marginRight: '5px'}} />
               {t('video.add')}
-            </StyledButton>
+            </Button>
           <AddVideoModal handleClose={handleClose} open={modalOpen} />
         </>
         
       ) : (
         <>
         <Tooltip title={t('options.twitchSubTitleLOGIN')}>
-              <StyledButton
-              style={{marginRight: '1.5rem'}}
+              <Button
+              style={{width: '100%', height: '45px'}}
               onClick={loginWithTwitch}>
                 {t('logIn')}
-            </StyledButton>
+            </Button>
         </Tooltip>
         </>
       )}

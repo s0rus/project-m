@@ -18,7 +18,7 @@ border-radius: 8px;
 position: relative; all 0.3s;
 text-transform: capitalize;
 &:hover{
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(255,255,255,0.05);
 }
 `;
 
@@ -35,7 +35,7 @@ export const InnerStack = styled(Stack)`
 export const TitleOption = styled('h2')`
 line-height: 1.1;
 font-size: 16px;
-width: 50px;
+width: 100%
 letter-spacing: 1px;
 cursor: default;
 position: relative;
@@ -48,7 +48,7 @@ font-weight: 500; `
 
 export const SubTitleOption = styled('h2')`
 line-height: 1.1;
-width: 200px;
+width: 100%;
 font-size: 13px;
 font-weight: 400;
 letter-spacing: 1px;
@@ -62,5 +62,5 @@ margin: 0px;
 padding: 0px;
 text-transform: capitalize;
 font-weight: 400;
-color: ${theme.palette.primary.main};
+color: #c7c7c7;
 `

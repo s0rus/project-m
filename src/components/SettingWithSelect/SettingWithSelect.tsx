@@ -1,8 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { ExpandMoreRounded, LanguageRounded } from '@mui/icons-material';
-import { InnerStack, SettingStack, StyledSelect } from './SettingWithSelect.styles';
+import { InnerStack, SettingStack, StyledSelect, TitleSelect, TitleSubSelect } from './SettingWithSelect.styles';
 import React, { Dispatch, FC, SetStateAction } from 'react';
-import {  TitleSubSelect, TitleSelect } from '@/styles/style';
 import MenuItem from '@mui/material/MenuItem';
 import { useTranslation } from 'react-i18next';
 
@@ -22,8 +21,8 @@ const SettingWithSelect: FC<SettingWithSelect> = ({ setter, value, header, subti
       id='language-selector'
       value={value}
       onChange={(e) => setter(e.target.value as string)}
-      sx={{ mt: '1rem', cursor: 'pointer', marginTop: '5px', border: 'none'}}
-      style={{width: '100%', minWidth: '150px', height: '65px'}}
+      sx={{ mt: '1rem', cursor: 'pointer', marginTop: '-5px'}}
+      style={{width: '100%', height: '65px'}}
       IconComponent={ExpandMoreRounded}
       renderValue={(value) => {
         const language = value === 'pl' ? t('language.pl') : t('language.en');

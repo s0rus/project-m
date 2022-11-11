@@ -16,7 +16,8 @@ export const PlaylistWrapper = styled(Box)<{ locked: number }>`
 export const PlaylistHeader = styled(Stack)`
   flex-flow: row nowrap;
   align-items: center;
-  margin-top: -12px;
+  margin-top: -5px;
+  margin-bottom: 5px;
   gap: 1rem;
 `;
 
@@ -29,7 +30,7 @@ export const PlaylistDetail = styled(Stack)`
 
 export const PlaylistContainer = styled(Box)`
   width: 100%;
-  background: ${gradients.gradientPaper}
+  background: ${gradients.gradientPaper};
   border-radius: 8px;
   height: inherit;
   display: flex;

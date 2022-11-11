@@ -7,7 +7,7 @@ import type { NextPage } from 'next';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import VideoPlayer from '@/domain/VideoPlayer/view/VideoPlayer';
 import { HorizontalPageSplit } from 'react-page-split';
-import { Background } from '@/styles/style';
+import SimpleBar from 'simplebar-react';
 import { useAddonsContext } from '@/contexts/AddonsContext';
 import { theme } from '@/styles/theme';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -28,10 +28,10 @@ const Home: NextPage = () => {
         <HorizontalPageSplit>
         <div style={{minWidth: isChatOn && isMediumUp ? '65%' : '100%'}} >
         <MainContent>
-          <Background>
+          <SimpleBar style={{height: '100vh'}} >
             <VideoPlayer/>
             <Dashboard />
-          </Background>
+          </SimpleBar>
         </MainContent>
         </div>
         {isChatOn && isMediumUp &&

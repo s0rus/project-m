@@ -13,10 +13,9 @@ interface SettingsOnClick extends BoxProps {
 const SettingsOnClick: FC<SettingsOnClick> = ({ icon, header, subtitle, setter, checked }) => {
   const handleOnChange = () => setter(!checked);
   return (
+    <>
     <SettingStack onClick={handleOnChange}>
       <Box>
-      <Checkbox style={{transform: 'scale(1.5, 1.5)', position: 'absolute', marginTop: '-6px', right: '10px'}} 
-      checked={checked} onChange={handleOnChange}/>
         <InnerStack>
           {icon}
           <Box sx={{ lineHeight: 1, cursor: 'pointer' }}>
@@ -25,7 +24,9 @@ const SettingsOnClick: FC<SettingsOnClick> = ({ icon, header, subtitle, setter, 
           </Box>
         </InnerStack>
       </Box>
+      <Checkbox style={{position: 'absolute', right: '10px', transform: 'scale(1.5,1.5)'}}  checked={checked} onChange={handleOnChange}/>
     </SettingStack>
+    </>
   );
 };
 

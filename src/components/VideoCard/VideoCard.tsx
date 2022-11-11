@@ -21,7 +21,7 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
       <VideoCardWrapper elevation={0}>
         <EmptyVideoCard>
           <Typography variant='h3' style={{marginLeft: '60px'}} >{t('playlist.noCurrentVideo.title')}</Typography>
-          <Typography variant='body2' style={{marginLeft: '60px', color: `${theme.palette.primary.main}`}} >{t('playlist.noCurrentVideo.subtitle')}</Typography>
+          <Typography variant='body2' style={{marginLeft: '60px', color: '#c7c7c7'}} >{t('playlist.noCurrentVideo.subtitle')}</Typography>
           <div style={{position: 'absolute', height: '50px', width: '50px', left: '60px', marginBottom: '5px'}} >
           <Image src={Ok} alt='' style={{ borderRadius: '10%'}} />
           </div>

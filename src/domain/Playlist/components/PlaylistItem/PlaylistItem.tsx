@@ -112,7 +112,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
             }
 {beforecopy &&
 <Tooltip title={t('playlist.tooltip.copy')} >
-  <ContentCopyIcon style={{color: isHovering ? 'white' : 'hsla(298, 100%, 100%, 0.25)',  position: 'absolute', right: '10px', top: '10px', cursor: 'pointer',}}
+  <ContentCopyIcon style={{color: isHovering ? 'white' : 'hsla(298, 100%, 100%, 0.25)',  position: 'absolute', right: '20px', top: '20px', cursor: 'pointer',}}
   onMouseEnter={handleMouseEnter}
   onMouseLeave={handleMouseLeave}
   onClick={CopyThis}/>
@@ -120,7 +120,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
 }
 {copied &&
   <Tooltip title={t('playlist.tooltip.copied')} >
-  <CheckIcon style={{color: 'rgba(38, 255, 0, 0.49)',  position: 'absolute', right: '10px', top: '10px', cursor: 'pointer',
+  <CheckIcon style={{color: 'rgba(38, 255, 0, 0.49)',  position: 'absolute', right: '20px', top: '20px', cursor: 'pointer',
   }}
   onMouseEnter={handleMouseEnter}
   onMouseLeave={handleMouseLeave}/>

@@ -13,7 +13,7 @@ display: flex;
 position: relative;
 gap: 40px;
 justify-content: center;
-background: ${gradients.gradientPaper};
+background: rgba(0,0,0,0.25);
 left: 50%;
 top: 40px;
 margin: 0;
@@ -32,7 +32,7 @@ display: flex;
 position: relative;
 gap: 150px;
 justify-content: center;
-background: ${gradients.gradientPaper};`
+background: rgba(0,0,0,0.25);`
 
 export const SocialBox = styled('div')`
 height: 40px;

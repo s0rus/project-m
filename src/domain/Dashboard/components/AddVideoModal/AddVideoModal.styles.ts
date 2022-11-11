@@ -1,19 +1,20 @@
 import { Box, Stack, styled } from '@mui/material';
 
 import ReactPlayer from 'react-player';
-import { theme } from '@/styles/theme';
+import { theme,gradients } from '@/styles/theme';
 
 export const ModalContent = styled(Box)`
   width: 420px;
   padding: 2rem 2.5rem;
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   position: absolute;
   top: 50%;
   left: 50%;
   transition: all 0.3s;
   transform: translate(-50%, -50%);
-  background-color: ${theme.palette.background.paper};
+  background: radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 180%);
+  border: 2px solid #18181b;
 `;
 
 export const AddVideoWrapper = styled(Stack)`

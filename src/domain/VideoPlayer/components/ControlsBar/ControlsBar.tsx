@@ -1,6 +1,6 @@
 import { ControlsBarWrapper, Seeker, Timer } from './ControlsBar.styles';
 import { FullscreenExitRounded, FullscreenRounded, SyncRounded } from '@mui/icons-material';
-import { IconButton, Typography } from '@mui/material';
+import { IconButton, Typography, Tooltip } from '@mui/material';
 import React, { FC, useCallback, useEffect, useState, useMemo } from 'react';
 
 import { ToastTypes } from '@/utils/ToastTypes';
@@ -78,14 +78,16 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(duration)}</Typography>
       </Timer>
-
-<IconButton disabled={isCurrentUserLeader} onDoubleClick={requestTime}>
-<SyncRounded/>
-</IconButton>
-
+          <Tooltip title={t('playerControls.tooltip.sync')} >
+        <IconButton disabled={isCurrentUserLeader} onDoubleClick={requestTime}>
+        <SyncRounded/>
+        </IconButton>
+          </Tooltip>
+    <Tooltip title={t('playerControls.tooltip.fullscreen')} >
       <IconButton onClick={() => toggleFullscreen()}>
         {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}
       </IconButton>
+    </Tooltip>
     </ControlsBarWrapper>
   );
 };

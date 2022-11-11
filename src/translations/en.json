@@ -2,12 +2,17 @@
   "logIn": "Sign in",
   "logOut": "Sign out",
   "cancelMute": "Disable mute",
+  "playerControls": {
+    "tooltip": {
+      "sync": "Synchronize (double click)",
+      "fullscreen": "Fullscreen"
+    }
+  },
   "video": {
     "thumbnailAlt": "Thumbnail of the video titled {{videoTitle}}",
-    "add": "Add video",
+    "add": "Add",
     "addedBy": "Added by",
-    "skip": "Skip video",
-    "time": "Sync request"
+    "skip": "Skip"
   },
   "addVideoModal": {
     "header": "Add video to the queue",
@@ -37,10 +42,16 @@
       "header": "Admin panel",
       "leader": {
         "header": "{{leaderIdentifier}}",
-        "subititle": "Current leader",
+        "subititle": "Current leader.",
         "noLeader": "There is no leader",
         "becomeLeader": "Become leader",
         "userIsLeader": "You are the leader"
+      },
+      "playlist": {
+        "header": "Playlist",
+        "subtitle": "Change playlist state",
+        "lock": "Lock",
+        "unlock": "Unlock"
       }
     },
 

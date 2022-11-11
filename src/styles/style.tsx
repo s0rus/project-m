@@ -1,6 +1,5 @@
-import { styled, Button, Box, Stack, Avatar, } from '@mui/material';
-import { theme, gradients } from '@/styles/theme';
-import SimpleBar from 'simplebar-react';
+import { styled, Box, Stack, Avatar, } from '@mui/material';
+import { gradients } from '@/styles/theme';
 
  export const Options = styled('div')`
 position: relative;
@@ -24,7 +23,7 @@ export const OptionsTitle = styled('h1')({
   fontSize: '1.5rem',
   fontWeight: '600',
   textAlign: 'left',
-  marginLeft: '20px',
+  marginLeft: '28px',
   marginTop: '0px',
   cursor: 'default',
   display: 'flex'
@@ -46,91 +45,6 @@ text-transform: capitalize;
 &:hover{
   background-color: rgba(255,255,255,0.09);
 }`
-
-export const TitleOption = styled('h2')`
-
-line-height: 1.1;
-font-size: 16px;
-width: 100px;
-letter-spacing: 1px;
-cursor: default;
-position: relative;
-text-shadow: 0px 0px 10px white;
-text-align: left;
-margin: 0px;
-padding: 0px;
-bottom: 16px;
-left: 55px;
-font-weight: 500; 
-`
-
-export const SubTitleOption = styled('h2')`
-line-height: 1.1;
-font-size: 13px;
-font-weight: 400;
-letter-spacing: 1px;
-width: 200px;
-cursor: default;
-display: flex;
-transition: all 0.3s ease 0s;
-position: relative;
-text-align: left;
-margin: 0px;
-padding: 0px;
-bottom: 16px;
-left: 55px;
-font-weight: 400;
-color: ${theme.palette.primary.main};
-`
-
-export const TitleSelect = styled('h2')`
-line-height: 1.1;
-font-size: 16px;
-width: 100px;
-letter-spacing: 1px;
-position: relative;
-text-shadow: 0px 0px 10px white;
-text-align: left;
-margin: 0px;
-padding: 0px;
-right: 15px;
-font-weight: 500; `
-
-export const TitleSubSelect = styled('h2')`
-line-height: 1.1;
-font-size: 13px;
-font-weight: 400;
-letter-spacing: 1px;
-display: flex;
-transition: all 0.3s ease 0s;
-position: relative;
-text-align: left;
-margin: 0px;
-padding: 0px;
-right: 15px;
-font-weight: 400;
-color: ${theme.palette.primary.main};`
-
-
-export const StyledButton = styled(Button)({
-  transition: 'all 0.2s',
-  width: '100%',
-  marginBottom: '10px',
-  background: 'rgba(0,0,0, 0.55)',
-  height: '45px',
-  fontSize: '15px',
-  color: 'white',
-  borderRadius: '14px',
-  boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
-  textTransform: 'capitalize',
-  ":hover": {
-    color: `${theme.palette.primary.main}`,
-    transform: 'scale(1.05,1.05)',
-    background: 'rgba(0,0,0, 0.55)',
-    border: `1px solid ${theme.palette.primary.main}`
-  }  
-});
-
 
 export const CurrentVideoWrapper = styled(Box)`
   display: flex;
@@ -158,9 +72,3 @@ export const AddedByWrapper = styled(Stack)`
 export const AddedByAvatar = styled(Avatar)`
   border-radius: 4px;
 `;
-
-export const Background = styled(SimpleBar)({
-  maxHeight: '100vh',
-  zIndex: '100',
-  background: 'radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 100%)'
-});

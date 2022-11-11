@@ -1,5 +1,5 @@
 import { AccessTimeFilledRounded, AutoAwesomeMotionRounded } from '@mui/icons-material';
-import { List, Tooltip, Typography, IconButton, CircularProgress } from '@mui/material';
+import { List, Tooltip, Typography } from '@mui/material';
 import {
   EmptyPlaylistBox,
   PlaylistContainer,
@@ -7,7 +7,7 @@ import {
   PlaylistHeader,
   PlaylistWrapper,
 } from './Playlist.styles';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import PlaylistItem from '../../components/PlaylistItem';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import timeFormatter from '@/utils/timeFormatter';
@@ -15,20 +15,14 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useTranslation } from 'react-i18next';
 import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
-import { useAuthContext } from '@/contexts/AuthContext';
 import Image from 'next/image';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { theme } from '@/styles/theme';
 
 const Playlist = () => {
-  const { isAdmin } = useAuthContext();
   const { t } = useTranslation();
   const { playlist, properPlaylist, playlistLocked } = usePlaylistContext();
   const [animatedList] = useAutoAnimate();
-  const { togglePlaylistLocked } = usePlaylistContext();
-  const [locking, setIsLocking] = useState(false);
   const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
   const timeSum = useMemo(
     () =>
@@ -40,51 +34,10 @@ const Playlist = () => {
   );
 
 
-const CircularLocking = async () => {
-  setIsLocking(true)
-  await togglePlaylistLocked();
-  setIsLocking(false)
-}
-
 return (
   <>
   <PlaylistWrapper locked={playlistLocked ? 1 : 0} style={{minWidth: isMediumDown ? '30%' : '100%', width: isMediumDown ? '100%' : '100%',}} >
       <PlaylistHeader>
-      {isAdmin ? (
-        <div style={{marginTop: '8px'}} >
-      {playlistLocked ? (
-
-        <Tooltip title={t('playlist.tooltip.unlock')} >
-          <PlaylistDetail>
-      <IconButton disabled={locking}>
-{locking ? <CircularProgress size={20} style={{height: '20px', width: '20px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOutlinedIcon  onClick={CircularLocking} style={{height: '25px', width: '25px', marginTop: '-5px', marginRight: '-15px', marginLeft: '-10px'}} />}
-      </IconButton>
-          </PlaylistDetail>
-        </Tooltip>
-      ) : (
-        <Tooltip title={t('playlist.tooltip.lock')} >
-          <PlaylistDetail>
-    <IconButton disabled={locking}>
-{locking ? <CircularProgress size={20} style={{height: '20px', width: '20px', marginTop: '-10px', marginRight: '-10px', marginLeft: '-10px'}} /> : <LockOpenOutlinedIcon  onClick={CircularLocking} style={{height: '25px', width: '25px', marginTop: '-5px', marginRight: '-15px', marginLeft: '-10px'}} />}
-    </IconButton>
-          </PlaylistDetail>
-       </Tooltip>
-       )} 
-        </div>
-) : (
-<div style={{marginTop: '8px'}} >
-{playlistLocked ? (
-            <Tooltip title={t('playlist.tooltip.locked')} >
-<LockOutlinedIcon style={{height: '25px', width: '25px', marginTop: '0px', marginRight: '-8px'}} />
-            </Tooltip>
-) : (
-            <Tooltip title={t('playlist.tooltip.unlocked')} >
- <LockOpenOutlinedIcon style={{height: '25px', width: '25px', marginTop: '0', marginRight: '-8px'}} />
-            </Tooltip>
- )} 
-  </div>
-
-)}
         <Typography variant='h2' >{t('playlist.header')}</Typography>
         <Tooltip title={t('playlist.tooltip.videoCount')}>
           <PlaylistDetail>
@@ -108,7 +61,6 @@ return (
           ))
         ) : (
           <EmptyPlaylistBox>
-            
             <Typography style={{textShadow: '0px 0px 10px white'}} variant='h4'>{t('playlist.empty')} <div style={{marginTop: '10px', marginLeft: '40%'}} > <Image src={MadgeIcon} alt='Madge' height={48} width={48} /></div>  </Typography>
           </EmptyPlaylistBox>
         )}

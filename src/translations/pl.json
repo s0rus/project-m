@@ -1,13 +1,18 @@
 {
-  "logIn": "Zaloguj się",
-  "logOut": "Wyloguj się",
+  "logIn": "Zaloguj",
+  "logOut": "Wyloguj",
   "cancelMute": "Anuluj wyciszenie",
+  "playerControls": {
+    "tooltip": {
+      "sync": "Synchronizuj (podwójne kliknięcie)",
+      "fullscreen": "Pełny ekran"
+    }
+  },
   "video": {
     "thumbnailAlt": "Miniaturka filmu {{videoTitle}}",
-    "add": "Dodaj film",
+    "add": "Dodaj",
     "addedBy": "Dodane przez",
-    "skip": "Pomiń film",
-    "time": "Ustaw czas"
+    "skip": "Pomiń"
   },
   "addVideoModal": {
     "header": "Dodaj film do kolejki",
@@ -37,10 +42,16 @@
     "header": "Panel administratora",
     "leader": {
       "header": "{{leaderIdentifier}}",
-      "subititle": "Aktualny lider",
+      "subititle": "Aktualny lider.",
       "noLeader": "Brak lidera",
       "becomeLeader": "Zostań liderem",
       "userIsLeader": "Jesteś liderem"
+    },
+    "playlist": {
+      "header": "Playlista",
+      "subtitle": "Zmień stan playlisty",
+      "lock": "Zablokuj",
+      "unlock": "Odblokuj"
     }
   },
   

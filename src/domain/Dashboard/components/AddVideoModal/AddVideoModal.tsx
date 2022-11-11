@@ -7,7 +7,6 @@ import React, { FC, useRef, useState } from 'react';
 import ButtonWithLoader from '@/components/ButtonWithLoader';
 import { CustomToast } from '@/utils/sendToast';
 import FormInput from '@/components/FormInput';
-import { PlaylistAddCheck } from '@mui/icons-material';
 import ReactPlayer from 'react-player';
 import { ToastTypes } from '@/utils/ToastTypes';
 import { getYoutubeThumbnail } from '@/domain/Dashboard/utils/youtubeUtils';
@@ -17,6 +16,7 @@ import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
+import MovieIcon from '@mui/icons-material/Movie';
 import CloseIcon from '@mui/icons-material/Close';
 interface AddVideoModalProps {
   open: boolean;
@@ -102,7 +102,7 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
                 type='submit'
                 loading={isLoading || (isValid && !playerReady)}
                 disabled={isLoading || !isValid || !playerReady}
-                startIcon={<PlaylistAddCheck />}
+                startIcon={<MovieIcon />}
                 sx={{ mt: '1rem' }}
               >
                 {t('addVideoModal.buttonTxt')}

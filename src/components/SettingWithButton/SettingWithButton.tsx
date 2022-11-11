@@ -18,7 +18,7 @@ const SettingWithButton: FC<SettingWithButton> = ({ icon, hiddenicon, header, su
       <Box>
         <InnerStack>
           {icon}
-          <Box style={{width: '100px'}}>
+          <Box>
             <TitleOption>
               {header}
             </TitleOption>
@@ -28,18 +28,18 @@ const SettingWithButton: FC<SettingWithButton> = ({ icon, hiddenicon, header, su
           </Box>
         </InnerStack>
       </Box>
-      <Hidden lgDown>
-        <Button style={{position: 'absolute', fontSize: '12px', textTransform: 'capitalize', right: '10px'}} {...rest} onClick={buttonAction}>
-        <Typography style={{fontSize: '12px'}} >
-          {buttonLabel}
-        </Typography>
-        </Button>
-        </Hidden>
-        <Hidden lgUp>
-        <Button style={{position: 'absolute', fontSize: '12px', textTransform: 'capitalize', right: '10px'}} {...rest} onClick={buttonAction}>
+      <Box>
+<Hidden lgDown>
+          <Button {...rest} onClick={buttonAction}>
+              {buttonLabel}
+          </Button>
+</Hidden>
+<Hidden lgUp>
+          <Button {...rest} onClick={buttonAction}>
             {hiddenicon}
           </Button>
-        </Hidden>
+</Hidden>
+          </Box>
     </SettingStack>
   );
 };

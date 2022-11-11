@@ -38,6 +38,7 @@ const globalTheme = {
     primary: {
       main: '#4b2bff',
       light: '#4b2bff',
+      hover: '#6347ff',
       contrastText: '#EFEFF1',
     },
 
@@ -71,7 +72,7 @@ const globalTheme = {
 };
 
 export const gradients = {
-  gradientPaper: `linear-gradient(82deg, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.55) 120%);`,
+  gradientPaper: `rgba(0,0,0,0.25)`,
   playlistUnlocked: `linear-gradient(-90deg, ${hexToRgba(globalTheme.palette.success.light, 0)} -20%,  ${hexToRgba(
     globalTheme.palette.success.dark,
     0.45
@@ -121,6 +122,7 @@ export const theme = createTheme({
       },
     },
 
+    
     MuiSelect: {
       styleOverrides: {
         select: {
@@ -152,6 +154,15 @@ export const theme = createTheme({
 
     MuiButton: {
       styleOverrides: {
+        root: {
+          background: `${globalTheme.palette.primary.main}`,
+          color: 'white',
+          borderRadius: '0.4rem',
+          textTransform: 'capitalize',
+          ':hover': {
+            background: `${globalTheme.palette.primary.hover}`
+          }
+        },
         iconSizeLarge: {
           '& > *:nth-of-type(1)': {
             fontSize: 24,
@@ -159,6 +170,18 @@ export const theme = createTheme({
         },
       },
     },
+
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          color: `${globalTheme.palette.primary.main}`,
+          textTransform: 'capitalize',
+          transition: '0.2s',
+          ':hover': {
+            color: `${globalTheme.palette.primary.hover}`,
+          },
+        },
+      }},
 
     MuiLink: {
       styleOverrides: {
@@ -238,7 +261,7 @@ export const theme = createTheme({
           overflow: hidden;
         }
         body {
-          background-color: ${globalTheme.palette.background.default}!important;
+          background: radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 100%)!important;
           min-height: 100vh;
         }
         .MuiIconButton-root {
