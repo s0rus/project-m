@@ -1,4 +1,4 @@
-import type { SocketProvider } from '.';
+import { SocketProvider } from '.';
 
 const toastHandler = (socket: SocketProvider.ServerIO) => {
   socket.on('SEND_TOAST', (message, type) => {

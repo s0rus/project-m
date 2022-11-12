@@ -1,4 +1,4 @@
-import type { Playlist } from '@prisma/client';
+import { Playlist } from '@prisma/client';
 
 export type PlaylistWithUsers = Playlist & {
   addedBy: AddedBy;

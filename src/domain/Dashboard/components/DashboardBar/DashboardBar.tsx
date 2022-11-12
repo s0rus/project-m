@@ -2,8 +2,8 @@ import { DashboardBarButtons, DashboardBarContainer, DashboardBarWrapper } from 
 import { Grid } from '@mui/material';
 import BarButtons from '../BarButtons';
 import React from 'react';
-import VideoCard from '@/domain/App/components/VideoCard';
-import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context.tsx';
+import VideoCard from '@/components/VideoCard';
+import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
 import { useMediaQuery } from '@mui/material';
 import { theme } from '@/styles/theme';
 const DashboardBar = () => {

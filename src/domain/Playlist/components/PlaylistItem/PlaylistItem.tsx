@@ -13,17 +13,19 @@ import {
 import React, { FC, useState } from 'react';
 import { ListItem, Tooltip } from '@mui/material';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
-import VideoThumbnail from '@/domain/App/components/VideoThumbnail/';
+import VideoThumbnail from '@/components/VideoThumbnail/';
 import { AddedByAvatar, AddedByWrapper } from '@/styles/style';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useTranslation } from 'react-i18next';
 import CheckIcon from '@mui/icons-material/Check';
-import { CustomToast, ToastTypes } from '@/utils/CustomToast';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
-import { usePlaylistContext } from '../../context/Playlist.context.tsx';
-import { useSocketContext } from '@/domain/App/context/Socket.context';
+import { ToastTypes } from '@/utils/ToastTypes';
+import { CustomToast } from '@/utils/sendToast';
+import { useAuthContext } from '@/contexts/AuthContext';
+import { usePlaylistContext } from '../../context/PlaylistContext';
+import { useSocketContext } from '@/contexts/SocketContext';
+import { IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/VideoPlayer.context';
+import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 interface PlaylistItemsProps {
   video: PlaylistWithUsers;

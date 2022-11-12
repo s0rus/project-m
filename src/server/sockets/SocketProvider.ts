@@ -1,9 +1,8 @@
-import type { ServerOptions, Socket as ServerSocket } from 'socket.io';
-import { Server } from 'socket.io';
+import { Server, ServerOptions, Socket as ServerSocket } from 'socket.io';
 
-import type { Socket as ClientSocket } from 'socket.io-client';
-import type { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
-import type { ToastTypes } from '@/utils/CustomToast';
+import { Socket as ClientSocket } from 'socket.io-client';
+import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
+import { ToastTypes } from '@/utils/ToastTypes';
 
 export interface UserData {
   username?: string | null;

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -17,8 +17,12 @@
     "noUncheckedIndexedAccess": true,
     "baseUrl": "src/",
     "paths": {
+      "@/assets/*": ["assets/*"],
+      "@/components/*": ["components/*"],
+      "@/contexts/*": ["contexts/*"],
       "@/domain/*": ["domain/*"],
       "@/env/*": ["env/*"],
+      "@/hooks/*": ["hooks/*"],
       "@/layouts/*": ["layouts/*"],
       "@/pages/*": ["pages/*"],
       "@/server/*": ["server/*"],
@@ -29,15 +33,6 @@
     }
   },
 
-  "include": [
-    "types/next-env.d.ts",
-    "types/next-auth.d.ts",
-    "types/next-response.d.ts",
-    "types/react-i18next.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.styles.ts"
-  ],
+  "include": ["src/types/next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.pdf"],
   "exclude": ["node_modules"]
 }

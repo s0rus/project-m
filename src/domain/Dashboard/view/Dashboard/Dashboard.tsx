@@ -6,9 +6,9 @@ import React from 'react';
 import Navigation from '@/domain/Navigation';
 import Settings from '../../components/Settings';
 import { theme } from '@/styles/theme';
-import { useAddonsContext } from '@/domain/App/context/Addons.context';
+import { useAddonsContext } from '@/contexts/AddonsContext';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
+import { useAuthContext } from '@/contexts/AuthContext';
 import AdminPanel from '../../components/AdminPanel';
 const Dashboard = () => {
   const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));

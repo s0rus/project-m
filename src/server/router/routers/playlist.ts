@@ -8,7 +8,6 @@ export const playlistRouter = createRouter()
         orderBy: {
           addedAt: 'asc',
         },
-
         include: {
           addedBy: {
             select: {

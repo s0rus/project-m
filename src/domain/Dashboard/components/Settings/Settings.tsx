@@ -1,15 +1,15 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { useAddonsContext } from '@/domain/App/context/Addons.context';
+import { useAddonsContext } from '@/contexts/AddonsContext';
 import { useTranslation } from 'react-i18next';
 import { useSession } from 'next-auth/react';
 import { Options, OptionsBox, OptionsTitle } from '@/styles/style';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
-import SettingWithSelect from '@/domain/App/components/SettingWithSelect';
+import { useAuthContext } from '@/contexts/AuthContext';
+import SettingWithSelect from '@/components/SettingWithSelect';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
-import SettingsOnClick from '@/domain/App/components/SettingsOnClick';
+import SettingsOnClick from '@/components/SettingsOnClick';
 import ChatIcon from '@mui/icons-material/Chat';
-import SettingWithButton from '@/domain/App/components/SettingWithButton';
+import SettingWithButton from '@/components/SettingWithButton';
 const Settings = () => {
   const { isChatOn, setIsChatOn, language, setLanguage } = useAddonsContext();
   const { loginWithTwitch, logoutOfTwitch } = useAuthContext();

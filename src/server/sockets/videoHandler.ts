@@ -1,5 +1,5 @@
-import type { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
-import type { SocketProvider } from '.';
+import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
+import { SocketProvider } from '.';
 
 const videoHandler = (socket: SocketProvider.ServerIO) => {
   const SEEK_TO = (newPlayedSeconds: number) => socket.broadcast.emit('RECEIVE_SEEK_TO', newPlayedSeconds);
