@@ -19,7 +19,6 @@ export const DashboardBarButtons = styled(Stack)`
   align-items: center;
   justify-content: flex-end;
   gap: 2rem;
-  padding: 1rem 1rem;
 `;
 
 

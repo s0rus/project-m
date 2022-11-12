@@ -46,8 +46,8 @@ export const AddedByAvatar = styled(Avatar)`
 export const EmptyVideoCard = styled(Box)`
   width: 100%;
   height: 100%;
-  padding-left: 2rem;
   display: flex;
+  padding: 0rem 1rem;
   justify-content: center;
   flex-flow: column nowrap;
 `;

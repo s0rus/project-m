@@ -14,18 +14,22 @@ const SettingsOnClick: FC<SettingsOnClick> = ({ icon, header, subtitle, setter, 
   const handleOnChange = () => setter(!checked);
   return (
     <>
-    <SettingStack onClick={handleOnChange}>
-      <Box>
-        <InnerStack>
-          {icon}
-          <Box sx={{ lineHeight: 1, cursor: 'pointer' }}>
-            <TitleOption style={{cursor: 'pointer'}} >{header}</TitleOption>
-            <SubTitleOption style={{cursor: 'pointer'}} >{subtitle}</SubTitleOption>
-          </Box>
-        </InnerStack>
-      </Box>
-      <Checkbox style={{position: 'absolute', right: '10px', transform: 'scale(1.5,1.5)'}}  checked={checked} onChange={handleOnChange}/>
-    </SettingStack>
+      <SettingStack onClick={handleOnChange}>
+        <Box>
+          <InnerStack>
+            {icon}
+            <Box sx={{ lineHeight: 1, cursor: 'pointer' }}>
+              <TitleOption style={{ cursor: 'pointer' }}>{header}</TitleOption>
+              <SubTitleOption style={{ cursor: 'pointer' }}>{subtitle}</SubTitleOption>
+            </Box>
+          </InnerStack>
+        </Box>
+        <Checkbox
+          style={{ position: 'absolute', right: '10px', transform: 'scale(1.5,1.5)' }}
+          checked={checked}
+          onChange={handleOnChange}
+        />
+      </SettingStack>
     </>
   );
 };

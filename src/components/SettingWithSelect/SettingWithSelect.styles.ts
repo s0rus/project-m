@@ -8,6 +8,7 @@ export const SettingStack = styled(Stack)`
   height: 32px;
   justify-content: space-between;
   cursor: pointer;
+  outline: none;
   border: none;
 `;
 
@@ -24,7 +25,6 @@ export const InnerStack = styled(Stack)`
 
 
 export const StyledSelect = styled(Select)`
-
 color: #FFF;
 transition: all 0.5s;
 min-width: 150px;
@@ -34,9 +34,11 @@ max-width: 100%;
 background-color: rgba(0,0,0,0.25);
 border-radius: 8px;
 border: none;
+outline: none;
 position: relative; all 0.3s;
 text-transform: capitalize;
 &:hover{
+  outline: 5px solid rgba(0,0,0,0);
   background-color: rgba(255,255,255,0.05);
 }
 `

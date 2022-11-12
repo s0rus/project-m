@@ -4,7 +4,7 @@ import { useAuthContext } from '@/contexts/AuthContext';
 import { useMemo } from 'react';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { useTranslation } from 'react-i18next';
-import { Options, OptionsTitle} from '@/styles/style';
+import { Options, OptionsTitle } from '@/styles/style';
 import SwipeDownIcon from '@mui/icons-material/SwipeDown';
 import ListIcon from '@mui/icons-material/List';
 import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
@@ -37,32 +37,32 @@ const AdminPanel = () => {
   };
 
   return (
-        <Options style={{}}>
-        <OptionsTitle>{t('adminPanel.header')}</OptionsTitle>
-<div style={{padding: '0.01rem 1.5rem'}} >
+    <Options style={{ paddingBottom: '0.5rem' }}>
+      <OptionsTitle>{t('adminPanel.header')}</OptionsTitle>
+      <div style={{ padding: '0.01rem 1.5rem' }}>
         <SettingWithButton
           header={leaderIdentifier}
           subtitle={t('adminPanel.leader.subititle')}
           buttonLabel={!isCurrentUserLeader ? t('adminPanel.leader.becomeLeader') : t('adminPanel.leader.userIsLeader')}
           buttonAction={handleSetLeader}
           icon={<EmojiEventsRounded />}
-          hiddenicon={<SwipeDownIcon/>}
+          hiddenicon={<SwipeDownIcon />}
           variant='contained'
           disabled={isCurrentUserLeader}
         />
-</div>
-<div style={{padding: '0.01rem 1.5rem'}} >
+      </div>
+      <div style={{ padding: '0.01rem 1.5rem' }}>
         <SettingWithButton
           header={t('adminPanel.playlist.header')}
           subtitle={t('adminPanel.playlist.subtitle')}
           buttonLabel={!playlistLocked ? t('adminPanel.playlist.lock') : t('adminPanel.playlist.unlock')}
           buttonAction={togglePlaylistLocked}
           icon={<ListIcon />}
-          hiddenicon={!playlistLocked ? <LockIcon/> : <LockOpenIcon/>}
+          hiddenicon={!playlistLocked ? <LockIcon /> : <LockOpenIcon />}
           variant='contained'
         />
-</div>
-        </Options>
+      </div>
+    </Options>
   );
 };
 

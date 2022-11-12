@@ -20,9 +20,7 @@ const VideoThumbnail: FC<VideoThumbnailProps> = ({ thumbnailUrl, videoTitle, vid
   const { t } = useTranslation();
 
   return (
-
-    <VideoThumbnailWrapper
-    >
+    <VideoThumbnailWrapper>
       <VideoThumbnailContainer>
         <VideoThumbnailImage
           src={thumbnailUrl ?? Routes.DEFAULT_THUMBNAIL}
@@ -35,7 +33,6 @@ const VideoThumbnail: FC<VideoThumbnailProps> = ({ thumbnailUrl, videoTitle, vid
         <VideoDurationSpan variant='body1'>{timeFormatter(videoDuration)}</VideoDurationSpan>
       </VideoThumbnailContainer>
     </VideoThumbnailWrapper>
-
   );
 };
 

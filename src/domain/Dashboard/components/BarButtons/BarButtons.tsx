@@ -1,4 +1,4 @@
-import {  Tooltip, Button } from '@mui/material';
+import { Tooltip, Button } from '@mui/material';
 import React, { useState } from 'react';
 import AddVideoModal from '../AddVideoModal';
 import { useAuthContext } from '@/contexts/AuthContext';
@@ -18,37 +18,29 @@ const BarButtons = () => {
   const { handleOnVideoSkip } = usePlayerContext();
   const { loginWithTwitch } = useAuthContext();
 
-
   return (
     <>
       {isLoggedIn ? (
         <>
-          {isAdmin &&
-            <Button style={{width: '100%', height: '45px'}}
-            onClick={() => handleOnVideoSkip()} >
-              <NextPlanIcon style={{marginRight: '5px',}} />
+          {isAdmin && (
+            <Button style={{ width: '100%', height: '45px' }} onClick={() => handleOnVideoSkip()}>
+              <NextPlanIcon style={{ marginRight: '5px' }} />
               {t('video.skip')}
             </Button>
-          }
-            <Button style={{width: '100%', height: '45px'}}
-              onClick={handleOpen}
-              disabled={playlistLocked && !isAdmin}
-            >
-              <MovieIcon style={{marginRight: '5px'}} />
-              {t('video.add')}
-            </Button>
+          )}
+          <Button style={{ width: '100%', height: '45px' }} onClick={handleOpen} disabled={playlistLocked && !isAdmin}>
+            <MovieIcon style={{ marginRight: '5px' }} />
+            {t('video.add')}
+          </Button>
           <AddVideoModal handleClose={handleClose} open={modalOpen} />
         </>
-        
       ) : (
         <>
-        <Tooltip title={t('options.twitchSubTitleLOGIN')}>
-              <Button
-              style={{width: '100%', height: '45px'}}
-              onClick={loginWithTwitch}>
-                {t('logIn')}
+          <Tooltip title={t('options.twitchSubTitleLOGIN')}>
+            <Button style={{ width: '100%', height: '45px' }} onClick={loginWithTwitch}>
+              {t('logIn')}
             </Button>
-        </Tooltip>
+          </Tooltip>
         </>
       )}
     </>

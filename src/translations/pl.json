@@ -49,7 +49,7 @@
     },
     "playlist": {
       "header": "Playlista",
-      "subtitle": "Zmień stan playlisty",
+      "subtitle": "Zmień stan playlisty.",
       "lock": "Zablokuj",
       "unlock": "Odblokuj"
     }
@@ -79,7 +79,8 @@
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",
-      "subtitle": "Dodaj film, by zacząć oglądać."
+      "subtitle": "Dodaj film, by zacząć oglądać.",
+      "subtitlelock": "Poproś administratora o odblokowanie playlisty."
     },
     "removeVideoError": "Nie udało się usunąć filmu...",
     "videoRemoved": "Film został usunięty z kolejki!",

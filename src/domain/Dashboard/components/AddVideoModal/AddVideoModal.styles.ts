@@ -13,8 +13,8 @@ export const ModalContent = styled(Box)`
   left: 50%;
   transition: all 0.3s;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 180%);
-  border: 2px solid #18181b;
+  background: radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 250%);
+  border: 3px solid #18181b;
 `;
 
 export const AddVideoWrapper = styled(Stack)`

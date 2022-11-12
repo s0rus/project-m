@@ -87,7 +87,7 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
     <Modal open={open} onClose={handleClose}>
       <ModalContent>
         <ExitButton>
-        <CloseIcon style={{height: '40px', width: '40px'}} onClick={handleClose}/>
+          <CloseIcon style={{ height: '40px', width: '40px' }} onClick={handleClose} />
         </ExitButton>
         <Typography variant='h3'>{t('addVideoModal.header')}</Typography>
         <FormProvider {...methods}>
@@ -123,7 +123,6 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
           </form>
         </FormProvider>
       </ModalContent>
-
     </Modal>
   );
 };

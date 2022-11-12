@@ -63,7 +63,7 @@ export const AddedByWrapper = styled(Stack)`
   align-items: center;
   align-self: flex-start;
   gap: 0.8rem;
-  background-color: #18181b;
+  background: rgba(0,0,0,0.25);
   border-radius: 4px;
   padding-right: 0.8rem;
   border-radius: 8px;

@@ -11,35 +11,38 @@ interface SettingWithButton extends ButtonProps {
   buttonLabel: string;
 }
 
-const SettingWithButton: FC<SettingWithButton> = ({ icon, hiddenicon, header, subtitle, buttonAction, buttonLabel, ...rest }) => {
-
+const SettingWithButton: FC<SettingWithButton> = ({
+  icon,
+  hiddenicon,
+  header,
+  subtitle,
+  buttonAction,
+  buttonLabel,
+  ...rest
+}) => {
   return (
     <SettingStack>
       <Box>
         <InnerStack>
           {icon}
           <Box>
-            <TitleOption>
-              {header}
-            </TitleOption>
-            <SubTitleOption>
-              {subtitle}
-            </SubTitleOption>
+            <TitleOption>{header}</TitleOption>
+            <SubTitleOption>{subtitle}</SubTitleOption>
           </Box>
         </InnerStack>
       </Box>
       <Box>
-<Hidden lgDown>
+        <Hidden lgDown>
           <Button {...rest} onClick={buttonAction}>
-              {buttonLabel}
+            {buttonLabel}
           </Button>
-</Hidden>
-<Hidden lgUp>
+        </Hidden>
+        <Hidden lgUp>
           <Button {...rest} onClick={buttonAction}>
             {hiddenicon}
           </Button>
-</Hidden>
-          </Box>
+        </Hidden>
+      </Box>
     </SettingStack>
   );
 };

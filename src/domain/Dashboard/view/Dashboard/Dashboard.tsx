@@ -1,4 +1,4 @@
-import { Grid, useMediaQuery  } from '@mui/material';
+import { Grid, useMediaQuery } from '@mui/material';
 import { DashboardContainer, DashboardWrapper } from './Dashboard.styles';
 import DashboardBar from '../../components/DashboardBar';
 import Playlist from '@/domain/Playlist/view/Playlist';
@@ -16,28 +16,28 @@ const Dashboard = () => {
   const { isAdmin } = useAuthContext();
   return (
     <>
-            {isChatOn && isMediumDown && <TwitchChat />}
-    <DashboardWrapper>
-      <DashboardContainer>
-        <Grid container>
-          <Grid item xs={12}>
-                    <DashboardBar />
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container spacing={2}>
-            <Grid item sm={12} md={8} style={{minWidth: isMediumDown ? '100%' : '20%'}} >
-                    <Playlist />
-              </Grid>
-              <Grid item sm={12} md={4} style={{minWidth: isMediumDown ? '100%' : '20%'}} >
-       {isAdmin && (<AdminPanel />)}
-                    <Settings />
+      {isChatOn && isMediumDown && <TwitchChat />}
+      <DashboardWrapper>
+        <DashboardContainer>
+          <Grid container>
+            <Grid item xs={12}>
+              <DashboardBar />
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container spacing={2}>
+                <Grid item sm={12} md={8} style={{ minWidth: isMediumDown ? '100%' : '20%' }}>
+                  <Playlist />
+                </Grid>
+                <Grid item sm={12} md={4} style={{ minWidth: isMediumDown ? '100%' : '20%' }}>
+                  {isAdmin && <AdminPanel />}
+                  <Settings />
+                </Grid>
               </Grid>
             </Grid>
-            </Grid>
           </Grid>
-      </DashboardContainer>
-    </DashboardWrapper>
-    <Navigation/>
+        </DashboardContainer>
+      </DashboardWrapper>
+      <Navigation />
     </>
   );
 };

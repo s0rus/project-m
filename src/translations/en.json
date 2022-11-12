@@ -49,7 +49,7 @@
       },
       "playlist": {
         "header": "Playlist",
-        "subtitle": "Change playlist state",
+        "subtitle": "Change playlist state.",
         "lock": "Lock",
         "unlock": "Unlock"
       }
@@ -78,7 +78,8 @@
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",
-      "subtitle": "Add video to start watching."
+      "subtitle": "Add video to start watching.",
+      "subtitlelock": "Ask the administrator to unlock the playlist."
     },
     "removeVideoError": "There was an error while removing video...",
     "videoRemoved": "Video removed successfully!",

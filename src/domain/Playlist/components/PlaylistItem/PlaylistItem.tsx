@@ -1,10 +1,20 @@
-import { Link, Typography, CircularProgress  } from '@mui/material';
-import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper, Delete, Current, ItemTitle } from './PlaylistItem.styles';
+import { Link, Typography, CircularProgress } from '@mui/material';
+import {
+  PlaylistItemBox,
+  PlaylistItemContent,
+  PlaylistItemWrapper,
+  ItemTitle,
+  ItemOptions,
+  Delete,
+  Current,
+  Copy,
+  Copied,
+} from './PlaylistItem.styles';
 import React, { FC, useState } from 'react';
-import { ListItem, Tooltip} from '@mui/material';
+import { ListItem, Tooltip } from '@mui/material';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import VideoThumbnail from '@/components/VideoThumbnail/';
-import { AddedByAvatar, AddedByWrapper } from '@/styles/style'
+import { AddedByAvatar, AddedByWrapper } from '@/styles/style';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useTranslation } from 'react-i18next';
 import CheckIcon from '@mui/icons-material/Check';
@@ -15,10 +25,7 @@ import { usePlaylistContext } from '../../context/PlaylistContext';
 import { useSocketContext } from '@/contexts/SocketContext';
 import { IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { theme } from '@/styles/theme';
+import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 interface PlaylistItemsProps {
   video: PlaylistWithUsers;
@@ -30,27 +37,14 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   const { isAdmin } = useAuthContext();
   const { handleSkipVideo, handlePlayVideoNow } = usePlaylistContext();
   const { handleOnPlayVideoNow } = usePlayerContext();
-  const [beforecopy, setCopiedBefore] = useState(true)
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSkipping, setIsSkipping] = useState(false);
   const { videoId, videoThumbnail, videoTitle, videoUrl, addedBy, videoDuration } = video;
-  const isMediumUp = useMediaQuery(theme.breakpoints.up('lg'));
   const CopyThis = () => {
     navigator.clipboard.writeText(videoUrl);
     setCopied(true);
-    setCopiedBefore(false);
-    CustomToast.send(t('playlist.copy'), ToastTypes.Copy );
-  }
-
-  const [isHovering, setIsHovering] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering(false);
+    CustomToast.send(t('playlist.copy'), ToastTypes.Copy);
   };
 
   const handleRemoveVideo = async () => {
@@ -88,79 +82,51 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
 
   return (
     <ListItem dense>
-      <>
-      {isMediumUp ? (
       <PlaylistItemWrapper>
-          <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
-        {isAdmin &&
-        <div>
-              <Tooltip title={t('playlist.tooltip.delete')} >
-              <IconButton onClick={handleRemoveVideo} disabled={isDeleting} style={{ position: 'absolute', right: '10px', top: '40px',}} >
-              <Delete>
-                {isDeleting ? <CircularProgress style={{marginTop: '5px'}} size={32} /> : <ClearIcon  style={{width: '40px', height: '40px'}}  />}
-              </Delete>
-              </IconButton>
+        <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
+        <ItemOptions>
+          {copied ? (
+            <Tooltip title={t('playlist.tooltip.copied')} placement='left'>
+              <Copied>
+                <CheckIcon />
+              </Copied>
+            </Tooltip>
+          ) : (
+            <Tooltip title={t('playlist.tooltip.copy')} placement='left'>
+              <Copy onClick={CopyThis}>
+                <ContentCopyIcon />
+              </Copy>
+            </Tooltip>
+          )}
+          {isAdmin && (
+            <>
+              <Tooltip title={t('playlist.tooltip.delete')} placement='left'>
+                <Delete onClick={handleRemoveVideo} disabled={isDeleting}>
+                  {isDeleting ? <CircularProgress size={32} /> : <ClearIcon />}
+                </Delete>
               </Tooltip>
-              <Tooltip title={t('playlist.tooltip.requestcurrent')} >
-              <IconButton onClick={handleSkipToVideo} disabled={isSkipping} style={{ position: 'absolute', right: '60px', top: '40px',}} >
-              <Current>
-                {isSkipping ? <CircularProgress style={{marginTop: '5px'}} size={32} /> : <PlayArrowIcon  style={{width: '40px', height: '40px'}}  />}
-              </Current>
-              </IconButton>
+              <Tooltip title={t('playlist.tooltip.requestcurrent')} placement='left'>
+                <Current onClick={handleSkipToVideo} disabled={isSkipping}>
+                  {isSkipping ? <CircularProgress size={32} /> : <PlayArrowIcon />}
+                </Current>
               </Tooltip>
-        </div>
-            }
-{beforecopy &&
-<Tooltip title={t('playlist.tooltip.copy')} >
-  <ContentCopyIcon style={{color: isHovering ? 'white' : 'hsla(298, 100%, 100%, 0.25)',  position: 'absolute', right: '20px', top: '20px', cursor: 'pointer',}}
-  onMouseEnter={handleMouseEnter}
-  onMouseLeave={handleMouseLeave}
-  onClick={CopyThis}/>
-</Tooltip>
-}
-{copied &&
-  <Tooltip title={t('playlist.tooltip.copied')} >
-  <CheckIcon style={{color: 'rgba(38, 255, 0, 0.49)',  position: 'absolute', right: '20px', top: '20px', cursor: 'pointer',
-  }}
-  onMouseEnter={handleMouseEnter}
-  onMouseLeave={handleMouseLeave}/>
-</Tooltip>
-}
+            </>
+          )}
+        </ItemOptions>
         <PlaylistItemBox>
           <PlaylistItemContent>
-          <ItemTitle>
-          <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
+            <ItemTitle>
+              <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
                 {videoTitle}
-          </Link>
-          </ItemTitle>
+              </Link>
+            </ItemTitle>
             <AddedByWrapper>
-          {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
-          <Typography component='span' style={{textShadow: '0px 0px 2px white'}} >{addedBy.name}</Typography>
-        </AddedByWrapper>
+              {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
+              <Typography component='span'>{addedBy.name}</Typography>
+            </AddedByWrapper>
           </PlaylistItemContent>
         </PlaylistItemBox>
       </PlaylistItemWrapper>
-      ) : (
-
-
-        <PlaylistItemWrapper>
-        <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
-      <PlaylistItemBox>
-        <PlaylistItemContent>
-        <ItemTitle>
-        <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
-              {videoTitle}
-        </Link>
-        </ItemTitle>
-          <AddedByWrapper>
-        {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
-        <Typography component='span' style={{textShadow: '0px 0px 2px white'}} >{addedBy.name}</Typography>
-      </AddedByWrapper>
-        </PlaylistItemContent>
-      </PlaylistItemBox>
-    </PlaylistItemWrapper>
-      ) }
-      </>
     </ListItem>
   );
 };

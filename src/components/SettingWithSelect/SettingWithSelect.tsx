@@ -15,20 +15,16 @@ interface SettingWithSelect {
 const SettingWithSelect: FC<SettingWithSelect> = ({ setter, value, header, subtitle }) => {
   const { t } = useTranslation();
 
-
   return (
     <StyledSelect
-      id='language-selector'
       value={value}
       onChange={(e) => setter(e.target.value as string)}
-      sx={{ mt: '1rem', cursor: 'pointer', marginTop: '-5px'}}
-      style={{width: '100%', height: '65px'}}
+      sx={{ mt: '1rem', cursor: 'pointer', marginTop: '-5px', width: '100%', height: '65px', outline: 'none' }}
       IconComponent={ExpandMoreRounded}
       renderValue={(value) => {
         const language = value === 'pl' ? t('language.pl') : t('language.en');
 
         return (
-
           <SettingStack>
             <InnerStack>
               <LanguageRounded />
@@ -37,14 +33,19 @@ const SettingWithSelect: FC<SettingWithSelect> = ({ setter, value, header, subti
                 <TitleSubSelect>{subtitle}</TitleSubSelect>
               </Box>
             </InnerStack>
-            <Typography variant='h5' style={{ textShadow: '0px 0px 10px white' }} >{language}</Typography>
+            <Typography variant='h5' style={{ textShadow: '0px 0px 10px white' }}>
+              {language}
+            </Typography>
           </SettingStack>
-
         );
       }}
     >
-      <MenuItem value='pl' style={{textShadow: '0px 0px 10px white'}} >{t('language.pl')}</MenuItem>
-      <MenuItem value='en' style={{textShadow: '0px 0px 10px white'}} >{t('language.en')}</MenuItem>
+      <MenuItem value='pl' style={{ textShadow: '0px 0px 10px white' }}>
+        {t('language.pl')}
+      </MenuItem>
+      <MenuItem value='en' style={{ textShadow: '0px 0px 10px white' }}>
+        {t('language.en')}
+      </MenuItem>
     </StyledSelect>
   );
 };

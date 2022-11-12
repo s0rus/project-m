@@ -33,41 +33,44 @@ const Playlist = () => {
     [playlist]
   );
 
-
-return (
-  <>
-  <PlaylistWrapper locked={playlistLocked ? 1 : 0} style={{minWidth: isMediumDown ? '30%' : '100%', width: isMediumDown ? '100%' : '100%',}} >
-      <PlaylistHeader>
-        <Typography variant='h2' >{t('playlist.header')}</Typography>
-        <Tooltip title={t('playlist.tooltip.videoCount')}>
-          <PlaylistDetail>
-            <AutoAwesomeMotionRounded  />
-            <Typography variant='h5'>{properPlaylist.length || 0}</Typography>
-          </PlaylistDetail>
-        </Tooltip>
-        <Tooltip title={t('playlist.tooltip.timeSum')}>
-          <PlaylistDetail>
-            <AccessTimeFilledRounded />
-            <Typography variant='h5'>{timeFormatter(timeSum)}</Typography>
-          </PlaylistDetail>
-        </Tooltip>
-      </PlaylistHeader>
-      <PlaylistContainer component={List} ref={animatedList}>
-        {properPlaylist.length ? (
-          properPlaylist.map((video) => (
-            <React.Fragment key={video.videoId}>
-              <PlaylistItem video={video} />
-            </React.Fragment>
-          ))
-        ) : (
-          <EmptyPlaylistBox>
-            <Typography style={{textShadow: '0px 0px 10px white'}} variant='h4'>{t('playlist.empty')} <div style={{marginTop: '10px', marginLeft: '40%'}} > <Image src={MadgeIcon} alt='Madge' height={48} width={48} /></div>  </Typography>
-          </EmptyPlaylistBox>
-        )}
-      </PlaylistContainer>
-    </PlaylistWrapper>
-  </>
-);
+  return (
+    <>
+      <PlaylistWrapper
+        locked={playlistLocked ? 1 : 0}
+        style={{ minWidth: isMediumDown ? '30%' : '100%', width: isMediumDown ? '100%' : '100%' }}
+      >
+        <PlaylistHeader>
+          <Typography variant='h2'>{t('playlist.header')}</Typography>
+          <Tooltip title={t('playlist.tooltip.videoCount')}>
+            <PlaylistDetail>
+              <AutoAwesomeMotionRounded />
+              <Typography variant='h5'>{properPlaylist.length || 0}</Typography>
+            </PlaylistDetail>
+          </Tooltip>
+          <Tooltip title={t('playlist.tooltip.timeSum')}>
+            <PlaylistDetail>
+              <AccessTimeFilledRounded />
+              <Typography variant='h5'>{timeFormatter(timeSum)}</Typography>
+            </PlaylistDetail>
+          </Tooltip>
+        </PlaylistHeader>
+        <PlaylistContainer component={List} ref={animatedList}>
+          {properPlaylist.length ? (
+            properPlaylist.map((video) => (
+              <React.Fragment key={video.videoId}>
+                <PlaylistItem video={video} />
+              </React.Fragment>
+            ))
+          ) : (
+            <EmptyPlaylistBox>
+              <Typography variant='h4'>{t('playlist.empty')}</Typography>
+              <Image src={MadgeIcon} alt='Madge' height={48} width={48} />
+            </EmptyPlaylistBox>
+          )}
+        </PlaylistContainer>
+      </PlaylistWrapper>
+    </>
+  );
 };
 
 export default Playlist;

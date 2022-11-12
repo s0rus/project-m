@@ -38,7 +38,8 @@ const globalTheme = {
     primary: {
       main: '#4b2bff',
       light: '#4b2bff',
-      hover: '#6347ff',
+      hover: '#7760f7',
+      active: '#35229c',
       contrastText: '#EFEFF1',
     },
 
@@ -126,8 +127,8 @@ export const theme = createTheme({
     MuiSelect: {
       styleOverrides: {
         select: {
+          outline: 'none',
           background: gradients.gradientMain,
-          border: `none`,
           boxShadow: 'none',
         },
         icon: {
@@ -161,6 +162,9 @@ export const theme = createTheme({
           textTransform: 'capitalize',
           ':hover': {
             background: `${globalTheme.palette.primary.hover}`
+          },
+          ':active': {
+            background: `${globalTheme.palette.primary.active}`
           }
         },
         iconSizeLarge: {
@@ -189,7 +193,6 @@ export const theme = createTheme({
           color: `${globalTheme.palette.primary.contrastText}`,
           textDecoration: 'none',
           transition: 'color 0.2s ease-in-out',
-
           '&:hover': {
             color: `${globalTheme.palette.primary.main}`,
           },
