@@ -1,6 +1,8 @@
-import { Box, Button, ButtonProps, Typography } from '@mui/material';
+import type { ButtonProps} from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { InnerStack, SettingStack } from './SettingWithButton.styles';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 
 interface SettingWithButton extends ButtonProps {
   icon: JSX.Element;

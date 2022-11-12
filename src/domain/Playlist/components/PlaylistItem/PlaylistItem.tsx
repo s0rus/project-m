@@ -1,11 +1,11 @@
 import { CircularProgress, IconButton, Link, ListItem, Stack, Tooltip, Typography } from '@mui/material';
-import { NorthRounded, PlaylistRemove } from '@mui/icons-material';
+import { PlayArrowRounded, PlaylistRemove } from '@mui/icons-material';
 import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper } from './PlaylistItem.styles';
-import React, { FC, useState } from 'react';
+import type { FC } from 'react';
+import React, { useState } from 'react';
 
-import { CustomToast } from '@/utils/sendToast';
-import { PlaylistWithUsers } from '../../model/Playlist.model';
-import { ToastTypes } from '@/utils/ToastTypes';
+import { CustomToast, ToastTypes } from '@/utils/CustomToast';
+import type { PlaylistWithUsers } from '../../model/Playlist.model';
 import VideoThumbnail from '@/domain/App/components/VideoThumbnail';
 import { useAuthContext } from '@/domain/App/context/Auth.context';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/VideoPlayer.context';
@@ -84,9 +84,9 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
                   {isDeleting ? <CircularProgress size={32} /> : <PlaylistRemove />}
                 </IconButton>
               </Tooltip>
-              <Tooltip title={t('playlist.tooltip.deleteVideo')}>
+              <Tooltip title={t('playlist.tooltip.playNow')}>
                 <IconButton sx={{ alignSelf: 'center' }} onClick={handleSkipToVideo} disabled={isSkipping}>
-                  {isSkipping ? <CircularProgress size={32} /> : <NorthRounded />}
+                  {isSkipping ? <CircularProgress size={32} /> : <PlayArrowRounded />}
                 </IconButton>
               </Tooltip>
             </Stack>

@@ -53,7 +53,8 @@
     "tooltip": {
       "videoCount": "Ilość filmów w kolejce",
       "timeSum": "Łączny czas kolejki",
-      "deleteVideo": "Usuń z kolejki"
+      "deleteVideo": "Usuń z kolejki",
+      "playNow": "Odtwórz teraz"
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",
@@ -73,6 +74,7 @@
   "addVideoError": "Wystąpił błąd podczas dodawania filmu...",
   "requestVideoError": "Nie udało się pobrać kolejnego filmu...",
   "togglePlaylistError": "Nie udało się zmienić stanu playlisty...",
+  "toggleFullscreenError": "Nie udało się przełączyć trybu pełnoekranowego...",
   "language": {
     "pl": "Polski",
     "en": "English"

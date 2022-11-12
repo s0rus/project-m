@@ -1,6 +1,7 @@
 import { Box, Checkbox, Typography } from '@mui/material';
 import { InnerStack, SettingStack } from './SettingWithCheckbox.styles';
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import type { Dispatch, FC, SetStateAction } from 'react';
+import React from 'react';
 
 import { ChatRounded } from '@mui/icons-material';
 

@@ -53,7 +53,8 @@
     "tooltip": {
       "videoCount": "Count of videos in queue",
       "timeSum": "Total playlist time",
-      "deleteVideo": "Remove from playlist"
+      "deleteVideo": "Remove from playlist",
+      "playNow": "Play now"
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",
@@ -73,6 +74,7 @@
   "addVideoError": "There was an error while adding video...",
   "requestVideoError": "The next video couldn't be fetched...",
   "togglePlaylistError": "State of the playlist couldn't be changed...",
+  "toggleFullscreenError": "Fullscreen could not be toggled...",
   "language": {
     "pl": "Polski",
     "en": "English"

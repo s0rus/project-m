@@ -1,10 +1,10 @@
 import { Button, Grid, Paper, Typography, useMediaQuery } from '@mui/material';
 import { DashboardContainer, DashboardWrapper } from './Dashboard.styles';
 
-import AdminPanel from '../../components/AdminPanel';
-import DashboardBar from '../../components/DashboardBar';
+import AdminPanel from '../components/AdminPanel';
+import DashboardBar from '../components/DashboardBar';
 import Playlist from '@/domain/Playlist/view/Playlist';
-import Settings from '../../components/Settings';
+import Settings from '../components/Settings';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import { theme } from '@/styles/theme';
 import { toast } from 'react-toastify';
@@ -14,7 +14,7 @@ import { usePlayerContext } from '@/domain/VideoPlayer/context/VideoPlayer.conte
 import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
 import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
-import Repertoire from '@/domain/Repertoire/view/Repertoire';
+import Schedule from '@/domain/Schedule/view/';
 
 const Dashboard = () => {
   const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
@@ -41,7 +41,7 @@ const Dashboard = () => {
               <Grid item sm={12} md={5} sx={{ pt: '0!important' }}>
                 <Grid container>
                   <Grid item xs={12}>
-                    <Repertoire />
+                    <Schedule />
                   </Grid>
                   {isAdmin && (
                     <Grid item xs={12}>

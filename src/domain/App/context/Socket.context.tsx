@@ -1,19 +1,10 @@
-import {
-  FC,
-  PropsWithChildren,
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  useMemo,
-} from 'react';
+import type { FC, PropsWithChildren } from 'react';
+import { createContext, useCallback, useContext, useEffect, useRef, useState, useMemo } from 'react';
 
-import { CustomToast } from '@/utils/sendToast';
+import { CustomToast } from '@/utils/CustomToast';
 import { Routes } from '@/server/router/routes';
-import { SocketProvider } from '@/server/sockets';
-import { UserData } from '@/server/sockets/SocketProvider';
+import type { SocketProvider } from '@/server/sockets';
+import type { UserData } from '@/server/sockets/SocketProvider';
 import { io } from 'socket.io-client';
 import { useAuthContext } from './Auth.context';
 
@@ -57,10 +48,6 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
       socket.on('RECEIVE_TOAST', (message, type) => CustomToast.send(message, type));
       socket.on('RECEIVE_NEW_LEADER', (userData) => setLeader(userData));
-
-      socket.on('connect_error', (err: Error) => {
-        console.error(`CONNECT_ERROR: ${err}`);
-      });
     }
   }, [currentUser, isAuthLoading]);
 
@@ -75,10 +62,12 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
         username: currentUser.name,
       });
     }
-  }, [authChange, currentUser]);
+  }, [currentUser, authChange]);
 
   useEffect(() => {
-    if (socket) return;
+    if (socket || window.location.href.includes('/twitch-signin') || window.location.href.includes('/twitch-signout')) {
+      return;
+    }
 
     socketInitializer();
   }, [socketInitializer]);

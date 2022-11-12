@@ -1,7 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import { ExpandMoreRounded, LanguageRounded } from '@mui/icons-material';
 import { InnerStack, SettingStack } from './SettingWithSelect.styles';
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import type { Dispatch, FC, SetStateAction } from 'react';
+import React from 'react';
 
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';

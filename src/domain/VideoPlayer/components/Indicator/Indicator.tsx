@@ -1,5 +1,6 @@
 import { IndicatorContainer, IndicatorElement, IndicatorWrapper } from './Indicator.styles';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 
 import { Typography } from '@mui/material';
 import { getPlayingStateIcon } from '../../model/VideoPlayer.model';

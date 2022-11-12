@@ -1,15 +1,16 @@
-import React, { MutableRefObject, useEffect, useId, useRef } from 'react';
+import type { MutableRefObject} from 'react';
+import React, { useEffect, useId, useRef } from 'react';
 import { StyledReactPlayer, VideoPlayerBox, VideoPlayerContainer } from './VideoPlayer.styles';
 
-import PlayerControls from '../../components/PlayerControls';
-import ReactPlayer from 'react-player';
+import PlayerControls from '../components/PlayerControls';
+import type ReactPlayer from 'react-player';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import { theme } from '@/styles/theme';
 import { useAddonsContext } from '@/domain/App/context/Addons.context';
-import useHasWindow from '../../utils/hasWindow';
+import useHasWindow from '../utils/hasWindow';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { usePlayerContext } from '../../context/VideoPlayer.context';
-import { getPlayerConfig } from '../../model/VideoPlayer.model';
+import { usePlayerContext } from '../context/VideoPlayer.context';
+import { getPlayerConfig } from '../model/VideoPlayer.model';
 
 const VideoPlayer = () => {
   const playerId = useId();

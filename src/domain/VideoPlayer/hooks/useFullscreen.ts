@@ -1,6 +1,9 @@
+import { CustomToast, ToastTypes } from '@/utils/CustomToast';
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const useFullscreen = () => {
+  const { t } = useTranslation();
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const toggleFullscreen = useCallback(async () => {
@@ -14,11 +17,10 @@ const useFullscreen = () => {
       } else {
         throw new Error('Fullscreen request is invalid...');
       }
-    } catch (error) {
-      const err = error as Error;
-      console.error(err.message);
+    } catch {
+      CustomToast.send(t('toggleFullscreenError'), ToastTypes.Error);
     }
-  }, []);
+  }, [t]);
 
   return { toggleFullscreen, isFullscreen };
 };

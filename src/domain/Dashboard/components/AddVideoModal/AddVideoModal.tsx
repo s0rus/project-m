@@ -1,15 +1,16 @@
 import { AddVideoWrapper, ModalContent, SamplePlayer } from './AddVideoModal.styles';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Modal, Typography } from '@mui/material';
-import { NewVideoForm, newVideoSchema } from '../../model/NewVideo.model';
-import React, { FC, useRef, useState } from 'react';
+import type { NewVideoForm } from '../../model/NewVideo.model';
+import { newVideoSchema } from '../../model/NewVideo.model';
+import type { FC } from 'react';
+import React, { useRef, useState } from 'react';
 
 import ButtonWithLoader from '@/domain/App/components/ButtonWithLoader';
-import { CustomToast } from '@/utils/sendToast';
+import { CustomToast, ToastTypes } from '@/utils/CustomToast';
 import FormInput from '@/domain/App/components/FormInput';
 import { PlaylistAddCheck } from '@mui/icons-material';
-import ReactPlayer from 'react-player';
-import { ToastTypes } from '@/utils/ToastTypes';
+import type ReactPlayer from 'react-player';
 import { getYoutubeThumbnail } from '@/domain/Dashboard/utils/youtubeUtils';
 import { trpc } from '@/utils/trpc';
 import { useAuthContext } from '@/domain/App/context/Auth.context';

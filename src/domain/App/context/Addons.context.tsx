@@ -1,17 +1,9 @@
-import {
-  Dispatch,
-  FC,
-  PropsWithChildren,
-  SetStateAction,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
-import i18n, { Language, LanguageEnum } from '@/translations/i18n';
+import type { Dispatch, FC, PropsWithChildren, SetStateAction } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import type { Language } from '@/translations/i18n';
+import i18n, { LanguageEnum } from '@/translations/i18n';
 
-import { LocalStorageKeys } from '@/utils/localStorageKeys';
+import { LocalStorageKeys } from '../model/App.model';
 
 interface InitialContextProps {
   isChatOn: boolean;

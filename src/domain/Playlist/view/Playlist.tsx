@@ -8,7 +8,7 @@ import {
 } from './Playlist.styles';
 import { List, Tooltip, Typography } from '@mui/material';
 
-import PlaylistItem from '../../components/PlaylistItem';
+import PlaylistItem from '../components/PlaylistItem';
 import React from 'react';
 import timeFormatter from '@/utils/timeFormatter';
 import { useAutoAnimate } from '@formkit/auto-animate/react';

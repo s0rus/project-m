@@ -1,19 +1,19 @@
 import CardLayout from '@/layouts/CardLayout';
 import { Stack, Typography } from '@mui/material';
 import React from 'react';
-import RepertoireItem from '../components/RepertoireItem';
+import ScheduleItem from '../components/ScheduleItem';
 
-const Repertoire = () => {
+const Schedule = () => {
   return (
     <CardLayout>
       <Stack>
-        <Typography variant='h2'>Repertoire</Typography>
+        <Typography variant='h2'>Schedule</Typography>
         {[1, 2, 3].map((_, index) => (
-          <RepertoireItem key={index} />
+          <ScheduleItem key={index} />
         ))}
       </Stack>
     </CardLayout>
   );
 };
 
-export default Repertoire;
+export default Schedule;

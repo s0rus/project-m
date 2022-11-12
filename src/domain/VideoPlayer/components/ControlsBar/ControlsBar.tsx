@@ -1,9 +1,10 @@
 import { ControlsBarWrapper, Seeker, Timer } from './ControlsBar.styles';
 import { FullscreenExitRounded, FullscreenRounded, SyncRounded } from '@mui/icons-material';
 import { IconButton, Tooltip, Typography } from '@mui/material';
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import type { FC } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
-import { ToastTypes } from '@/utils/ToastTypes';
+import { ToastTypes } from '@/utils/CustomToast';
 import VolumeControl from '../VolumeControl';
 import { getPlayingStateIcon } from '../../model/VideoPlayer.model';
 import timeFormatter from '@/utils/timeFormatter';
@@ -24,7 +25,7 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
   const { t } = useTranslation();
   const { isAdmin, currentUser } = useAuthContext();
   const { handleSeek, seeking, setSeeking, seekTo, playerState, requestPlayerState } = usePlayerContext();
-  const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo, loadedSeconds } = playerState;
+  const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo, loadedSeconds, isReady } = playerState;
   const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);
   const { toggleFullscreen, isFullscreen } = useFullscreen();
 
@@ -59,7 +60,11 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
   return (
     <ControlsBarWrapper controls={controlsVisible} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
       <Tooltip title={isPlaying ? t('playerControls.tooltip.pause') : t('playerControls.tooltip.play')} placement='top'>
-        <IconButton onClick={handlePlaying}>{getPlayingStateIcon(isPlaying)}</IconButton>
+        <span>
+          <IconButton disabled={!isReady} onClick={handlePlaying}>
+            {getPlayingStateIcon(isPlaying)}
+          </IconButton>
+        </span>
       </Tooltip>
       <VolumeControl />
       <Timer islong={duration >= 3600 ? 1 : 0}>
@@ -81,9 +86,11 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
         <Typography variant='h5'>{timeFormatter(duration)}</Typography>
       </Timer>
       <Tooltip title={t('playerControls.tooltip.sync')} placement='top'>
-        <IconButton onDoubleClick={handleSyncWithLeader} disabled={isCurrentUserLeader || !activeVideo}>
-          <SyncRounded />
-        </IconButton>
+        <span>
+          <IconButton onDoubleClick={handleSyncWithLeader} disabled={isCurrentUserLeader || !activeVideo}>
+            <SyncRounded />
+          </IconButton>
+        </span>
       </Tooltip>
       <Tooltip title={t('playerControls.tooltip.fullscreen')} placement='top'>
         <IconButton onClick={() => toggleFullscreen()}>

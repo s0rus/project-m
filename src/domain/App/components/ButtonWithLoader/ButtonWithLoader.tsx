@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import { CircularProgress, type ButtonProps, Button, Tooltip } from '@mui/material';
 
 export interface ButtonWithLoaderProps extends ButtonProps {

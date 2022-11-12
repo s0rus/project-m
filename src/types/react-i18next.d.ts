@@ -1,4 +1,4 @@
-import { resources } from '../translations/i18n';
+import type { resources } from '../translations/i18n';
 
 declare module 'react-i18next' {
   interface CustomTypeOptions {

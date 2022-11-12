@@ -1,8 +1,8 @@
-import { Dispatch, MutableRefObject, SetStateAction } from 'react';
+import type { Dispatch, MutableRefObject, SetStateAction } from 'react';
 import { PauseRounded, PlayArrowRounded, VolumeDown, VolumeOff, VolumeUp } from '@mui/icons-material';
 
-import { Playlist } from '@prisma/client';
-import ReactPlayer from 'react-player';
+import type { Playlist } from '@prisma/client';
+import type ReactPlayer from 'react-player';
 
 export const HIDE_CONTROLS_TIMEOUT = 4000;
 export interface PlayerState {

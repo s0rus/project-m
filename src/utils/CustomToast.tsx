@@ -7,10 +7,17 @@ import {
   SkipNextRounded,
 } from '@mui/icons-material';
 
-import { ToastTypes } from '@/utils/ToastTypes';
 import { theme } from '@/styles/theme';
 import { toast } from 'react-toastify';
 
+export enum ToastTypes {
+  PlaylistLocked = 'PLAYLIST_LOCKED',
+  PlaylistUnlocked = 'PLAYLIST_UNLOCKED',
+  VideoSkipped = 'VIDEO_SKIPPED',
+  VideoSeeked = 'VIDEO_SEEKED',
+  Sucess = 'SUCCESS',
+  Error = 'ERROR',
+}
 export class CustomToast {
   private static determineIcon = (type: ToastTypes) => {
     switch (type) {
@@ -35,7 +42,7 @@ export class CustomToast {
     toast.clearWaitingQueue();
     toast(message, {
       icon: CustomToast.determineIcon(type),
-      toastId: type,
+      toastId: message,
     });
   };
 }

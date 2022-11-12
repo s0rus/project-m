@@ -1,8 +1,9 @@
 import { EmptyVideoCard, VideoBox, VideoCardWrapper, VideoContent } from './VideoCard.styles';
 import { Link, Typography } from '@mui/material';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 
-import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
+import type { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
 import VideoThumbnail from '../VideoThumbnail';
 import { useTranslation } from 'react-i18next';
 

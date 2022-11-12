@@ -1,13 +1,14 @@
-import {
+import type {
   FC,
   PropsWithChildren,
+  Dispatch,
+  SetStateAction} from 'react';
+import {
   createContext,
   useCallback,
   useContext,
   useMemo,
-  useState,
-  Dispatch,
-  SetStateAction,
+  useState
 } from 'react';
 import { useSession } from 'next-auth/react';
 import { type Session } from 'next-auth';

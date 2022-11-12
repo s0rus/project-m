@@ -1,9 +1,10 @@
 import 'react-toastify/dist/ReactToastify.css';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import React, { FC, PropsWithChildren } from 'react';
+import type { FC, PropsWithChildren } from 'react';
+import React from 'react';
 
-import { AuthContextProvider } from '@/domain/App/context/Auth.context';
+import { AuthContextProvider } from './context/Auth.context';
 import { PlayerContextProvider } from '@/domain/VideoPlayer/context/VideoPlayer.context';
 import { PlaylistContextProvider } from '@/domain/Playlist/context/Playlist.context';
 import { type Session } from 'next-auth';
