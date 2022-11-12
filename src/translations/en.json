@@ -22,9 +22,10 @@
     "titleRequired": "Title is required",
     "titleTooLong": "The title can have up to 30 characters.",
     "wrongUrl": "URL is invalid.",
+    "couldNotProcessUrl": "URL could not be processed.",
     "videoAdded": "Video has been added to playlist."
   },
-  "options":{
+  "options": {
     "optionsTitle": "Settings",
     "twitchTitle": "Twitch",
     "camTitle": "Cam",
@@ -36,24 +37,23 @@
     "chatSubTitle": "Chat visibility.",
     "languageSubTitle": "Choose language."
   },
-  
 
-    "adminPanel": {
-      "header": "Admin panel",
-      "leader": {
-        "header": "{{leaderIdentifier}}",
-        "subititle": "Current leader.",
-        "noLeader": "There is no leader",
-        "becomeLeader": "Become leader",
-        "userIsLeader": "You are the leader"
-      },
-      "playlist": {
-        "header": "Playlist",
-        "subtitle": "Change playlist state.",
-        "lock": "Lock",
-        "unlock": "Unlock"
-      }
+  "adminPanel": {
+    "header": "Admin panel",
+    "leader": {
+      "header": "{{leaderIdentifier}}",
+      "subititle": "Current leader.",
+      "noLeader": "There is no leader",
+      "becomeLeader": "Become leader",
+      "userIsLeader": "You are the leader"
     },
+    "playlist": {
+      "header": "Playlist",
+      "subtitle": "Change playlist state.",
+      "lock": "Lock",
+      "unlock": "Unlock"
+    }
+  },
 
   "playlist": {
     "header": "Playlist",

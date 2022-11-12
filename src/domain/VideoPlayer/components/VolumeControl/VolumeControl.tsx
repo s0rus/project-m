@@ -3,7 +3,7 @@ import { bindHover, bindPopover, usePopupState } from 'material-ui-popup-state/h
 
 import { IconButton } from '@mui/material';
 import { getVolumeIcon } from '../../model/VideoPlayer.model';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
+import { usePlayerContext } from '@/domain/VideoPlayer/context/VideoPlayer.context';
 
 const VolumeControl = () => {
   const { playerState, toggleMuted, setVolume } = usePlayerContext();

@@ -1,23 +1,24 @@
-import { AddVideoWrapper, ModalContent, SamplePlayer, ExitButton } from './AddVideoModal.styles';
+import { AddVideoWrapper, ModalContent, SamplePlayer } from './AddVideoModal.styles';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Modal, Typography } from '@mui/material';
-import { NewVideoForm, newVideoSchema } from '../../model/NewVideo.model';
-import React, { FC, useRef, useState } from 'react';
+import type { NewVideoForm } from '../../model/NewVideo.model';
+import { newVideoSchema } from '../../model/NewVideo.model';
+import type { FC } from 'react';
+import React, { useRef, useState } from 'react';
 
-import ButtonWithLoader from '@/components/ButtonWithLoader';
-import { CustomToast } from '@/utils/sendToast';
-import FormInput from '@/components/FormInput';
-import ReactPlayer from 'react-player';
-import { ToastTypes } from '@/utils/ToastTypes';
+import ButtonWithLoader from '@/domain/App/components/ButtonWithLoader';
+import { CustomToast, ToastTypes } from '@/utils/CustomToast';
+import FormInput from '@/domain/App/components/FormInput';
+import { PlaylistAddCheck } from '@mui/icons-material';
+import type ReactPlayer from 'react-player';
 import { getYoutubeThumbnail } from '@/domain/Dashboard/utils/youtubeUtils';
 import { trpc } from '@/utils/trpc';
-import { useAuthContext } from '@/contexts/AuthContext';
-import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
+import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context.tsx';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
-import MovieIcon from '@mui/icons-material/Movie';
-import CloseIcon from '@mui/icons-material/Close';
+
 interface AddVideoModalProps {
   open: boolean;
   handleClose: () => void;
@@ -47,6 +48,7 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
     reset,
     getValues,
     formState: { isValid },
+    setError,
   } = methods;
 
   const handleReset = () => {
@@ -62,6 +64,8 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
 
       if (sampleVideoRef.current) {
         possibleDuration = Math.floor(sampleVideoRef.current.getDuration());
+      } else {
+        throw new Error();
       }
 
       const newVideo = await mutateAsync({
@@ -81,15 +85,14 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
     }
   };
 
+  const handleOnError = () => setError('videoUrl', { message: t('addVideoModal.couldNotProcessUrl') });
+
   if (playlistLocked && !isAdmin) handleClose();
 
   return (
     <Modal open={open} onClose={handleClose}>
       <ModalContent>
-        <ExitButton>
-          <CloseIcon style={{ height: '40px', width: '40px' }} onClick={handleClose} />
-        </ExitButton>
-        <Typography variant='h3'>{t('addVideoModal.header')}</Typography>
+        <Typography variant='h3'>{t('addVideoModal.header')}:</Typography>
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <AddVideoWrapper>
@@ -102,7 +105,7 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
                 type='submit'
                 loading={isLoading || (isValid && !playerReady)}
                 disabled={isLoading || !isValid || !playerReady}
-                startIcon={<MovieIcon />}
+                startIcon={<PlaylistAddCheck />}
                 sx={{ mt: '1rem' }}
               >
                 {t('addVideoModal.buttonTxt')}
@@ -112,12 +115,14 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
               <SamplePlayer
                 ref={sampleVideoRef}
                 onReady={() => setPlayerReady(true)}
+                onError={handleOnError}
                 url={getValues('videoUrl')}
                 muted
                 autoPlay
                 playing={true}
                 width={0}
                 height={0}
+                volume={0}
               />
             ) : null}
           </form>
@@ -128,3 +133,7 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
 };
 
 export default AddVideoModal;
+
+//<ExitButton>
+//  <CloseIcon style={{ height: '40px', width: '40px' }} onClick={handleClose} />
+//</ExitButton>;

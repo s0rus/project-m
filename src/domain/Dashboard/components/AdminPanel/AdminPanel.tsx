@@ -1,13 +1,13 @@
 import { EmojiEventsRounded } from '@mui/icons-material';
-import SettingWithButton from '@/components/SettingWithButton';
-import { useAuthContext } from '@/contexts/AuthContext';
+import SettingWithButton from '@/domain/App/components/SettingWithButton';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
 import { useMemo } from 'react';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
 import { Options, OptionsTitle } from '@/styles/style';
 import SwipeDownIcon from '@mui/icons-material/SwipeDown';
 import ListIcon from '@mui/icons-material/List';
-import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
+import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context.tsx';
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 const AdminPanel = () => {

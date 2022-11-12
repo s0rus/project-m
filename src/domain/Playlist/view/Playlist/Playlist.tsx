@@ -12,7 +12,7 @@ import PlaylistItem from '../../components/PlaylistItem';
 import { PlaylistWithUsers } from '../../model/Playlist.model';
 import timeFormatter from '@/utils/timeFormatter';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
+import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context.tsx';
 import { useTranslation } from 'react-i18next';
 import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
 import Image from 'next/image';

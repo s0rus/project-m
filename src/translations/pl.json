@@ -22,9 +22,10 @@
     "titleRequired": "Tytuł jest wymagany.",
     "titleTooLong": "Tytuł może mieć maksymalnie 30 znaków.",
     "wrongUrl": "URL jest nieprawidłowy.",
+    "couldNotProcessUrl": "URL nie mógł być przetworzony.",
     "videoAdded": "Film został dodany do kolejki."
   },
-  "options":{
+  "options": {
     "optionsTitle": "Ustawienia",
     "twitchTitle": "Twitch",
     "camTitle": "Kamerka",
@@ -37,7 +38,6 @@
     "languageSubTitle": "Wybierz język."
   },
 
-  
   "adminPanel": {
     "header": "Panel administratora",
     "leader": {
@@ -54,7 +54,7 @@
       "unlock": "Odblokuj"
     }
   },
-  
+
   "playlist": {
     "header": "Playlista",
     "empty": "Playlista jest pusta.",
@@ -75,7 +75,6 @@
       "twitch": "Piotr Libera",
       "delete": "Usuń film z kolejki",
       "requestcurrent": "Odtwórz film teraz"
-      
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",

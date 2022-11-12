@@ -1,12 +1,13 @@
-import { FC, PropsWithChildren, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { InitialContextProps, PlaylistWithUsers, initialContextProps } from '../model/Playlist.model';
+import type { FC, PropsWithChildren } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import type { InitialContextProps, PlaylistWithUsers } from '../model/Playlist.model';
+import { initialContextProps } from '../model/Playlist.model';
 
-import { CustomToast } from '@/utils/sendToast';
-import { ToastTypes } from '@/utils/ToastTypes';
+import { CustomToast, ToastTypes } from '@/utils/CustomToast';
 import { queryParams } from '../utils/queryParams';
 import { trpc } from '@/utils/trpc';
-import { useAuthContext } from '@/contexts/AuthContext';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
+import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
 
 const PlaylistContext = createContext<InitialContextProps>(initialContextProps);
@@ -146,10 +147,10 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
           setPlaylist(targetPlaylist);
         }
       } catch (error) {
-        console.log(error);
+        CustomToast.send(t('requestVideoError'), ToastTypes.Error);
       }
     },
-    [playlist, mutateSkipToVideo, mutateAsync, currentVideo, isAdmin]
+    [playlist, mutateSkipToVideo, mutateAsync, currentVideo, isAdmin, t]
   );
 
   const togglePlaylistLocked = useCallback(async () => {

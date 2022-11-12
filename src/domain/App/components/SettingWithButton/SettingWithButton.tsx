@@ -1,4 +1,4 @@
-import { Box, Button, ButtonProps, Typography } from '@mui/material';
+import { Box, Button, ButtonProps } from '@mui/material';
 import { InnerStack, SettingStack, TitleOption, SubTitleOption } from './SettingWithButton.styles';
 import React, { FC } from 'react';
 import Hidden from '@mui/material/Hidden';

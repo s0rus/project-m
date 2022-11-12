@@ -1,17 +1,9 @@
-import {
-  Dispatch,
-  FC,
-  PropsWithChildren,
-  SetStateAction,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
-import i18n, { Language, LanguageEnum } from '@/translations/i18n';
+import type { Dispatch, FC, PropsWithChildren, SetStateAction } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import type { Language } from '@/translations/i18n';
+import i18n, { LanguageEnum } from '@/translations/i18n';
 
-import { LocalStorageKeys } from '@/utils/localStorageKeys';
+import { LocalStorageKeys } from '../model/App.model';
 
 interface InitialContextProps {
   isChatOn: boolean;
@@ -21,7 +13,7 @@ interface InitialContextProps {
 }
 
 const initialContextProps: InitialContextProps = {
-  isChatOn: true,
+  isChatOn: false,
   setIsChatOn: () => null,
   language: LanguageEnum.PL,
   setLanguage: () => null,
@@ -32,7 +24,7 @@ const AddonsContext = createContext<InitialContextProps>(initialContextProps);
 export const useAddonsContext = () => useContext<InitialContextProps>(AddonsContext);
 
 export const AddonsContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [isChatOn, setIsChatOn] = useState(true);
+  const [isChatOn, setIsChatOn] = useState(false);
   const [language, setLanguage] = useState<Language>(LanguageEnum.PL);
 
   useEffect(() => {

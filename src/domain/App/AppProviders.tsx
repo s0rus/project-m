@@ -1,19 +1,20 @@
 import 'react-toastify/dist/ReactToastify.css';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import React, { FC, PropsWithChildren } from 'react';
+import type { FC, PropsWithChildren } from 'react';
+import React from 'react';
 
-import { AuthContextProvider } from '@/contexts/AuthContext';
-import { PlayerContextProvider } from '@/domain/VideoPlayer/context/PlayerContext';
-import { PlaylistContextProvider } from '@/domain/Playlist/context/PlaylistContext';
+import { AuthContextProvider } from './context/Auth.context';
+import { PlayerContextProvider } from '@/domain/VideoPlayer/context/VideoPlayer.context';
+import { PlaylistContextProvider } from '@/domain/Playlist/context/Playlist.context.tsx';
 import { type Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
-import { SocketContextProvider } from '@/contexts/SocketContext';
+import { SocketContextProvider } from '@/domain/App/context/Socket.context';
 import { ToastContainer, Slide } from 'react-toastify';
 import { theme } from '@/styles/theme';
-import { AddonsContextProvider } from '@/contexts/AddonsContext';
+import { AddonsContextProvider } from '@/domain/App/context/Addons.context';
 
-const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ children, session }) => {
+const AppProviders: FC<PropsWithChildren & { session: Session | null }> = ({ children, session }) => {
   return (
     <SessionProvider session={session} refetchOnWindowFocus={false}>
       <AuthContextProvider>
@@ -27,12 +28,12 @@ const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ chi
                   <ToastContainer
                     transition={Slide}
                     position='bottom-left'
-                    autoClose={2000}
+                    autoClose={5000}
                     closeButton={false}
                     hideProgressBar={true}
                     draggable={false}
-                    limit={3}
-                    style={{ width: 'auto', textShadow: '0px 0px 10px white',}}
+                    limit={1}
+                    style={{ width: 'auto' }}
                   />
                 </ThemeProvider>
               </AddonsContextProvider>
@@ -44,4 +45,4 @@ const AllProviders: FC<PropsWithChildren & { session: Session | null }> = ({ chi
   );
 };
 
-export default AllProviders;
+export default AppProviders;

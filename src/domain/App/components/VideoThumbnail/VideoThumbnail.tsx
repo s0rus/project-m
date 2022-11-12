@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import {
   VideoDurationSpan,
   VideoThumbnailContainer,
@@ -20,7 +21,11 @@ const VideoThumbnail: FC<VideoThumbnailProps> = ({ thumbnailUrl, videoTitle, vid
   const { t } = useTranslation();
 
   return (
-    <VideoThumbnailWrapper>
+    <VideoThumbnailWrapper
+      title={t('video.thumbnailAlt', {
+        videoTitle,
+      })}
+    >
       <VideoThumbnailContainer>
         <VideoThumbnailImage
           src={thumbnailUrl ?? Routes.DEFAULT_THUMBNAIL}
@@ -30,7 +35,7 @@ const VideoThumbnail: FC<VideoThumbnailProps> = ({ thumbnailUrl, videoTitle, vid
             videoTitle,
           })}
         />
-        <VideoDurationSpan variant='body1'>{timeFormatter(videoDuration)}</VideoDurationSpan>
+        {videoDuration > 0 && <VideoDurationSpan>{timeFormatter(videoDuration)}</VideoDurationSpan>}
       </VideoThumbnailContainer>
     </VideoThumbnailWrapper>
   );

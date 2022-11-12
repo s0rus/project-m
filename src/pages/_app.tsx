@@ -1,16 +1,16 @@
 import '../translations/i18n';
 
-import AllProviders from '@/utils/AllProviders';
 import type { AppRouter } from '../server/router';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import superjson from 'superjson';
 import { withTRPC } from '@trpc/next';
+import AppProviders from '@/domain/App/AppProviders';
 
 const MyApp: AppType = ({ Component, pageProps: { session, ...pageProps } }) => {
   return (
-    <AllProviders session={session}>
+    <AppProviders session={session}>
       <Component {...pageProps} />
-    </AllProviders>
+    </AppProviders>
   );
 };
 

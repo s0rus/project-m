@@ -1,11 +1,11 @@
 import { Tooltip, Button } from '@mui/material';
 import React, { useState } from 'react';
 import AddVideoModal from '../AddVideoModal';
-import { useAuthContext } from '@/contexts/AuthContext';
-import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
+import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context.tsx';
 import { useTranslation } from 'react-i18next';
 import MovieIcon from '@mui/icons-material/Movie';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
+import { usePlayerContext } from '@/domain/VideoPlayer/context/VideoPlayer.context';
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 const BarButtons = () => {
   const { isAdmin } = useAuthContext();
