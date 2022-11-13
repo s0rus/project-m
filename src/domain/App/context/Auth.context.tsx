@@ -1,15 +1,5 @@
-import type {
-  FC,
-  PropsWithChildren,
-  Dispatch,
-  SetStateAction} from 'react';
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState
-} from 'react';
+import type { FC, PropsWithChildren, Dispatch, SetStateAction } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { type Session } from 'next-auth';
 import { useNewWindow } from '@/domain/App/hooks/useNewWindow';
