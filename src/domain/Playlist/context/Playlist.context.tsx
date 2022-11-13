@@ -147,10 +147,10 @@ export const PlaylistContextProvider: FC<PropsWithChildren> = ({ children }) => 
           setPlaylist(targetPlaylist);
         }
       } catch (error) {
-        CustomToast.send(t('requestVideoError'), ToastTypes.Error);
+        console.log(error);
       }
     },
-    [playlist, mutateSkipToVideo, mutateAsync, currentVideo, isAdmin, t]
+    [playlist, mutateSkipToVideo, mutateAsync, currentVideo, isAdmin]
   );
 
   const togglePlaylistLocked = useCallback(async () => {

@@ -12,7 +12,7 @@ import SwipeDownIcon from '@mui/icons-material/SwipeDown';
 import ListIcon from '@mui/icons-material/List';
 const AdminPanel = () => {
   const { t } = useTranslation();
-  const { leader, socket, isCurrentUserLeader } = useSocketContext();
+  const { leader, socket } = useSocketContext();
   const { currentUser } = useAuthContext();
   const { togglePlaylistLocked, playlistLocked } = usePlaylistContext();
 
@@ -20,6 +20,11 @@ const AdminPanel = () => {
     if (!leader) return t('adminPanel.leader.noLeader');
     return t('adminPanel.leader.header', { leaderIdentifier: leader.username || leader.socketId });
   }, [leader, t]);
+
+  const isCurrentUserLeader = useMemo(() => {
+    if (!leader || !currentUser) return false;
+    return leader.userId === currentUser.id;
+  }, [leader, currentUser]);
 
   const handleSetLeader = () => {
     if (!socket) return;

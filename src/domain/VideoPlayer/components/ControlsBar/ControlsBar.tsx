@@ -3,7 +3,7 @@ import { FullscreenExitRounded, FullscreenRounded, SyncRounded } from '@mui/icon
 import { IconButton, Tooltip, Typography } from '@mui/material';
 import type { FC } from 'react';
 import React, { useCallback, useEffect, useState } from 'react';
-
+import { useMemo } from 'react';
 import { ToastTypes } from '@/utils/CustomToast';
 import VolumeControl from '../VolumeControl';
 import { getPlayingStateIcon } from '../../model/VideoPlayer.model';
@@ -21,13 +21,18 @@ interface ControlsBarProps {
 }
 
 const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouseLeave }) => {
-  const { socket, isCurrentUserLeader } = useSocketContext();
+  const { socket, leader } = useSocketContext();
   const { t } = useTranslation();
   const { isAdmin, currentUser } = useAuthContext();
   const { handleSeek, seeking, setSeeking, seekTo, playerState, requestPlayerState } = usePlayerContext();
   const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo, loadedSeconds, isReady } = playerState;
   const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);
   const { toggleFullscreen, isFullscreen } = useFullscreen();
+
+  const isCurrentUserLeader = useMemo(() => {
+    if (!leader || !currentUser) return false;
+    return leader.userId === currentUser.id;
+  }, [leader, currentUser]);
 
   const handleSyncWithLeader = useCallback(() => {
     if (isCurrentUserLeader || !activeVideo) {

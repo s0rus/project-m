@@ -1,4 +1,4 @@
-version: '7.8'
+version: '7.9'
 services:
   app:
     platform: 'linux/amd64'
@@ -8,7 +8,7 @@ services:
     #working_dir: /app
     ports:
       - '3000:3000'
-    image: kornik123/project-m:7.8
+    image: kornik123/project-m:7.9
     environment:
       - DATABASE_URL=mysql://f3rzxvt38s3eob9p108b:pscale_pw_utkymIuvrzHk4p3KlXtOG99oe6EskMxNM75CY4Jz0SA@eu-west.connect.psdb.cloud/murzyniarnia?sslaccept=strict
       - TWITCH_CLIENT_ID=l1kifkmac4e434q4351ystyjnyfaum
