@@ -1,14 +1,16 @@
 import { DashboardBarButtons, DashboardBarContainer, DashboardBarWrapper } from './DashboardBar.styles';
 import { Grid } from '@mui/material';
+
 import BarButtons from '../BarButtons';
 import React from 'react';
-import VideoCard from '@/components/VideoCard';
-import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
+import VideoCard from '@/domain/App/components/VideoCard';
+import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
 import { useMediaQuery } from '@mui/material';
 import { theme } from '@/styles/theme';
 const DashboardBar = () => {
   const { currentVideo } = usePlaylistContext();
   const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <>
       <DashboardBarWrapper>

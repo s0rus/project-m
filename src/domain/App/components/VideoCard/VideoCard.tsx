@@ -1,14 +1,16 @@
 import { EmptyVideoCard, VideoBox, VideoCardWrapper, VideoContent } from './VideoCard.styles';
 import { Link, Typography } from '@mui/material';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import { ItemTitle } from '@/domain/Playlist/components/PlaylistItem/PlaylistItem.styles';
-import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
-import VideoThumbnail from '../VideoThumbnail';
-import { useTranslation } from 'react-i18next';
-import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context.tsx';
-import { AddedByAvatar, AddedByWrapper } from '@/styles/style';
+import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
 import Image from 'next/image';
 import Ok from '@/domain/Icons/Ok.svg';
+import type { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
+import VideoThumbnail from '../VideoThumbnail';
+import { AddedByAvatar, AddedByWrapper } from '@/styles/style';
+import { useTranslation } from 'react-i18next';
+
 interface VideoCardProps {
   video: PlaylistWithUsers | undefined;
 }

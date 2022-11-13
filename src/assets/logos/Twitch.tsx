@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgIconProps } from '@mui/material';
+import type { SvgIconProps } from '@mui/material';
 
 export const Twitch: React.FC<SvgIconProps> = (props) => {
   return (

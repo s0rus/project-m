@@ -1,5 +1,5 @@
 import type { FC, PropsWithChildren } from 'react';
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useRef, useState, useMemo } from 'react';
 
 import { CustomToast } from '@/utils/CustomToast';
 import { Routes } from '@/server/router/routes';
@@ -11,12 +11,14 @@ import { useAuthContext } from './Auth.context';
 interface InitialContextProps {
   socket: SocketProvider.ClientIO | Record<string, never>;
   leader: UserData | null;
+  isCurrentUserLeader: boolean;
 }
 
 let socket: SocketProvider.ClientIO;
 const SocketContext = createContext<InitialContextProps>({
   socket: {},
   leader: null,
+  isCurrentUserLeader: false,
 });
 
 export const useSocketContext = () => useContext<InitialContextProps>(SocketContext);
@@ -26,6 +28,8 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const socketRef = useRef(socket);
   const [leader, setLeader] = useState<UserData | null>(null);
 
+  const isCurrentUserLeader = useMemo(() => currentUser.id === leader?.userId, [currentUser, leader]);
+
   const socketInitializer = useCallback(async () => {
     if (currentUser && !isAuthLoading) {
       await fetch(Routes.SOCKET).then(() => {
@@ -34,7 +38,6 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
       });
 
       socket.on('connect', () => {
-        console.log('CONNECTED', socket.id);
         socket.emit('JOIN_USER', {
           socketId: socket.id,
           isAdmin: currentUser.isAdmin,
@@ -44,14 +47,7 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
       });
 
       socket.on('RECEIVE_TOAST', (message, type) => CustomToast.send(message, type));
-      socket.on('RECEIVE_NEW_LEADER', (userData) => {
-        console.log('RECEIVE_NEW_LEADER', userData);
-        setLeader(userData);
-      });
-
-      socket.on('connect_error', (err: Error) => {
-        console.error(`CONNECT_ERROR: ${err}`);
-      });
+      socket.on('RECEIVE_NEW_LEADER', (userData) => setLeader(userData));
     }
   }, [currentUser, isAuthLoading]);
 
@@ -66,10 +62,12 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
         username: currentUser.name,
       });
     }
-  }, [authChange, currentUser]);
+  }, [currentUser, authChange]);
 
   useEffect(() => {
-    if (socket) return;
+    if (socket || window.location.href.includes('/twitch-signin') || window.location.href.includes('/twitch-signout')) {
+      return;
+    }
 
     socketInitializer();
   }, [socketInitializer]);
@@ -79,6 +77,7 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
       value={{
         socket: socketRef.current,
         leader,
+        isCurrentUserLeader,
       }}
     >
       {children}

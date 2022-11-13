@@ -22,9 +22,10 @@
     "titleRequired": "Title is required",
     "titleTooLong": "The title can have up to 30 characters.",
     "wrongUrl": "URL is invalid.",
-    "videoAdded": "Video has been added to playlist."
+    "videoAdded": "Video has been added to playlist.",
+    "couldNotProcessUrl": "URL could not be processed."
   },
-  "options":{
+  "options": {
     "optionsTitle": "Settings",
     "twitchTitle": "Twitch",
     "camTitle": "Cam",
@@ -36,24 +37,23 @@
     "chatSubTitle": "Chat visibility.",
     "languageSubTitle": "Choose language."
   },
-  
 
-    "adminPanel": {
-      "header": "Admin panel",
-      "leader": {
-        "header": "{{leaderIdentifier}}",
-        "subititle": "Current leader.",
-        "noLeader": "There is no leader",
-        "becomeLeader": "Become leader",
-        "userIsLeader": "You are the leader"
-      },
-      "playlist": {
-        "header": "Playlist",
-        "subtitle": "Change playlist state.",
-        "lock": "Lock",
-        "unlock": "Unlock"
-      }
+  "adminPanel": {
+    "header": "Admin panel",
+    "leader": {
+      "header": "{{leaderIdentifier}}",
+      "subititle": "Current leader.",
+      "noLeader": "There is no leader",
+      "becomeLeader": "Become leader",
+      "userIsLeader": "You are the leader"
     },
+    "playlist": {
+      "header": "Playlist",
+      "subtitle": "Change playlist state.",
+      "lock": "Lock",
+      "unlock": "Unlock"
+    }
+  },
 
   "playlist": {
     "header": "Playlist",
@@ -102,6 +102,7 @@
   "addVideoError": "There was an error while adding video...",
   "requestVideoError": "The next video couldn't be fetched...",
   "togglePlaylistError": "State of the playlist couldn't be changed...",
+  "toggleFullscreenError": "Fullscreen could not be toggled...",
   "language": {
     "pl": "Polish",
     "en": "English"

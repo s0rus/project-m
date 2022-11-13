@@ -1,23 +1,22 @@
-import { styled, Box, Stack, Avatar, } from '@mui/material';
+import { styled, Box, Stack, Avatar } from '@mui/material';
 import { gradients } from '@/styles/theme';
 
- export const Options = styled('div')`
-position: relative;
-padding-top: 1rem;
-transition: 0.3s;
-border-radius: 8px;
-margin-bottom: 1rem;
-background: ${gradients.gradientPaper};
-box-shadow: rgb(0, 0, 0, 0.55) 0px 20px 30px -10px;
-`
+export const Options = styled('div')`
+  position: relative;
+  padding-top: 1rem;
+  transition: 0.3s;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: ${gradients.gradientPaper};
+  box-shadow: rgb(0, 0, 0, 0.55) 0px 20px 30px -10px;
+`;
 export const OptionsBox = styled('div')`
-box-sizing: border-box;
-padding: 0rem 1.5rem;
--webkit-font-smoothing: antialiased;
-outline-color: rgb(117, 122, 255);
-transition: 0.3s ease-in-out;
-`
-
+  box-sizing: border-box;
+  padding: 0rem 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  outline-color: rgb(117, 122, 255);
+  transition: 0.3s ease-in-out;
+`;
 
 export const OptionsTitle = styled('h1')({
   fontSize: '1.5rem',
@@ -26,9 +25,8 @@ export const OptionsTitle = styled('h1')({
   marginLeft: '28px',
   marginTop: '0px',
   cursor: 'default',
-  display: 'flex'
+  display: 'flex',
 });
-
 
 export const ChatBox = styled('div')`
 color: #FFF;
@@ -44,7 +42,7 @@ margin-bottom: 20px;
 text-transform: capitalize;
 &:hover{
   background-color: rgba(255,255,255,0.09);
-}`
+}`;
 
 export const CurrentVideoWrapper = styled(Box)`
   display: flex;
@@ -63,7 +61,7 @@ export const AddedByWrapper = styled(Stack)`
   align-items: center;
   align-self: flex-start;
   gap: 0.8rem;
-  background: rgba(0,0,0,0.25);
+  background: rgba(0, 0, 0, 0.25);
   border-radius: 4px;
   padding-right: 0.8rem;
   border-radius: 8px;

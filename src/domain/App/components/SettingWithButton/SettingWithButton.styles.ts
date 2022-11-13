@@ -1,5 +1,5 @@
 import { Stack, styled } from '@mui/material';
-import { gradients } from '@/styles/theme';
+import { theme, gradients } from '@/styles/theme';
 export const SettingStack = styled(Stack)`
   min-height: 4.25rem;
   flex-direction: row;
@@ -44,23 +44,23 @@ text-align: left;
 margin: 0px;
 right: 15px;
 padding: 0px;
-font-weight: 500; `;
+font-weight: 500; `
 
 export const SubTitleOption = styled('h2')`
-  line-height: 1.1;
-  width: 100%;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  right: 15px;
-  cursor: default;
-  display: flex;
-  transition: all 0.3s ease 0s;
-  position: relative;
-  text-align: left;
-  margin: 0px;
-  padding: 0px;
-  text-transform: capitalize;
-  font-weight: 400;
-  color: #c7c7c7;
-`;
+line-height: 1.1;
+width: 100%;
+font-size: 13px;
+font-weight: 400;
+letter-spacing: 1px;
+right: 15px;
+cursor: default;
+display: flex;
+transition: all 0.3s ease 0s;
+position: relative;
+text-align: left;
+margin: 0px;
+padding: 0px;
+text-transform: capitalize;
+font-weight: 400;
+color: #c7c7c7;
+`

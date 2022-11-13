@@ -1,8 +1,10 @@
 import { Paper, styled } from '@mui/material';
-import React, { FC, PropsWithChildren } from 'react';
+import type { FC, PropsWithChildren } from 'react';
+import React from 'react';
 
 const StyledPaper = styled(Paper)`
   padding: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const CardLayout: FC<PropsWithChildren> = ({ children }) => {

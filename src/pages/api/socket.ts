@@ -1,8 +1,8 @@
-import { NextApiRequest } from 'next';
-import { NextApiResponseServerIO } from '../../types';
-import { ServerOptions } from 'socket.io';
+/* eslint no-console: "off" */
+import type { NextApiRequest, NextApiResponseServerIO } from 'next';
+import type { ServerOptions } from 'socket.io';
 import { SocketProvider } from '@/server/sockets';
-import { UserData } from '@/server/sockets/SocketProvider';
+import type { UserData } from '@/server/sockets/SocketProvider';
 import toastHandler from '@/server/sockets/toastHandler';
 import videoHandler from '@/server/sockets/videoHandler';
 

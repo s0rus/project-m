@@ -5,8 +5,8 @@ import type { FC, PropsWithChildren } from 'react';
 import React from 'react';
 
 import { AuthContextProvider } from './context/Auth.context';
-import { PlayerContextProvider } from '@/domain/VideoPlayer/context/VideoPlayer.context';
-import { PlaylistContextProvider } from '@/domain/Playlist/context/Playlist.context.tsx';
+import { PlayerContextProvider } from '@/domain/VideoPlayer/context/PlayerContext';
+import { PlaylistContextProvider } from '@/domain/Playlist/context/Playlist.context';
 import { type Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import { SocketContextProvider } from '@/domain/App/context/Socket.context';

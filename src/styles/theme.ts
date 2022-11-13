@@ -123,7 +123,6 @@ export const theme = createTheme({
       },
     },
 
-    
     MuiSelect: {
       styleOverrides: {
         select: {
@@ -161,11 +160,11 @@ export const theme = createTheme({
           borderRadius: '0.4rem',
           textTransform: 'capitalize',
           ':hover': {
-            background: `${globalTheme.palette.primary.hover}`
+            background: `${globalTheme.palette.primary.hover}`,
           },
           ':active': {
-            background: `${globalTheme.palette.primary.active}`
-          }
+            background: `${globalTheme.palette.primary.active}`,
+          },
         },
         iconSizeLarge: {
           '& > *:nth-of-type(1)': {
@@ -185,7 +184,8 @@ export const theme = createTheme({
             color: `${globalTheme.palette.primary.hover}`,
           },
         },
-      }},
+      },
+    },
 
     MuiLink: {
       styleOverrides: {

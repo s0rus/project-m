@@ -1,5 +1,5 @@
 import { Avatar, Box, Card, CardContent, Stack, styled } from '@mui/material';
-import { theme, gradients } from '@/styles/theme';
+import { gradients, theme } from '@/styles/theme';
 
 export const VideoCardWrapper = styled(Card)`
   height: 100%;

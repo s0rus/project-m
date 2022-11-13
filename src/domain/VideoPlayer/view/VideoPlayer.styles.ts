@@ -11,7 +11,8 @@ export const VideoPlayerContainer = styled(Box)`
 export const VideoPlayerBox = styled(Box)`
   height: 100vh;
   width: 100%;
-  background-color: #18181b;
+
+  background-color: #000;
   position: relative;
 `;
 

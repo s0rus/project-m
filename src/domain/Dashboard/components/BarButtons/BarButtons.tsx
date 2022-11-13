@@ -1,46 +1,94 @@
-import { Tooltip, Button } from '@mui/material';
+import { Button, Hidden } from '@mui/material';
+import { LogoutRounded, PlaylistAddRounded } from '@mui/icons-material';
 import React, { useState } from 'react';
+
 import AddVideoModal from '../AddVideoModal';
-import { useAuthContext } from '@/contexts/AuthContext';
-import { usePlaylistContext } from '@/domain/Playlist/context/PlaylistContext';
+import ButtonWithLoader from '@/domain/App/components/ButtonWithLoader';
+import ButtonsSkeleton from '../../skeletons/ButtonsSkeleton';
+import { Twitch } from '@/assets/logos/Twitch';
+import { useAuthContext } from '@/domain/App/context/Auth.context';
+import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
 import { useTranslation } from 'react-i18next';
-import MovieIcon from '@mui/icons-material/Movie';
 import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
-import NextPlanIcon from '@mui/icons-material/NextPlan';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
 const BarButtons = () => {
-  const { isAdmin } = useAuthContext();
   const { t } = useTranslation();
-  const { isLoggedIn } = useAuthContext();
-  const { playlistLocked } = usePlaylistContext();
+  const { isAdmin, isLoggedIn, isAuthLoading, authChange, loginWithTwitch } = useAuthContext();
+  const { playlistLocked, currentVideo } = usePlaylistContext();
+  const { handleOnVideoSkip } = usePlayerContext();
   const [modalOpen, setModalOpen] = useState(false);
+
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
-  const { handleOnVideoSkip } = usePlayerContext();
-  const { loginWithTwitch } = useAuthContext();
+
+  if (isAuthLoading) return <ButtonsSkeleton />;
 
   return (
     <>
       {isLoggedIn ? (
         <>
-          {isAdmin && (
-            <Button style={{ width: '100%', height: '45px' }} onClick={() => handleOnVideoSkip()}>
-              <NextPlanIcon style={{ marginRight: '5px' }} />
-              {t('video.skip')}
+          <Hidden lgDown>
+            {isAdmin && (
+              <Button
+                onClick={handleOnVideoSkip}
+                disabled={!isAdmin}
+                variant='contained'
+                size='large'
+                startIcon={<SkipNextIcon />}
+              >
+                {t('video.skip')}
+              </Button>
+            )}
+            <Button
+              onClick={handleOpen}
+              disabled={playlistLocked && !isAdmin}
+              variant='contained'
+              size='large'
+              startIcon={<PlaylistAddRounded />}
+            >
+              {t('video.add')}
             </Button>
-          )}
-          <Button style={{ width: '100%', height: '45px' }} onClick={handleOpen} disabled={playlistLocked && !isAdmin}>
-            <MovieIcon style={{ marginRight: '5px' }} />
-            {t('video.add')}
-          </Button>
+          </Hidden>
+          <Hidden lgUp>
+            {isAdmin && (
+              <Button
+                onClick={handleOnVideoSkip}
+                disabled={!isAdmin}
+                variant='contained'
+                size='large'
+                startIcon={<SkipNextIcon />}
+              ></Button>
+            )}
+            <Button variant='contained' size='large' onClick={handleOpen} disabled={playlistLocked && !isAdmin}>
+              <PlaylistAddRounded />
+            </Button>
+          </Hidden>
           <AddVideoModal handleClose={handleClose} open={modalOpen} />
         </>
       ) : (
         <>
-          <Tooltip title={t('options.twitchSubTitleLOGIN')}>
-            <Button style={{ width: '100%', height: '45px' }} onClick={loginWithTwitch}>
+          <Hidden lgDown>
+            <ButtonWithLoader
+              onClick={loginWithTwitch}
+              loading={authChange || isAuthLoading}
+              disabled={authChange || isAuthLoading}
+              variant='contained'
+              startIcon={<Twitch />}
+            >
               {t('logIn')}
-            </Button>
-          </Tooltip>
+            </ButtonWithLoader>
+          </Hidden>
+          <Hidden lgUp>
+            <ButtonWithLoader
+              onClick={loginWithTwitch}
+              loading={authChange || isAuthLoading}
+              disabled={authChange || isAuthLoading}
+              variant='contained'
+              iconVariant
+            >
+              <Twitch />
+            </ButtonWithLoader>
+          </Hidden>
         </>
       )}
     </>

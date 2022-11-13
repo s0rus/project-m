@@ -13,7 +13,7 @@ interface InitialContextProps {
 }
 
 const initialContextProps: InitialContextProps = {
-  isChatOn: true,
+  isChatOn: false,
   setIsChatOn: () => null,
   language: LanguageEnum.PL,
   setLanguage: () => null,
@@ -24,7 +24,7 @@ const AddonsContext = createContext<InitialContextProps>(initialContextProps);
 export const useAddonsContext = () => useContext<InitialContextProps>(AddonsContext);
 
 export const AddonsContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [isChatOn, setIsChatOn] = useState(true);
+  const [isChatOn, setIsChatOn] = useState(false);
   const [language, setLanguage] = useState<Language>(LanguageEnum.PL);
 
   useEffect(() => {

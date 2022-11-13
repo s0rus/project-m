@@ -1,20 +1,20 @@
 import { Box, Stack, styled } from '@mui/material';
 
 import ReactPlayer from 'react-player';
-import { theme,gradients } from '@/styles/theme';
+import { theme } from '@/styles/theme';
 
 export const ModalContent = styled(Box)`
   width: 420px;
   padding: 2rem 2.5rem;
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+
   position: absolute;
   top: 50%;
   left: 50%;
-  transition: all 0.3s;
+
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 250%);
-  border: 3px solid #18181b;
+  background-color: ${theme.palette.background.paper};
+  border: 1px solid ${theme.palette.primary.dark};
 `;
 
 export const AddVideoWrapper = styled(Stack)`
@@ -34,18 +34,19 @@ export const SamplePlayer = styled(ReactPlayer)`
 `;
 
 export const ExitButton = styled('div')`
-height: 40px;
-width: 40px;
-color: #18181b;
-transition: all 0.3s;
-position: absolute;
-right: 20px;
-top: 20px;
-color: white;
-cursor: pointer;
-background: rgba(0, 0, 0, 0.35);
-border-radius: 8px;
-&:hover{
-  color: ${theme.palette.primary.main};
-  background: rgba(0, 0, 0, 0.50);
-}`
+  height: 40px;
+  width: 40px;
+  color: #18181b;
+  transition: all 0.3s;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: white;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+  &:hover {
+    color: ${theme.palette.primary.main};
+    background: rgba(0, 0, 0, 0.5);
+  }
+`;
