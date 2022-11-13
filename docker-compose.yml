@@ -2,10 +2,10 @@ version: '7.8'
 services:
   app:
     platform: 'linux/amd64'
-    build:
-      context: .
-      dockerfile: Dockerfile
-    working_dir: /app
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
+    #working_dir: /app
     ports:
       - '3000:3000'
     image: kornik123/project-m:7.8
