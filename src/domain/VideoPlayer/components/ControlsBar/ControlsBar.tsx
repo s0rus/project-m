@@ -24,22 +24,15 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
   const { socket, leader } = useSocketContext();
   const { t } = useTranslation();
   const { isAdmin, currentUser } = useAuthContext();
-  const { handleSeek, seeking, setSeeking, seekTo, playerState, requestPlayerState } = usePlayerContext();
+  const { handleSeek, seeking, setSeeking, seekTo, playerState } = usePlayerContext();
   const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo, loadedSeconds, isReady } = playerState;
   const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);
   const { toggleFullscreen, isFullscreen } = useFullscreen();
-
+  const requestTime = () => socket.emit('REQUEST_PLAYER_STATE');
   const isCurrentUserLeader = useMemo(() => {
     if (!leader || !currentUser) return false;
     return leader.userId === currentUser.id;
   }, [leader, currentUser]);
-
-  const handleSyncWithLeader = useCallback(() => {
-    if (isCurrentUserLeader || !activeVideo) {
-      return;
-    }
-    requestPlayerState();
-  }, [requestPlayerState, isCurrentUserLeader, activeVideo]);
 
   const handleSeekMouseUp = useCallback(() => {
     setSeeking(false);
@@ -88,7 +81,7 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
       </Timer>
       <Tooltip title={t('playerControls.tooltip.sync')} placement='top'>
         <span>
-          <IconButton onDoubleClick={handleSyncWithLeader} disabled={isCurrentUserLeader || !activeVideo}>
+          <IconButton onDoubleClick={requestTime} disabled={isCurrentUserLeader || !activeVideo}>
             <SyncRounded />
           </IconButton>
         </span>

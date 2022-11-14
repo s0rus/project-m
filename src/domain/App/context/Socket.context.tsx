@@ -11,15 +11,12 @@ import { useAuthContext } from './Auth.context';
 interface InitialContextProps {
   socket: SocketProvider.ClientIO | Record<string, never>;
   leader: UserData | null;
-  isCurrentUserLeader: boolean;
 }
 
 let socket: SocketProvider.ClientIO;
-
 const SocketContext = createContext<InitialContextProps>({
   socket: {},
   leader: null,
-  isCurrentUserLeader: true,
 });
 
 export const useSocketContext = () => useContext<InitialContextProps>(SocketContext);
@@ -28,11 +25,6 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const { currentUser, isAuthLoading, authChange } = useAuthContext();
   const socketRef = useRef(socket);
   const [leader, setLeader] = useState<UserData | null>(null);
-
-  const isCurrentUserLeader = useMemo(() => {
-    if (!leader || !currentUser) return false;
-    return leader.userId === currentUser.id;
-  }, [leader, currentUser]);
 
   const socketInitializer = useCallback(async () => {
     if (currentUser && !isAuthLoading) {
@@ -52,6 +44,10 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
       socket.on('RECEIVE_TOAST', (message, type) => CustomToast.send(message, type));
       socket.on('RECEIVE_NEW_LEADER', (userData) => setLeader(userData));
+
+      socket.on('connect_error', (err: Error) => {
+        console.error(`CONNECT_ERROR: ${err}`);
+      });
     }
   }, [currentUser, isAuthLoading]);
 
@@ -66,12 +62,10 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
         username: currentUser.name,
       });
     }
-  }, [currentUser, authChange]);
+  }, [authChange, currentUser]);
 
   useEffect(() => {
-    if (socket || window.location.href.includes('/twitch-signin') || window.location.href.includes('/twitch-signout')) {
-      return;
-    }
+    if (socket) return;
 
     socketInitializer();
   }, [socketInitializer]);
@@ -81,7 +75,6 @@ export const SocketContextProvider: FC<PropsWithChildren> = ({ children }) => {
       value={{
         socket: socketRef.current,
         leader,
-        isCurrentUserLeader,
       }}
     >
       {children}
