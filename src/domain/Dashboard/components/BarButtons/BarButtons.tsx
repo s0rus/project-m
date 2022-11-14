@@ -31,7 +31,7 @@ const BarButtons = () => {
             {isAdmin && (
               <Button
                 onClick={handleOnVideoSkip}
-                disabled={!isAdmin}
+                disabled={!currentVideo}
                 variant='contained'
                 size='large'
                 startIcon={<SkipNextIcon />}
@@ -53,7 +53,7 @@ const BarButtons = () => {
             {isAdmin && (
               <Button
                 onClick={handleOnVideoSkip}
-                disabled={!isAdmin}
+                disabled={!currentVideo}
                 variant='contained'
                 size='large'
                 startIcon={<SkipNextIcon />}
