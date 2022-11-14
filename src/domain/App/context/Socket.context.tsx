@@ -19,7 +19,7 @@ let socket: SocketProvider.ClientIO;
 const SocketContext = createContext<InitialContextProps>({
   socket: {},
   leader: null,
-  isCurrentUserLeader: false,
+  isCurrentUserLeader: true,
 });
 
 export const useSocketContext = () => useContext<InitialContextProps>(SocketContext);
