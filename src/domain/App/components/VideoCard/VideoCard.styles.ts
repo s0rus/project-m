@@ -5,8 +5,7 @@ export const VideoCardWrapper = styled(Card)`
   height: 100%;
   min-height: 100px;
   display: flex;
-  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-  background: ${gradients.gradientPaper};
+  background: ${gradients.currentVideo};
 `;
 
 export const VideoContent = styled(CardContent)`

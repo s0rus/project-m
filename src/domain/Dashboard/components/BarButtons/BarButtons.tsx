@@ -30,6 +30,7 @@ const BarButtons = () => {
           <Hidden lgDown>
             {isAdmin && (
               <Button
+                sx={{ width: '150px' }}
                 onClick={handleOnVideoSkip}
                 disabled={!currentVideo}
                 variant='contained'
@@ -40,6 +41,7 @@ const BarButtons = () => {
               </Button>
             )}
             <Button
+              sx={{ width: '150px' }}
               onClick={handleOpen}
               disabled={playlistLocked && !isAdmin}
               variant='contained'
@@ -52,6 +54,7 @@ const BarButtons = () => {
           <Hidden lgUp>
             {isAdmin && (
               <Button
+                sx={{ width: '150px' }}
                 onClick={handleOnVideoSkip}
                 disabled={!currentVideo}
                 variant='contained'
@@ -59,7 +62,13 @@ const BarButtons = () => {
                 startIcon={<SkipNextIcon />}
               ></Button>
             )}
-            <Button variant='contained' size='large' onClick={handleOpen} disabled={playlistLocked && !isAdmin}>
+            <Button
+              variant='contained'
+              sx={{ width: '150px' }}
+              size='large'
+              onClick={handleOpen}
+              disabled={playlistLocked && !isAdmin}
+            >
               <PlaylistAddRounded />
             </Button>
           </Hidden>
@@ -69,6 +78,7 @@ const BarButtons = () => {
         <>
           <Hidden lgDown>
             <ButtonWithLoader
+              sx={{ width: '150px' }}
               onClick={loginWithTwitch}
               loading={authChange || isAuthLoading}
               disabled={authChange || isAuthLoading}
@@ -80,6 +90,7 @@ const BarButtons = () => {
           </Hidden>
           <Hidden lgUp>
             <ButtonWithLoader
+              sx={{ width: '150px' }}
               onClick={loginWithTwitch}
               loading={authChange || isAuthLoading}
               disabled={authChange || isAuthLoading}

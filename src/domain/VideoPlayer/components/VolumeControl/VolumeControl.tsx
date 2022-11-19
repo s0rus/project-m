@@ -33,7 +33,6 @@ const VolumeControl = () => {
             valueLabelDisplay='off'
             onChange={setVolume}
             value={isMuted ? 0 : volume}
-            disabled={!isReady}
             min={0}
             max={1}
             step={0.01}

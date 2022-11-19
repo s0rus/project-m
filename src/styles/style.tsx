@@ -8,7 +8,6 @@ export const Options = styled('div')`
   border-radius: 8px;
   margin-bottom: 1rem;
   background: ${gradients.gradientPaper};
-  box-shadow: rgb(0, 0, 0, 0.55) 0px 20px 30px -10px;
 `;
 export const OptionsBox = styled('div')`
   box-sizing: border-box;

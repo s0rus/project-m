@@ -36,10 +36,10 @@ const globalTheme = {
 
   palette: {
     primary: {
-      main: '#4b2bff',
-      light: '#4b2bff',
-      hover: '#7760f7',
-      active: '#35229c',
+      main: '#622afa',
+      light: '#622afa',
+      hover: '#8960f7',
+      active: '#4523a1',
       contrastText: '#EFEFF1',
     },
 
@@ -72,8 +72,11 @@ const globalTheme = {
   spacing: 8,
 };
 
+//paper: '#18181b',
+//dark: '#0e0e10',
+
 export const gradients = {
-  gradientPaper: `rgba(0,0,0,0.25)`,
+  gradientPaper: `#0e0e10`,
   playlistUnlocked: `linear-gradient(-90deg, ${hexToRgba(globalTheme.palette.success.light, 0)} -20%,  ${hexToRgba(
     globalTheme.palette.success.dark,
     0.45
@@ -82,10 +85,7 @@ export const gradients = {
     globalTheme.palette.error.dark,
     0.45
   )} 100%)`,
-  currentVideo: `linear-gradient(90deg, ${hexToRgba(globalTheme.palette.background.paper, 1)} 50%,  ${hexToRgba(
-    globalTheme.palette.background.paper,
-    0
-  )} 100%)`,
+  currentVideo: `#0e0e10`,
   gradientMain: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.primary.main, 0)} 0%,  ${hexToRgba(
     globalTheme.palette.primary.main,
     0.3
@@ -264,7 +264,7 @@ export const theme = createTheme({
           overflow: hidden;
         }
         body {
-          background: radial-gradient(circle, rgba(48,48,68,1) -10%, rgba(20,23,46,1) 100%)!important;
+          background: #141417!important;
           min-height: 100vh;
         }
         .MuiIconButton-root {
@@ -312,13 +312,19 @@ export const theme = createTheme({
           }
         }
         .react-page-split__divider--horizontal {
-          background: #18181b;
+          background: #141417;
           max-width: 6px;
           transition: 0.1s;
           cursor: col-resize;
           touch-action: pan-x;
           height: 100vh;
           border-radius: 20px;
+          &:hover{
+            max-width: 10px;
+          }
+          &:active{
+            max-width: 10px;
+          }
         },`,
     },
   },

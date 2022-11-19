@@ -28,7 +28,7 @@ export const PlaylistDetail = styled(Stack)`
 
 export const PlaylistContainer = styled(Box)`
   width: 100%;
-  background: ${gradients.gradientPaper};
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   height: inherit;
   display: flex;
