@@ -11,7 +11,8 @@ export const useSocket = () => {
   const socket = useSocketStore((state) => state.socket);
   const setLeader = useSocketStore((state) => state.setLeader);
   const currentUser = useAuthStore((state) => state.currentUser);
-  const { isAuthLoading, isAuthChanging } = useAuthChange();
+  const isAuthLoading = useAuthStore((state) => state.isAuthLoading());
+  const { isAuthChanging } = useAuthChange();
 
   const socketInitializer = useCallback(async () => {
     if (!isAuthLoading) {
