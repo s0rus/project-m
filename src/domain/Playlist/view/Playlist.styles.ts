@@ -2,7 +2,7 @@ import { Box, Stack, styled } from '@mui/material';
 import { gradients } from '@/styles/theme';
 
 export const PlaylistWrapper = styled(Box)<{ locked: number }>`
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   display: flex;
   flex-flow: column nowrap;
   background: ${({ locked }) => (locked ? gradients.playlistLocked : gradients.playlistUnlocked)};
@@ -28,6 +28,7 @@ export const PlaylistDetail = styled(Stack)`
 
 export const PlaylistContainer = styled(Box)`
   width: 100%;
+  padding: 0.5rem 0.5rem;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   height: inherit;

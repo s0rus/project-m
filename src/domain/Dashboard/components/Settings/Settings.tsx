@@ -1,29 +1,27 @@
 import type { Dispatch, SetStateAction } from 'react';
-import { Options, OptionsBox, OptionsTitle } from '@/styles/style';
 import React from 'react';
 import SettingWithSelect from '@/domain/App/components/SettingWithSelect';
-import SettingWithButton from '@/domain/App/components/SettingWithButton';
-import SettingsOnClick from '@/domain/App/components/SettingsOnClick';
 import { useAddonsContext } from '@/domain/App/context/Addons.context';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
-import { useSession } from 'next-auth/react';
 import { useTranslation } from 'react-i18next';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ChatIcon from '@mui/icons-material/Chat';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Options, OptionsBox, OptionsTitle } from '@/styles/style';
+import { useAuthChange } from '@/domain/App/hooks/useAuthChange';
+import SettingWithButton from '@/domain/App/components/SettingWithButton';
+import SettingsOnClick from '@/domain/App/components/SettingsOnClick';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
 
 const Settings = () => {
-  const { isChatOn, setIsChatOn, language, setLanguage } = useAddonsContext();
-  const { loginWithTwitch, logoutOfTwitch } = useAuthContext();
-  const { data: session, status } = useSession();
   const { t } = useTranslation();
-  const { currentUser } = useAuthContext();
-
+  const { isChatOn, setIsChatOn, language, setLanguage } = useAddonsContext();
+  const { isLoggedIn, loginWithTwitch, logoutOfTwitch } = useAuthChange();
+  const { currentUser } = useAuthStore();
   return (
     <Options style={{ paddingBottom: '1.7rem' }}>
       <OptionsTitle>{t('options.optionsTitle')}</OptionsTitle>
       <OptionsBox>
-        {session && status === 'authenticated' ? (
+        {isLoggedIn ? (
           <SettingWithButton
             header={t('options.twitchTitle')}
             subtitle={currentUser.name!}

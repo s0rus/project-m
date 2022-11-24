@@ -4,15 +4,17 @@
   "cancelMute": "Disable mute",
   "playerControls": {
     "tooltip": {
+      "play": "Play",
+      "pause": "Pause",
       "sync": "Synchronize (double click)",
       "fullscreen": "Fullscreen"
     }
   },
   "video": {
     "thumbnailAlt": "Thumbnail of the video titled {{videoTitle}}",
-    "add": "Add",
-    "addedBy": "Added by",
-    "skip": "Skip"
+    "add": "Add video",
+    "skip": "Skip video",
+    "addedBy": "Added by"
   },
   "addVideoModal": {
     "header": "Add video to the queue",
@@ -22,8 +24,8 @@
     "titleRequired": "Title is required",
     "titleTooLong": "The title can have up to 30 characters.",
     "wrongUrl": "URL is invalid.",
-    "videoAdded": "Video has been added to playlist.",
-    "couldNotProcessUrl": "URL could not be processed."
+    "couldNotProcessUrl": "URL could not be processed.",
+    "videoAdded": "Video has been added to playlist."
   },
   "options": {
     "optionsTitle": "Settings",
@@ -37,12 +39,22 @@
     "chatSubTitle": "Chat visibility.",
     "languageSubTitle": "Choose language."
   },
-
+  "settings": {
+    "header": "Settings",
+    "chat": {
+      "header": "Chat",
+      "subititle": "Toggle chat visibility"
+    },
+    "language": {
+      "header": "Language",
+      "subititle": "Choose language"
+    }
+  },
   "adminPanel": {
     "header": "Admin panel",
     "leader": {
       "header": "{{leaderIdentifier}}",
-      "subititle": "Current leader.",
+      "subititle": "Current leader",
       "noLeader": "There is no leader",
       "becomeLeader": "Become leader",
       "userIsLeader": "You are the leader"
@@ -54,7 +66,6 @@
       "unlock": "Unlock"
     }
   },
-
   "playlist": {
     "header": "Playlist",
     "empty": "Playlist is empty.",
@@ -62,19 +73,12 @@
     "tooltip": {
       "videoCount": "Count of videos in queue",
       "timeSum": "Total playlist time",
-      "copy": "Copy link to video",
-      "copied": "Link copied to clipboard",
-      "lock": "Lock playlist",
-      "unlock": "Unlock playlist",
-      "locked": "Playlist is locked",
-      "unlocked": "Playlist is unlocked",
-      "admin": "Admin",
-      "logged": "Logged",
-      "guest": "Guest",
-      "discord": "Uwusiownia",
-      "twitch": "Piotr Libera",
+      "deleteVideo": "Remove from playlist",
+      "playNow": "Play now",
       "delete": "Delete video from queue",
-      "requestcurrent": "Play video now"
+      "requestcurrent": "Play video now",
+      "copy": "Copy link to video",
+      "copied": "Link copied to clipboard"
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",
@@ -82,14 +86,7 @@
       "subtitlelock": "Ask the administrator to unlock the playlist."
     },
     "removeVideoError": "There was an error while removing video...",
-    "videoRemoved": "Video removed successfully!",
-    "setVideoError": "An error occurred while trying to play the video...",
-    "setVideo": "Video played successfully!"
-  },
-  "Navigation": {
-    "discord": "Discord",
-    "twitch": "Twitch",
-    "regulations": "Regulations"
+    "videoRemoved": "Video removed successfully!"
   },
   "toast": {
     "playlistLocked": "{{username}} has locked the playlist.",
@@ -104,7 +101,8 @@
   "togglePlaylistError": "State of the playlist couldn't be changed...",
   "toggleFullscreenError": "Fullscreen could not be toggled...",
   "language": {
-    "pl": "Polish",
+    "pl": "Polski",
     "en": "English"
-  }
+  },
+  "regulations": "Regulations"
 }

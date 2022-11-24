@@ -1,7 +1,10 @@
-import { Box, Button, ButtonProps, Typography } from '@mui/material';
+import type { ButtonProps } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { InnerStack, SettingStack, TitleOption, SubTitleOption } from './SettingWithButton.styles';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import Hidden from '@mui/material/Hidden';
+
 interface SettingWithButton extends ButtonProps {
   icon: JSX.Element;
   hiddenicon: JSX.Element;
@@ -13,10 +16,10 @@ interface SettingWithButton extends ButtonProps {
 
 const SettingWithButton: FC<SettingWithButton> = ({
   icon,
-  hiddenicon,
   header,
   subtitle,
   buttonAction,
+  hiddenicon,
   buttonLabel,
   ...rest
 }) => {

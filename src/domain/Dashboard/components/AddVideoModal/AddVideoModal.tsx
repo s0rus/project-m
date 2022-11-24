@@ -1,4 +1,4 @@
-import { AddVideoWrapper, ModalContent, SamplePlayer, ExitButton } from './AddVideoModal.styles';
+import { AddVideoWrapper, ModalContent, SamplePlayer } from './AddVideoModal.styles';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Modal, Typography } from '@mui/material';
 import type { NewVideoForm } from '../../model/NewVideo.model';
@@ -13,12 +13,11 @@ import { PlaylistAddCheck } from '@mui/icons-material';
 import type ReactPlayer from 'react-player';
 import { getYoutubeThumbnail } from '@/domain/Dashboard/utils/youtubeUtils';
 import { trpc } from '@/utils/trpc';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
-import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
-import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
-import CloseIcon from '@mui/icons-material/Close';
+import { useAuthChange } from '@/domain/App/hooks/useAuthChange';
+import { useSocketStore } from '@/domain/App/store/Socket.store';
+import { usePlaylistStore } from '@/domain/Playlist/store/Playlist.store';
 
 interface AddVideoModalProps {
   open: boolean;
@@ -26,11 +25,13 @@ interface AddVideoModalProps {
 }
 
 const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
-  const { isAdmin } = useAuthContext();
-  const { socket } = useSocketContext();
   const { t } = useTranslation();
-  const { addVideo, playlistLocked } = usePlaylistContext();
-  const { mutateAsync, isLoading } = trpc.useMutation(['protected-playlist.add-video']);
+  const { mutateAsync: addVideo, isLoading } = trpc.useMutation(['protected-playlist.add-video']);
+  const { isAdmin } = useAuthChange();
+  const socket = useSocketStore((state) => state.socket);
+
+  const addVideoToPlaylist = usePlaylistStore((state) => state.addVideoToPlaylist);
+  const isPlaylistLocked = usePlaylistStore((state) => state.isPlaylistLocked);
   const sampleVideoRef = useRef<ReactPlayer | null>(null);
   const [playerReady, setPlayerReady] = useState(false);
 
@@ -54,8 +55,8 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
 
   const handleReset = () => {
     reset();
-    handleClose();
     setPlayerReady(false);
+    handleClose();
   };
 
   const onSubmit = async ({ videoTitle, videoUrl }: NewVideoForm) => {
@@ -69,15 +70,17 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
         throw new Error();
       }
 
-      const newVideo = await mutateAsync({
+      const newVideo = await addVideo({
         videoTitle,
         videoUrl,
         videoDuration: possibleDuration,
         videoThumbnail: possibleThumbnail,
       });
 
-      addVideo(newVideo);
-      socket.emit('ADD_NEW_VIDEO', newVideo);
+      await addVideoToPlaylist(newVideo);
+      if (socket) {
+        socket.emit('ADD_NEW_VIDEO', newVideo);
+      }
       CustomToast.send(t('addVideoModal.videoAdded'), ToastTypes.Sucess);
       handleReset();
     } catch {
@@ -88,14 +91,11 @@ const AddVideoModal: FC<AddVideoModalProps> = ({ open, handleClose }) => {
 
   const handleOnError = () => setError('videoUrl', { message: t('addVideoModal.couldNotProcessUrl') });
 
-  if (playlistLocked && !isAdmin) handleClose();
+  if (isPlaylistLocked && !isAdmin) handleClose();
 
   return (
     <Modal open={open} onClose={handleClose}>
       <ModalContent>
-        <ExitButton>
-          <CloseIcon style={{ height: '40px', width: '40px' }} onClick={handleClose} />
-        </ExitButton>
         <Typography variant='h3'>{t('addVideoModal.header')}:</Typography>
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>

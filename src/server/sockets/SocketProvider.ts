@@ -2,7 +2,7 @@ import type { ServerOptions, Socket as ServerSocket } from 'socket.io';
 import { Server } from 'socket.io';
 
 import type { Socket as ClientSocket } from 'socket.io-client';
-import type { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
+import type { VideoProps } from '@/domain/Playlist/model/Playlist.model';
 import type { ToastTypes } from '@/utils/CustomToast';
 
 export interface UserData {
@@ -27,7 +27,7 @@ export interface EssentialPlayerState {
 export interface ServerToClientEvents {
   RECEIVE_SEEK_TO: (newPlayedSeconds: number) => void;
   RECEIVE_TOGGLE_PLAYING: (newPlayingState: boolean) => void;
-  RECEIVE_NEW_VIDEO: (data: PlaylistWithUsers) => void;
+  RECEIVE_NEW_VIDEO: (data: VideoProps) => void;
   RECEIVE_SKIP_VIDEO: (targetVideoId?: string) => void;
   RECEIVE_DELETE_VIDEO: (videoId: string) => void;
   RECEIVE_TOGGLE_PLAYLIST: () => void;
@@ -40,7 +40,7 @@ export interface ServerToClientEvents {
 export interface ClientToServerEvents {
   SEEK_TO: (newPlayedSeconds: number) => void;
   TOGGLE_PLAYING: (newPlayingState: boolean) => void;
-  ADD_NEW_VIDEO: (data: PlaylistWithUsers) => void;
+  ADD_NEW_VIDEO: (data: VideoProps) => void;
   SKIP_VIDEO: (targetVideoId?: string) => void;
   DELETE_VIDEO: (videoId: string) => void;
   TOGGLE_PLAYLIST: () => void;

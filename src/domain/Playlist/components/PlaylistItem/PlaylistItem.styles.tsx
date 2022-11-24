@@ -1,9 +1,8 @@
 import { Avatar, Box, Card, CardContent, Stack, styled, IconButton } from '@mui/material';
-import { gradients, theme } from '@/styles/theme';
+import { theme } from '@/styles/theme';
 
 export const PlaylistItemWrapper = styled(Card)`
   width: 100%;
-  height: 120px;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   background: rgba(0, 0, 0, 0.5);
@@ -70,8 +69,8 @@ export const ItemOptions = styled('div')`
   align-items: center;
   gap: 8px;
   & svg {
-    height: 30px;
-    width: 30px;
+    height: 22px;
+    width: 22px;
   }
 `;
 
@@ -84,7 +83,10 @@ export const Delete = styled(IconButton)`
     color: rgba(255, 255, 255, 0.1);
   }
   &:hover {
+    transition: 0.2s;
     & svg {
+      height: 28px;
+      width: 28px;
       color: red;
     }
   }
@@ -98,7 +100,10 @@ export const Current = styled(IconButton)`
     color: rgba(255, 255, 255, 0.1);
   }
   &:hover {
+    transition: 0.2s;
     & svg {
+      height: 28px;
+      width: 28px;
       color: rgba(38, 255, 0, 0.49);
     }
   }
@@ -110,12 +115,15 @@ export const Copy = styled(IconButton)`
   & svg {
     cursor: pointer;
     transition: 0.3s;
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     color: rgba(255, 255, 255, 0.1);
   }
   &:hover {
+    transition: 0.2s;
     & svg {
+      height: 25px;
+      width: 25px;
       color: rgba(255, 255, 255, 0.5);
     }
   }
@@ -125,7 +133,12 @@ export const Copied = styled(IconButton)`
   margin: 0;
   padding: 0;
   & svg {
+    transition: 0.2s;
     cursor: default;
     color: rgba(38, 255, 0, 0.49);
+    &:hover {
+      height: 30px;
+      width: 30px;
+    }
   }
 `;

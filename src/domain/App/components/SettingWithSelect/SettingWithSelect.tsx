@@ -1,8 +1,11 @@
 import { Box, Typography } from '@mui/material';
 import { ExpandMoreRounded, LanguageRounded } from '@mui/icons-material';
-import { InnerStack, SettingStack, StyledSelect, TitleSelect, TitleSubSelect } from './SettingWithSelect.styles';
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import { InnerStack, SettingStack } from './SettingWithSelect.styles';
+import type { Dispatch, FC, SetStateAction } from 'react';
+import React from 'react';
+import { TitleSelect, TitleSubSelect } from './SettingWithSelect.styles';
 import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import { useTranslation } from 'react-i18next';
 
 interface SettingWithSelect {
@@ -16,7 +19,8 @@ const SettingWithSelect: FC<SettingWithSelect> = ({ setter, value, header, subti
   const { t } = useTranslation();
 
   return (
-    <StyledSelect
+    <Select
+      id='language-selector'
       value={value}
       onChange={(e) => setter(e.target.value as string)}
       sx={{ mt: '1rem', cursor: 'pointer', marginTop: '-5px', width: '100%', height: '65px', outline: 'none' }}
@@ -40,13 +44,9 @@ const SettingWithSelect: FC<SettingWithSelect> = ({ setter, value, header, subti
         );
       }}
     >
-      <MenuItem value='pl' style={{ textShadow: '0px 0px 10px white' }}>
-        {t('language.pl')}
-      </MenuItem>
-      <MenuItem value='en' style={{ textShadow: '0px 0px 10px white' }}>
-        {t('language.en')}
-      </MenuItem>
-    </StyledSelect>
+      <MenuItem value='pl'>{t('language.pl')}</MenuItem>
+      <MenuItem value='en'>{t('language.en')}</MenuItem>
+    </Select>
   );
 };
 

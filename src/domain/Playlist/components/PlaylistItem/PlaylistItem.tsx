@@ -1,5 +1,18 @@
 import { CircularProgress, Link, ListItem, Tooltip, Typography } from '@mui/material';
-import {} from '@mui/icons-material';
+import type { FC } from 'react';
+import { AddedByAvatar, AddedByWrapper } from '@/styles/style';
+import React, { useState } from 'react';
+import CheckIcon from '@mui/icons-material/Check';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ClearIcon from '@mui/icons-material/Clear';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { CustomToast, ToastTypes } from '@/utils/CustomToast';
+import type { VideoProps } from '../../model/Playlist.model';
+import VideoThumbnail from '@/domain/App/components/VideoThumbnail';
+import { useTranslation } from 'react-i18next';
+import { usePlaylistChange } from '../../hooks/usePlaylistChange';
+import { useSocketStore } from '@/domain/App/store/Socket.store';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
 import {
   PlaylistItemBox,
   PlaylistItemContent,
@@ -11,45 +24,29 @@ import {
   ItemOptions,
   ItemTitle,
 } from './PlaylistItem.styles';
-import type { FC } from 'react';
-import React, { useState } from 'react';
-import CheckIcon from '@mui/icons-material/Check';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import ClearIcon from '@mui/icons-material/Clear';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { CustomToast, ToastTypes } from '@/utils/CustomToast';
-import type { PlaylistWithUsers } from '../../model/Playlist.model';
-import VideoThumbnail from '@/domain/App/components/VideoThumbnail';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
-import { usePlaylistContext } from '../../context/Playlist.context';
-import { useSocketContext } from '@/domain/App/context/Socket.context';
-import { AddedByAvatar, AddedByWrapper } from '@/styles/style';
-import { useTranslation } from 'react-i18next';
 interface PlaylistItemsProps {
-  video: PlaylistWithUsers;
+  video: VideoProps;
 }
 
 const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   const { t } = useTranslation();
-  const { socket } = useSocketContext();
-  const { isAdmin } = useAuthContext();
-  const { handleSkipVideo, handlePlayVideoNow } = usePlaylistContext();
-  const { handleOnPlayVideoNow } = usePlayerContext();
+
+  const socket = useSocketStore((state) => state.socket);
+  const isAdmin = useAuthStore((state) => state.isAdmin());
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSkipping, setIsSkipping] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const { handleSkipVideo, handlePlayVideoNow } = usePlaylistChange();
   const { videoId, videoThumbnail, videoTitle, videoUrl, addedBy, videoDuration } = video;
+  const [copied, setCopied] = useState(false);
 
   const CopyThis = () => {
     navigator.clipboard.writeText(videoUrl);
     setCopied(true);
     CustomToast.send(t('playlist.copy'), ToastTypes.Copy);
   };
-
   const handleRemoveVideo = async () => {
     try {
-      if (isAdmin) {
+      if (isAdmin && socket) {
         setIsDeleting(true);
         await handleSkipVideo(videoId);
         socket.emit('DELETE_VIDEO', videoId);
@@ -68,8 +65,6 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
       if (isAdmin) {
         setIsSkipping(true);
         await handlePlayVideoNow(videoId);
-        socket.emit('SKIP_VIDEO', videoId);
-        handleOnPlayVideoNow();
         setIsSkipping(false);
         CustomToast.send(t('playlist.videoRemoved'), ToastTypes.Sucess);
       } else {
@@ -83,7 +78,9 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   return (
     <ListItem dense>
       <PlaylistItemWrapper>
-        <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
+        <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
+          <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
+        </Link>
         <ItemOptions>
           {copied ? (
             <Tooltip title={t('playlist.tooltip.copied')} placement='left'>
@@ -115,12 +112,12 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
         </ItemOptions>
         <PlaylistItemBox>
           <PlaylistItemContent>
-            <ItemTitle>
+            <Typography noWrap variant='h4'>
               <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
                 {videoTitle}
               </Link>
-            </ItemTitle>
-            <AddedByWrapper>
+            </Typography>
+            <AddedByWrapper style={{ marginBottom: '-5px' }}>
               {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
               <Typography component='span'>{addedBy.name}</Typography>
             </AddedByWrapper>

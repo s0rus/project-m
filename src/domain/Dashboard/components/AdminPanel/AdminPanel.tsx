@@ -1,39 +1,43 @@
-import { Options, OptionsTitle } from '@/styles/style';
 import { EmojiEventsRounded } from '@mui/icons-material';
 import SettingWithButton from '@/domain/App/components/SettingWithButton';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
-import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
 import { useMemo } from 'react';
-import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
+import { useSocketStore } from '@/domain/App/store/Socket.store';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import SwipeDownIcon from '@mui/icons-material/SwipeDown';
 import ListIcon from '@mui/icons-material/List';
+import { Options, OptionsTitle } from '@/styles/style';
+import { usePlaylistStore } from '@/domain/Playlist/store/Playlist.store';
+import { usePlaylistChange } from '@/domain/Playlist/hooks/usePlaylistChange';
+
 const AdminPanel = () => {
   const { t } = useTranslation();
-  const { leader, socket } = useSocketContext();
-  const { currentUser } = useAuthContext();
-  const { togglePlaylistLocked, playlistLocked } = usePlaylistContext();
+
+  const socket = useSocketStore((state) => state.socket);
+  const leader = useSocketStore((state) => state.leader);
+  const currentUser = useAuthStore((state) => state.currentUser);
+  const isCurrentUserLeader = useSocketStore((state) => state.isCurrentUserLeader());
+  const isPlaylistLocked = usePlaylistStore((state) => state.isPlaylistLocked);
+  const { handlePlaylistLockedChange } = usePlaylistChange();
 
   const leaderIdentifier = useMemo(() => {
-    if (!leader) return t('adminPanel.leader.noLeader');
+    if (!leader) {
+      return t('adminPanel.leader.noLeader');
+    }
     return t('adminPanel.leader.header', { leaderIdentifier: leader.username || leader.socketId });
   }, [leader, t]);
 
-  const isCurrentUserLeader = useMemo(() => {
-    if (!leader || !currentUser) return false;
-    return leader.userId === currentUser.id;
-  }, [leader, currentUser]);
-
   const handleSetLeader = () => {
-    if (!socket) return;
-    socket.emit('SET_LEADER', {
-      socketId: socket.id,
-      isAdmin: currentUser.isAdmin,
-      userId: currentUser.id,
-      username: currentUser.name,
-    });
+    if (socket) {
+      socket.emit('SET_LEADER', {
+        socketId: socket.id,
+        isAdmin: currentUser.isAdmin,
+        userId: currentUser.id,
+        username: currentUser.name,
+      });
+    }
   };
 
   return (
@@ -55,10 +59,10 @@ const AdminPanel = () => {
         <SettingWithButton
           header={t('adminPanel.playlist.header')}
           subtitle={t('adminPanel.playlist.subtitle')}
-          buttonLabel={!playlistLocked ? t('adminPanel.playlist.lock') : t('adminPanel.playlist.unlock')}
-          buttonAction={togglePlaylistLocked}
+          buttonLabel={!isPlaylistLocked ? t('adminPanel.playlist.lock') : t('adminPanel.playlist.unlock')}
+          buttonAction={handlePlaylistLockedChange}
           icon={<ListIcon />}
-          hiddenicon={!playlistLocked ? <LockIcon /> : <LockOpenIcon />}
+          hiddenicon={!isPlaylistLocked ? <LockIcon /> : <LockOpenIcon />}
           variant='contained'
         />
       </div>

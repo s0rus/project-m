@@ -1,25 +1,28 @@
 import { Button, Hidden } from '@mui/material';
-import { LogoutRounded, PlaylistAddRounded } from '@mui/icons-material';
+import { PlaylistAddRounded } from '@mui/icons-material';
 import React, { useState } from 'react';
 
 import AddVideoModal from '../AddVideoModal';
 import ButtonWithLoader from '@/domain/App/components/ButtonWithLoader';
 import ButtonsSkeleton from '../../skeletons/ButtonsSkeleton';
 import { Twitch } from '@/assets/logos/Twitch';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
-import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
 import { useTranslation } from 'react-i18next';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
+import { useAuthChange } from '@/domain/App/hooks/useAuthChange';
+import { usePlaylistStore } from '@/domain/Playlist/store/Playlist.store';
+import { useVideoPlayer } from '@/domain/VideoPlayer/hooks/useVideoPlayer';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
+
 const BarButtons = () => {
   const { t } = useTranslation();
-  const { isAdmin, isLoggedIn, isAuthLoading, authChange, loginWithTwitch } = useAuthContext();
-  const { playlistLocked, currentVideo } = usePlaylistContext();
-  const { handleOnVideoSkip } = usePlayerContext();
+  const { isAuthLoading, isAuthChanging, isLoggedIn, loginWithTwitch } = useAuthChange();
+  const { currentVideo } = usePlaylistStore();
+  const isPlaylistLocked = usePlaylistStore((state) => state.isPlaylistLocked);
   const [modalOpen, setModalOpen] = useState(false);
-
+  const isAdmin = useAuthStore((state) => state.isAdmin());
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
+  const { handleOnVideoSkip } = useVideoPlayer();
 
   if (isAuthLoading) return <ButtonsSkeleton />;
 
@@ -30,20 +33,18 @@ const BarButtons = () => {
           <Hidden lgDown>
             {isAdmin && (
               <Button
-                sx={{ width: '150px' }}
-                onClick={handleOnVideoSkip}
-                disabled={!currentVideo}
+                onClick={() => handleOnVideoSkip()}
                 variant='contained'
                 size='large'
                 startIcon={<SkipNextIcon />}
+                disabled={!currentVideo}
               >
                 {t('video.skip')}
               </Button>
             )}
             <Button
-              sx={{ width: '150px' }}
               onClick={handleOpen}
-              disabled={playlistLocked && !isAdmin}
+              disabled={isPlaylistLocked && !isAdmin}
               variant='contained'
               size='large'
               startIcon={<PlaylistAddRounded />}
@@ -54,21 +55,13 @@ const BarButtons = () => {
           <Hidden lgUp>
             {isAdmin && (
               <Button
-                sx={{ width: '150px' }}
-                onClick={handleOnVideoSkip}
-                disabled={!currentVideo}
+                onClick={() => handleOnVideoSkip()}
                 variant='contained'
                 size='large'
                 startIcon={<SkipNextIcon />}
               ></Button>
             )}
-            <Button
-              variant='contained'
-              sx={{ width: '150px' }}
-              size='large'
-              onClick={handleOpen}
-              disabled={playlistLocked && !isAdmin}
-            >
+            <Button variant='contained' size='large' onClick={handleOpen} disabled={isPlaylistLocked && !isAdmin}>
               <PlaylistAddRounded />
             </Button>
           </Hidden>
@@ -78,10 +71,9 @@ const BarButtons = () => {
         <>
           <Hidden lgDown>
             <ButtonWithLoader
-              sx={{ width: '150px' }}
               onClick={loginWithTwitch}
-              loading={authChange || isAuthLoading}
-              disabled={authChange || isAuthLoading}
+              loading={isAuthChanging || isAuthLoading}
+              disabled={isAuthChanging || isAuthLoading}
               variant='contained'
               startIcon={<Twitch />}
             >
@@ -90,10 +82,9 @@ const BarButtons = () => {
           </Hidden>
           <Hidden lgUp>
             <ButtonWithLoader
-              sx={{ width: '150px' }}
               onClick={loginWithTwitch}
-              loading={authChange || isAuthLoading}
-              disabled={authChange || isAuthLoading}
+              loading={isAuthChanging || isAuthLoading}
+              disabled={isAuthChanging || isAuthLoading}
               variant='contained'
               iconVariant
             >

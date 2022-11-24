@@ -1,15 +1,24 @@
 import { signIn } from 'next-auth/react';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
 import { useEffect } from 'react';
 import BlankLayout from '@/layouts/BlankLayout';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
+import { useAuth } from '@/domain/App/hooks/useAuth';
 
 const SignInPage = () => {
-  const { isAuthLoading, session } = useAuthContext();
+  useAuth();
+  const session = useAuthStore((state) => state.session);
+  const sessionStatus = useAuthStore((state) => state.sessionStatus);
+  const isUserUnauthenticated = useAuthStore((state) => state.isUserUnauthenticated());
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn());
 
   useEffect(() => {
-    if (!isAuthLoading && !session) void signIn('twitch');
-    if (session) window.close();
-  }, [session, isAuthLoading]);
+    if (!session && isUserUnauthenticated) {
+      void signIn('twitch');
+    }
+    if (isLoggedIn) {
+      window.close();
+    }
+  }, [session, sessionStatus, isUserUnauthenticated, isLoggedIn]);
 
   return <BlankLayout />;
 };

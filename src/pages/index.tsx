@@ -7,7 +7,7 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Murzyniarnia</title>
-        <meta name='description' content='Strona do oglądania filmów 👨🏾‍🦱' />
+        <meta name='description' content='Strona do oglądania filmów' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <App />

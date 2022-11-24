@@ -1,18 +1,20 @@
 {
-  "logIn": "Zaloguj",
-  "logOut": "Wyloguj",
+  "logIn": "Zaloguj się",
+  "logOut": "Wyloguj się",
   "cancelMute": "Anuluj wyciszenie",
   "playerControls": {
     "tooltip": {
+      "play": "Odtwórz",
+      "pause": "Pauza",
       "sync": "Synchronizuj (podwójne kliknięcie)",
       "fullscreen": "Pełny ekran"
     }
   },
   "video": {
     "thumbnailAlt": "Miniaturka filmu {{videoTitle}}",
-    "add": "Dodaj",
-    "addedBy": "Dodane przez",
-    "skip": "Pomiń"
+    "add": "Dodaj film",
+    "skip": "Pomiń film",
+    "addedBy": "Dodane przez"
   },
   "addVideoModal": {
     "header": "Dodaj film do kolejki",
@@ -22,8 +24,8 @@
     "titleRequired": "Tytuł jest wymagany.",
     "titleTooLong": "Tytuł może mieć maksymalnie 30 znaków.",
     "wrongUrl": "URL jest nieprawidłowy.",
-    "videoAdded": "Film został dodany do kolejki.",
-    "couldNotProcessUrl": "URL nie mógł być przetworzony."
+    "couldNotProcessUrl": "URL nie mógł być przetworzony.",
+    "videoAdded": "Film został dodany do kolejki."
   },
   "options": {
     "optionsTitle": "Ustawienia",
@@ -37,12 +39,22 @@
     "chatSubTitle": "Widoczność czatu.",
     "languageSubTitle": "Wybierz język."
   },
-
+  "settings": {
+    "header": "Ustawienia",
+    "chat": {
+      "header": "Czat",
+      "subititle": "Włącz/wyłącz czat"
+    },
+    "language": {
+      "header": "Język",
+      "subititle": "Wybierz język"
+    }
+  },
   "adminPanel": {
     "header": "Panel administratora",
     "leader": {
       "header": "{{leaderIdentifier}}",
-      "subititle": "Aktualny lider.",
+      "subititle": "Aktualny lider",
       "noLeader": "Brak lidera",
       "becomeLeader": "Zostań liderem",
       "userIsLeader": "Jesteś liderem"
@@ -54,7 +66,6 @@
       "unlock": "Odblokuj"
     }
   },
-
   "playlist": {
     "header": "Playlista",
     "empty": "Playlista jest pusta.",
@@ -62,19 +73,14 @@
     "tooltip": {
       "videoCount": "Ilość filmów w kolejce",
       "timeSum": "Łączny czas kolejki",
-      "copy": "Skopiuj link do filmu",
-      "copied": "Skopiowano link do schowka",
-      "lock": "Zablokuj playliste",
+      "deleteVideo": "Usuń z kolejki",
+      "playNow": "Odtwórz teraz",
       "unlock": "Odblokuj playliste",
       "locked": "Playlista jest zablokowana",
-      "unlocked": "Playlista jest odblokowana",
-      "admin": "Administrator",
-      "logged": "Zalogowany",
-      "guest": "Gość",
-      "discord": "Uwusiownia",
-      "twitch": "Piotr Libera",
+      "requestcurrent": "Odtwórz film teraz",
       "delete": "Usuń film z kolejki",
-      "requestcurrent": "Odtwórz film teraz"
+      "copy": "Skopiuj link do filmu",
+      "copied": "Skopiowano link do schowka"
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",
@@ -82,14 +88,7 @@
       "subtitlelock": "Poproś administratora o odblokowanie playlisty."
     },
     "removeVideoError": "Nie udało się usunąć filmu...",
-    "videoRemoved": "Film został usunięty z kolejki!",
-    "setVideoError": "Wystąpił błąd podczas próby odtworzenia filmu...",
-    "setVideo": "Film odtworzony pomyślnie!"
-  },
-  "Navigation": {
-    "discord": "Discord",
-    "twitch": "Twitch",
-    "regulations": "Regulamin"
+    "videoRemoved": "Film został usunięty z kolejki!"
   },
   "toast": {
     "playlistLocked": "{{username}} zablokował playlistę.",
@@ -105,6 +104,7 @@
   "toggleFullscreenError": "Nie udało się przełączyć trybu pełnoekranowego...",
   "language": {
     "pl": "Polski",
-    "en": "Angielski"
-  }
+    "en": "English"
+  },
+  "regulations": "Regulamin"
 }
