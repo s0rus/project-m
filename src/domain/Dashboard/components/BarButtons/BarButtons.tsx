@@ -9,10 +9,14 @@ import { Twitch } from '@/assets/logos/Twitch';
 import { useTranslation } from 'react-i18next';
 import { useAuthChange } from '@/domain/App/hooks/useAuthChange';
 import { usePlaylistStore } from '@/domain/Playlist/store/Playlist.store';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
 
 const BarButtons = () => {
   const { t } = useTranslation();
-  const { loginWithTwitch, logoutOfTwitch, isAuthLoading, isAuthChanging, isLoggedIn, isAdmin } = useAuthChange();
+  const { loginWithTwitch, logoutOfTwitch, isAuthChanging } = useAuthChange();
+  const isAuthLoading = useAuthStore((state) => state.isAuthLoading());
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn());
+  const isAdmin = useAuthStore((state) => state.isAdmin());
 
   const isPlaylistLocked = usePlaylistStore((state) => state.isPlaylistLocked);
   const [modalOpen, setModalOpen] = useState(false);
