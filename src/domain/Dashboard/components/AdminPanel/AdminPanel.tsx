@@ -3,29 +3,35 @@ import { Stack, Typography } from '@mui/material';
 import CardLayout from '@/layouts/CardLayout';
 import { EmojiEventsRounded } from '@mui/icons-material';
 import SettingWithButton from '@/domain/App/components/SettingWithButton';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
 import { useMemo } from 'react';
-import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
+import { useSocketStore } from '@/domain/App/store/Socket.store';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
 
 const AdminPanel = () => {
   const { t } = useTranslation();
-  const { leader, socket, isCurrentUserLeader } = useSocketContext();
-  const { currentUser } = useAuthContext();
+
+  const socket = useSocketStore((state) => state.socket);
+  const leader = useSocketStore((state) => state.leader);
+  const currentUser = useAuthStore((state) => state.currentUser);
+  const isCurrentUserLeader = useSocketStore((state) => state.isCurrentUserLeader());
 
   const leaderIdentifier = useMemo(() => {
-    if (!leader) return t('adminPanel.leader.noLeader');
+    if (!leader) {
+      return t('adminPanel.leader.noLeader');
+    }
     return t('adminPanel.leader.header', { leaderIdentifier: leader.username || leader.socketId });
   }, [leader, t]);
 
   const handleSetLeader = () => {
-    if (!socket) return;
-    socket.emit('SET_LEADER', {
-      socketId: socket.id,
-      isAdmin: currentUser.isAdmin,
-      userId: currentUser.id,
-      username: currentUser.name,
-    });
+    if (socket) {
+      socket.emit('SET_LEADER', {
+        socketId: socket.id,
+        isAdmin: currentUser.isAdmin,
+        userId: currentUser.id,
+        username: currentUser.name,
+      });
+    }
   };
 
   return (

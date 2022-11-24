@@ -5,31 +5,31 @@ import type { FC } from 'react';
 import React, { useState } from 'react';
 
 import { CustomToast, ToastTypes } from '@/utils/CustomToast';
-import type { PlaylistWithUsers } from '../../model/Playlist.model';
+import type { VideoProps } from '../../model/Playlist.model';
 import VideoThumbnail from '@/domain/App/components/VideoThumbnail';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/VideoPlayer.context';
-import { usePlaylistContext } from '../../context/Playlist.context';
-import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
+import { usePlaylistChange } from '../../hooks/usePlaylistChange';
+import { useSocketStore } from '@/domain/App/store/Socket.store';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
 
 interface PlaylistItemsProps {
-  video: PlaylistWithUsers;
+  video: VideoProps;
 }
 
 const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   const { t } = useTranslation();
-  const { socket } = useSocketContext();
-  const { isAdmin } = useAuthContext();
-  const { handleSkipVideo, handlePlayVideoNow } = usePlaylistContext();
-  const { handleOnPlayVideoNow } = usePlayerContext();
+
+  const socket = useSocketStore((state) => state.socket);
+  const isAdmin = useAuthStore((state) => state.isAdmin());
+
+  const { handleSkipVideo, handlePlayVideoNow } = usePlaylistChange();
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSkipping, setIsSkipping] = useState(false);
   const { videoId, videoThumbnail, videoTitle, videoUrl, addedBy, videoDuration } = video;
 
   const handleRemoveVideo = async () => {
     try {
-      if (isAdmin) {
+      if (isAdmin && socket) {
         setIsDeleting(true);
         await handleSkipVideo(videoId);
         socket.emit('DELETE_VIDEO', videoId);
@@ -48,8 +48,6 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
       if (isAdmin) {
         setIsSkipping(true);
         await handlePlayVideoNow(videoId);
-        socket.emit('SKIP_VIDEO', videoId);
-        handleOnPlayVideoNow();
         setIsSkipping(false);
         CustomToast.send(t('playlist.videoRemoved'), ToastTypes.Sucess);
       } else {

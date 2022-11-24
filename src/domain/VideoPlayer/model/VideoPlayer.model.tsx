@@ -1,8 +1,9 @@
-import type { Dispatch, MutableRefObject, SetStateAction } from 'react';
+import type { MutableRefObject } from 'react';
 import { PauseRounded, PlayArrowRounded, VolumeDown, VolumeOff, VolumeUp } from '@mui/icons-material';
 
 import type { Playlist } from '@prisma/client';
 import type ReactPlayer from 'react-player';
+import type { VideoProps } from '@/domain/Playlist/model/Playlist.model';
 
 export const HIDE_CONTROLS_TIMEOUT = 4000;
 export interface PlayerState {
@@ -18,62 +19,33 @@ export interface PlayerState {
   isReady: boolean;
 }
 
-export const initialPlayerState: PlayerState = {
-  playedSeconds: 0,
-  loadedSeconds: 0,
-  duration: 0,
-  isPlaying: false,
-  isMuted: true,
-  volume: 0,
-  controlsVisible: true,
-  initialMute: true,
-  activeVideo: undefined,
-  isReady: false,
-};
-
-export interface InitialContextProps {
-  playerState: PlayerState;
-  setPlayerState: (value: SetStateAction<PlayerState>) => void;
+export interface VideoPlayerStore {
+  playerRef: MutableRefObject<ReactPlayer> | null;
   setPlayerRef: (playerRef: MutableRefObject<ReactPlayer>) => void;
-  seekTo: (seconds: number) => void;
-  handleProgress: (event: ProgressProps) => void;
-  handleOnEnd: () => void;
-  handleOnVideoSkip: () => void;
-  handleOnPlayVideoNow: () => void;
-  handleOnError: () => void;
-  handleOnReady: () => void;
-  togglePlaying: (newPlayingState: boolean, localPause?: boolean) => void;
-  handleSeek: (newSecondsPlayed: number) => void;
+  resetPlayerState: () => void;
+  activeVideo: VideoProps | undefined;
+  setActiveVideo: (video: VideoProps | undefined) => void;
+  isPlaying: boolean;
+  setIsPlaying: (isPlaying: boolean) => void;
+  playedSeconds: number;
+  setPlayedSeconds: (playedSeconds: number) => void;
+  loadedSeconds: number;
+  setLoadedSeconds: (loadedSeconds: number) => void;
+  duration: number;
+  setDuration: (duration: number) => void;
+  volume: number;
+  setVolume: (volume: number) => void;
+  isMuted: boolean;
+  setIsMuted: (isMuted: boolean) => void;
+  initialMute: boolean;
+  setInitialMute: (initialMute: boolean) => void;
+  controlsVisible: boolean;
+  setControlsVisible: (controlsVisible: boolean) => void;
+  isReady: boolean;
+  setIsReady: (isReady: boolean) => void;
   seeking: boolean;
-  setSeeking: Dispatch<SetStateAction<boolean>>;
-  setVolume: (_: Event, value: number | number[]) => void;
-  toggleMuted: () => void;
-  toggleControls: (newControlsVisibility: boolean) => void;
-  disableInitialMute: () => void;
-  requestPlayerState: () => void;
+  setSeeking: (seeking: boolean) => void;
 }
-
-export const initialContextProps = {
-  playerState: initialPlayerState,
-  setPlayerState: () => null,
-  seekTo: () => null,
-  setPlayerRef: () => null,
-  handleProgress: () => null,
-  handleOnEnd: () => null,
-  handleOnVideoSkip: () => null,
-  handleOnPlayVideoNow: () => null,
-  handleOnError: () => null,
-  handleOnReady: () => null,
-  togglePlaying: () => null,
-  handleSeek: () => null,
-  seeking: false,
-  setSeeking: () => null,
-  setVolume: () => null,
-  toggleMuted: () => null,
-  toggleControls: () => null,
-  disableInitialMute: () => null,
-  requestPlayerState: () => null,
-};
 
 export interface ProgressProps {
   played: number;

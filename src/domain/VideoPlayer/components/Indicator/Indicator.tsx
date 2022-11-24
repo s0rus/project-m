@@ -4,17 +4,16 @@ import React from 'react';
 
 import { Typography } from '@mui/material';
 import { getPlayingStateIcon } from '../../model/VideoPlayer.model';
-import { usePlayerContext } from '../../context/VideoPlayer.context';
 import { useTranslation } from 'react-i18next';
 
 interface IndicatorProps {
   handlePlaying: () => void;
+  isPlaying: boolean;
+  initialMute: boolean;
 }
 
-const Indicator: FC<IndicatorProps> = ({ handlePlaying }) => {
+const Indicator: FC<IndicatorProps> = ({ handlePlaying, initialMute, isPlaying }) => {
   const { t } = useTranslation();
-  const { playerState } = usePlayerContext();
-  const { isPlaying, initialMute } = playerState;
 
   return (
     <IndicatorWrapper onClick={handlePlaying}>

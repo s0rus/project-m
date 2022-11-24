@@ -3,12 +3,12 @@ import { Link, Typography } from '@mui/material';
 import type { FC } from 'react';
 import React from 'react';
 
-import type { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
+import type { VideoProps } from '@/domain/Playlist/model/Playlist.model';
 import VideoThumbnail from '../VideoThumbnail';
 import { useTranslation } from 'react-i18next';
 
 interface VideoCardProps {
-  video: PlaylistWithUsers | undefined;
+  video: VideoProps | undefined;
 }
 
 const VideoCard: FC<VideoCardProps> = ({ video }) => {

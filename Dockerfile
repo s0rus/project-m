@@ -16,7 +16,7 @@ COPY prisma ./
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
+  elif [ -f package-lock.json ]; then npm install; \
   elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i; \
   else echo "Lockfile not found." && exit 1; \
   fi
@@ -30,7 +30,10 @@ RUN \
 FROM --platform=linux/amd64 node:16-alpine AS builder
 
 ARG DATABASE_URL
-ARG NEXT_PUBLIC_CLIENTVAR
+ARG TWITCH_CLIENT_ID
+ARG TWITCH_CLIENT_SECRET
+ARG NEXTAUTH_URL
+ARG NEXTAUTH_SECRET
 
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
@@ -43,7 +46,7 @@ COPY . .
 
 RUN \
   if [ -f yarn.lock ]; then yarn build; \
-  elif [ -f package-lock.json ];then npm i && npm run build; \
+  elif [ -f package-lock.json ]; then npm run build; \
   elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm run build; \
   else echo "Lockfile not found." && exit 1; \
   fi

@@ -18,4 +18,5 @@ export default defineNextConfig({
   images: {
     domains: ['img.youtube.com'],
   },
+  output: 'standalone',
 });

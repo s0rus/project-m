@@ -2,12 +2,11 @@ import { DashboardBarButtons, DashboardBarContainer, DashboardBarWrapper } from 
 import { Divider, Grid } from '@mui/material';
 
 import BarButtons from '../BarButtons';
-import React from 'react';
 import VideoCard from '@/domain/App/components/VideoCard';
-import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
+import { usePlaylistStore } from '@/domain/Playlist/store/Playlist.store';
 
 const DashboardBar = () => {
-  const { currentVideo } = usePlaylistContext();
+  const currentVideo = usePlaylistStore((state) => state.currentVideo);
 
   return (
     <>

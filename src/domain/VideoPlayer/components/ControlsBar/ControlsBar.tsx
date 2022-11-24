@@ -8,11 +8,13 @@ import { ToastTypes } from '@/utils/CustomToast';
 import VolumeControl from '../VolumeControl';
 import { getPlayingStateIcon } from '../../model/VideoPlayer.model';
 import timeFormatter from '@/utils/timeFormatter';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
 import useFullscreen from '@/domain/VideoPlayer/hooks/useFullscreen';
-import { usePlayerContext } from '../../context/VideoPlayer.context';
-import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
+import { useVideoPlayerStore } from '../../store/VideoPlayer.store';
+import { useVideoPlayer } from '../../hooks/useVideoPlayer';
+import { useAuthChange } from '@/domain/App/hooks/useAuthChange';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
+import { useSocketStore } from '@/domain/App/store/Socket.store';
 
 interface ControlsBarProps {
   handlePlaying: () => void;
@@ -21,13 +23,26 @@ interface ControlsBarProps {
 }
 
 const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouseLeave }) => {
-  const { socket, isCurrentUserLeader } = useSocketContext();
   const { t } = useTranslation();
-  const { isAdmin, currentUser } = useAuthContext();
-  const { handleSeek, seeking, setSeeking, seekTo, playerState, requestPlayerState } = usePlayerContext();
-  const { isPlaying, playedSeconds, duration, controlsVisible, activeVideo, loadedSeconds, isReady } = playerState;
-  const [newSecondsPlayed, setNewSecondsPlayed] = useState(playedSeconds);
   const { toggleFullscreen, isFullscreen } = useFullscreen();
+  const socket = useSocketStore((state) => state.socket);
+  const isCurrentUserLeader = useSocketStore((state) => state.isCurrentUserLeader());
+  const { isAdmin } = useAuthChange();
+  const currentUser = useAuthStore((state) => state.currentUser);
+
+  const isReady = useVideoPlayerStore((state) => state.isReady);
+  const isPlaying = useVideoPlayerStore((state) => state.isPlaying);
+  const activeVideo = useVideoPlayerStore((state) => state.activeVideo);
+  const loadedSeconds = useVideoPlayerStore((state) => state.loadedSeconds);
+  const playedSeconds = useVideoPlayerStore((state) => state.playedSeconds);
+  const setPlayedSeconds = useVideoPlayerStore((state) => state.setPlayedSeconds);
+  const duration = useVideoPlayerStore((state) => state.duration);
+  const controlsVisible = useVideoPlayerStore((state) => state.controlsVisible);
+  const seeking = useVideoPlayerStore((state) => state.seeking);
+  const setSeeking = useVideoPlayerStore((state) => state.setSeeking);
+
+  const [seekedSecondsPlayed, setSeekedSecondsPlayed] = useState(playedSeconds);
+  const { seekTo, sendSeekTo, requestPlayerState } = useVideoPlayer();
 
   const handleSyncWithLeader = useCallback(() => {
     if (isCurrentUserLeader || !activeVideo) {
@@ -38,13 +53,17 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
 
   const handleSeekMouseUp = useCallback(() => {
     setSeeking(false);
-    seekTo(newSecondsPlayed);
-    socket && socket.emit('SEND_TOAST', t('toast.videoSeeked', { username: currentUser.name }), ToastTypes.VideoSeeked);
-  }, [newSecondsPlayed, setSeeking, seekTo, currentUser.name, socket, t]);
+    setPlayedSeconds(seekedSecondsPlayed);
+    seekTo(seekedSecondsPlayed);
+    if (socket) {
+      sendSeekTo(seekedSecondsPlayed);
+      socket.emit('SEND_TOAST', t('toast.videoSeeked', { username: currentUser.name }), ToastTypes.VideoSeeked);
+    }
+  }, [seekedSecondsPlayed, setSeeking, setPlayedSeconds, currentUser.name, socket, t, seekTo, sendSeekTo]);
 
   const handleOnChange = (_: Event, value: number | number[]) => {
-    setNewSecondsPlayed(value as number);
-    handleSeek(value as number);
+    setSeekedSecondsPlayed(value as number);
+    setPlayedSeconds(value as number);
   };
 
   useEffect(() => {
@@ -73,10 +92,10 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
       <Seeker
         aria-label='time-indicator'
         size='small'
-        value={activeVideo ? playedSeconds : 0}
+        value={playedSeconds}
         min={0}
         step={1}
-        max={activeVideo ? duration : 1}
+        max={duration}
         onChange={handleOnChange}
         onMouseDown={() => setSeeking(true)}
         disabled={!activeVideo || !isAdmin}

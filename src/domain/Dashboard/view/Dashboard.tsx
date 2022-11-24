@@ -9,21 +9,26 @@ import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
 import { theme } from '@/styles/theme';
 import { toast } from 'react-toastify';
 import { useAddonsContext } from '@/domain/App/context/Addons.context';
-import { useAuthContext } from '@/domain/App/context/Auth.context';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/VideoPlayer.context';
-import { usePlaylistContext } from '@/domain/Playlist/context/Playlist.context';
-import { useSocketContext } from '@/domain/App/context/Socket.context';
 import { useTranslation } from 'react-i18next';
 import Schedule from '@/domain/Schedule/view/';
+import { useVideoPlayer } from '@/domain/VideoPlayer/hooks/useVideoPlayer';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
+import { useSocketStore } from '@/domain/App/store/Socket.store';
+import { usePlaylistStore } from '@/domain/Playlist/store/Playlist.store';
 
 const Dashboard = () => {
-  const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
-  const { leader } = useSocketContext();
-  const { isAdmin } = useAuthContext();
-  const { isChatOn } = useAddonsContext();
   const { t } = useTranslation();
-  const { handleOnVideoSkip } = usePlayerContext();
-  const { togglePlaylistLocked } = usePlaylistContext();
+  const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
+
+  const isAdmin = useAuthStore((state) => state.isAdmin());
+  const leader = useSocketStore((state) => state.leader);
+  const currentUser = useAuthStore((state) => state.currentUser);
+
+  const { isChatOn } = useAddonsContext();
+  const { handleOnVideoSkip } = useVideoPlayer();
+
+  const isPlaylistLocked = usePlaylistStore((state) => state.isPlaylistLocked);
+  const setIsPlaylistLocked = usePlaylistStore((state) => state.setIsPlaylistLocked);
 
   return (
     <DashboardWrapper>
@@ -60,12 +65,14 @@ const Dashboard = () => {
                       <Button variant='contained' onClick={() => toast(`${t('genericErrorMessage')}`)}>
                         Request Toast
                       </Button>
-                      <Button variant='contained' onClick={() => togglePlaylistLocked()}>
+                      <Button variant='contained' onClick={() => setIsPlaylistLocked(!isPlaylistLocked)}>
                         Toggle Playlist
                       </Button>
                       isAdmin: {isAdmin ? 'yup' : 'nopers'}
                       <br />
                       currentLeader: {JSON.stringify(leader, null, 2)}
+                      <br />
+                      {currentUser?.name || 'xdd'}
                     </Paper>
                   </Grid>
                 </Grid>
