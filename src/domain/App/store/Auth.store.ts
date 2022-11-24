@@ -31,7 +31,10 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   },
   isAuthLoading: () => {
     const { sessionStatus } = get();
-
     return sessionStatus === 'loading';
+  },
+  isUserUnauthenticated: () => {
+    const { sessionStatus } = get();
+    return sessionStatus === 'unauthenticated';
   },
 }));

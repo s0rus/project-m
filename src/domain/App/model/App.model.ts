@@ -29,6 +29,7 @@ export interface AuthStore {
   isLoggedIn: () => boolean;
   isAdmin: () => boolean;
   isAuthLoading: () => boolean;
+  isUserUnauthenticated: () => boolean;
 }
 
 export interface UserSessionData {

@@ -7,7 +7,6 @@ export const useAuthChange = () => {
   const { newWindow } = useNewWindow();
   const setIsAuthChanging = useAuthStore((state) => state.setIsAuthChanging);
   const isAuthChanging = useAuthStore((state) => state.isAuthChanging);
-  const isAuthLoading = useAuthStore((state) => state.sessionStatus === 'loading');
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn());
   const isAdmin = useAuthStore((state) => state.isAdmin());
 
@@ -34,7 +33,6 @@ export const useAuthChange = () => {
   return {
     loginWithTwitch,
     logoutOfTwitch,
-    isAuthLoading,
     isAuthChanging,
     isLoggedIn,
     isAdmin,
