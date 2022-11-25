@@ -10,7 +10,7 @@ const TwitchChat = () => {
       <TwitchChatContainer style={{ width: isMediumDown ? '100%' : '' }}>
         <TwitchChatHolder
           style={{ height: isMediumDown ? '30vh' : '80vh', width: isMediumDown ? '100%' : '' }}
-          src={`https://www.twitch.tv/embed/videomtv/chat?parent=localhost&darkpopout`}
+          src={`https://www.twitch.tv/embed/videomtv/chat?parent=murzyniarnia.com&darkpopout`}
         />
       </TwitchChatContainer>
     </TwitchChatBox>
