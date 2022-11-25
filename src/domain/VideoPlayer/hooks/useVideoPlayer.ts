@@ -15,6 +15,7 @@ export const useVideoPlayer = () => {
   const { handleRequestNextVideo, handleSkipVideo } = usePlaylistChange();
 
   const playerRef = useVideoPlayerStore((state) => state.playerRef);
+  const isReady = useVideoPlayerStore((state) => state.isReady);
   const resetPlayerState = useVideoPlayerStore((state) => state.resetPlayerState);
   const setIsReady = useVideoPlayerStore((state) => state.setIsReady);
   const setPlayedSeconds = useVideoPlayerStore((state) => state.setPlayedSeconds);
@@ -32,11 +33,13 @@ export const useVideoPlayer = () => {
   }, [socket]);
 
   const handleOnReady = useCallback(() => {
-    setIsReady(true);
-    setIsPlaying(true);
-    setVolume(Number(localStorage.getItem(LocalStorageKeys.PlayerVolume)) || 0.5);
-    requestPlayerState();
-  }, [setIsReady, setIsPlaying, requestPlayerState, setVolume]);
+    if (!isReady) {
+      setIsReady(true);
+      setIsPlaying(true);
+      setVolume(Number(localStorage.getItem(LocalStorageKeys.PlayerVolume)) || 0.5);
+      requestPlayerState();
+    }
+  }, [setIsReady, setIsPlaying, requestPlayerState, setVolume, isReady]);
 
   const handleOnEnd = useCallback(
     (targetVideoId?: string) => {

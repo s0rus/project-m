@@ -32,7 +32,6 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
       if (isAdmin && socket) {
         setIsDeleting(true);
         await handleSkipVideo(videoId);
-        socket.emit('DELETE_VIDEO', videoId);
         setIsDeleting(false);
         CustomToast.send(t('playlist.videoRemoved'), ToastTypes.Sucess);
       } else {
@@ -49,7 +48,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
         setIsSkipping(true);
         await handlePlayVideoNow(videoId);
         setIsSkipping(false);
-        CustomToast.send(t('playlist.videoRemoved'), ToastTypes.Sucess);
+        CustomToast.send(t('playlist.videoPlayedNow'), ToastTypes.Sucess);
       } else {
         throw new Error();
       }

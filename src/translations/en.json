@@ -61,7 +61,8 @@
       "subtitle": "Add video to start watching."
     },
     "removeVideoError": "There was an error while removing video...",
-    "videoRemoved": "Video removed successfully!"
+    "videoRemoved": "Video removed successfully!",
+    "videoPlayedNow": "Video will be played now."
   },
   "toast": {
     "playlistLocked": "{{username}} has locked the playlist.",

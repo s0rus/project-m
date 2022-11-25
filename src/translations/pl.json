@@ -61,7 +61,8 @@
       "subtitle": "Dodaj film, by zacząć oglądać."
     },
     "removeVideoError": "Nie udało się usunąć filmu...",
-    "videoRemoved": "Film został usunięty z kolejki!"
+    "videoRemoved": "Film został usunięty z kolejki!",
+    "videoPlayedNow": "Odtwarzanie wybranego filmu"
   },
   "toast": {
     "playlistLocked": "{{username}} zablokował playlistę.",

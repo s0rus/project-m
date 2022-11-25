@@ -1,4 +1,4 @@
-import { ControlsContainer, ControlsWrapper, SeekerPreview, VideoTitle } from './PlayerControls.styles';
+import { ControlsContainer, ControlsWrapper, LoadingOverlay, SeekerPreview, VideoTitle } from './PlayerControls.styles';
 import React, { useEffect, useRef, useState } from 'react';
 
 import ControlsBar from '../ControlsBar';
@@ -7,6 +7,7 @@ import Indicator from '../Indicator';
 import { useVideoPlayerStore } from '../../store/VideoPlayer.store';
 import { useSocketStore } from '@/domain/App/store/Socket.store';
 import { useAuthStore } from '@/domain/App/store/Auth.store';
+import { CircularProgress } from '@mui/material';
 
 const PlayerControls = () => {
   const socket = useSocketStore((state) => state.socket);
@@ -60,6 +61,14 @@ const PlayerControls = () => {
 
   const onMouseOver = () => setControlsHovered(true);
   const onMouseLeave = () => setControlsHovered(false);
+
+  if (!isReady && activeVideo) {
+    return (
+      <LoadingOverlay>
+        <CircularProgress size={64} />
+      </LoadingOverlay>
+    );
+  }
 
   return (
     <ControlsWrapper
