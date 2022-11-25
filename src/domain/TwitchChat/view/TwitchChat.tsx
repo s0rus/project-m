@@ -5,13 +5,12 @@ import { theme } from '@/styles/theme';
 
 const TwitchChat = () => {
   const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
-  const isLargeDown = useMediaQuery(theme.breakpoints.between('md', 'lg'));
   return (
-    <TwitchChatBox style={{ width: isLargeDown ? '35%' : '100%' }}>
-      <TwitchChatContainer>
+    <TwitchChatBox style={{ width: isMediumDown ? '100%' : '350px' }}>
+      <TwitchChatContainer style={{ width: isMediumDown ? '100%' : '' }}>
         <TwitchChatHolder
-          src={`https://www.twitch.tv/embed/videomtv/chat?parent=murzyniarnia.com&darkpopout`}
-          style={{ minHeight: isMediumDown ? '35vh' : '100vh' }}
+          style={{ height: isMediumDown ? '30vh' : '80vh', width: isMediumDown ? '100%' : '' }}
+          src={`https://www.twitch.tv/embed/videomtv/chat?parent=localhost&darkpopout`}
         />
       </TwitchChatContainer>
     </TwitchChatBox>

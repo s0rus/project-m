@@ -1,21 +1,20 @@
-import { Button, Hidden } from '@mui/material';
+import { Button } from '@mui/material';
 import { PlaylistAddRounded } from '@mui/icons-material';
 import React, { useState } from 'react';
-
 import AddVideoModal from '../AddVideoModal';
-import ButtonWithLoader from '@/domain/App/components/ButtonWithLoader';
 import ButtonsSkeleton from '../../skeletons/ButtonsSkeleton';
-import { Twitch } from '@/assets/logos/Twitch';
 import { useTranslation } from 'react-i18next';
 import { useAuthChange } from '@/domain/App/hooks/useAuthChange';
 import { usePlaylistStore } from '@/domain/Playlist/store/Playlist.store';
 import { useVideoPlayer } from '@/domain/VideoPlayer/hooks/useVideoPlayer';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { useAuthStore } from '@/domain/App/store/Auth.store';
+import ButtonWithLoader from '@/domain/App/components/ButtonWithLoader';
+import { Twitch } from '@/assets/logos/Twitch';
 
 const BarButtons = () => {
-  const { t } = useTranslation();
   const { isAuthLoading, isAuthChanging, isLoggedIn, loginWithTwitch } = useAuthChange();
+  const { t } = useTranslation();
   const { currentVideo } = usePlaylistStore();
   const isPlaylistLocked = usePlaylistStore((state) => state.isPlaylistLocked);
   const [modalOpen, setModalOpen] = useState(false);
@@ -30,69 +29,40 @@ const BarButtons = () => {
     <>
       {isLoggedIn ? (
         <>
-          <Hidden lgDown>
-            {isAdmin && (
-              <Button
-                onClick={() => handleOnVideoSkip()}
-                variant='contained'
-                size='large'
-                startIcon={<SkipNextIcon />}
-                disabled={!currentVideo}
-              >
-                {t('video.skip')}
-              </Button>
-            )}
+          {isAdmin && (
             <Button
-              onClick={handleOpen}
-              disabled={isPlaylistLocked && !isAdmin}
+              onClick={() => handleOnVideoSkip()}
               variant='contained'
               size='large'
-              startIcon={<PlaylistAddRounded />}
+              startIcon={<SkipNextIcon />}
+              disabled={!currentVideo}
             >
-              {t('video.add')}
+              {t('video.skip')}
             </Button>
-          </Hidden>
-          <Hidden lgUp>
-            {isAdmin && (
-              <Button
-                onClick={() => handleOnVideoSkip()}
-                variant='contained'
-                size='large'
-                startIcon={<SkipNextIcon />}
-              ></Button>
-            )}
-            <Button variant='contained' size='large' onClick={handleOpen} disabled={isPlaylistLocked && !isAdmin}>
-              <PlaylistAddRounded />
-            </Button>
-          </Hidden>
-          <AddVideoModal handleClose={handleClose} open={modalOpen} />
+          )}
+          <Button
+            onClick={handleOpen}
+            disabled={isPlaylistLocked && !isAdmin}
+            variant='contained'
+            size='large'
+            startIcon={<PlaylistAddRounded />}
+          >
+            {t('video.add')}
+          </Button>
         </>
       ) : (
-        <>
-          <Hidden lgDown>
-            <ButtonWithLoader
-              onClick={loginWithTwitch}
-              loading={isAuthChanging || isAuthLoading}
-              disabled={isAuthChanging || isAuthLoading}
-              variant='contained'
-              startIcon={<Twitch />}
-            >
-              {t('logIn')}
-            </ButtonWithLoader>
-          </Hidden>
-          <Hidden lgUp>
-            <ButtonWithLoader
-              onClick={loginWithTwitch}
-              loading={isAuthChanging || isAuthLoading}
-              disabled={isAuthChanging || isAuthLoading}
-              variant='contained'
-              iconVariant
-            >
-              <Twitch />
-            </ButtonWithLoader>
-          </Hidden>
-        </>
+        <ButtonWithLoader
+          onClick={loginWithTwitch}
+          loading={isAuthChanging || isAuthLoading}
+          disabled={isAuthChanging || isAuthLoading}
+          variant='contained'
+          startIcon={<Twitch />}
+        >
+          {t('logIn')}
+        </ButtonWithLoader>
       )}
+
+      <AddVideoModal handleClose={handleClose} open={modalOpen} />
     </>
   );
 };

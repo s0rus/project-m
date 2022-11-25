@@ -12,8 +12,8 @@
   },
   "video": {
     "thumbnailAlt": "Thumbnail of the video titled {{videoTitle}}",
-    "add": "Add video",
-    "skip": "Skip video",
+    "add": "Add",
+    "skip": "Skip",
     "addedBy": "Added by"
   },
   "addVideoModal": {
@@ -30,14 +30,13 @@
   "options": {
     "optionsTitle": "Settings",
     "twitchTitle": "Twitch",
-    "camTitle": "Cam",
     "chatTitle": "Chat",
     "languageTitle": "Language",
-    "twitchSubTitleLOGIN": "Login to add videos.",
-    "twitchSubTitleLOGOUT": "Log out.",
-    "camSubTitle": "Streamer cam visibility.",
-    "chatSubTitle": "Chat visibility.",
-    "languageSubTitle": "Choose language."
+    "twitchSubTitleLOGIN": "Login to add videos",
+    "twitchSubTitleLOGOUT": "Log out",
+    "chatSubTitle": "Chat visibility",
+    "languageSubTitle": "Choose language",
+    "informations": "Informations"
   },
   "settings": {
     "header": "Settings",
@@ -56,8 +55,8 @@
       "header": "{{leaderIdentifier}}",
       "subititle": "Current leader",
       "noLeader": "There is no leader",
-      "becomeLeader": "Become leader",
-      "userIsLeader": "You are the leader"
+      "becomeLeader": "Become",
+      "userIsLeader": "Current"
     },
     "playlist": {
       "header": "Playlist",
@@ -68,7 +67,7 @@
   },
   "playlist": {
     "header": "Playlist",
-    "empty": "Playlist is empty.",
+    "empty": "Add something to playlist",
     "copy": "Copied to the clipboard.",
     "tooltip": {
       "videoCount": "Count of videos in queue",
@@ -86,7 +85,8 @@
       "subtitlelock": "Ask the administrator to unlock the playlist."
     },
     "removeVideoError": "There was an error while removing video...",
-    "videoRemoved": "Video removed successfully!"
+    "videoRemoved": "Video removed successfully!",
+    "videoPlayedNow": "Video will be played now."
   },
   "toast": {
     "playlistLocked": "{{username}} has locked the playlist.",

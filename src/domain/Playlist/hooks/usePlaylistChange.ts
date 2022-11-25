@@ -32,7 +32,7 @@ export const usePlaylistChange = () => {
   const handleRequestNextVideo = useCallback(
     async (targetVideoId?: string) => {
       try {
-        if (currentVideo && isCurrentUserLeader) {
+        if (currentVideo && isCurrentUserLeader && !targetVideoId) {
           await deleteVideo({ videoId: currentVideo.videoId });
         }
         await requestNextVideo(targetVideoId);
@@ -50,6 +50,7 @@ export const usePlaylistChange = () => {
           if (targetVideoId) {
             await deleteVideo({ videoId: targetVideoId });
             await deleteVideoFromPlaylist(targetVideoId);
+            socket.emit('DELETE_VIDEO', targetVideoId);
           } else {
             await deleteVideo({ videoId: currentVideo.videoId });
             const newPlaylist = await deleteVideoFromPlaylist(currentVideo.videoId);
@@ -80,10 +81,10 @@ export const usePlaylistChange = () => {
           await deleteVideo({ videoId: currentVideo.videoId });
           await skipToVideo({ videoId: targetVideoId });
 
+          resetPlayerState();
           setCurrentVideo(targetPlaylist[0]);
           setPlaylist(targetPlaylist);
           socket.emit('SKIP_VIDEO', targetVideoId);
-          resetPlayerState();
         } else {
           throw new Error();
         }

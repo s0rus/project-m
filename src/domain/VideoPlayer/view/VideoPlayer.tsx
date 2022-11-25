@@ -1,8 +1,8 @@
 import type { MutableRefObject } from 'react';
 import { useCallback } from 'react';
 import React, { useEffect, useId, useRef } from 'react';
-import { StyledReactPlayer, VideoPlayerBox, VideoPlayerContainer } from './VideoPlayer.styles';
-
+import { StyledReactPlayer, VideoPlayerBox, VideoPlayerContainer, EmptyPlayer } from './VideoPlayer.styles';
+import { Typography, Hidden } from '@mui/material';
 import PlayerControls from '../components/PlayerControls';
 import type ReactPlayer from 'react-player';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
@@ -16,13 +16,17 @@ import { useVideoPlayerStore } from '../store/VideoPlayer.store';
 import { useVideoPlayer } from '../hooks/useVideoPlayer';
 import { useSocketStore } from '@/domain/App/store/Socket.store';
 import { usePlaylistStore } from '@/domain/Playlist/store/Playlist.store';
-
+import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
+import { useTranslation } from 'react-i18next';
+import Image from 'next/image';
+import Playlist from '@/domain/Playlist/view/Playlist';
+import DashboardBar from '@/domain/Dashboard/components/DashboardBar';
 const VideoPlayer = () => {
   const hasWindow = useHasWindow();
-  const { isChatOn } = useAddonsContext();
-  const isLargeDown = useMediaQuery(theme.breakpoints.between('md', 'lg'));
+  const { isChatOn, isPlaylistOn } = useAddonsContext();
   const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
   const socket = useSocketStore((state) => state.socket);
+  const { t } = useTranslation();
 
   const playerId = useId();
   const playerRef = useRef<ReactPlayer | null>(null);
@@ -111,30 +115,49 @@ const VideoPlayer = () => {
   ]);
 
   return (
-    <VideoPlayerContainer>
-      <VideoPlayerBox style={{ height: isMediumDown ? '65vh' : '100vh' }}>
-        {hasWindow && (
-          <>
-            <StyledReactPlayer
-              onReady={handleOnReady}
-              onError={handleOnError}
-              onProgress={handleProgress}
-              onEnded={handleOnEnd}
-              playing={isPlaying}
-              muted={isMuted}
-              volume={volume}
-              ref={playerRef}
-              url={activeVideo?.videoUrl}
-              width='100%'
-              height='100%'
-              config={getPlayerConfig(playerId)}
-            />
-            <PlayerControls />
-          </>
-        )}
-      </VideoPlayerBox>
-      {isChatOn && isLargeDown && <TwitchChat />}
-    </VideoPlayerContainer>
+    <>
+      <VideoPlayerContainer style={{ padding: isMediumDown ? '0' : '3rem 3rem' }}>
+        <VideoPlayerBox style={{ height: isMediumDown ? '65vh' : '80vh' }}>
+          {!currentVideo ? (
+            <>
+              <EmptyPlayer>
+                <Typography variant='h4'>{t('playlist.empty')}</Typography>
+                <Image src={MadgeIcon} alt='Madge' height={48} width={48} />
+              </EmptyPlayer>
+              <PlayerControls />
+              <DashboardBar />
+            </>
+          ) : (
+            <>
+              <>
+                {hasWindow && (
+                  <>
+                    <StyledReactPlayer
+                      onReady={handleOnReady}
+                      onError={handleOnError}
+                      onProgress={handleProgress}
+                      onEnded={handleOnEnd}
+                      playing={isPlaying}
+                      muted={isMuted}
+                      volume={volume}
+                      ref={playerRef}
+                      height='100%'
+                      width='100%'
+                      url={activeVideo?.videoUrl}
+                      config={getPlayerConfig(playerId)}
+                    />
+                    <PlayerControls />
+                    <DashboardBar />
+                  </>
+                )}
+              </>
+            </>
+          )}
+        </VideoPlayerBox>
+        <Hidden lgDown>{isPlaylistOn && <Playlist />}</Hidden>
+        <Hidden lgDown>{isChatOn && <TwitchChat />}</Hidden>
+      </VideoPlayerContainer>
+    </>
   );
 };
 

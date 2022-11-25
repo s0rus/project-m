@@ -6,7 +6,7 @@ const ButtonsSkeleton = () => {
   return (
     <Stack>
       <Skeleton variant='rounded'>
-        <Box sx={{ height: '42.25px', width: '10vw' }} />
+        <Box sx={{ height: '42.25px', width: '10vw', position: 'absolute', right: '0px' }} />
       </Skeleton>
     </Stack>
   );

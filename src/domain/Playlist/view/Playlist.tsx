@@ -15,10 +15,8 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { useTranslation } from 'react-i18next';
 import { usePlaylistStore } from '../store/Playlist.store';
 import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
-
 const Playlist = () => {
   const { t } = useTranslation();
-
   const queue = usePlaylistStore((state) => state.queue());
   const playlistTimeSum = usePlaylistStore((state) => state.playlistTimeSum());
   const isPlaylistLocked = usePlaylistStore((state) => state.isPlaylistLocked);
@@ -52,7 +50,6 @@ const Playlist = () => {
             ))
           ) : (
             <EmptyPlaylistBox>
-              <Typography variant='h4'>{t('playlist.empty')}</Typography>
               <Image src={MadgeIcon} alt='Madge' height={48} width={48} />
             </EmptyPlaylistBox>
           )}

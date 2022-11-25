@@ -3,6 +3,8 @@ import { theme } from '@/styles/theme';
 
 export const PlaylistItemWrapper = styled(Card)`
   width: 100%;
+  height: 180px;
+  justify-content: center;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   background: rgba(0, 0, 0, 0.5);
@@ -16,17 +18,22 @@ export const PlaylistItemWrapper = styled(Card)`
 
 export const PlaylistItemContent = styled(CardContent)`
   width: 100%;
-  max-width: 100%;
-  display: flex;
+  height: 50px;
   flex: 1;
   flex-direction: column;
   justify-content: center;
+  background: #18181b;
+  border-radius: 8px;
 `;
 
 export const PlaylistItemBox = styled(Box)`
   width: 100%;
-  display: flex;
-  overflow: hidden;
+  display: inline-flex;
+`;
+export const PlaylistTextHolder = styled(Box)`
+  display: inline-flex;
+  flex-direction: column;
+  margin-top: -5px;
 `;
 
 export const PlaylistItemDetails = styled(Stack)`
@@ -59,12 +66,10 @@ export const ItemTitle = styled('h4')`
 
 export const ItemOptions = styled('div')`
   position: absolute;
-  right: 0px;
-  height: 100%;
-  width: 50px;
-  background: rgba(0, 0, 0, 0.25);
+  right: 20px;
+  height: 50px;
+  border-radius: 8px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 8px;

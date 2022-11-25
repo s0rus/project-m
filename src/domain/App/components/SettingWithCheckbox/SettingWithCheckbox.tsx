@@ -7,12 +7,11 @@ import { ChatRounded } from '@mui/icons-material';
 
 interface SettingWithCheckbox {
   header: string;
-  subtitle: string;
   checked: boolean;
   setter: Dispatch<SetStateAction<boolean>>;
 }
 
-const SettingWithCheckbox: FC<SettingWithCheckbox> = ({ setter, checked, header, subtitle }) => {
+const SettingWithCheckbox: FC<SettingWithCheckbox> = ({ setter, checked, header }) => {
   const handleOnChange = () => setter(!checked);
 
   return (
@@ -22,7 +21,6 @@ const SettingWithCheckbox: FC<SettingWithCheckbox> = ({ setter, checked, header,
           <ChatRounded />
           <Box sx={{ lineHeight: 1 }}>
             <Typography variant='h4'>{header}</Typography>
-            <Typography variant='caption'>{subtitle}</Typography>
           </Box>
         </InnerStack>
       </Box>

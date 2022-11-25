@@ -12,8 +12,8 @@
   },
   "video": {
     "thumbnailAlt": "Miniaturka filmu {{videoTitle}}",
-    "add": "Dodaj film",
-    "skip": "Pomiń film",
+    "add": "Dodaj",
+    "skip": "Pomiń",
     "addedBy": "Dodane przez"
   },
   "addVideoModal": {
@@ -30,14 +30,13 @@
   "options": {
     "optionsTitle": "Ustawienia",
     "twitchTitle": "Twitch",
-    "camTitle": "Kamerka",
     "chatTitle": "Czat",
     "languageTitle": "Język",
-    "twitchSubTitleLOGIN": "Zaloguj się aby dodać film.",
-    "twitchSubTitleLOGOUT": "Wyloguj się.",
-    "camSubTitle": "Widoczność kamerki.",
-    "chatSubTitle": "Widoczność czatu.",
-    "languageSubTitle": "Wybierz język."
+    "twitchSubTitleLOGIN": "Zaloguj się aby dodać film",
+    "twitchSubTitleLOGOUT": "Wyloguj się",
+    "chatSubTitle": "Widoczność czatu",
+    "languageSubTitle": "Wybierz język",
+    "informations": "Informacje"
   },
   "settings": {
     "header": "Ustawienia",
@@ -56,19 +55,19 @@
       "header": "{{leaderIdentifier}}",
       "subititle": "Aktualny lider",
       "noLeader": "Brak lidera",
-      "becomeLeader": "Zostań liderem",
-      "userIsLeader": "Jesteś liderem"
+      "becomeLeader": "Przejmij",
+      "userIsLeader": "Aktualny"
     },
     "playlist": {
-      "header": "Playlista",
+      "header": "Kolejka",
       "subtitle": "Zmień stan playlisty.",
       "lock": "Zablokuj",
       "unlock": "Odblokuj"
     }
   },
   "playlist": {
-    "header": "Playlista",
-    "empty": "Playlista jest pusta.",
+    "header": "Kolejka",
+    "empty": "Dodaj coś do kolejki",
     "copy": "Skopiowano do schowka.",
     "tooltip": {
       "videoCount": "Ilość filmów w kolejce",
@@ -76,7 +75,7 @@
       "deleteVideo": "Usuń z kolejki",
       "playNow": "Odtwórz teraz",
       "unlock": "Odblokuj playliste",
-      "locked": "Playlista jest zablokowana",
+      "locked": "Kolejka jest zablokowana",
       "requestcurrent": "Odtwórz film teraz",
       "delete": "Usuń film z kolejki",
       "copy": "Skopiuj link do filmu",
@@ -88,7 +87,8 @@
       "subtitlelock": "Poproś administratora o odblokowanie playlisty."
     },
     "removeVideoError": "Nie udało się usunąć filmu...",
-    "videoRemoved": "Film został usunięty z kolejki!"
+    "videoRemoved": "Film został usunięty z kolejki!",
+    "videoPlayedNow": "Odtwarzanie wybranego filmu"
   },
   "toast": {
     "playlistLocked": "{{username}} zablokował playlistę.",

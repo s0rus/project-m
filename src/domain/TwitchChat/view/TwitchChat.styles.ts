@@ -1,22 +1,27 @@
 import { Box } from '@mui/material';
 import { styled } from '@mui/material';
-export const TwitchChatBox = styled(Box)`
+export const TwitchChatBox = styled('div')`
   height: 100%;
-  width: 100%;
-  min-width: 200px;
   overflow: hidden;
+  min-width: 100px;
+  width: 400px;
   border: none;
+  display: flex;
+  justify-content: right;
 `;
 
 export const TwitchChatContainer = styled(Box)`
-  width: 100%;
   height: 100%;
   overflow: hidden;
   border: none;
+  display: flex;
 `;
 
 export const TwitchChatHolder = styled('iframe')`
-  width: 100%;
   border: none;
-  overflow: hidden;
+  display: flex;
+  min-width: 100px;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+  height: 80vh;
 `;

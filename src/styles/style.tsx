@@ -70,5 +70,8 @@ export const AddedByWrapper = styled(Stack)`
 `;
 
 export const AddedByAvatar = styled(Avatar)`
-  border-radius: 4px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: -10px;
+  margin-top: -5px;
 `;

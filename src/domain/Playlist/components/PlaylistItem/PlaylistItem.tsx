@@ -1,6 +1,6 @@
-import { CircularProgress, Link, ListItem, Tooltip, Typography } from '@mui/material';
+import { CircularProgress, Link, Tooltip, Typography } from '@mui/material';
 import type { FC } from 'react';
-import { AddedByAvatar, AddedByWrapper } from '@/styles/style';
+import { AddedByAvatar } from '@/styles/style';
 import React, { useState } from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -22,7 +22,7 @@ import {
   Copied,
   Copy,
   ItemOptions,
-  ItemTitle,
+  PlaylistTextHolder,
 } from './PlaylistItem.styles';
 interface PlaylistItemsProps {
   video: VideoProps;
@@ -49,7 +49,6 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
       if (isAdmin && socket) {
         setIsDeleting(true);
         await handleSkipVideo(videoId);
-        socket.emit('DELETE_VIDEO', videoId);
         setIsDeleting(false);
         CustomToast.send(t('playlist.videoRemoved'), ToastTypes.Sucess);
       } else {
@@ -66,7 +65,7 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
         setIsSkipping(true);
         await handlePlayVideoNow(videoId);
         setIsSkipping(false);
-        CustomToast.send(t('playlist.videoRemoved'), ToastTypes.Sucess);
+        CustomToast.send(t('playlist.videoPlayedNow'), ToastTypes.Sucess);
       } else {
         throw new Error();
       }
@@ -76,55 +75,55 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   };
 
   return (
-    <ListItem dense>
+    <PlaylistItemContent>
       <PlaylistItemWrapper>
         <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
           <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
         </Link>
+      </PlaylistItemWrapper>
+      <PlaylistItemContent>
         <ItemOptions>
-          {copied ? (
-            <Tooltip title={t('playlist.tooltip.copied')} placement='left'>
-              <Copied>
-                <CheckIcon />
-              </Copied>
-            </Tooltip>
-          ) : (
-            <Tooltip title={t('playlist.tooltip.copy')} placement='left'>
-              <Copy onClick={CopyThis}>
-                <ContentCopyIcon />
-              </Copy>
-            </Tooltip>
-          )}
           {isAdmin && (
             <>
-              <Tooltip title={t('playlist.tooltip.delete')} placement='left'>
+              <Tooltip title={t('playlist.tooltip.delete')} placement='top'>
                 <Delete onClick={handleRemoveVideo} disabled={isDeleting}>
                   {isDeleting ? <CircularProgress size={32} /> : <ClearIcon />}
                 </Delete>
               </Tooltip>
-              <Tooltip title={t('playlist.tooltip.requestcurrent')} placement='left'>
+              <Tooltip title={t('playlist.tooltip.requestcurrent')} placement='top'>
                 <Current onClick={handleSkipToVideo} disabled={isSkipping}>
                   {isSkipping ? <CircularProgress size={32} /> : <PlayArrowIcon />}
                 </Current>
               </Tooltip>
             </>
           )}
+          {copied ? (
+            <Tooltip title={t('playlist.tooltip.copied')} placement='top'>
+              <Copied>
+                <CheckIcon />
+              </Copied>
+            </Tooltip>
+          ) : (
+            <Tooltip title={t('playlist.tooltip.copy')} placement='top'>
+              <Copy onClick={CopyThis}>
+                <ContentCopyIcon />
+              </Copy>
+            </Tooltip>
+          )}
         </ItemOptions>
+
         <PlaylistItemBox>
-          <PlaylistItemContent>
-            <Typography noWrap variant='h4'>
-              <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
-                {videoTitle}
-              </Link>
-            </Typography>
-            <AddedByWrapper style={{ marginBottom: '-5px' }}>
-              {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
-              <Typography component='span'>{addedBy.name}</Typography>
-            </AddedByWrapper>
-          </PlaylistItemContent>
+          {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
+
+          <PlaylistTextHolder>
+            <Link href={videoUrl} style={{ width: '100%' }} target='_blank' rel='noopener norefferer'>
+              {videoTitle}
+            </Link>
+            <Typography style={{ fontSize: '12px' }}>{addedBy.name}</Typography>
+          </PlaylistTextHolder>
         </PlaylistItemBox>
-      </PlaylistItemWrapper>
-    </ListItem>
+      </PlaylistItemContent>
+    </PlaylistItemContent>
   );
 };
 
