@@ -3,7 +3,7 @@ import { styled } from '@mui/material';
 export const TwitchChatBox = styled('div')`
   height: 100%;
   overflow: hidden;
-  min-width: 100px;
+  min-width: 200px;
   width: 400px;
   border: none;
   display: flex;

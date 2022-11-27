@@ -7,7 +7,8 @@ import { theme } from '@/styles/theme';
 export const ControlsWrapper = styled(Box)<{ playing: number; initialmute: number; controls: number }>`
   width: 100%;
   height: 100%;
-
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
   position: absolute;
   top: 0;
   bottom: 0;

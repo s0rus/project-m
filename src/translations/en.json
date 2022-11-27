@@ -74,10 +74,14 @@
       "timeSum": "Total playlist time",
       "deleteVideo": "Remove from playlist",
       "playNow": "Play now",
+      "unlock": "Unlock playlist",
+      "lock": "Lock playlist",
       "delete": "Delete video from queue",
       "requestcurrent": "Play video now",
       "copy": "Copy link to video",
-      "copied": "Link copied to clipboard"
+      "copied": "Link copied to clipboard",
+      "togglechat": "Turn on chat",
+      "toggleplaylist": "Turn on playlist"
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",

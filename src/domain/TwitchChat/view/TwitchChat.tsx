@@ -6,7 +6,7 @@ import { theme } from '@/styles/theme';
 const TwitchChat = () => {
   const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
   return (
-    <TwitchChatBox style={{ width: isMediumDown ? '100%' : '350px' }}>
+    <TwitchChatBox style={{ width: isMediumDown ? '100%' : '380px' }}>
       <TwitchChatContainer style={{ width: isMediumDown ? '100%' : '' }}>
         <TwitchChatHolder
           style={{ height: isMediumDown ? '30vh' : '80vh', width: isMediumDown ? '100%' : '' }}

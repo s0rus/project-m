@@ -75,11 +75,14 @@
       "deleteVideo": "Usuń z kolejki",
       "playNow": "Odtwórz teraz",
       "unlock": "Odblokuj playliste",
+      "lock": "Zablokuj playliste",
       "locked": "Kolejka jest zablokowana",
       "requestcurrent": "Odtwórz film teraz",
       "delete": "Usuń film z kolejki",
       "copy": "Skopiuj link do filmu",
-      "copied": "Skopiowano link do schowka"
+      "copied": "Skopiowano link do schowka",
+      "togglechat": "Włącz czat",
+      "toggleplaylist": "Włącz playliste"
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",

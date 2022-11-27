@@ -6,7 +6,6 @@ export const HeaderTop = styled('div')`
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0rem 2.6rem;
   width: 100%;
   background: #18181b;
   gap: 1rem;

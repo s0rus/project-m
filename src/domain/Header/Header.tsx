@@ -13,15 +13,17 @@ const Header = () => {
   const { isLoggedIn } = useAuthChange();
 
   return (
-    <HeaderTop>
-      <StyledLogo onClick={handleOpen}>
-        <ReorderIcon />
-        <Typography variant='h3'>Murzyniarnia</Typography>
-      </StyledLogo>
+    <>
+      <HeaderTop>
+        <StyledLogo onClick={handleOpen}>
+          <ReorderIcon />
+          <Typography variant='h3'>Murzyniarnia</Typography>
+        </StyledLogo>
 
-      {isLoggedIn && <LoginLayout />}
-      <BurgerMenu open={modalOpen} handleClose={handleClose} />
-    </HeaderTop>
+        {isLoggedIn && <LoginLayout />}
+        <BurgerMenu open={modalOpen} handleClose={handleClose} />
+      </HeaderTop>
+    </>
   );
 };
 

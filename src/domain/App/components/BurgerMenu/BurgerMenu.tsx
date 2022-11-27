@@ -11,6 +11,8 @@ import { useTranslation } from 'react-i18next';
 import { useSocketStore } from '@/domain/App/store/Socket.store';
 import { useAuthStore } from '@/domain/App/store/Auth.store';
 import ListIcon from '@mui/icons-material/List';
+import QueueIcon from '@mui/icons-material/Queue';
+
 import SettingWithSelect from '@/domain/App/components/SettingWithSelect';
 import SettingsOnClick from '@/domain/App/components/SettingsOnClick';
 import { usePlaylistStore } from '@/domain/Playlist/store/Playlist.store';
@@ -88,7 +90,7 @@ const BurgerMenu: FC<BurgerMenuProps> = ({ open, handleClose }) => {
                 header={t('adminPanel.playlist.header')}
                 buttonLabel={!isPlaylistLocked ? t('adminPanel.playlist.lock') : t('adminPanel.playlist.unlock')}
                 buttonAction={handlePlaylistLockedChange}
-                icon={<ListIcon />}
+                icon={<QueueIcon />}
                 variant='contained'
               />
             </Box>

@@ -12,11 +12,11 @@ export const VideoPlayerBox = styled(Box)`
   width: 100%;
   height: 80vh;
   position: relative;
-  border-radius: 50%;
 `;
 
 export const StyledReactPlayer = styled(ReactPlayer)`
   width: inherit;
+  border-radius: 50%;
   height: inherit;
 `;
 
