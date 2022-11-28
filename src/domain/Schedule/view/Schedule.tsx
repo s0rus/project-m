@@ -1,13 +1,14 @@
 import CardLayout from '@/layouts/CardLayout';
-import { Stack, Typography } from '@mui/material';
+import { Stack } from '@mui/material';
 import React from 'react';
+import ScheduleHeader from '../components/ScheduleHeader';
 import ScheduleItem from '../components/ScheduleItem';
 
 const Schedule = () => {
   return (
     <CardLayout>
       <Stack>
-        <Typography variant='h2'>Schedule</Typography>
+        <ScheduleHeader />
         {[1, 2, 3].map((_, index) => (
           <ScheduleItem key={index} />
         ))}

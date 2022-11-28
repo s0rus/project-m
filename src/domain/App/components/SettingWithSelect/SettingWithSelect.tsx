@@ -7,6 +7,7 @@ import React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { useTranslation } from 'react-i18next';
+import { theme } from '@/styles/theme';
 
 interface SettingWithSelect {
   header: string;
@@ -20,7 +21,6 @@ const SettingWithSelect: FC<SettingWithSelect> = ({ setter, value, header, subti
 
   return (
     <Select
-      id='language-selector'
       value={value}
       onChange={(e) => setter(e.target.value as string)}
       sx={{ mt: '1rem' }}
@@ -34,7 +34,9 @@ const SettingWithSelect: FC<SettingWithSelect> = ({ setter, value, header, subti
               <LanguageRounded />
               <Box sx={{ lineHeight: 1 }}>
                 <Typography variant='h4'>{header}</Typography>
-                <Typography variant='caption'>{subtitle}</Typography>
+                <Typography variant='caption' sx={{ color: theme.palette.text.secondary }}>
+                  {subtitle}
+                </Typography>
               </Box>
             </InnerStack>
             <Typography variant='h5'>{language}</Typography>

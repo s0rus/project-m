@@ -24,7 +24,7 @@ export const usePlaylist = () => {
   const {
     data: playlistState,
     // isLoading: isPlaylistStateLoading,
-    // isSuccess: isPlaylistStateResolved,
+    isSuccess: isPlaylistStateResolved,
   } = trpc.useQuery(['playlist.get-playlist-state'], queryParams);
 
   useEffect(() => {
@@ -36,8 +36,10 @@ export const usePlaylist = () => {
   useEffect(() => {
     setPlaylist(playlistData || []);
     setCurrentVideo(playlistData?.[0]);
-    setIsPlaylistLocked(playlistState?.playlistLocked || true);
-  }, [playlistData, playlistState, setPlaylist, setCurrentVideo, setIsPlaylistLocked]);
+    if (isPlaylistStateResolved && playlistState) {
+      setIsPlaylistLocked(playlistState.playlistLocked);
+    }
+  }, [playlistData, playlistState, setPlaylist, setCurrentVideo, setIsPlaylistLocked, isPlaylistStateResolved]);
 
   useEffect(() => {
     if (socket) {

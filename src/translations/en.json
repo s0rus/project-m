@@ -45,6 +45,12 @@
       "noLeader": "There is no leader",
       "becomeLeader": "Become leader",
       "userIsLeader": "You are the leader"
+    },
+    "playlist": {
+      "header": "Playlist state",
+      "subititle": "Unlock/lock playlist",
+      "lock": "Lock",
+      "unlock": "Unlock"
     }
   },
   "playlist": {
@@ -63,6 +69,9 @@
     "removeVideoError": "There was an error while removing video...",
     "videoRemoved": "Video removed successfully!",
     "videoPlayedNow": "Video will be played now."
+  },
+  "schedule": {
+    "header": "Schedule"
   },
   "toast": {
     "playlistLocked": "{{username}} has locked the playlist.",

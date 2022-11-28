@@ -1,5 +1,4 @@
 import type { Dispatch, SetStateAction } from 'react';
-import React from 'react';
 import { Stack, Typography } from '@mui/material';
 
 import CardLayout from '@/layouts/CardLayout';

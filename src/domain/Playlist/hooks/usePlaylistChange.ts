@@ -15,7 +15,9 @@ export const usePlaylistChange = () => {
   const currentUser = useAuthStore((state) => state.currentUser);
 
   const { mutateAsync: deleteVideo } = trpc.useMutation('playlist.delete-one');
-  const { mutateAsync: changePlaylistState } = trpc.useMutation('protected-playlist.set-playlist-state');
+  const { mutateAsync: changePlaylistState, isLoading: isPlaylistStateChanging } = trpc.useMutation(
+    'protected-playlist.set-playlist-state'
+  );
   const { mutateAsync: skipToVideo } = trpc.useMutation('protected-playlist.skip-to-video');
 
   const resetPlayerState = useVideoPlayerStore((state) => state.resetPlayerState);
@@ -129,6 +131,7 @@ export const usePlaylistChange = () => {
     handleRequestNextVideo,
     handleSkipVideo,
     handlePlaylistLockedChange,
+    isPlaylistStateChanging,
     handlePlayVideoNow,
   };
 };

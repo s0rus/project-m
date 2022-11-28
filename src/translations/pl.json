@@ -45,6 +45,12 @@
       "noLeader": "Brak lidera",
       "becomeLeader": "Zostań liderem",
       "userIsLeader": "Jesteś liderem"
+    },
+    "playlist": {
+      "header": "Stan playlisty",
+      "subititle": "Odblokuj/zablokuj playlistę",
+      "lock": "Zablokuj",
+      "unlock": "Odblokuj"
     }
   },
   "playlist": {
@@ -63,6 +69,9 @@
     "removeVideoError": "Nie udało się usunąć filmu...",
     "videoRemoved": "Film został usunięty z kolejki!",
     "videoPlayedNow": "Odtwarzanie wybranego filmu"
+  },
+  "schedule": {
+    "header": "Repertuar"
   },
   "toast": {
     "playlistLocked": "{{username}} zablokował playlistę.",

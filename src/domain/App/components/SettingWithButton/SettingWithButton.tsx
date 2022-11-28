@@ -1,8 +1,9 @@
-import type { ButtonProps} from '@mui/material';
+import type { ButtonProps } from '@mui/material';
 import { Box, Button, Typography } from '@mui/material';
 import { InnerStack, SettingStack } from './SettingWithButton.styles';
 import type { FC } from 'react';
 import React from 'react';
+import { theme } from '@/styles/theme';
 
 interface SettingWithButton extends ButtonProps {
   icon: JSX.Element;
@@ -22,7 +23,9 @@ const SettingWithButton: FC<SettingWithButton> = ({ icon, header, subtitle, butt
             <Typography variant='h4' noWrap>
               {header}
             </Typography>
-            <Typography variant='caption'>{subtitle}</Typography>
+            <Typography variant='caption' sx={{ color: theme.palette.text.secondary }}>
+              {subtitle}
+            </Typography>
           </Box>
         </InnerStack>
       </Box>

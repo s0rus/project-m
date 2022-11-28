@@ -37,8 +37,6 @@ export const usePlaylistStore = create<PlaylistStore>((set, get) => ({
     }
     await Promise.resolve(set({ playlist: newPlaylist }));
   },
-  handleSkipVideo: () => Promise.resolve(),
-  handlePlayVideoNow: () => Promise.resolve(),
   isPlaylistLocked: true,
   setIsPlaylistLocked: (isPlaylistLocked) => set({ isPlaylistLocked }),
   playlistTimeSum: () => {
