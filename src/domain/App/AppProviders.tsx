@@ -19,11 +19,11 @@ const AppProviders: FC<PropsWithChildren & { session: Session | null }> = ({ chi
           <ToastContainer
             transition={Slide}
             position='bottom-left'
-            autoClose={3500}
+            autoClose={2500}
             closeButton={false}
             hideProgressBar={true}
             draggable={false}
-            limit={1}
+            limit={3}
             style={{ width: 'auto' }}
           />
         </ThemeProvider>

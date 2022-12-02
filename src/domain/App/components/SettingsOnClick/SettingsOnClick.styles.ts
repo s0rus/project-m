@@ -27,7 +27,7 @@ export const InnerStack = styled('div')`
 
   & svg {
     color: ${theme.palette.primary.main};
-    margin-top: 5px;
+    margin-top: 7px;
   }
 `;
 

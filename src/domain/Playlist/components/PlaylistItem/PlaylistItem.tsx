@@ -7,12 +7,14 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ClearIcon from '@mui/icons-material/Clear';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { CustomToast, ToastTypes } from '@/utils/CustomToast';
+import ListItem from '@mui/material/ListItem';
 import type { VideoProps } from '../../model/Playlist.model';
 import VideoThumbnail from '@/domain/App/components/VideoThumbnail';
 import { useTranslation } from 'react-i18next';
 import { usePlaylistChange } from '../../hooks/usePlaylistChange';
 import { useSocketStore } from '@/domain/App/store/Socket.store';
 import { useAuthStore } from '@/domain/App/store/Auth.store';
+import Hidden from '@mui/material/Hidden';
 import {
   PlaylistItemBox,
   PlaylistItemContent,
@@ -22,7 +24,6 @@ import {
   Copied,
   Copy,
   ItemOptions,
-  PlaylistTextHolder,
 } from './PlaylistItem.styles';
 interface PlaylistItemsProps {
   video: VideoProps;
@@ -30,7 +31,6 @@ interface PlaylistItemsProps {
 
 const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   const { t } = useTranslation();
-
   const socket = useSocketStore((state) => state.socket);
   const isAdmin = useAuthStore((state) => state.isAdmin());
   const [isDeleting, setIsDeleting] = useState(false);
@@ -75,55 +75,90 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   };
 
   return (
-    <PlaylistItemContent>
+    <ListItem dense>
       <PlaylistItemWrapper>
         <Link href={videoUrl} target='_blank' rel='noopener norefferer'>
           <VideoThumbnail thumbnailUrl={videoThumbnail} videoTitle={videoTitle} videoDuration={videoDuration} />
+          <Hidden lgUp>
+            <ItemOptions style={{ background: '#18181b', bottom: '0px', right: '0px' }}>
+              {isAdmin && (
+                <>
+                  <Tooltip title={t('playlist.tooltip.delete')} placement='top'>
+                    <Delete onClick={handleRemoveVideo} disabled={isDeleting}>
+                      {isDeleting ? <CircularProgress size={32} /> : <ClearIcon />}
+                    </Delete>
+                  </Tooltip>
+                  <Tooltip title={t('playlist.tooltip.requestcurrent')} placement='top'>
+                    <Current onClick={handleSkipToVideo} disabled={isSkipping}>
+                      {isSkipping ? <CircularProgress size={32} /> : <PlayArrowIcon />}
+                    </Current>
+                  </Tooltip>
+                </>
+              )}
+              {copied ? (
+                <Tooltip title={t('playlist.tooltip.copied')} placement='top'>
+                  <Copied>
+                    <CheckIcon />
+                  </Copied>
+                </Tooltip>
+              ) : (
+                <Tooltip title={t('playlist.tooltip.copy')} placement='top'>
+                  <Copy onClick={CopyThis}>
+                    <ContentCopyIcon />
+                  </Copy>
+                </Tooltip>
+              )}
+            </ItemOptions>
+          </Hidden>
         </Link>
-      </PlaylistItemWrapper>
-      <PlaylistItemContent>
-        <ItemOptions>
-          {isAdmin && (
-            <>
-              <Tooltip title={t('playlist.tooltip.delete')} placement='top'>
-                <Delete onClick={handleRemoveVideo} disabled={isDeleting}>
-                  {isDeleting ? <CircularProgress size={32} /> : <ClearIcon />}
-                </Delete>
-              </Tooltip>
-              <Tooltip title={t('playlist.tooltip.requestcurrent')} placement='top'>
-                <Current onClick={handleSkipToVideo} disabled={isSkipping}>
-                  {isSkipping ? <CircularProgress size={32} /> : <PlayArrowIcon />}
-                </Current>
-              </Tooltip>
-            </>
-          )}
-          {copied ? (
-            <Tooltip title={t('playlist.tooltip.copied')} placement='top'>
-              <Copied>
-                <CheckIcon />
-              </Copied>
-            </Tooltip>
-          ) : (
-            <Tooltip title={t('playlist.tooltip.copy')} placement='top'>
-              <Copy onClick={CopyThis}>
-                <ContentCopyIcon />
-              </Copy>
-            </Tooltip>
-          )}
-        </ItemOptions>
-
         <PlaylistItemBox>
-          {addedBy.image ? <AddedByAvatar variant='square' src={addedBy.image} /> : null}
-
-          <PlaylistTextHolder>
-            <Link href={videoUrl} style={{ width: '100%' }} target='_blank' rel='noopener norefferer'>
-              {videoTitle}
-            </Link>
-            <Typography style={{ fontSize: '12px' }}>{addedBy.name}</Typography>
-          </PlaylistTextHolder>
+          <PlaylistItemContent>
+            {addedBy.image ? (
+              <Link href={`https://twitch.tv/${addedBy.name}`} target='_blank' rel='noopener norefferer'>
+                <AddedByAvatar variant='square' src={addedBy.image} />
+              </Link>
+            ) : null}
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <Link href={videoUrl} style={{ width: '100%' }} target='_blank' rel='noopener norefferer'>
+                {videoTitle}
+              </Link>
+              <Typography style={{ fontSize: '12px', color: '#aaa' }}>{addedBy.name}</Typography>
+            </div>
+          </PlaylistItemContent>
         </PlaylistItemBox>
-      </PlaylistItemContent>
-    </PlaylistItemContent>
+        <Hidden lgDown>
+          <ItemOptions>
+            {isAdmin && (
+              <>
+                <Tooltip title={t('playlist.tooltip.delete')} placement='top'>
+                  <Delete onClick={handleRemoveVideo} disabled={isDeleting}>
+                    {isDeleting ? <CircularProgress size={32} /> : <ClearIcon />}
+                  </Delete>
+                </Tooltip>
+                <Tooltip title={t('playlist.tooltip.requestcurrent')} placement='top'>
+                  <Current onClick={handleSkipToVideo} disabled={isSkipping}>
+                    {isSkipping ? <CircularProgress size={32} /> : <PlayArrowIcon />}
+                  </Current>
+                </Tooltip>
+              </>
+            )}
+            {copied ? (
+              <Tooltip title={t('playlist.tooltip.copied')} placement='top'>
+                <Copied>
+                  <CheckIcon />
+                </Copied>
+              </Tooltip>
+            ) : (
+              <Tooltip title={t('playlist.tooltip.copy')} placement='top'>
+                <Copy onClick={CopyThis}>
+                  <ContentCopyIcon />
+                </Copy>
+              </Tooltip>
+            )}
+          </ItemOptions>
+        </Hidden>
+      </PlaylistItemWrapper>
+    </ListItem>
   );
 };
 

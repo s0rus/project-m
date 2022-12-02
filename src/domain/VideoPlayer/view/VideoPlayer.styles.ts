@@ -12,11 +12,11 @@ export const VideoPlayerBox = styled(Box)`
   width: 100%;
   height: 80vh;
   position: relative;
+  background: #0e0e10;
 `;
 
 export const StyledReactPlayer = styled(ReactPlayer)`
   width: inherit;
-  border-radius: 50%;
   height: inherit;
 `;
 
@@ -28,6 +28,4 @@ export const EmptyPlayer = styled('div')`
   justify-content: center;
   align-items: center;
   background: #18181b;
-  border-top-left-radius: 14px;
-  border-bottom-left-radius: 14px;
 `;

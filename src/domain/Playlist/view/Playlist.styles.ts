@@ -3,12 +3,11 @@ import { gradients } from '@/styles/theme';
 
 export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   padding: 1rem 1.5rem;
-  height: 100%;
   display: flex;
+  width: 100%;
   flex-flow: column nowrap;
   background: ${({ locked }) => (locked ? gradients.playlistLocked : gradients.playlistUnlocked)};
-  border-top-right-radius: 14px;
-  border-bottom-right-radius: 14px;
+  border-radius: 0.4rem;
   transition: all 0.3s;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 `;

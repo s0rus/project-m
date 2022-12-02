@@ -20,9 +20,9 @@ export const StyledLogo = styled(IconButton)`
   display: inline-flex;
   gap: 1rem;
   border-radius: 0px;
+  margin-left: 2.5rem;
   transition: 0.3s;
   &:hover {
-    transform: scale(1.05, 1.05);
     background: #0e0e10;
   }
 `;

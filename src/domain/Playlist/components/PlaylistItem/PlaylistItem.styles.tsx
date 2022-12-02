@@ -3,37 +3,23 @@ import { theme } from '@/styles/theme';
 
 export const PlaylistItemWrapper = styled(Card)`
   width: 100%;
-  height: 180px;
-  justify-content: center;
+  height: 120px;
   display: flex;
-  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  transform: scale(0.98, 0.98);
-  transition: 0.3s ease-in-out;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.55);
-  }
+  background: #18181b;
+  border-radius: 4px;
 `;
 
 export const PlaylistItemContent = styled(CardContent)`
   width: 100%;
-  height: 50px;
+  display: flex;
   flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  background: #18181b;
-  border-radius: 8px;
+  align-items: center;
 `;
 
 export const PlaylistItemBox = styled(Box)`
   width: 100%;
-  display: inline-flex;
-`;
-export const PlaylistTextHolder = styled(Box)`
-  display: inline-flex;
-  flex-direction: column;
-  margin-top: -5px;
+  display: flex;
+  overflow: hidden;
 `;
 
 export const PlaylistItemDetails = styled(Stack)`
@@ -53,6 +39,7 @@ export const AddedByWrapper = styled(Stack)`
 
 export const AddedByAvatar = styled(Avatar)`
   border-radius: 4px;
+  border: 1px solid ${theme.palette.primary.main};
 `;
 
 export const ItemTitle = styled('h4')`

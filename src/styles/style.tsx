@@ -71,7 +71,12 @@ export const AddedByWrapper = styled(Stack)`
 
 export const AddedByAvatar = styled(Avatar)`
   border-radius: 50%;
-  margin-right: 10px;
-  margin-left: -10px;
-  margin-top: -5px;
+  margin-right: 1rem;
+  height: 50px;
+  width: 50px;
+  transition: 0.2s;
+  &:hover {
+    height: 55px;
+    width: 55px;
+  }
 `;

@@ -5,7 +5,7 @@ import hexToRgba from 'hex-to-rgba';
 import { theme } from '@/styles/theme';
 
 export const VideoThumbnailWrapper = styled(CardMedia)`
-  width: 350px;
+  width: 300px;
   height: 100%;
   cursor: default;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
@@ -25,7 +25,7 @@ export const VideoThumbnailImage = styled(Image)`
   background-color: ${theme.palette.background.paper};
   transition: 0.2s ease-in-out;
   &:hover {
-    transform: scale(1.1, 1.1);
+    transform: scale(1.15, 1.15);
   }
 `;
 

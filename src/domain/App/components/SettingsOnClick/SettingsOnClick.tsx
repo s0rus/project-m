@@ -1,8 +1,8 @@
-import { Box, BoxProps } from '@mui/material';
+import { Box, BoxProps, ButtonProps } from '@mui/material';
 import { InnerStack, SettingStack } from './SettingsOnClick.styles';
 import React, { Dispatch, FC, SetStateAction } from 'react';
 import Typography from '@mui/material/Typography';
-interface SettingsOnClick extends BoxProps {
+interface SettingsOnClick extends ButtonProps {
   icon: JSX.Element;
   header: string;
   checked: boolean;

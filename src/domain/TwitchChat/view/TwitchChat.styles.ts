@@ -4,7 +4,6 @@ export const TwitchChatBox = styled('div')`
   height: 100%;
   overflow: hidden;
   min-width: 200px;
-  width: 400px;
   border: none;
   display: flex;
   justify-content: right;

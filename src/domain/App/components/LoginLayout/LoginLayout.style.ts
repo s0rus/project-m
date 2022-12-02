@@ -13,7 +13,6 @@ export const LoginHolder = styled('div')`
   gap: 1rem;
   &:hover {
     background: #0e0e10;
-    transform: scale(1.05, 1.05);
   }
 `;
 

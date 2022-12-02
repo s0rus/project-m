@@ -4,7 +4,7 @@ import type { Session } from 'next-auth';
 export enum LocalStorageKeys {
   PlayerVolume = 'player_volume',
   TwitchChatVisible = 'twitch_chat_visible',
-  PlaylistVisible = 'playlist_visible',
+  TheaterVisible = 'theater_visible',
   Language = 'language',
 }
 

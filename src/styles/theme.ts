@@ -213,8 +213,10 @@ export const theme = createTheme({
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          backgroundColor: `${globalTheme.palette.primary.main}`,
+          color: `${globalTheme.palette.primary.main}`,
+          background: `${globalTheme.palette.background.paper}`,
           borderRadius: '0.5rem',
+          fontSize: '13px',
         },
       },
     },

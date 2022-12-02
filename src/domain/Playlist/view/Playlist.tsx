@@ -15,11 +15,14 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { useTranslation } from 'react-i18next';
 import { usePlaylistStore } from '../store/Playlist.store';
 import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
+import { useMediaQuery } from '@mui/material';
+import { theme } from '@/styles/theme';
 const Playlist = () => {
   const { t } = useTranslation();
   const queue = usePlaylistStore((state) => state.queue());
   const playlistTimeSum = usePlaylistStore((state) => state.playlistTimeSum());
   const isPlaylistLocked = usePlaylistStore((state) => state.isPlaylistLocked);
+  const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
 
   const [animatedList] = useAutoAnimate();
 
@@ -27,17 +30,17 @@ const Playlist = () => {
     <>
       <PlaylistWrapper locked={isPlaylistLocked ? 1 : 0}>
         <PlaylistHeader>
-          <Typography variant='h2'>{t('playlist.header')}</Typography>
+          <Typography style={{ fontSize: isMediumDown ? '18px' : '26px' }}>{t('playlist.header')}</Typography>
           <Tooltip title={t('playlist.tooltip.videoCount')}>
             <PlaylistDetail>
               <AutoAwesomeMotionRounded />
-              <Typography variant='h4'>{queue.length || 0}</Typography>
+              <Typography>{queue.length || 0}</Typography>
             </PlaylistDetail>
           </Tooltip>
           <Tooltip title={t('playlist.tooltip.timeSum')}>
             <PlaylistDetail>
               <AccessTimeFilledRounded />
-              <Typography variant='h4'>{timeFormatter(playlistTimeSum)}</Typography>
+              <Typography>{timeFormatter(playlistTimeSum)}</Typography>
             </PlaylistDetail>
           </Tooltip>
         </PlaylistHeader>
