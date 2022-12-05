@@ -1,5 +1,6 @@
 import { Box, Stack, styled } from '@mui/material';
-import React, { FC, PropsWithChildren } from 'react';
+import type { FC, PropsWithChildren } from 'react';
+import React from 'react';
 
 const MainBox = styled(Box)`
   width: 100%;

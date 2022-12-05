@@ -1,6 +1,6 @@
 {
   "name": "project-m",
-  "version": "1.0.0",
+  "version": "1.4.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -41,10 +41,11 @@
     "socket.io": "^4.5.1",
     "socket.io-client": "^4.5.1",
     "superjson": "^1.9.1",
-    "zod": "^3.18.0"
+    "zod": "^3.18.0",
+    "zustand": "^4.1.4"
   },
   "devDependencies": {
-    "@prisma/client": "^4.4.0",
+    "@prisma/client": "^4.5.0",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
@@ -52,7 +53,7 @@
     "@typescript-eslint/parser": "^5.33.0",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
-    "prisma": "^4.4.0",
+    "prisma": "^4.5.0",
     "typescript": "4.7.4"
   },
   "ct3aMetadata": {

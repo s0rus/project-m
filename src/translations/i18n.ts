@@ -23,7 +23,7 @@ i18n.use(initReactI18next).init({
   resources,
 
   interpolation: {
-    escapeValue: false,
+    escapeValue: true,
   },
   react: {
     useSuspense: false,

@@ -1,38 +1,37 @@
 import { CircularProgress, IconButton, Link, ListItem, Stack, Tooltip, Typography } from '@mui/material';
-import { NorthRounded, PlaylistRemove } from '@mui/icons-material';
+import { PlayArrowRounded, PlaylistRemove } from '@mui/icons-material';
 import { PlaylistItemBox, PlaylistItemContent, PlaylistItemWrapper } from './PlaylistItem.styles';
-import React, { FC, useState } from 'react';
+import type { FC } from 'react';
+import React, { useState } from 'react';
 
-import { CustomToast } from '@/utils/sendToast';
-import { PlaylistWithUsers } from '../../model/Playlist.model';
-import { ToastTypes } from '@/utils/ToastTypes';
-import VideoThumbnail from '@/components/VideoThumbnail';
-import { useAuthContext } from '@/contexts/AuthContext';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
-import { usePlaylistContext } from '../../context/PlaylistContext';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { CustomToast, ToastTypes } from '@/utils/CustomToast';
+import type { VideoProps } from '../../model/Playlist.model';
+import VideoThumbnail from '@/domain/App/components/VideoThumbnail';
 import { useTranslation } from 'react-i18next';
+import { usePlaylistChange } from '../../hooks/usePlaylistChange';
+import { useSocketStore } from '@/domain/App/store/Socket.store';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
 
 interface PlaylistItemsProps {
-  video: PlaylistWithUsers;
+  video: VideoProps;
 }
 
 const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
   const { t } = useTranslation();
-  const { socket } = useSocketContext();
-  const { isAdmin } = useAuthContext();
-  const { handleSkipVideo, handlePlayVideoNow } = usePlaylistContext();
-  const { handleOnPlayVideoNow } = usePlayerContext();
+
+  const socket = useSocketStore((state) => state.socket);
+  const isAdmin = useAuthStore((state) => state.isAdmin());
+
+  const { handleSkipVideo, handlePlayVideoNow } = usePlaylistChange();
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSkipping, setIsSkipping] = useState(false);
   const { videoId, videoThumbnail, videoTitle, videoUrl, addedBy, videoDuration } = video;
 
   const handleRemoveVideo = async () => {
     try {
-      if (isAdmin) {
+      if (isAdmin && socket) {
         setIsDeleting(true);
         await handleSkipVideo(videoId);
-        socket.emit('DELETE_VIDEO', videoId);
         setIsDeleting(false);
         CustomToast.send(t('playlist.videoRemoved'), ToastTypes.Sucess);
       } else {
@@ -48,10 +47,8 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
       if (isAdmin) {
         setIsSkipping(true);
         await handlePlayVideoNow(videoId);
-        socket.emit('SKIP_VIDEO', videoId);
-        handleOnPlayVideoNow();
         setIsSkipping(false);
-        CustomToast.send(t('playlist.videoRemoved'), ToastTypes.Sucess);
+        CustomToast.send(t('playlist.videoPlayedNow'), ToastTypes.Sucess);
       } else {
         throw new Error();
       }
@@ -84,9 +81,9 @@ const PlaylistItem: FC<PlaylistItemsProps> = ({ video }) => {
                   {isDeleting ? <CircularProgress size={32} /> : <PlaylistRemove />}
                 </IconButton>
               </Tooltip>
-              <Tooltip title={t('playlist.tooltip.deleteVideo')}>
+              <Tooltip title={t('playlist.tooltip.playNow')}>
                 <IconButton sx={{ alignSelf: 'center' }} onClick={handleSkipToVideo} disabled={isSkipping}>
-                  {isSkipping ? <CircularProgress size={32} /> : <NorthRounded />}
+                  {isSkipping ? <CircularProgress size={32} /> : <PlayArrowRounded />}
                 </IconButton>
               </Tooltip>
             </Stack>

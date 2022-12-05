@@ -2,6 +2,15 @@
   "logIn": "Zaloguj się",
   "logOut": "Wyloguj się",
   "cancelMute": "Anuluj wyciszenie",
+  "playerControls": {
+    "tooltip": {
+      "play": "Odtwórz",
+      "pause": "Pauza",
+      "sync": "Synchronizuj (podwójne kliknięcie)",
+      "fullscreen": "Pełny ekran",
+      "skipVideo": "Pomiń film (podwójne kliknięcie)"
+    }
+  },
   "video": {
     "thumbnailAlt": "Miniaturka filmu {{videoTitle}}",
     "add": "Dodaj film",
@@ -15,6 +24,7 @@
     "titleRequired": "Tytuł jest wymagany.",
     "titleTooLong": "Tytuł może mieć maksymalnie 30 znaków.",
     "wrongUrl": "URL jest nieprawidłowy.",
+    "couldNotProcessUrl": "URL nie mógł być przetworzony.",
     "videoAdded": "Film został dodany do kolejki."
   },
   "settings": {
@@ -28,20 +38,41 @@
       "subititle": "Wybierz język"
     }
   },
+  "adminPanel": {
+    "header": "Panel administratora",
+    "leader": {
+      "header": "{{leaderIdentifier}}",
+      "subititle": "Aktualny lider",
+      "noLeader": "Brak lidera",
+      "becomeLeader": "Zostań liderem",
+      "userIsLeader": "Jesteś liderem"
+    },
+    "playlist": {
+      "header": "Stan playlisty",
+      "subititle": "Odblokuj/zablokuj playlistę",
+      "lock": "Zablokuj",
+      "unlock": "Odblokuj"
+    }
+  },
   "playlist": {
     "header": "Playlista",
     "empty": "Playlista jest pusta.",
     "tooltip": {
       "videoCount": "Ilość filmów w kolejce",
       "timeSum": "Łączny czas kolejki",
-      "deleteVideo": "Usuń z kolejki"
+      "deleteVideo": "Usuń z kolejki",
+      "playNow": "Odtwórz teraz"
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",
       "subtitle": "Dodaj film, by zacząć oglądać."
     },
     "removeVideoError": "Nie udało się usunąć filmu...",
-    "videoRemoved": "Film został usunięty z kolejki!"
+    "videoRemoved": "Film został usunięty z kolejki!",
+    "videoPlayedNow": "Odtwarzanie wybranego filmu"
+  },
+  "schedule": {
+    "header": "Repertuar"
   },
   "toast": {
     "playlistLocked": "{{username}} zablokował playlistę.",
@@ -54,6 +85,7 @@
   "addVideoError": "Wystąpił błąd podczas dodawania filmu...",
   "requestVideoError": "Nie udało się pobrać kolejnego filmu...",
   "togglePlaylistError": "Nie udało się zmienić stanu playlisty...",
+  "toggleFullscreenError": "Nie udało się przełączyć trybu pełnoekranowego...",
   "language": {
     "pl": "Polski",
     "en": "English"

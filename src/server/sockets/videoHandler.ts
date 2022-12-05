@@ -1,5 +1,5 @@
-import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
-import { SocketProvider } from '.';
+import type { VideoProps } from '@/domain/Playlist/model/Playlist.model';
+import type { SocketProvider } from '.';
 
 const videoHandler = (socket: SocketProvider.ServerIO) => {
   const SEEK_TO = (newPlayedSeconds: number) => socket.broadcast.emit('RECEIVE_SEEK_TO', newPlayedSeconds);
@@ -8,7 +8,7 @@ const videoHandler = (socket: SocketProvider.ServerIO) => {
 
   const SKIP_VIDEO = (targetVideoId?: string) => socket.broadcast.emit('RECEIVE_SKIP_VIDEO', targetVideoId);
 
-  const ADD_NEW_VIDEO = (newVideo: PlaylistWithUsers) => socket.broadcast.emit('RECEIVE_NEW_VIDEO', newVideo);
+  const ADD_NEW_VIDEO = (newVideo: VideoProps) => socket.broadcast.emit('RECEIVE_NEW_VIDEO', newVideo);
 
   const DELETE_VIDEO = (videoId: string) => socket.broadcast.emit('RECEIVE_DELETE_VIDEO', videoId);
 

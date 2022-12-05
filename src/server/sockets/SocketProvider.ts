@@ -1,8 +1,9 @@
-import { Server, ServerOptions, Socket as ServerSocket } from 'socket.io';
+import type { ServerOptions, Socket as ServerSocket } from 'socket.io';
+import { Server } from 'socket.io';
 
-import { Socket as ClientSocket } from 'socket.io-client';
-import { PlaylistWithUsers } from '@/domain/Playlist/model/Playlist.model';
-import { ToastTypes } from '@/utils/ToastTypes';
+import type { Socket as ClientSocket } from 'socket.io-client';
+import type { VideoProps } from '@/domain/Playlist/model/Playlist.model';
+import type { ToastTypes } from '@/utils/CustomToast';
 
 export interface UserData {
   username?: string | null;
@@ -26,7 +27,7 @@ export interface EssentialPlayerState {
 export interface ServerToClientEvents {
   RECEIVE_SEEK_TO: (newPlayedSeconds: number) => void;
   RECEIVE_TOGGLE_PLAYING: (newPlayingState: boolean) => void;
-  RECEIVE_NEW_VIDEO: (data: PlaylistWithUsers) => void;
+  RECEIVE_NEW_VIDEO: (data: VideoProps) => void;
   RECEIVE_SKIP_VIDEO: (targetVideoId?: string) => void;
   RECEIVE_DELETE_VIDEO: (videoId: string) => void;
   RECEIVE_TOGGLE_PLAYLIST: () => void;
@@ -39,7 +40,7 @@ export interface ServerToClientEvents {
 export interface ClientToServerEvents {
   SEEK_TO: (newPlayedSeconds: number) => void;
   TOGGLE_PLAYING: (newPlayingState: boolean) => void;
-  ADD_NEW_VIDEO: (data: PlaylistWithUsers) => void;
+  ADD_NEW_VIDEO: (data: VideoProps) => void;
   SKIP_VIDEO: (targetVideoId?: string) => void;
   DELETE_VIDEO: (videoId: string) => void;
   TOGGLE_PLAYLIST: () => void;
@@ -48,6 +49,7 @@ export interface ClientToServerEvents {
   JOIN_USER: (userData: UserData) => void;
   UPDATE_USER: (userData: UserData) => void;
   SEND_TOAST: (message: string, type: ToastTypes) => void;
+  SET_LEADER: (userData: UserData) => void;
 }
 
 export interface InterServerEvents {

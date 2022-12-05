@@ -2,6 +2,15 @@
   "logIn": "Sign in",
   "logOut": "Sign out",
   "cancelMute": "Disable mute",
+  "playerControls": {
+    "tooltip": {
+      "play": "Play",
+      "pause": "Pause",
+      "sync": "Synchronize (double click)",
+      "fullscreen": "Fullscreen",
+      "skipVideo": "Skip video (double click)"
+    }
+  },
   "video": {
     "thumbnailAlt": "Thumbnail of the video titled {{videoTitle}}",
     "add": "Add video",
@@ -15,6 +24,7 @@
     "titleRequired": "Title is required",
     "titleTooLong": "The title can have up to 30 characters.",
     "wrongUrl": "URL is invalid.",
+    "couldNotProcessUrl": "URL could not be processed.",
     "videoAdded": "Video has been added to playlist."
   },
   "settings": {
@@ -28,20 +38,41 @@
       "subititle": "Choose language"
     }
   },
+  "adminPanel": {
+    "header": "Admin panel",
+    "leader": {
+      "header": "{{leaderIdentifier}}",
+      "subititle": "Current leader",
+      "noLeader": "There is no leader",
+      "becomeLeader": "Become leader",
+      "userIsLeader": "You are the leader"
+    },
+    "playlist": {
+      "header": "Playlist state",
+      "subititle": "Unlock/lock playlist",
+      "lock": "Lock",
+      "unlock": "Unlock"
+    }
+  },
   "playlist": {
     "header": "Playlist",
     "empty": "Playlist is empty.",
     "tooltip": {
       "videoCount": "Count of videos in queue",
       "timeSum": "Total playlist time",
-      "deleteVideo": "Remove from playlist"
+      "deleteVideo": "Remove from playlist",
+      "playNow": "Play now"
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",
       "subtitle": "Add video to start watching."
     },
     "removeVideoError": "There was an error while removing video...",
-    "videoRemoved": "Video removed successfully!"
+    "videoRemoved": "Video removed successfully!",
+    "videoPlayedNow": "Video will be played now."
+  },
+  "schedule": {
+    "header": "Schedule"
   },
   "toast": {
     "playlistLocked": "{{username}} has locked the playlist.",
@@ -54,6 +85,7 @@
   "addVideoError": "There was an error while adding video...",
   "requestVideoError": "The next video couldn't be fetched...",
   "togglePlaylistError": "State of the playlist couldn't be changed...",
+  "toggleFullscreenError": "Fullscreen could not be toggled...",
   "language": {
     "pl": "Polski",
     "en": "English"

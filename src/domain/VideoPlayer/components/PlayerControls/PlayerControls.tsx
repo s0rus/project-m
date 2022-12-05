@@ -1,27 +1,41 @@
-import { ControlsContainer, ControlsWrapper, SeekerPreview, VideoTitle } from './PlayerControls.styles';
+import { ControlsContainer, ControlsWrapper, LoadingOverlay, SeekerPreview, VideoTitle } from './PlayerControls.styles';
 import React, { useEffect, useRef, useState } from 'react';
 
 import ControlsBar from '../ControlsBar';
 import { HIDE_CONTROLS_TIMEOUT } from '../../model/VideoPlayer.model';
 import Indicator from '../Indicator';
-import { useAuthContext } from '@/contexts/AuthContext';
-import { usePlayerContext } from '@/domain/VideoPlayer/context/PlayerContext';
-import { useSocketContext } from '@/contexts/SocketContext';
+import { useVideoPlayerStore } from '../../store/VideoPlayer.store';
+import { useSocketStore } from '@/domain/App/store/Socket.store';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
+import { CircularProgress } from '@mui/material';
 
 const PlayerControls = () => {
-  const { socket } = useSocketContext();
-  const { isAdmin } = useAuthContext();
-  const { playerState, togglePlaying, toggleControls, disableInitialMute } = usePlayerContext();
-  const { isPlaying, playedSeconds, duration, controlsVisible, initialMute, isReady, loadedSeconds } = playerState;
+  const socket = useSocketStore((state) => state.socket);
+  const isAdmin = useAuthStore((state) => state.isAdmin());
+
   const controlsTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const [controlsHovered, setControlsHovered] = useState(false);
+
+  const activeVideo = useVideoPlayerStore((state) => state.activeVideo);
+  const isReady = useVideoPlayerStore((state) => state.isReady);
+  const setControlsVisible = useVideoPlayerStore((state) => state.setControlsVisible);
+  const setInitialMute = useVideoPlayerStore((state) => state.setInitialMute);
+  const setIsMuted = useVideoPlayerStore((state) => state.setIsMuted);
+  const isPlaying = useVideoPlayerStore((state) => state.isPlaying);
+  const setIsPlaying = useVideoPlayerStore((state) => state.setIsPlaying);
+  const playedSeconds = useVideoPlayerStore((state) => state.playedSeconds);
+  const duration = useVideoPlayerStore((state) => state.duration);
+  const controlsVisible = useVideoPlayerStore((state) => state.controlsVisible);
+  const initialMute = useVideoPlayerStore((state) => state.initialMute);
+  const loadedSeconds = useVideoPlayerStore((state) => state.loadedSeconds);
 
   const handlePlaying = () => {
     if (isReady) {
       if (initialMute) {
-        disableInitialMute();
+        setInitialMute(false);
+        setIsMuted(false);
       } else if (isAdmin && socket) {
-        togglePlaying(!isPlaying);
+        setIsPlaying(!isPlaying);
         socket.emit('TOGGLE_PLAYING', !isPlaying);
       }
     }
@@ -30,23 +44,31 @@ const PlayerControls = () => {
   useEffect(() => {
     controlsTimerRef.current =
       isPlaying && !initialMute && !controlsHovered
-        ? setTimeout(() => toggleControls(false), HIDE_CONTROLS_TIMEOUT)
+        ? setTimeout(() => setControlsVisible(false), HIDE_CONTROLS_TIMEOUT)
         : undefined;
 
     return () => clearTimeout(controlsTimerRef.current);
-  }, [controlsVisible, toggleControls, isPlaying, initialMute, controlsHovered]);
+  }, [controlsVisible, setControlsVisible, isPlaying, initialMute, controlsHovered]);
 
-  const handleControlsOnMouseMove = () => toggleControls(true);
+  const handleControlsOnMouseMove = () => setControlsVisible(true);
 
   const handleControlsOnMouseLeave = () => {
     if (isPlaying && !initialMute) {
-      toggleControls(false);
+      setControlsVisible(false);
     }
     clearTimeout(controlsTimerRef.current);
   };
 
   const onMouseOver = () => setControlsHovered(true);
   const onMouseLeave = () => setControlsHovered(false);
+
+  if (!isReady && activeVideo) {
+    return (
+      <LoadingOverlay>
+        <CircularProgress size={64} />
+      </LoadingOverlay>
+    );
+  }
 
   return (
     <ControlsWrapper
@@ -63,9 +85,9 @@ const PlayerControls = () => {
       />
       <ControlsContainer>
         <VideoTitle variant='h1' noWrap controls={+controlsVisible}>
-          {playerState.activeVideo?.videoTitle || ''}
+          {activeVideo?.videoTitle || ''}
         </VideoTitle>
-        <Indicator handlePlaying={handlePlaying} />
+        <Indicator handlePlaying={handlePlaying} initialMute={initialMute} isPlaying={isPlaying} />
         <ControlsBar handlePlaying={handlePlaying} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} />
       </ControlsContainer>
     </ControlsWrapper>

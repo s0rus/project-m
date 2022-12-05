@@ -7,6 +7,8 @@ export const titleBounds = {
   MAX: 30,
 };
 
+const YOUTUBE_PLAYLIST_REGEX = /^.*(youtu.be\/|list=)([^#\&\?]*).*/;
+
 export const newVideoSchema = z.object({
   videoTitle: z
     .string()
@@ -15,7 +17,8 @@ export const newVideoSchema = z.object({
   videoUrl: z
     .string()
     .url({ message: i18n.t('addVideoModal.wrongUrl') })
-    .refine((v) => ReactPlayer.canPlay(v), { message: i18n.t('addVideoModal.wrongUrl') }),
+    .refine((v) => ReactPlayer.canPlay(v), { message: i18n.t('addVideoModal.wrongUrl') })
+    .refine((v) => !v.match(YOUTUBE_PLAYLIST_REGEX), { message: i18n.t('addVideoModal.wrongUrl') }),
 });
 
 export type NewVideoForm = z.infer<typeof newVideoSchema>;

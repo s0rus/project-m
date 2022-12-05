@@ -1,31 +1,26 @@
 import { signIn } from 'next-auth/react';
-import { useAuthContext } from '@/contexts/AuthContext';
 import { useEffect } from 'react';
-import { useSocketContext } from '@/contexts/SocketContext';
+import BlankLayout from '@/layouts/BlankLayout';
+import { useAuthStore } from '@/domain/App/store/Auth.store';
+import { useAuth } from '@/domain/App/hooks/useAuth';
 
 const SignInPage = () => {
-  const { socket } = useSocketContext();
-  const { isAuthLoading, session } = useAuthContext();
+  useAuth();
+  const session = useAuthStore((state) => state.session);
+  const sessionStatus = useAuthStore((state) => state.sessionStatus);
+  const isUserUnauthenticated = useAuthStore((state) => state.isUserUnauthenticated());
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn());
 
   useEffect(() => {
-    if (!socket) return;
-    socket.off('connect');
-    if (!isAuthLoading && !session) void signIn('twitch');
-    if (session) window.close();
-  }, [session, isAuthLoading, socket]);
+    if (!session && isUserUnauthenticated) {
+      void signIn('twitch');
+    }
+    if (isLoggedIn) {
+      window.close();
+    }
+  }, [session, sessionStatus, isUserUnauthenticated, isLoggedIn]);
 
-  return (
-    <div
-      style={{
-        width: '100vw',
-        height: '100vh',
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        background: 'white',
-      }}
-    ></div>
-  );
+  return <BlankLayout />;
 };
 
 export default SignInPage;

@@ -1,10 +1,10 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import { Stack, Typography } from '@mui/material';
 
 import CardLayout from '@/layouts/CardLayout';
-import SettingWithCheckbox from '@/components/SettingWithCheckbox';
-import SettingWithSelect from '@/components/SettingWithSelect';
-import { useAddonsContext } from '@/contexts/AddonsContext';
+import SettingWithCheckbox from '@/domain/App/components/SettingWithCheckbox';
+import SettingWithSelect from '@/domain/App/components/SettingWithSelect';
+import { useAddonsContext } from '@/domain/App/context/Addons.context';
 import { useTranslation } from 'react-i18next';
 
 const Settings = () => {

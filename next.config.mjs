@@ -1,3 +1,5 @@
+!process.env.SKIP_ENV_VALIDATION && (await import('./src/env/server.mjs'));
+
 /**
  * Don't be scared of the generics here.
  * All they do is to give us autocompletion when using this.
@@ -11,7 +13,7 @@ function defineNextConfig(config) {
 }
 
 export default defineNextConfig({
-  reactStrictMode: process.env.NODE_ENV === 'production' ? true : false,
+  reactStrictMode: false,
   swcMinify: true,
   images: {
     domains: ['img.youtube.com'],
