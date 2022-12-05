@@ -1,5 +1,5 @@
 import { ControlsBarWrapper, Seeker, Timer } from './ControlsBar.styles';
-import { FullscreenExitRounded, FullscreenRounded, SyncRounded } from '@mui/icons-material';
+import { FullscreenExitRounded, FullscreenRounded, SyncRounded, SkipNextRounded } from '@mui/icons-material';
 import { IconButton, Tooltip, Typography } from '@mui/material';
 import type { FC } from 'react';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -42,7 +42,7 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
   const setSeeking = useVideoPlayerStore((state) => state.setSeeking);
 
   const [seekedSecondsPlayed, setSeekedSecondsPlayed] = useState(playedSeconds);
-  const { seekTo, sendSeekTo, requestPlayerState } = useVideoPlayer();
+  const { seekTo, sendSeekTo, requestPlayerState, handleOnVideoSkip } = useVideoPlayer();
 
   const handleSyncWithLeader = useCallback(() => {
     if (isCurrentUserLeader || !activeVideo) {
@@ -50,6 +50,12 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
     }
     requestPlayerState();
   }, [requestPlayerState, isCurrentUserLeader, activeVideo]);
+
+  const handleSkipVideo = useCallback(() => {
+    if (isAdmin) {
+      handleOnVideoSkip();
+    }
+  }, [isAdmin, handleOnVideoSkip]);
 
   const handleSeekMouseUp = useCallback(() => {
     setSeeking(false);
@@ -86,6 +92,15 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
         </span>
       </Tooltip>
       <VolumeControl />
+      {isAdmin && (
+        <Tooltip title={t('playerControls.tooltip.skipVideo')} placement='top'>
+          <span>
+            <IconButton onDoubleClick={handleSkipVideo} disabled={!activeVideo}>
+              <SkipNextRounded />
+            </IconButton>
+          </span>
+        </Tooltip>
+      )}
       <Timer islong={duration >= 3600 ? 1 : 0}>
         <Typography variant='h5'>{timeFormatter(playedSeconds, duration >= 3600)}</Typography>
       </Timer>

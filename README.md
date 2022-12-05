@@ -2,7 +2,7 @@
 
 ## What is it?
 
-Project M is an app that lets you watch videos from different platforms (youtube, streamable etc.) in sync with other users. Videos are kept in a playlist and so every logged in user can add a video in advance. Users with administrator capabilities can skip, pause/play and rewind videos - that too will happen in sync with others. Also, when user joins and video is playing already, video time is going to adjust based on leader's player state
+Project M is an app that lets you watch videos from different platforms (youtube, streamable etc.) in sync with other users. Videos are kept in a playlist and so every logged in user can add a video in advance. Users with administrator capabilities can skip, pause/play and rewind videos - that too will happen in sync with others. Also, when user joins and video is playing already, video time is going to adjust based on leader's player state.
 
 ## Techstack
 
@@ -14,13 +14,13 @@ It uses the following technologies:
 - [Next.js](https://nextjs.org/) - handles a lot of things for us like SSR, image optimization and routing
 - [tRPC](https://trpc.io/) - lets us create end-to-end typesafe API's without any code generation and bloat
 - [Prisma](https://www.prisma.io/) - Prisma is an ORM for TypeScript, that allows you to define your database schema and models and then generate a type-safe client that can be used to interact with your database from your backend
-- [NextAuth](https://next-auth.js.org/) - handles the authorization, sessions etc. of users based on providers (there are a lot of them)
+- [NextAuth](https://next-auth.js.org/) - handles the authorization, sessions etc. of users
 
 Please, refer to [Create T3 App](https://create.t3.gg/) docs to read more about the file structure and how that exactly works.
 
 Besides, **Project M** is using following technologies:
 
-- [Planetscale](https://planetscale.com/) - our database that holds user and playlist info
+- [Planetscale](https://planetscale.com/) - our database that holds user and playlist information
 
 - [socket.io](https://socket.io/) (with socket.io-client) - handles the communication between server and clients to sync them
 
@@ -49,7 +49,7 @@ To run **Project M** you have to do following things:
   You have to setup following variables:
 
   - `DATABASE_URL`  
-    As we are using `Planetscale` as our database, you should create a database there, then click `connect` and choose `Prisma` as you way of connecting. Planetscale will provide you with a link that you paste in place of `DATABASE_URL`.
+    As we are using `Planetscale` for our database, you should create a database there, then click `connect` and choose `Prisma` as you way of connecting. Planetscale will provide you with a link that you paste in place of `DATABASE_URL`.
 
   That url tough is for production, for local development you should connect to DB using [`connect`](https://planetscale.com/docs/reference/connect) command (in this case it would look like this: `pscale connect {YOUR-DATABASE-NAME} {BRANCH} --port 3309`) and provide the `.env` file with `mysql://root@127.0.0.1:3309/{YOUR-DATABASE-NAME}`
 
@@ -62,12 +62,12 @@ To run **Project M** you have to do following things:
     For local developement the value should be `http://localhost:{PORT}`, when you move to production you provide it with your domain url. **PORT** is set to `3000` by default.
 
   - `TWITCH_CLIENT_ID` and `TWITCH_CLIENT_SECRET`
-    As we use Twitch Auth API for authorization, you have to create an app in [Twitch console](https://dev.twitch.tv/console/apps), which will give you ability to generate both of these values.
+    Because we use Twitch Auth API for authorization, you have to create an app in [Twitch console](https://dev.twitch.tv/console/apps), which will give you the ability to generate both of these values. Just paste them in accordingly.
 
   - `SKIP_ENV_VALIDATION` (set to `false` by default)  
-    Set to `true` is useful when you want to dockerize the app
+    Set to `true` is useful when you want to dockerize the app.
 
-- run `npm install` command the install all dependencies
+- run `npm install` command to install dependencies
 
 - run `npx prisma db push` - to sync the schema between client and database
 
@@ -80,45 +80,24 @@ When you have your database connection and local server running you can start to
 **Keep in mind!**  
 You can change the database and auth provider for whatever you like, then edit the `.env` file accordingly.
 
-## Domains
+## Leader flow
 
-This project uses Domain Driven Design which in this case certainly isn't perfect, but it was a great learning epxerience. Let's look over the domains and describe the most notable components of each of them.
+The whole synchronization is based on so called **leader**. This concrete entity serves as the source of thruth when it comes to the state of video player.
 
-**Domains are as follows:**
+The flow works as follows:
 
-### App
+When there is noone on the page, first user that joins is set as the leader automatically.  
+When there is already a user on the page (that means this user is the leader), and someone joins, we send the request to the leader to provide current time of the video for the joining user.
 
-#### components
+When user is a leader and he leaves the page couple of things are checked:  
+First we check if there are any users with **admin privileges**, if so random one from the list of administators is selected as the new leader.  
+If there are no administrators on the page, random user **without** admin privilages is selected.  
+Administrators can see the current leader, and can become one (there is no difference if current leader is regular user or admin).
 
-Components that are (or potentially will be) shared across the enitre app like `ButtonWithLoader` or `FormInput`
+## Translations
 
-#### context
+This app uses `i18n` as a translation solution, so all of the page text is represented as keys which correspond to certain translation. We hold both `english` and `polish` translations in `translations` folder.
 
-#### hooks
+## Local storage thingies
 
-#### model
-
-#### store
-
-#### `App.tsx`
-
-Main entry point for the entire layout, as we pretty much only have on page in the app.  
-Here, we invoke `useSocket`, `useAuth` and `usePlaylist` to fire those useEffect hooks inside of them which will provide the app with all the information needed.  
-Besides, loading state is rendered here if there is no **leader** or **socket** isn't connected yet.
-
-#### `AppProviders.tsx`
-
-All of context wrappers (auth session, theme, css baseline etc.) lie here, to provide for the components down the tree.
-
-**Keep in mind!**  
-`refetchOnWindowFocus` is set to `false` for the `SessionProvider`, if you want to check the session state on window focus, set it to `true`, besides you can change the `ToastContainer` options to manipulate how toast popups operate.
-
-### Dashboard
-
-### Playlist
-
-### Schedule
-
-### TwitchChat
-
-### VideoPlayer
+We save users currently selected volume of the player, and the value of the chat (if it's toggled on or off) in the local storage, so that we can restore the values when user joins the next time.

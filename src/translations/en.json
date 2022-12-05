@@ -7,7 +7,8 @@
       "play": "Play",
       "pause": "Pause",
       "sync": "Synchronize (double click)",
-      "fullscreen": "Fullscreen"
+      "fullscreen": "Fullscreen",
+      "skipVideo": "Skip video (double click)"
     }
   },
   "video": {
