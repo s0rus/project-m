@@ -1,63 +1,71 @@
-import { Stack, styled, Button, Select, Box } from '@mui/material';
-import { theme } from '@/styles/theme';
-export const SettingStack = styled(Button)`
-  display: inline-flex;
-  width: 100%;
-  height: 50px;
-  margin-right: -16px;
-  margin-top: -14px;
-  justify-content: left;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0);
-  gap: 0.55rem;
-  &:hover {
-    background: rgba(255, 255, 255, 0);
-  }
-  &:active {
-    background: rgba(255, 255, 255, 0);
-  }
-  & button {
-    position: absolute;
-    right: 1rem;
-  }
+import { Stack, styled, Select } from '@mui/material';
 
-  & h5 {
-    margin-bottom: 1rem;
-  }
+export const SettingStack = styled(Stack)`
+  flex-direction: row;
+  align-items: center;
+  height: 32px;
+  justify-content: space-between;
+  cursor: pointer;
+  outline: none;
+  border: none;
 `;
 
 export const InnerStack = styled(Stack)`
-  display: inline-flex;
-
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  gap: 1.5rem;
   & svg {
-    color: ${theme.palette.primary.main};
+    width: 2rem;
+    height: 2rem;
   }
 `;
 
 export const StyledSelect = styled(Select)`
-  width: 100%;
-  height: 50px;
-  justify-content: left;
-  border-radius: 4px;
-  cursor: default;
-  background: #18181b;
-  &:hover {
-    background: rgba(255, 255, 255, 0.25);
-  }
-  & button {
-    position: absolute;
-    right: 1rem;
-  }
-  & svg {
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-  }
+color: #FFF;
+transition: all 0.5s;
+min-width: 150px;
+cursor: default;
+box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+max-width: 100%;
+background-color: rgba(0,0,0,0.25);
+border-radius: 8px;
+border: none;
+outline: none;
+position: relative; all 0.3s;
+text-transform: capitalize;
+&:hover{
+  outline: 5px solid rgba(0,0,0,0);
+  background-color: rgba(255,255,255,0.05);
+}
 `;
 
-export const Header = styled(Box)`
-  display: inline-flex;
+export const TitleSelect = styled('h2')`
+  line-height: 1.1;
+  font-size: 16px;
+  width: 100px;
+  letter-spacing: 1px;
+  position: relative;
+  text-shadow: 0px 0px 10px white;
+  text-align: left;
+  margin: 0px;
+  padding: 0px;
+  right: 15px;
+  font-weight: 500;
+`;
 
-  & h6 {
-    padding: 0rem 0rem;
-  }
+export const TitleSubSelect = styled('h2')`
+  line-height: 1.1;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  display: flex;
+  transition: all 0.3s ease 0s;
+  position: relative;
+  text-align: left;
+  margin: 0px;
+  padding: 0px;
+  right: 15px;
+  font-weight: 400;
+  color: #c7c7c7;
 `;

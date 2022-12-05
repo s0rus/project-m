@@ -36,8 +36,8 @@ const globalTheme = {
 
   palette: {
     primary: {
-      main: '#9146FF ',
-      light: '#9146FF ',
+      main: '#622afa',
+      light: '#622afa',
       hover: '#8960f7',
       active: '#4523a1',
       contrastText: '#EFEFF1',
@@ -76,16 +76,16 @@ const globalTheme = {
 //dark: '#0e0e10',
 
 export const gradients = {
-  gradientPaper: `#0e0e10`,
+  gradientPaper: `linear-gradient(120deg, rgba(27,26,41,0.7525385154061625) 16%, rgba(39,38,71,1) 82%);`,
   playlistUnlocked: `linear-gradient(-90deg, ${hexToRgba(globalTheme.palette.success.light, 0)} -20%,  ${hexToRgba(
     globalTheme.palette.success.dark,
-    0.25
+    0.45
   )} 100%)`,
   playlistLocked: `linear-gradient(-90deg, ${hexToRgba(globalTheme.palette.error.light, 0)} -20%,  ${hexToRgba(
     globalTheme.palette.error.dark,
-    0.25
+    0.45
   )} 100%)`,
-  currentVideo: `#0e0e10`,
+  currentVideo: `linear-gradient(120deg, rgba(39,38,71,0.7721463585434174) 16%, rgba(27,26,41,1) 82%);`,
   gradientMain: `linear-gradient(220deg, ${hexToRgba(globalTheme.palette.primary.main, 0)} 0%,  ${hexToRgba(
     globalTheme.palette.primary.main,
     0.3
@@ -127,10 +127,8 @@ export const theme = createTheme({
       styleOverrides: {
         select: {
           outline: 'none',
+          background: gradients.gradientMain,
           boxShadow: 'none',
-          outlined: 'none',
-          filled: 'none',
-          standard: 'none',
         },
         icon: {
           color: globalTheme.palette.primary.contrastText,
@@ -149,7 +147,7 @@ export const theme = createTheme({
     MuiDivider: {
       styleOverrides: {
         root: {
-          background: '#333',
+          background: globalTheme.palette.background.paper,
         },
       },
     },
@@ -213,10 +211,8 @@ export const theme = createTheme({
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          color: `${globalTheme.palette.primary.main}`,
-          background: `${globalTheme.palette.background.paper}`,
+          backgroundColor: `${globalTheme.palette.primary.main}`,
           borderRadius: '0.5rem',
-          fontSize: '13px',
         },
       },
     },
@@ -268,8 +264,9 @@ export const theme = createTheme({
           overflow: hidden;
         }
         body {
-          background: #0e0e10!important;
+          background: linear-gradient(120deg, rgba(27,26,41,1) 16%, rgba(39,38,71,1) 82%);
           min-height: 100vh;
+          box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
         }
         .MuiIconButton-root {
           color: ${globalTheme.palette.text.primary}!important;
@@ -286,13 +283,8 @@ export const theme = createTheme({
             background: ${globalTheme.palette.primary.main}!important;
             pointer-events: all!important;
             border-radius: 0.5rem!important;
-              overflow: inherit;
           }
         }
- .simplebar-content-wrapper{
-  overflow: inherit;
- }
-        
         .Toastify__toast {
           background-color: ${globalTheme.palette.background.paper}!important;
           border: 1px solid ${globalTheme.palette.primary.main};
@@ -302,11 +294,39 @@ export const theme = createTheme({
           color: ${globalTheme.palette.text.primary};
           font-family: ${globalTheme.typography.fontFamily};
         }
-        a {
-          color: rgba(0,0,0,0);
+        
+        .react-page-split__divider {
+          &:focus{
+            background-color: ${globalTheme.palette.primary.main}!important;
+            transition: 0.1s;
+            height: 100vh;
+            cursor: col-resize;
+            touch-action: pan-x;
+            border-radius: 20px;
+          }
+          &:hover {
+            background-color: #3a3740;
+            transition: 0.2s;
+            cursor: col-resize;
+            height: 100vh;
+            border-radius: 20px;
+          }
         }
-
-        `,
+        .react-page-split__divider--horizontal {
+          background: #18181b;
+          max-width: 6px;
+          transition: 0.1s;
+          cursor: col-resize;
+          touch-action: pan-x;
+          height: 100vh;
+          border-radius: 20px;
+          &:hover{
+            max-width: 10px;
+          }
+          &:active{
+            max-width: 10px;
+          }
+        },`,
     },
   },
 });

@@ -2,11 +2,10 @@ import type { Dispatch, FC, PropsWithChildren, SetStateAction } from 'react';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import type { Language } from '@/translations/i18n';
 import i18n, { LanguageEnum } from '@/translations/i18n';
+
 import { LocalStorageKeys } from '../model/App.model';
 
 interface InitialContextProps {
-  theaterView: boolean;
-  setTheaterView: Dispatch<SetStateAction<boolean>>;
   isChatOn: boolean;
   setIsChatOn: Dispatch<SetStateAction<boolean>>;
   language: Language;
@@ -14,8 +13,6 @@ interface InitialContextProps {
 }
 
 const initialContextProps: InitialContextProps = {
-  theaterView: false,
-  setTheaterView: () => null,
   isChatOn: false,
   setIsChatOn: () => null,
   language: LanguageEnum.PL,
@@ -27,8 +24,7 @@ const AddonsContext = createContext<InitialContextProps>(initialContextProps);
 export const useAddonsContext = () => useContext<InitialContextProps>(AddonsContext);
 
 export const AddonsContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [isChatOn, setIsChatOn] = useState(true);
-  const [theaterView, setTheaterView] = useState(false);
+  const [isChatOn, setIsChatOn] = useState(false);
   const [language, setLanguage] = useState<Language>(LanguageEnum.PL);
 
   useEffect(() => {
@@ -38,7 +34,7 @@ export const AddonsContextProvider: FC<PropsWithChildren> = ({ children }) => {
       return;
     }
 
-    localStorage.setItem(LocalStorageKeys.TwitchChatVisible, JSON.stringify(false));
+    localStorage.setItem(LocalStorageKeys.TwitchChatVisible, JSON.stringify(true));
   }, []);
 
   useEffect(() => {
@@ -60,30 +56,14 @@ export const AddonsContextProvider: FC<PropsWithChildren> = ({ children }) => {
     localStorage.setItem(LocalStorageKeys.Language, JSON.stringify(language));
   }, [language]);
 
-  useEffect(() => {
-    const isTheaterVisible = localStorage.getItem(LocalStorageKeys.TheaterVisible);
-    if (isTheaterVisible !== null) {
-      setIsChatOn(JSON.parse(isTheaterVisible));
-      return;
-    }
-
-    localStorage.setItem(LocalStorageKeys.TheaterVisible, JSON.stringify(false));
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(LocalStorageKeys.TheaterVisible, JSON.stringify(theaterView));
-  }, [theaterView]);
-
   const value = useMemo(
     () => ({
-      theaterView,
-      setTheaterView,
       isChatOn,
       setIsChatOn,
       language,
       setLanguage,
     }),
-    [isChatOn, setIsChatOn, language, setLanguage, theaterView, setTheaterView]
+    [isChatOn, setIsChatOn, language, setLanguage]
   );
 
   return <AddonsContext.Provider value={value}>{children}</AddonsContext.Provider>;

@@ -13,12 +13,9 @@ import { useTranslation } from 'react-i18next';
 import { useVideoPlayerStore } from '../../store/VideoPlayer.store';
 import { useVideoPlayer } from '../../hooks/useVideoPlayer';
 import { useAuthChange } from '@/domain/App/hooks/useAuthChange';
-import FitScreenIcon from '@mui/icons-material/FitScreen';
 import { useAuthStore } from '@/domain/App/store/Auth.store';
 import { useSocketStore } from '@/domain/App/store/Socket.store';
-import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
-import { useAddonsContext } from '@/domain/App/context/Addons.context';
-import Hidden from '@mui/material/Hidden';
+
 interface ControlsBarProps {
   handlePlaying: () => void;
   onMouseOver: () => void;
@@ -32,7 +29,6 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
   const isCurrentUserLeader = useSocketStore((state) => state.isCurrentUserLeader());
   const { isAdmin } = useAuthChange();
   const currentUser = useAuthStore((state) => state.currentUser);
-  const { theaterView, setTheaterView } = useAddonsContext();
 
   const isReady = useVideoPlayerStore((state) => state.isReady);
   const isPlaying = useVideoPlayerStore((state) => state.isPlaying);
@@ -115,13 +111,6 @@ const ControlsBar: FC<ControlsBarProps> = ({ handlePlaying, onMouseOver, onMouse
           </IconButton>
         </span>
       </Tooltip>
-      <Hidden lgDown>
-        <Tooltip title={t('playerControls.tooltip.theathermode')} placement='top'>
-          <IconButton onClick={() => setTheaterView((prev) => !prev)}>
-            {theaterView ? <CloseFullscreenIcon /> : <FitScreenIcon />}
-          </IconButton>
-        </Tooltip>
-      </Hidden>
       <Tooltip title={t('playerControls.tooltip.fullscreen')} placement='top'>
         <IconButton onClick={() => toggleFullscreen()}>
           {isFullscreen ? <FullscreenExitRounded /> : <FullscreenRounded />}

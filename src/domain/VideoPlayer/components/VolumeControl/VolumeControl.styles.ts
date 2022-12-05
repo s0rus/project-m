@@ -10,14 +10,13 @@ export const VolumeSliderPopver = styled(HoverPopover)`
 export const VolumeSliderBox = styled(Box)`
   width: 100%;
   height: 100%;
-
-  padding: 1.2rem 0.2rem 0.7rem 0.2rem;
-
+  padding: 1rem 0rem 1rem 0rem;
+  background: rgba(0,0,0,0.25)
   overflow: hidden;
 `;
 
 export const VolumeSlider = styled(Slider)`
-  color: ${theme.palette.primary.main};
+  color: white;
   height: 100px !important;
 
   & .MuiSlider-thumb {
@@ -36,6 +35,6 @@ export const VolumeSlider = styled(Slider)`
   }
 
   & .MuiSlider-rail {
-    opacity: 0.28;
+    opacity: 0.25;
   }
 `;

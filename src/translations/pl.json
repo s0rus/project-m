@@ -7,14 +7,13 @@
       "play": "Odtwórz",
       "pause": "Pauza",
       "sync": "Synchronizuj (podwójne kliknięcie)",
-      "fullscreen": "Pełny ekran",
-      "theathermode": "Tryb kinowy"
+      "fullscreen": "Pełny ekran"
     }
   },
   "video": {
     "thumbnailAlt": "Miniaturka filmu {{videoTitle}}",
-    "add": "Dodaj",
-    "skip": "Pomiń",
+    "add": "Dodaj film",
+    "skip": "Pomiń film",
     "addedBy": "Dodane przez"
   },
   "addVideoModal": {
@@ -31,13 +30,14 @@
   "options": {
     "optionsTitle": "Ustawienia",
     "twitchTitle": "Twitch",
+    "camTitle": "Kamerka",
     "chatTitle": "Czat",
     "languageTitle": "Język",
-    "twitchSubTitleLOGIN": "Zaloguj się aby dodać film",
-    "twitchSubTitleLOGOUT": "Wyloguj się",
-    "chatSubTitle": "Widoczność czatu",
-    "languageSubTitle": "Wybierz język",
-    "informations": "Informacje"
+    "twitchSubTitleLOGIN": "Zaloguj się aby dodać film.",
+    "twitchSubTitleLOGOUT": "Wyloguj się.",
+    "camSubTitle": "Widoczność kamerki.",
+    "chatSubTitle": "Widoczność czatu.",
+    "languageSubTitle": "Wybierz język."
   },
   "settings": {
     "header": "Ustawienia",
@@ -56,19 +56,20 @@
       "header": "{{leaderIdentifier}}",
       "subititle": "Aktualny lider",
       "noLeader": "Brak lidera",
-      "becomeLeader": "Przejmij",
-      "userIsLeader": "Aktualny"
+      "becomeLeader": "Zostań liderem",
+      "userIsLeader": "Jesteś liderem"
     },
     "playlist": {
-      "header": "Kolejka",
+      "header": "Playlista",
       "subtitle": "Zmień stan playlisty.",
       "lock": "Zablokuj",
-      "unlock": "Odblokuj"
+      "unlock": "Odblokuj",
+      "videoPlayedNow": "Odtwarzanie wybranego filmu"
     }
   },
   "playlist": {
-    "header": "Kolejka",
-    "empty": "Dodaj coś do kolejki",
+    "header": "Playlista",
+    "empty": "Playlista jest pusta.",
     "copy": "Skopiowano do schowka.",
     "tooltip": {
       "videoCount": "Ilość filmów w kolejce",
@@ -76,14 +77,11 @@
       "deleteVideo": "Usuń z kolejki",
       "playNow": "Odtwórz teraz",
       "unlock": "Odblokuj playliste",
-      "lock": "Zablokuj playliste",
-      "locked": "Kolejka jest zablokowana",
+      "locked": "Playlista jest zablokowana",
       "requestcurrent": "Odtwórz film teraz",
       "delete": "Usuń film z kolejki",
       "copy": "Skopiuj link do filmu",
-      "copied": "Skopiowano link do schowka",
-      "togglechat": "Włącz czat",
-      "toggleplaylist": "Włącz playliste"
+      "copied": "Skopiowano link do schowka"
     },
     "noCurrentVideo": {
       "title": "Aktualnie nic nie leci.",
@@ -91,8 +89,7 @@
       "subtitlelock": "Poproś administratora o odblokowanie playlisty."
     },
     "removeVideoError": "Nie udało się usunąć filmu...",
-    "videoRemoved": "Film został usunięty z kolejki!",
-    "videoPlayedNow": "Odtwarzanie wybranego filmu"
+    "videoRemoved": "Film został usunięty z kolejki!"
   },
   "toast": {
     "playlistLocked": "{{username}} zablokował playlistę.",

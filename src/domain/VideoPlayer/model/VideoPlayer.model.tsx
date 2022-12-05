@@ -117,7 +117,6 @@ export const getPlayerConfig = (playerId: string) => ({
   file: {
     forceVideo: true,
     attributes: {
-      disablepictureinpicture: false,
       controls: false,
     },
   },

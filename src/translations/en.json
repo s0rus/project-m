@@ -7,14 +7,13 @@
       "play": "Play",
       "pause": "Pause",
       "sync": "Synchronize (double click)",
-      "fullscreen": "Fullscreen",
-      "theathermode": "Theater mode"
+      "fullscreen": "Fullscreen"
     }
   },
   "video": {
     "thumbnailAlt": "Thumbnail of the video titled {{videoTitle}}",
-    "add": "Add",
-    "skip": "Skip",
+    "add": "Add video",
+    "skip": "Skip video",
     "addedBy": "Added by"
   },
   "addVideoModal": {
@@ -31,13 +30,14 @@
   "options": {
     "optionsTitle": "Settings",
     "twitchTitle": "Twitch",
+    "camTitle": "Cam",
     "chatTitle": "Chat",
     "languageTitle": "Language",
-    "twitchSubTitleLOGIN": "Login to add videos",
-    "twitchSubTitleLOGOUT": "Log out",
-    "chatSubTitle": "Chat visibility",
-    "languageSubTitle": "Choose language",
-    "informations": "Informations"
+    "twitchSubTitleLOGIN": "Login to add videos.",
+    "twitchSubTitleLOGOUT": "Log out.",
+    "camSubTitle": "Streamer cam visibility.",
+    "chatSubTitle": "Chat visibility.",
+    "languageSubTitle": "Choose language."
   },
   "settings": {
     "header": "Settings",
@@ -56,33 +56,30 @@
       "header": "{{leaderIdentifier}}",
       "subititle": "Current leader",
       "noLeader": "There is no leader",
-      "becomeLeader": "Become",
-      "userIsLeader": "Current"
+      "becomeLeader": "Become leader",
+      "userIsLeader": "You are the leader"
     },
     "playlist": {
       "header": "Playlist",
       "subtitle": "Change playlist state.",
       "lock": "Lock",
-      "unlock": "Unlock"
+      "unlock": "Unlock",
+      "videoPlayedNow": "Video will be played now."
     }
   },
   "playlist": {
     "header": "Playlist",
-    "empty": "Add something to playlist",
+    "empty": "Playlist is empty.",
     "copy": "Copied to the clipboard.",
     "tooltip": {
       "videoCount": "Count of videos in queue",
       "timeSum": "Total playlist time",
       "deleteVideo": "Remove from playlist",
       "playNow": "Play now",
-      "unlock": "Unlock playlist",
-      "lock": "Lock playlist",
       "delete": "Delete video from queue",
       "requestcurrent": "Play video now",
       "copy": "Copy link to video",
-      "copied": "Link copied to clipboard",
-      "togglechat": "Turn on chat",
-      "toggleplaylist": "Turn on playlist"
+      "copied": "Link copied to clipboard"
     },
     "noCurrentVideo": {
       "title": "There is nothing to be played.",
@@ -90,8 +87,7 @@
       "subtitlelock": "Ask the administrator to unlock the playlist."
     },
     "removeVideoError": "There was an error while removing video...",
-    "videoRemoved": "Video removed successfully!",
-    "videoPlayedNow": "Video will be played now."
+    "videoRemoved": "Video removed successfully!"
   },
   "toast": {
     "playlistLocked": "{{username}} has locked the playlist.",

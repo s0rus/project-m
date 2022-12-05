@@ -13,8 +13,17 @@ export const ControlsBarWrapper = styled(Box)<{ controls: boolean }>`
   transition: transform 0.2s ease-in-out;
   transform: ${({ controls }) => (controls ? 'translateY(0px)' : 'translateY(80px)')};
 
-  border-radius: 0.5rem;
-  background-color: ${hexToRgba(theme.palette.background.paper, 0.2)};
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+
+  & button {
+    border-radius: 8px;
+    height: 40px;
+    width: 40px;
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  }
 `;
 
 export const Seeker = styled(Slider)<{ loadedpercentage: number }>`
@@ -24,6 +33,7 @@ export const Seeker = styled(Slider)<{ loadedpercentage: number }>`
   & .MuiSlider-thumb {
     width: 1rem;
     height: 1rem;
+    color: white;
   }
 
   &::before {

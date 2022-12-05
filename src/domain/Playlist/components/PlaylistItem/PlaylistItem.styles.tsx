@@ -1,19 +1,26 @@
 import { Avatar, Box, Card, CardContent, Stack, styled, IconButton } from '@mui/material';
-import { theme } from '@/styles/theme';
+import { gradients, theme } from '@/styles/theme';
 
 export const PlaylistItemWrapper = styled(Card)`
   width: 100%;
-  height: 120px;
   display: flex;
-  background: #18181b;
-  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  background: ${gradients.currentVideo};
+  border-radius: 8px;
+  transform: scale(0.98, 0.98);
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.55);
+  }
 `;
 
 export const PlaylistItemContent = styled(CardContent)`
   width: 100%;
+  max-width: 100%;
   display: flex;
   flex: 1;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const PlaylistItemBox = styled(Box)`
@@ -39,7 +46,6 @@ export const AddedByWrapper = styled(Stack)`
 
 export const AddedByAvatar = styled(Avatar)`
   border-radius: 4px;
-  border: 1px solid ${theme.palette.primary.main};
 `;
 
 export const ItemTitle = styled('h4')`
@@ -53,10 +59,12 @@ export const ItemTitle = styled('h4')`
 
 export const ItemOptions = styled('div')`
   position: absolute;
-  right: 20px;
-  height: 50px;
-  border-radius: 8px;
+  right: 0px;
+  height: 100%;
+  width: 50px;
+  background: rgba(0, 0, 0, 0.25);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 8px;

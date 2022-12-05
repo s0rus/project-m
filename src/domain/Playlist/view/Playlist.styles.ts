@@ -4,10 +4,9 @@ import { gradients } from '@/styles/theme';
 export const PlaylistWrapper = styled(Box)<{ locked: number }>`
   padding: 1rem 1.5rem;
   display: flex;
-  width: 100%;
   flex-flow: column nowrap;
   background: ${({ locked }) => (locked ? gradients.playlistLocked : gradients.playlistUnlocked)};
-  border-radius: 0.4rem;
+  border-radius: 8px;
   transition: all 0.3s;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 `;
@@ -39,8 +38,8 @@ export const PlaylistContainer = styled(Box)`
 `;
 
 export const EmptyPlaylistBox = styled(Box)`
+  min-height: 300px;
   display: flex;
-  min-height: 180px;
   align-items: center;
   justify-content: center;
   flex-direction: column;

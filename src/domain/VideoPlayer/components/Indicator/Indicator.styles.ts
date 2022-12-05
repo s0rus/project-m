@@ -28,7 +28,6 @@ export const IndicatorElement = styled(Box)<{ playing: number; initialmute: numb
   width: 5rem;
   height: 5rem;
   border-radius: 8px;
-  border-radius: 50%;
 
   display: flex;
   align-items: center;

@@ -1,8 +1,8 @@
 import type { MutableRefObject } from 'react';
 import { useCallback } from 'react';
 import React, { useEffect, useId, useRef } from 'react';
-import { StyledReactPlayer, VideoPlayerBox, VideoPlayerContainer, EmptyPlayer } from './VideoPlayer.styles';
-import { Typography } from '@mui/material';
+import { StyledReactPlayer, VideoPlayerBox, VideoPlayerContainer } from './VideoPlayer.styles';
+
 import PlayerControls from '../components/PlayerControls';
 import type ReactPlayer from 'react-player';
 import TwitchChat from '@/domain/TwitchChat/view/TwitchChat';
@@ -16,18 +16,14 @@ import { useVideoPlayerStore } from '../store/VideoPlayer.store';
 import { useVideoPlayer } from '../hooks/useVideoPlayer';
 import { useSocketStore } from '@/domain/App/store/Socket.store';
 import { usePlaylistStore } from '@/domain/Playlist/store/Playlist.store';
-import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
-import { useTranslation } from 'react-i18next';
-import Image from 'next/image';
-import Playlist from '@/domain/Playlist/view/Playlist';
-import Hidden from '@mui/material/Hidden';
-import DashboardBar from '@/domain/Dashboard/components/DashboardBar';
 
 const VideoPlayer = () => {
   const hasWindow = useHasWindow();
+  const { isChatOn } = useAddonsContext();
+  const isLargeDown = useMediaQuery(theme.breakpoints.between('md', 'lg'));
+  const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
   const socket = useSocketStore((state) => state.socket);
-  const { t } = useTranslation();
-  const { theaterView, isChatOn } = useAddonsContext();
+
   const playerId = useId();
   const playerRef = useRef<ReactPlayer | null>(null);
   const currentVideo = usePlaylistStore((state) => state.currentVideo);
@@ -115,133 +111,30 @@ const VideoPlayer = () => {
   ]);
 
   return (
-    <>
-      <Hidden lgDown>
-        <VideoPlayerContainer
-          style={{
-            padding: theaterView ? '0' : '3rem 3rem',
-            borderTopLeftRadius: theaterView ? '0px' : '14px',
-            borderBottomLeftRadius: theaterView ? '0px' : '14px',
-          }}
-        >
-          <VideoPlayerBox
-            style={{
-              height: theaterView ? '95.4vh' : '80vh',
-              borderTopLeftRadius: theaterView ? '0px' : '14px',
-              borderBottomLeftRadius: theaterView ? '0px' : '14px',
-            }}
-          >
-            {!currentVideo ? (
-              <>
-                <EmptyPlayer
-                  style={{
-                    borderTopLeftRadius: theaterView ? '0px' : '14px',
-                    borderBottomLeftRadius: theaterView ? '0px' : '14px',
-                  }}
-                >
-                  <Typography variant='h4'>{t('playlist.empty')}</Typography>
-                  <Image src={MadgeIcon} alt='Madge' height={48} width={48} />
-                </EmptyPlayer>
-                <div style={{ padding: theaterView ? '0rem 3rem' : '0rem 0rem' }}>
-                  <PlayerControls />
-                  <DashboardBar />
-                  <Playlist />
-                </div>
-              </>
-            ) : (
-              <>
-                <>
-                  {hasWindow && (
-                    <>
-                      <StyledReactPlayer
-                        onReady={handleOnReady}
-                        onError={handleOnError}
-                        onProgress={handleProgress}
-                        onEnded={handleOnEnd}
-                        playing={isPlaying}
-                        muted={isMuted}
-                        volume={volume}
-                        ref={playerRef}
-                        height='100%'
-                        width='100%'
-                        url={activeVideo?.videoUrl}
-                        config={getPlayerConfig(playerId)}
-                      />
-                      <div style={{ padding: theaterView ? '0rem 3rem' : '0rem 0rem', marginBottom: '3rem' }}>
-                        <PlayerControls />
-                        <Hidden lgUp>{isChatOn && <TwitchChat />}</Hidden>
-                        <DashboardBar />
-                        <Playlist />
-                      </div>
-                    </>
-                  )}
-                </>
-              </>
-            )}
-          </VideoPlayerBox>
-          <Hidden lgDown>{isChatOn && <TwitchChat />}</Hidden>
-        </VideoPlayerContainer>
-      </Hidden>
-
-      <Hidden lgUp>
-        <VideoPlayerContainer
-          style={{
-            padding: '0rem',
-            borderTopLeftRadius: theaterView ? '0px' : '14px',
-            borderBottomLeftRadius: theaterView ? '0px' : '14px',
-          }}
-        >
-          <VideoPlayerBox
-            style={{
-              height: '65.2vh',
-            }}
-          >
-            {!currentVideo ? (
-              <>
-                <EmptyPlayer>
-                  <Typography variant='h4'>{t('playlist.empty')}</Typography>
-                  <Image src={MadgeIcon} alt='Madge' height={48} width={48} />
-                </EmptyPlayer>
-                {isChatOn && <TwitchChat />}
-                <PlayerControls />
-                <DashboardBar />
-                <Playlist />
-              </>
-            ) : (
-              <>
-                <>
-                  {hasWindow && (
-                    <>
-                      <StyledReactPlayer
-                        onReady={handleOnReady}
-                        onError={handleOnError}
-                        onProgress={handleProgress}
-                        onEnded={handleOnEnd}
-                        playing={isPlaying}
-                        muted={isMuted}
-                        volume={volume}
-                        ref={playerRef}
-                        height='100%'
-                        width='100%'
-                        url={activeVideo?.videoUrl}
-                        config={getPlayerConfig(playerId)}
-                      />
-                      <div style={{ padding: theaterView ? '0rem 3rem' : '0rem 0rem', marginBottom: '3rem' }}>
-                        <PlayerControls />
-                        {isChatOn && <TwitchChat />}
-                        <DashboardBar />
-                        <Playlist />
-                      </div>
-                    </>
-                  )}
-                </>
-              </>
-            )}
-          </VideoPlayerBox>
-          <Hidden lgDown>{isChatOn && <TwitchChat />}</Hidden>
-        </VideoPlayerContainer>
-      </Hidden>
-    </>
+    <VideoPlayerContainer>
+      <VideoPlayerBox style={{ height: isMediumDown ? '65vh' : '100vh' }}>
+        {hasWindow && (
+          <>
+            <StyledReactPlayer
+              onReady={handleOnReady}
+              onError={handleOnError}
+              onProgress={handleProgress}
+              onEnded={handleOnEnd}
+              playing={isPlaying}
+              muted={isMuted}
+              volume={volume}
+              ref={playerRef}
+              url={activeVideo?.videoUrl}
+              width='100%'
+              height='100%'
+              config={getPlayerConfig(playerId)}
+            />
+            <PlayerControls />
+          </>
+        )}
+      </VideoPlayerBox>
+      {isChatOn && isLargeDown && <TwitchChat />}
+    </VideoPlayerContainer>
   );
 };
 

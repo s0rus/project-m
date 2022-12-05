@@ -15,14 +15,13 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { useTranslation } from 'react-i18next';
 import { usePlaylistStore } from '../store/Playlist.store';
 import MadgeIcon from '@/domain/Icons/MadgeIcon.svg';
-import { useMediaQuery } from '@mui/material';
-import { theme } from '@/styles/theme';
+
 const Playlist = () => {
   const { t } = useTranslation();
+
   const queue = usePlaylistStore((state) => state.queue());
   const playlistTimeSum = usePlaylistStore((state) => state.playlistTimeSum());
   const isPlaylistLocked = usePlaylistStore((state) => state.isPlaylistLocked);
-  const isMediumDown = useMediaQuery(theme.breakpoints.down('md'));
 
   const [animatedList] = useAutoAnimate();
 
@@ -30,17 +29,17 @@ const Playlist = () => {
     <>
       <PlaylistWrapper locked={isPlaylistLocked ? 1 : 0}>
         <PlaylistHeader>
-          <Typography style={{ fontSize: isMediumDown ? '18px' : '26px' }}>{t('playlist.header')}</Typography>
+          <Typography variant='h2'>{t('playlist.header')}</Typography>
           <Tooltip title={t('playlist.tooltip.videoCount')}>
             <PlaylistDetail>
               <AutoAwesomeMotionRounded />
-              <Typography>{queue.length || 0}</Typography>
+              <Typography variant='h4'>{queue.length || 0}</Typography>
             </PlaylistDetail>
           </Tooltip>
           <Tooltip title={t('playlist.tooltip.timeSum')}>
             <PlaylistDetail>
               <AccessTimeFilledRounded />
-              <Typography>{timeFormatter(playlistTimeSum)}</Typography>
+              <Typography variant='h4'>{timeFormatter(playlistTimeSum)}</Typography>
             </PlaylistDetail>
           </Tooltip>
         </PlaylistHeader>
@@ -53,6 +52,7 @@ const Playlist = () => {
             ))
           ) : (
             <EmptyPlaylistBox>
+              <Typography variant='h4'>{t('playlist.empty')}</Typography>
               <Image src={MadgeIcon} alt='Madge' height={48} width={48} />
             </EmptyPlaylistBox>
           )}
