@@ -23,16 +23,6 @@ RUN \
 #        BUILDER       #
 ########################
 
-# Rebuild the source code only when needed
-# TODO: re-evaluate if emulation is still necessary on arm64 after moving to node 18
-FROM --platform=linux/amd64 node:16-alpine AS builder
-
-ARG DATABASE_URL
-ARG TWITCH_CLIENT_ID
-ARG TWITCH_CLIENT_SECRET
-ARG NEXTAUTH_URL
-ARG NEXTAUTH_SECRET
-
 FROM --platform=linux/amd64 node:16-alpine AS builder
 ARG DATABASE_URL
 ARG TWITCH_CLIENT_ID
@@ -46,7 +36,6 @@ COPY . .
 # ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN \
-<<<<<<< HEAD
   if [ -f yarn.lock ]; then yarn build; \
   elif [ -f package-lock.json ]; then npm run build; \
   elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm run build; \
@@ -59,16 +48,6 @@ RUN \
 
 # Production image, copy all the files and run next
 # TODO: re-evaluate if emulation is still necessary after moving to node 18
-=======
- if [ -f yarn.lock ]; then yarn build; \
- elif [ -f package-lock.json ]; then npm run build; \
- elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm run build; \
- else echo "Lockfile not found." && exit 1; \
- fi
-
-##### RUNNER
-
->>>>>>> main
 FROM --platform=linux/amd64 node:16-alpine AS runner
 WORKDIR /app
 
