@@ -8,9 +8,12 @@ services:
     working_dir: /app
     ports:
       - '3000:3000'
+    env_file:
+      - .env
     environment:
       - DATABASE_URL=${DATABASE_URL}
       - TWITCH_CLIENT_ID=${TWITCH_CLIENT_ID}
       - TWITCH_CLIENT_SECRET=${TWITCH_CLIENT_SECRET}
       - NEXTAUTH_URL=${NEXTAUTH_URL}
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - SKIP_ENV_VALIDATION=${SKIP_ENV_VALIDATION}

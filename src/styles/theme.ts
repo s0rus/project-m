@@ -63,10 +63,6 @@ const globalTheme = {
       dark: '#ad1e30',
     },
   },
-
-  shape: {
-    borderRadius: '0.5rem',
-  },
   spacing: 8,
 };
 
