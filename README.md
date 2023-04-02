@@ -6,7 +6,7 @@ Project M is an app that lets you watch videos from different platforms (youtube
 
 ## Techstack
 
-The app has been boostrapped with [Create T3 App](https://create.t3.gg/) that provides a really cool, not opinionated boilerplate to start a monorepo project.
+The app has been boostrapped with [Create T3 App](https://create.t3.gg/) that provides a really cool boilerplate to start a monorepo project.
 
 It uses the following technologies:
 
@@ -82,7 +82,7 @@ You can change the database and auth provider for whatever you like, then edit t
 
 ## Leader flow
 
-The whole synchronization is based on so called **leader**. This concrete entity serves as the source of thruth when it comes to the state of video player.
+The whole synchronization is based on so called **leader**. This concrete entity serves as the source of truth when it comes to the state of video player.
 
 The flow works as follows:
 
