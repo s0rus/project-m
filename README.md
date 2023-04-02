@@ -101,3 +101,11 @@ This app uses `i18n` as a translation solution, so all of the page text is repre
 ## Local storage thingies
 
 We save users currently selected volume of the player, and the value of the chat (if it's toggled on or off) in the local storage, so that we can restore the values when user joins the next time.
+
+## Screenshots
+
+![m_1](https://user-images.githubusercontent.com/45129985/229352797-e50df154-bc3d-451d-9163-229ec3267689.png)
+
+![m_2](https://user-images.githubusercontent.com/45129985/229352727-142a0052-ab32-4328-b0a7-f2513eb32863.png)
+
+
