@@ -61,7 +61,7 @@ To run **Project M** you have to do following things:
   - `NEXTAUTH_URL`  
     For local developement the value should be `http://localhost:{PORT}`, when you move to production you provide it with your domain url. **PORT** is set to `3000` by default.
 
-  - `TWITCH_CLIENT_ID` and `TWITCH_CLIENT_SECRET`
+  - `TWITCH_CLIENT_ID` and `TWITCH_CLIENT_SECRET`  
     Because we use Twitch Auth API for authorization, you have to create an app in [Twitch console](https://dev.twitch.tv/console/apps), which will give you the ability to generate both of these values. Just paste them in accordingly.
 
   - `SKIP_ENV_VALIDATION` (set to `false` by default)  
