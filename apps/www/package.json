@@ -1,0 +1,41 @@
+{
+  "name": "www",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "clean": "rm -rf .next",
+    "dev": "next dev -p 3000",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "start": "next start",
+    "ui:add": "pnpm dlx shadcn-ui@latest add"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "geist": "^1.1.0",
+    "lucide-react": "^0.293.0",
+    "next": "^14.0.3",
+    "next-themes": "^0.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^2.0.0",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^13.4.19",
+    "@types/node": "^17.0.12",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "autoprefixer": "^10.4.16",
+    "eslint-config-custom": "workspace:*",
+    "postcss": "latest",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.6",
+    "tailwindcss": "^3.3.5",
+    "tsconfig": "workspace:*",
+    "typescript": "^5.2.2"
+  }
+}

@@ -1,9 +1,8 @@
-import { log } from "logger";
-import { createServer } from "./server";
+import { createServer } from './server';
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 3001;
 const server = createServer();
 
 server.listen(port, () => {
-  log(`api running on ${port}`);
+  console.log(`api running on ${port}`);
 });
